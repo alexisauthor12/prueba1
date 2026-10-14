@@ -502,20 +502,20 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Bloque | Medida (px del mockup) | dp | Comprobación |
 |---|---|---|---|
 | Flecha atrás | 32 × 32 en (33, 36) | 18,2 | **diff 0,18** |
-| Título (negrita) | mayúscula 40 → 68 | 16sp | diff 34,5 |
+| Título (negrita) | mayúscula 40 → 68 | 16sp | diff 30,5 |
 | Compartir | 38 × 40 en (572, 31) | 21,6 × 22,7 | **diff 0,05** |
 | Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
-| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | diff 38,4 |
+| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | diff 33,0 |
 | Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
 | Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 2,19** |
 | Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | diff 10,2 |
-| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 10,4 – 26,6 |
+| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 8,9 – 23,2 |
 | Icono de copiar | 28 × 34 en (**555, 508**) · al lado del número | 15,9 × 19,3 | **diff 0,32** |
 | Flecha del pie | 40 × 39 en (296, 1021) | 22,7 × 22,2 | **diff 0,07** |
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 5,51 / 255 (2,2 %)**.
+**Diff global: 4,75 / 255 (1,9 %)**.
 
 Detalles que solo se ven midiendo:
 
@@ -540,10 +540,14 @@ Detalles que solo se ven midiendo:
 - El **monto es un blanco suave** (`#F5F5F5`), no blanco puro: el mockup es un
   JPEG y el texto llega suavizado (el núcleo es blanco, pero el 88 % de sus
   píxeles claros son grises). Medido, `#F5F5F5` es el que menos se desvía
-  (**diff 10,2**, frente a 14,0 con `#FFFFFF`). Además lleva
-  `transform:translateZ(0)`: al forzar capa de composición, Chrome deja de
-  añadir **flecos naranjas y azules** (antialiasing subpíxel) al texto claro
-  sobre gris, y el diff baja de 13,97 a 10,22.
+  (**diff 10,2**, frente a 14,0 con `#FFFFFF`).
+- **Todos los textos llevan `transform:translateZ(0)`** (capa de composición):
+  así Chrome usa antialiasing **en escala de grises**, como el teléfono que hizo
+  el mockup, en vez de meterle flecos naranjas y azules (subpíxel). Solo con eso
+  el diff global baja de 5,56 a **4,80** y cada texto entre un 10 % y un 20 %
+  (monto 13,97 → 10,22, título 34,5 → 30,5, subtítulo 38,4 → 33,0, filas hasta
+  23,2, interruptores 35,8 → 30,6). En Android no hace falta: Android ya pinta
+  el texto en escala de grises.
 
 ---
 

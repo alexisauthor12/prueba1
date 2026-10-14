@@ -425,10 +425,15 @@ medidas de abajo salen de `px / 1,75833`.
    (media `#D7D7D7`). Probados seis valores midiendo el diff real de la zona
    del monto (`#FFFFFF` 13,97 · `#F2F2F2` 13,40 · `#E8E8E8` 13,26 · `#DCDCDC`
    13,47 · `#D7D7D7` 13,57 · `#CCCCCC` 13,92), con **`#F5F5F5`** y capa de
-   composición se queda en **10,22**. La capa (`transform:translateZ(0)`) es
-   imprescindible: sin ella Chrome pinta el texto claro sobre gris con
-   **antialiasing subpíxel** y le mete flecos naranjas y azules (solo por eso
-   el diff baja de 13,97 a 10,5).
+   composición se queda en **10,22**.
+8. **Chrome en Windows pinta el texto con antialiasing subpíxel** (flecos
+   naranjas y azules) y el mockup es una captura de teléfono, que usa escala de
+   grises. Forzando capa de composición en los textos (`transform:translateZ(0)`)
+   el render se vuelve gris y el diff global baja de 5,56 a **4,75** (monto
+   13,97 → 10,22, título 34,5 → 30,5, subtítulo 38,4 → 33,0, interruptores
+   35,8 → 30,6). Poner la capa en el `body` **no sirve**: con fondo opaco Chrome
+   sigue usando subpíxel; hay que ponérsela a cada texto. En Android no hace
+   falta, ya usa escala de grises.
 
 
 ---
