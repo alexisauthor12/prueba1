@@ -1,4 +1,4 @@
-﻿# BDV · Réplica 1:1 de la app (Inicio → Login → Contraseña → Dashboard → Pagos) → APK
+﻿# BDV · Réplica 1:1 de la app (Inicio → Login → Contraseña → Dashboard → Pagos → PagomóvilBDV) → APK
 
 Réplica **medida píxel a píxel** de los mockups de `design/`, traducida a una app
 Android real y compilable a APK **sin instalar nada en tu PC** (se compila en la
@@ -11,6 +11,7 @@ nube con GitHub Actions).
 | 3 | Diálogo «Ingresa con tu contraseña» | `referencia-clave.jpeg` | `replica/clave.html` | 2,24 |
 | 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 4,87 |
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
+| 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -264,10 +265,10 @@ powershell -ExecutionPolicy Bypass -File tools\validar-android.ps1
 `comparar.ps1` informa, por cada región: la caja medida en la referencia, la caja
 medida en la réplica y la diferencia media de color. Con eso se corrige cualquier
 desviación en un solo paso. Admite
-`-Pantalla inicio | login | clave | dashboard | pagos`.
+`-Pantalla inicio | login | clave | dashboard | pagos | pagomovil`.
 
-`validar-android.ps1` comprueba de una pasada: **35 XML bien formados**,
-**369 recursos** definidos, **77 ids** y **0 referencias sin resolver**
+`validar-android.ps1` comprueba de una pasada: **41 XML bien formados**,
+**473 recursos** definidos, **102 ids** y **0 referencias sin resolver**
 (incluidos los usos `R.id.*` / `R.layout.*` en Kotlin).
 
 ## 5. Tipografía: identificada empíricamente
@@ -401,8 +402,8 @@ Detalles que solo se ven midiendo:
 
 ### Verlo sin compilar
 
-`replica/flujo.html` tiene ya **5 pasos**: Inicio → Autenticación → Diálogo
-(contraseña 12345) → Dashboard → Panel de Pagos. Y
+`replica/flujo.html` tiene ya **6 pasos**: Inicio → Autenticación → Diálogo
+(contraseña 12345) → Dashboard → Panel de Pagos → PagomóvilBDV. Y
 `replica/vista-previa-dashboard.html` es la versión autocontenida para pasar al móvil.
 
 ---
@@ -445,5 +446,42 @@ Detalles que solo se ven midiendo:
 En la app: `DashboardActivity` lo abre desde `nav3` / `navTexto3`, y lo cierra con
 el velo, una opción o el botón atrás. Vista autocontenida:
 `replica/vista-previa-pagos.html`.
+
+---
+
+## 10. PagomóvilBDV (al pulsar «PagomóvilBDV» en el panel de Pagos)
+
+Pantalla propia (`PagomovilActivity`) replicada de `design/referencia-pagomovil.jpeg`
+(720 × 1451 px @2x → **360 × 725.5 dp**). Réplica en `replica/pagomovil.html`.
+
+| Bloque | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Campana + badge | 48 × 52 en (40, 22) | 24 × 26 | **diff 0,03** |
+| Menú | 30 × 22 en (657, 42) | 15 × 11 | **diff 0,00** |
+| Círculos Pegar/Leer datos | 72 × 72 en y 110 | 36 × 36 | **diff 0,95** |
+| Campos | 640 × 96 · borde 4 · radio 20 | 320 × 48 · 2 · 10 | **diff 0,5 – 1,3** |
+| Paso entre campos | **156** | **78** | **exacto** |
+| Botón de Documento | 96 × 96 · radio 20 | 48 × 48 · 10 | **diff 1,01** |
+| Pagar / Limpiar | 176 × 80 en y 1126 | 88 × 40 | **caja exacta** |
+| Icono del pie | 66 × 81 en (325, 1258) | 33 × 40.5 | **diff 0,35** |
+| Barra inferior | desde y 1338 · 113 px | 669 · 56.5 | iconos 2,98 |
+
+**Diff global: 2,56 / 255 (2,03 %)** — la mejor de las seis pantallas.
+
+Detalles que solo se ven midiendo:
+
+- Los dos desplegables llevan la **etiqueta encima del borde** («Operación:»,
+  «Banco:») y el borde se **interrumpe** justo debajo: medido, desaparece desde
+  el borde izquierdo del campo hasta x 165 px (63 dp), solo en el grosor del
+  borde (4 px). Se reproduce con una `View` de 63 × 2 dp con el relleno del campo.
+- El relleno de los campos es `#454545` y el borde `#9E9E9E` de **2 dp**.
+- El triángulo del desplegable es `#C9C9C9` (medido), no blanco.
+- El campo de Documento mide **267 dp** y a su derecha va el botón rojo de 48 dp:
+  267 + 5 + 48 = **320 dp**, el ancho del resto de los campos.
+- La barra inferior es la misma del dashboard pero **4 px más arriba** (y 113 px
+  de alto en vez de 104).
+
+En la app: se abre desde la primera opción del panel de Pagos. Vista
+autocontenida: `replica/vista-previa-pagomovil.html`.
 
 

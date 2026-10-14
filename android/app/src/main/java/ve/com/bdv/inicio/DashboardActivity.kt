@@ -1,5 +1,6 @@
 package ve.com.bdv.inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -85,14 +86,18 @@ class DashboardActivity : AppCompatActivity() {
         velo.setOnClickListener { ocultarPagos() }
         panel.setOnClickListener { /* toque dentro del panel: no hace nada */ }
 
-        // Cada opcion cierra el panel y avisa de la eleccion.
+        // Cada opcion cierra el panel. "PagomovilBDV" abre su pantalla.
         for (id in intArrayOf(
             R.id.pgItem1, R.id.pgItem2, R.id.pgItem3, R.id.pgItem4, R.id.pgItem5
         )) {
             val item = findViewById<TextView>(id)
             item.setOnClickListener {
                 ocultarPagos()
-                aviso(item.text.toString())
+                if (id == R.id.pgItem1) {
+                    startActivity(Intent(this, PagomovilActivity::class.java))
+                } else {
+                    aviso(item.text.toString())
+                }
             }
         }
 

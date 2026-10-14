@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Campo de PagomovilBDV: relleno #454545 con borde de 2 dp #9E9E9E -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/campo_pm_fondo" />
+    <stroke android:width="@dimen/pm_campo_borde" android:color="@color/campo_borde" />
+    <corners android:radius="@dimen/pm_campo_radio" />
+</shape>

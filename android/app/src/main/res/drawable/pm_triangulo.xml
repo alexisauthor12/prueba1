@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Triangulo del desplegable (18 x 9 px = 9 x 4.5 dp), color medido #C9C9C9 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/pm_chevron_ancho"
+    android:height="@dimen/pm_chevron_alto"
+    android:viewportWidth="18"
+    android:viewportHeight="9">
+    <path
+        android:fillColor="@color/chevron_pm"
+        android:pathData="M0,0 L18,0 L9,9 Z" />
+</vector>

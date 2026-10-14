@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PagomovilBDV (se abre al pulsar la opcion "PagomovilBDV" del panel de Pagos).
+  Medidas exactas del mockup design/referencia-pagomovil.jpeg
+  (720x1451 px @2x -> lienzo de diseno 360 x 725.5 dp):
+
+      dp = px / 2
+
+  Los margenes superiores de los textos descuentan el hueco entre el borde de
+  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+-->
+<resources>
+
+    <!-- ===== Barra superior: campana+badge (50x54 px), titulo, menu ===== -->
+    <dimen name="pm_campana_ancho">25dp</dimen>
+    <dimen name="pm_campana_alto">27dp</dimen>
+    <dimen name="pm_campana_margin_izq">19.5dp</dimen>
+    <dimen name="pm_campana_margin_top">10.5dp</dimen>
+
+    <dimen name="pm_titulo_texto">16sp</dimen>
+    <dimen name="pm_titulo_margin_izq">71.7dp</dimen>
+    <dimen name="pm_titulo_margin_top">17.04dp</dimen>
+
+    <dimen name="pm_menu_ancho">18dp</dimen>
+    <dimen name="pm_menu_alto">15dp</dimen>
+    <dimen name="pm_menu_margin_izq">327dp</dimen>
+    <dimen name="pm_menu_margin_top">19dp</dimen>
+
+    <!-- ===== Fila Pegar/Leer datos: circulos de 72 px en y 110 ===== -->
+    <dimen name="pm_circulo">36dp</dimen>
+    <dimen name="pm_circulo_margin_izq">20dp</dimen>
+    <dimen name="pm_circulo_der_margin_izq">304dp</dimen>
+    <dimen name="pm_circulo_margin_top">55dp</dimen>
+
+    <dimen name="pm_accion_texto">13sp</dimen>
+    <dimen name="pm_accion_tracking">-0.03</dimen>
+    <dimen name="pm_accion_margin_izq">65.9dp</dimen>
+    <dimen name="pm_accion_margin_der">65.9dp</dimen>
+    <dimen name="pm_accion_margin_top">65.2dp</dimen>
+
+    <!-- ===== Campos: 640x96 px (320x48 dp), borde 4 px, radio 20 px ===== -->
+    <dimen name="pm_campo_ancho">320dp</dimen>
+    <dimen name="pm_campo_alto">48dp</dimen>
+    <dimen name="pm_campo_borde">2dp</dimen>
+    <dimen name="pm_campo_radio">10dp</dimen>
+    <dimen name="pm_campo_margin_izq">20dp</dimen>
+    <dimen name="pm_campo1_margin_top">106dp</dimen>
+    <dimen name="pm_campo2_margin_top">184dp</dimen>
+    <dimen name="pm_campo3_margin_top">262dp</dimen>
+    <dimen name="pm_campo4_margin_top">340dp</dimen>
+    <dimen name="pm_campo5_margin_top">418dp</dimen>
+    <dimen name="pm_campo6_margin_top">496dp</dimen>
+
+    <!-- Campo de Documento: 534 px (267 dp) + hueco 5 dp + boton 48 dp -->
+    <dimen name="pm_campo_doc_ancho">267dp</dimen>
+
+    <!-- El notch que interrumpe el borde bajo la etiqueta: 126 px = 63 dp -->
+    <dimen name="pm_notch_ancho">63dp</dimen>
+
+    <dimen name="pm_campo_texto">14sp</dimen>
+    <dimen name="pm_campo_tracking">-0.02</dimen>
+    <dimen name="pm_campo_padding_izq">10dp</dimen>
+    <dimen name="pm_campo_texto_padding_top">14dp</dimen>
+    <dimen name="pm_campo_etiquetado_padding_top">15.5dp</dimen>
+
+    <!-- ===== Etiquetas sobre el borde ("Operacion:", "Banco:") ===== -->
+    <dimen name="pm_etiqueta_texto">12sp</dimen>
+    <dimen name="pm_etiqueta_margin_izq">21.5dp</dimen>
+    <dimen name="pm_etiqueta1_margin_top">99.4dp</dimen>
+    <dimen name="pm_etiqueta3_margin_top">255.9dp</dimen>
+
+    <!-- ===== Desplegables: triangulo de 18x9 px en x 623 ===== -->
+    <dimen name="pm_chevron_ancho">9dp</dimen>
+    <dimen name="pm_chevron_alto">4.5dp</dimen>
+    <dimen name="pm_chevron_margin_izq">311.5dp</dimen>
+    <dimen name="pm_chevron1_margin_top">128dp</dimen>
+    <dimen name="pm_chevron3_margin_top">284dp</dimen>
+
+    <!-- ===== Boton rojo de Documento: 96x96 px (48x48 dp) ===== -->
+    <dimen name="pm_boton_doc">48dp</dimen>
+    <dimen name="pm_boton_doc_margin_izq">292dp</dimen>
+    <dimen name="pm_boton_doc_margin_top">184dp</dimen>
+
+    <!-- ===== Botones Pagar / Limpiar: 176x80 px (88x40 dp) ===== -->
+    <dimen name="pm_boton_ancho">88dp</dimen>
+    <dimen name="pm_boton_alto">40dp</dimen>
+    <dimen name="pm_boton_margin_top">563dp</dimen>
+    <dimen name="pm_boton1_margin_izq">84.5dp</dimen>
+    <dimen name="pm_boton2_margin_izq">187.5dp</dimen>
+    <dimen name="pm_boton_texto">12sp</dimen>
+
+    <!-- ===== Icono inferior (telefono en la mano): 66x81 px ===== -->
+    <dimen name="pm_icono_inferior_ancho">33dp</dimen>
+    <dimen name="pm_icono_inferior_alto">40.5dp</dimen>
+    <dimen name="pm_icono_inferior_margin_izq">162.5dp</dimen>
+    <dimen name="pm_icono_inferior_margin_top">629dp</dimen>
+
+    <!-- ===== Barra inferior: desde y 1338 px (669 dp), 113 px de alto ===== -->
+    <dimen name="pm_nav_margin_top">669dp</dimen>
+    <dimen name="pm_nav_alto">56.5dp</dimen>
+    <dimen name="pm_nav_texto">9.75sp</dimen>
+    <dimen name="pm_nav_texto_activo">11.75sp</dimen>
+    <dimen name="pm_nav_texto_margin_top">704.4dp</dimen>
+    <dimen name="pm_nav_texto_activo_margin_top">703.96dp</dimen>
+    <dimen name="pm_nav_texto_tracking_activo">-0.04</dimen>
+
+    <dimen name="pm_nav1_margin_top">679.5dp</dimen>
+    <dimen name="pm_nav2_margin_top">680.5dp</dimen>
+    <dimen name="pm_nav3_margin_top">682dp</dimen>
+    <dimen name="pm_nav4_margin_top">680dp</dimen>
+    <dimen name="pm_nav5_margin_top">682dp</dimen>
+    <dimen name="pm_nav6_margin_top">680.5dp</dimen>
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  El "notch" del campo: tapa el borde superior bajo la etiqueta flotante con el
+  mismo relleno del campo (#454545). En el mockup el borde se interrumpe desde
+  el borde izquierdo del campo hasta x 166 px (63 dp) y solo en el grosor del
+  borde (4 px = 2 dp).
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/campo_pm_fondo" />
+    <corners android:topLeftRadius="@dimen/pm_campo_radio" />
+</shape>

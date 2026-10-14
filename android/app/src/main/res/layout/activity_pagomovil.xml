@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  PagomovilBDV: se abre al pulsar la opcion "PagomovilBDV" del panel de Pagos.
+  Replica 1:1 del mockup design/referencia-pagomovil.jpeg
+  (720x1451 px @2x -> lienzo de diseno 360 x 725.5 dp).
+  Medidas en values/dimens_pagomovil.xml.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <!-- ================= Barra superior ================= -->
+    <ImageView
+        android:id="@+id/pmCampana"
+        android:layout_width="@dimen/pm_campana_ancho"
+        android:layout_height="@dimen/pm_campana_alto"
+        android:layout_marginStart="@dimen/pm_campana_margin_izq"
+        android:layout_marginTop="@dimen/pm_campana_margin_top"
+        android:contentDescription="@string/pm_campana_desc"
+        android:src="@drawable/pm_campana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pmTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pm_titulo_margin_izq"
+        android:layout_marginTop="@dimen/pm_titulo_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.01"
+        android:text="@string/pm_titulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_titulo_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pmMenu"
+        android:layout_width="@dimen/pm_menu_ancho"
+        android:layout_height="@dimen/pm_menu_alto"
+        android:layout_marginStart="@dimen/pm_menu_margin_izq"
+        android:layout_marginTop="@dimen/pm_menu_margin_top"
+        android:contentDescription="@string/pm_menu_desc"
+        android:src="@drawable/pm_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Pegar datos / Leer datos ================= -->
+    <ImageView
+        android:id="@+id/pmCirculoPegar"
+        android:layout_width="@dimen/pm_circulo"
+        android:layout_height="@dimen/pm_circulo"
+        android:layout_marginStart="@dimen/pm_circulo_margin_izq"
+        android:layout_marginTop="@dimen/pm_circulo_margin_top"
+        android:contentDescription="@string/pm_pegar_desc"
+        android:src="@drawable/pm_circulo_pegar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pmPegar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pm_accion_margin_izq"
+        android:layout_marginTop="@dimen/pm_accion_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:letterSpacing="@dimen/pm_accion_tracking"
+        android:text="@string/pm_pegar_datos"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_accion_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pmLeer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/pm_accion_margin_der"
+        android:layout_marginTop="@dimen/pm_accion_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:letterSpacing="@dimen/pm_accion_tracking"
+        android:text="@string/pm_leer_datos"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_accion_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pmCirculoLeer"
+        android:layout_width="@dimen/pm_circulo"
+        android:layout_height="@dimen/pm_circulo"
+        android:layout_marginStart="@dimen/pm_circulo_der_margin_izq"
+        android:layout_marginTop="@dimen/pm_circulo_margin_top"
+        android:contentDescription="@string/pm_leer_desc"
+        android:src="@drawable/pm_circulo_leer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Campos ================= -->
+    <!-- Campo 1: Operacion (desplegable, con etiqueta sobre el borde) -->
+    <FrameLayout
+        android:id="@+id/pmCampo1"
+        android:layout_width="@dimen/pm_campo_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo1_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="@dimen/pm_notch_ancho"
+            android:layout_height="@dimen/pm_campo_borde"
+            android:background="@drawable/bg_notch_pm" />
+
+        <TextView
+            android:id="@+id/pmTexto1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_etiquetado_padding_top"
+            android:text="@string/pm_personas"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/pm_campo_texto" />
+
+        <ImageView
+            android:layout_width="@dimen/pm_chevron_ancho"
+            android:layout_height="@dimen/pm_chevron_alto"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="19.5dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/pm_desplegable_desc"
+            android:src="@drawable/pm_triangulo" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/pmEtiqueta1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pm_etiqueta_margin_izq"
+        android:layout_marginTop="@dimen/pm_etiqueta1_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/pm_operacion"
+        android:textColor="@color/texto_gris"
+        android:textSize="@dimen/pm_etiqueta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campo 2: Documento (con el boton rojo de buscar) -->
+    <FrameLayout
+        android:id="@+id/pmCampo2"
+        android:layout_width="@dimen/pm_campo_doc_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo2_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pmTexto2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_texto_padding_top"
+            android:text="@string/pm_documento"
+            android:textColor="@color/texto_gris"
+            android:textSize="@dimen/pm_campo_texto" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/pmBotonDoc"
+        android:layout_width="@dimen/pm_boton_doc"
+        android:layout_height="@dimen/pm_boton_doc"
+        android:layout_marginStart="@dimen/pm_boton_doc_margin_izq"
+        android:layout_marginTop="@dimen/pm_boton_doc_margin_top"
+        android:contentDescription="@string/pm_buscar_desc"
+        android:src="@drawable/pm_boton_doc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campo 3: Banco (desplegable, con etiqueta sobre el borde) -->
+    <FrameLayout
+        android:id="@+id/pmCampo3"
+        android:layout_width="@dimen/pm_campo_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo3_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="@dimen/pm_notch_ancho"
+            android:layout_height="@dimen/pm_campo_borde"
+            android:background="@drawable/bg_notch_pm" />
+
+        <TextView
+            android:id="@+id/pmTexto3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_etiquetado_padding_top"
+            android:text="@string/pm_banco_0102"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/pm_campo_texto" />
+
+        <ImageView
+            android:layout_width="@dimen/pm_chevron_ancho"
+            android:layout_height="@dimen/pm_chevron_alto"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="19.5dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/pm_desplegable_desc"
+            android:src="@drawable/pm_triangulo" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/pmEtiqueta3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/pm_etiqueta_margin_izq"
+        android:layout_marginTop="@dimen/pm_etiqueta3_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/pm_banco"
+        android:textColor="@color/texto_gris"
+        android:textSize="@dimen/pm_etiqueta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Campos 4, 5 y 6 -->
+    <FrameLayout
+        android:id="@+id/pmCampo4"
+        android:layout_width="@dimen/pm_campo_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo4_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pmTexto4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_texto_padding_top"
+            android:text="@string/pm_telefono"
+            android:textColor="@color/texto_gris"
+            android:textSize="@dimen/pm_campo_texto" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pmCampo5"
+        android:layout_width="@dimen/pm_campo_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo5_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pmTexto5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_texto_padding_top"
+            android:text="@string/pm_monto"
+            android:textColor="@color/texto_gris"
+            android:textSize="@dimen/pm_campo_texto" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pmCampo6"
+        android:layout_width="@dimen/pm_campo_ancho"
+        android:layout_height="@dimen/pm_campo_alto"
+        android:layout_marginStart="@dimen/pm_campo_margin_izq"
+        android:layout_marginTop="@dimen/pm_campo6_margin_top"
+        android:background="@drawable/bg_campo_pm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pmTexto6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arimo"
+            android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:letterSpacing="@dimen/pm_campo_tracking"
+            android:paddingStart="@dimen/pm_campo_padding_izq"
+            android:paddingTop="@dimen/pm_campo_texto_padding_top"
+            android:text="@string/pm_concepto"
+            android:textColor="@color/texto_gris"
+            android:textSize="@dimen/pm_campo_texto" />
+    </FrameLayout>
+
+    <!-- ================= Botones Pagar / Limpiar ================= -->
+    <TextView
+        android:id="@+id/pmPagar"
+        android:layout_width="@dimen/pm_boton_ancho"
+        android:layout_height="@dimen/pm_boton_alto"
+        android:layout_marginStart="@dimen/pm_boton1_margin_izq"
+        android:layout_marginTop="@dimen/pm_boton_margin_top"
+        android:background="@drawable/bg_boton"
+        android:fontFamily="@font/arimo"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.045"
+        android:text="@string/pm_pagar"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_boton_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pmLimpiar"
+        android:layout_width="@dimen/pm_boton_ancho"
+        android:layout_height="@dimen/pm_boton_alto"
+        android:layout_marginStart="@dimen/pm_boton2_margin_izq"
+        android:layout_marginTop="@dimen/pm_boton_margin_top"
+        android:background="@drawable/bg_boton"
+        android:fontFamily="@font/arimo"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:letterSpacing="-0.045"
+        android:text="@string/pm_limpiar"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_boton_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Icono del pie ================= -->
+    <ImageView
+        android:id="@+id/pmIconoInferior"
+        android:layout_width="@dimen/pm_icono_inferior_ancho"
+        android:layout_height="@dimen/pm_icono_inferior_alto"
+        android:layout_marginStart="@dimen/pm_icono_inferior_margin_izq"
+        android:layout_marginTop="@dimen/pm_icono_inferior_margin_top"
+        android:contentDescription="@string/pm_pegar_desc"
+        android:src="@drawable/pm_icono_inferior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Barra inferior (igual que el dashboard) ================= -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/pm_nav_alto"
+        android:layout_marginTop="@dimen/pm_nav_margin_top"
+        android:background="@color/rojo_marca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/nav1"
+        android:layout_width="@dimen/db_nav1_ancho" android:layout_height="@dimen/db_nav1_alto"
+        android:layout_marginStart="@dimen/db_nav1_margin_izq" android:layout_marginTop="@dimen/pm_nav1_margin_top"
+        android:contentDescription="@string/db_nav_inicio" android:src="@drawable/db_nav1"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav2"
+        android:layout_width="@dimen/db_nav2_ancho" android:layout_height="@dimen/db_nav2_alto"
+        android:layout_marginStart="@dimen/db_nav2_margin_izq" android:layout_marginTop="@dimen/pm_nav2_margin_top"
+        android:contentDescription="@string/db_nav_transferir" android:src="@drawable/db_nav2"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav3"
+        android:layout_width="@dimen/db_nav3_ancho" android:layout_height="@dimen/db_nav3_alto"
+        android:layout_marginStart="@dimen/db_nav3_margin_izq" android:layout_marginTop="@dimen/pm_nav3_margin_top"
+        android:contentDescription="@string/db_nav_pagos" android:src="@drawable/db_nav3"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav4"
+        android:layout_width="@dimen/db_nav4_ancho" android:layout_height="@dimen/db_nav4_alto"
+        android:layout_marginStart="@dimen/db_nav4_margin_izq" android:layout_marginTop="@dimen/pm_nav4_margin_top"
+        android:contentDescription="@string/db_nav_servicios" android:src="@drawable/db_nav4"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav5"
+        android:layout_width="@dimen/db_nav5_ancho" android:layout_height="@dimen/db_nav5_alto"
+        android:layout_marginStart="@dimen/db_nav5_margin_izq" android:layout_marginTop="@dimen/pm_nav5_margin_top"
+        android:contentDescription="@string/db_nav_divisas" android:src="@drawable/db_nav5"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav6"
+        android:layout_width="@dimen/db_nav6_ancho" android:layout_height="@dimen/db_nav6_alto"
+        android:layout_marginStart="@dimen/db_nav6_margin_izq" android:layout_marginTop="@dimen/pm_nav6_margin_top"
+        android:contentDescription="@string/db_nav_tarjeta" android:src="@drawable/db_nav6"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto1"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="0dp" android:layout_marginTop="@dimen/pm_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_inicio" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto2"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_nav_columna" android:layout_marginTop="@dimen/pm_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_transferir" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto3"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="120dp" android:layout_marginTop="@dimen/pm_nav_texto_activo_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:letterSpacing="@dimen/pm_nav_texto_tracking_activo"
+        android:text="@string/db_nav_pagos" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto_activo" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto4"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="180dp" android:layout_marginTop="@dimen/pm_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_servicios" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto5"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="240dp" android:layout_marginTop="@dimen/pm_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_divisas" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto6"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="300dp" android:layout_marginTop="@dimen/pm_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_tarjeta" android:textColor="@color/blanco"
+        android:textSize="@dimen/pm_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

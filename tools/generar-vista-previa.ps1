@@ -11,6 +11,7 @@
     powershell -File generar-vista-previa.ps1 -Pantalla login
     powershell -File generar-vista-previa.ps1 -Pantalla clave
     powershell -File generar-vista-previa.ps1 -Pantalla pagos
+    powershell -File generar-vista-previa.ps1 -Pantalla pagomovil
     powershell -File generar-vista-previa.ps1 -Pantalla todas
 
   Salidas:
@@ -19,11 +20,12 @@
     clave     -> replica\vista-previa-clave.html   (dialogo sobre el login)
     dashboard -> replica\vista-previa-dashboard.html
     pagos     -> replica\vista-previa-pagos.html   (panel sobre el dashboard)
-    flujo     -> replica\vista-previa-flujo.html   (las cinco pantallas)
+    pagomovil -> replica\vista-previa-pagomovil.html
+    flujo     -> replica\vista-previa-flujo.html   (las seis pantallas)
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','dashboard','pagos','flujo','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','flujo','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -77,12 +79,16 @@ function GenerarFlujo(){
               'db_ico1.png','db_ico2.png','db_ico3.png','db_ico4.png',
               'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
               'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png')
+  # Iconos propios de PagomovilBDV (los del nav son los mismos del dashboard)
+  $pmIconos = @('pm_campana.png','pm_menu.png','pm_circulo_pegar.png','pm_circulo_leer.png',
+                'pm_boton_doc.png','pm_icono_inferior.png') + $iconos
   $pares = @(
     @('index.html',     (Construir 'index.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png'))),
     @('login.html',     (Construir 'login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png'))),
     @('clave.html',     (Construir 'clave.html' @('ico-ojo.png') -ConLogin)),
     @('dashboard.html', (Construir 'dashboard.html' $iconos)),
-    @('pagos.html',     (Construir 'pagos.html' @('render-dashboard.png')))
+    @('pagos.html',     (Construir 'pagos.html' @('render-dashboard.png'))),
+    @('pagomovil.html', (Construir 'pagomovil.html' $pmIconos))
   )
   foreach($p in $pares){
     $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($p[1]))
@@ -96,7 +102,7 @@ function GenerarFlujo(){
 }
 
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','flujo') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','pagomovil','flujo') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
@@ -109,6 +115,10 @@ foreach($p in $hacer){
         'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
         'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
     'pagos'  { Generar 'pagos.html' 'vista-previa-pagos.html' @('render-dashboard.png') }
+    'pagomovil' { Generar 'pagomovil.html' 'vista-previa-pagomovil.html' @(
+        'pm_campana.png','pm_menu.png','pm_circulo_pegar.png','pm_circulo_leer.png',
+        'pm_boton_doc.png','pm_icono_inferior.png',
+        'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
     'flujo'  { GenerarFlujo }
   }
 }

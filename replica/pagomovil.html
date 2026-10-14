@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - PagomóvilBDV (replica 1:1, 720x1451 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1451px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* ---- Barra superior: campana+badge (40,22), titulo 16sp, menu ---- */
+  #pmCampana{position:absolute;left:39px;top:21px;width:50px;height:54px;}
+  #pmTitulo{position:absolute;left:143.4px;top:37.5px;font-size:32px;font-weight:700;
+            color:#FFFFFF;line-height:1;white-space:nowrap;}
+  #pmMenu{position:absolute;left:654px;top:38px;width:36px;height:30px;}
+
+  /* ---- Fila Pegar/Leer datos: circulos de 72 px en y 110 ---- */
+  #pmCirculoPegar{position:absolute;left:40px;top:110px;width:72px;height:72px;}
+  #pmCirculoLeer {position:absolute;left:608px;top:110px;width:72px;height:72px;}
+  .pmAccion{position:absolute;top:133.1px;font-size:26px;color:#FFFFFF;line-height:1;white-space:nowrap;
+            letter-spacing:-0.015em;}
+  #pmPegar{left:131.8px;}
+  #pmLeer{right:131.8px;}
+
+  /* ---- Campos: 640x96, borde 4 px #9E9E9E, relleno #454545, radio 20 ---- */
+  .pmCampo{position:absolute;left:40px;width:640px;height:96px;box-sizing:border-box;
+           border:4px solid #9E9E9E;border-radius:20px;background:#454545;}
+  /* El "notch": tapa el borde bajo la etiqueta, con el mismo relleno */
+  .pmNotch{position:absolute;left:40px;width:126px;height:4px;background:#454545;
+           border-top-left-radius:20px;}
+  .pmEtiqueta{position:absolute;left:43.1px;font-size:24px;color:#9F9F9F;line-height:1;white-space:nowrap;}
+  .pmTexto{position:absolute;left:59.8px;font-size:28px;color:#FFFFFF;line-height:1;white-space:nowrap;
+           letter-spacing:-0.025em;}
+  .pmPlaceholder{position:absolute;left:59.8px;font-size:28px;color:#9F9F9F;line-height:1;white-space:nowrap;
+                 letter-spacing:-0.005em;}
+  /* Triangulo del desplegable: 18 x 9 px en x 623 */
+  .pmChevron{position:absolute;left:623px;width:0;height:0;
+             border-left:9px solid transparent;border-right:9px solid transparent;
+             border-top:9px solid #C9C9C9;}
+
+  /* ---- Boton rojo de Documento y botones Pagar/Limpiar ---- */
+  #pmBotonDoc{position:absolute;left:584px;top:368px;width:96px;height:96px;}
+  .pmBoton{position:absolute;top:1126px;width:176px;height:80px;border-radius:20px;
+           background:#BB1B47;}
+  .pmBoton span{display:block;position:absolute;left:0;width:176px;text-align:center;
+                font-size:24px;font-weight:700;color:#FFFFFF;line-height:1;letter-spacing:-0.045em;}
+  #pmPagar  {left:169px;}
+  #pmLimpiar{left:375px;}
+
+  /* ---- Icono inferior y barra de navegacion ---- */
+  #pmIconoInferior{position:absolute;left:325px;top:1258px;width:66px;height:81px;}
+  #pmNav{position:absolute;left:0;top:1338px;width:720px;height:113px;background:#BB1B47;}
+  .pmNavIcono{position:absolute;}
+  .pmNavTexto{position:absolute;width:120px;text-align:center;color:#FFFFFF;
+              font-size:19.5px;line-height:1;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+  <img id="pmCampana" src="pm_campana.png" alt="">
+  <div id="pmTitulo">PagomóvilBDV</div>
+  <img id="pmMenu" src="pm_menu.png" alt="">
+
+  <img id="pmCirculoPegar" src="pm_circulo_pegar.png" alt="">
+  <div class="pmAccion" id="pmPegar">Pegar datos</div>
+  <div class="pmAccion" id="pmLeer">Leer datos</div>
+  <img id="pmCirculoLeer" src="pm_circulo_leer.png" alt="">
+
+  <!-- Campo 1: Operacion (desplegable con etiqueta en el borde) -->
+  <div class="pmCampo" style="top:212px"></div>
+  <div class="pmNotch" style="top:212px"></div>
+  <div class="pmEtiqueta" style="top:201.35px">Operación:</div>
+  <div class="pmTexto" style="top:245.9px">Personas</div>
+  <div class="pmChevron" style="top:256px"></div>
+
+  <!-- Campo 2: Documento (con boton rojo) -->
+  <div class="pmCampo" style="top:368px;width:534px"></div>
+  <div class="pmPlaceholder" style="top:398.9px">Documento:</div>
+  <img id="pmBotonDoc" src="pm_boton_doc.png" alt="">
+
+  <!-- Campo 3: Banco (desplegable con etiqueta en el borde) -->
+  <div class="pmCampo" style="top:524px"></div>
+  <div class="pmNotch" style="top:524px"></div>
+  <div class="pmEtiqueta" style="top:514.35px">Banco:</div>
+  <div class="pmTexto" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
+  <div class="pmChevron" style="top:568px"></div>
+
+  <!-- Campos 4, 5 y 6 -->
+  <div class="pmCampo" style="top:680px"></div>
+  <div class="pmPlaceholder" style="top:710.9px">Teléfono:</div>
+
+  <div class="pmCampo" style="top:836px"></div>
+  <div class="pmPlaceholder" style="top:866.9px">Monto:</div>
+
+  <div class="pmCampo" style="top:992px"></div>
+  <div class="pmPlaceholder" style="top:1022.9px">Concepto:</div>
+
+  <!-- Botones -->
+  <div class="pmBoton" id="pmPagar"><span style="top:28px">Pagar</span></div>
+  <div class="pmBoton" id="pmLimpiar"><span style="top:28px">Limpiar</span></div>
+
+  <img id="pmIconoInferior" src="pm_icono_inferior.png" alt="">
+
+  <!-- Barra inferior (misma que el dashboard, 2 dp mas arriba) -->
+  <div id="pmNav"></div>
+  <img class="pmNavIcono" src="db_nav1.png" style="left:37px;top:1355px;width:42px;height:41px" alt="Inicio">
+  <img class="pmNavIcono" src="db_nav2.png" style="left:157px;top:1357px;width:44px;height:41px" alt="Transferencias">
+  <img class="pmNavIcono" src="db_nav3.png" style="left:277px;top:1360px;width:48px;height:41px" alt="Pagos">
+  <img class="pmNavIcono" src="db_nav4.png" style="left:398px;top:1356px;width:44px;height:43px" alt="Servicios">
+  <img class="pmNavIcono" src="db_nav5.png" style="left:515px;top:1360px;width:50px;height:34px" alt="Divisas">
+  <img class="pmNavIcono" src="db_nav6.png" style="left:634px;top:1357px;width:54px;height:42px" alt="Tarjeta">
+
+  <div class="pmNavTexto" style="left:0px;top:1410.85px">Inicio</div>
+  <div class="pmNavTexto" style="left:120px;top:1410.85px">Transfere...</div>
+  <div class="pmNavTexto" style="left:240px;top:1406.4px;font-size:23.5px;font-weight:700;letter-spacing:-0.055em">Pagos</div>
+  <div class="pmNavTexto" style="left:360px;top:1410.85px">Servicios</div>
+  <div class="pmNavTexto" style="left:480px;top:1410.85px">Divisas</div>
+  <div class="pmNavTexto" style="left:600px;top:1410.85px">Tarjeta</div>
+
+</body>
+
+</html>

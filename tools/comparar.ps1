@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login','clave','dashboard','pagos')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -176,6 +176,41 @@ if($Pantalla -eq 'dashboard'){
     @('MARGEN_DER',   400,  900, 719, 1400),
     @('PIE',            0, 1425, 719, 1445),
     @('PANEL_COMPLETO', 0,  803, 719, 1445)
+  )
+} elseif($Pantalla -eq 'pagomovil'){
+  $regiones = @(
+    @('FONDO',           0,  140,  60,  200),
+    @('CAMPANA',        30,   10, 100,   90),
+    @('TITULO',        130,   30, 400,   80),
+    @('MENU',          640,   30, 700,   75),
+    @('CIRCULO_IZQ',    35,  105, 118,  188),
+    @('PEGAR_DATOS',   125,  125, 275,  170),
+    @('LEER_DATOS',    460,  125, 600,  170),
+    @('CIRCULO_DER',   602,  105, 686,  188),
+    @('CAMPO1',         35,  205, 690,  315),
+    @('ETIQ_OPERACION', 40,  195, 175,  232),
+    @('TEXTO_PERSONAS', 55,  240, 200,  275),
+    @('CHEVRON1',      615,  250, 650,  272),
+    @('CAMPO2',         35,  360, 580,  470),
+    @('PLACEH_DOC',     55,  395, 215,  430),
+    @('BOTON_DOC',     578,  362, 686,  470),
+    @('CAMPO3',         35,  517, 690,  627),
+    @('ETIQ_BANCO',     40,  507, 175,  545),
+    @('TEXTO_BANCO',    55,  552, 460,  588),
+    @('CHEVRON3',      615,  562, 650,  584),
+    @('CAMPO4',         35,  673, 690,  783),
+    @('PLACEH_TEL',     55,  706, 180,  740),
+    @('CAMPO5',         35,  829, 690,  939),
+    @('PLACEH_MONTO',   55,  862, 150,  896),
+    @('CAMPO6',         35,  985, 690, 1095),
+    @('PLACEH_CONC',    55, 1018, 190, 1058),
+    @('BTN_PAGAR',     160, 1118, 355, 1212),
+    @('BTN_LIMPIAR',   366, 1118, 560, 1212),
+    @('TXT_PAGAR',     220, 1150, 295, 1185),
+    @('TXT_LIMPIAR',   415, 1150, 510, 1185),
+    @('ICONO_INFERIOR',315, 1250, 400, 1345),
+    @('NAV_ICONOS',      0, 1350, 719, 1392),
+    @('NAV_TEXTO',       0, 1394, 719, 1445)
   )
 } elseif($Pantalla -eq 'login'){
   $regiones = @(

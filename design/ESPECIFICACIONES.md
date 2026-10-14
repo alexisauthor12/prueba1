@@ -271,4 +271,90 @@ El resto del diff es la **forma de las letras** (la tipografía de marca sigue
 siendo la limitación conocida): posiciones, colores, radios y márgenes son
 exactos.
 
+---
+
+## 10. PagomóvilBDV (referencia-pagomovil.jpeg)
+
+Se abre al pulsar **PagomóvilBDV** en el panel de Pagos.
+
+Mockup: **720 × 1451 px** @2x → `dp = px ÷ 2`.
+
+### Paleta medida
+
+| Token | Hex | Uso |
+|---|---|---|
+| `fondo` | `#303030` | Fondo (igual que el resto de la app) |
+| `campo_pm_fondo` | `#454545` | Relleno de los 6 campos |
+| `campo_borde` | `#9E9E9E` | Borde de **4 px = 2 dp** de los campos |
+| `texto_gris` | `#9F9F9F` | Etiquetas («Operación:», «Banco:») y placeholders |
+| `chevron_pm` | `#C9C9C9` | Triángulo del desplegable (medido) |
+| `rojo_marca` | `#BB1B47` | Círculos, botón de Documento, Pagar/Limpiar, barra |
+
+### Medidas (px del mockup → dp)
+
+| Elemento | px | dp |
+|---|---|---|
+| Campana + badge | 48 × 52 en (40, 22) | 24 × 26 en (20, 11) |
+| Título «PagomóvilBDV» | 225 × 32 · cap-top 41 · x 146 | 16 sp bold, x 73 |
+| Menú | 30 × 22 en (657, 42) | 15 × 11 en (328.5, 21) |
+| Círculo «Pegar datos» | 72 × 72 en (40, 110) | 36 × 36 en (20, 55) |
+| «Pegar datos» / «Leer datos» | cap-top 136 | 13 sp, x 67 / der 67 |
+| Campos | 640 × 96 · borde 4 · radio 20 | 320 × 48 · 2 · 10 |
+| **Paso entre campos** | **156** | **78** |
+| Etiquetas sobre el borde | cap-top 204 / 517 · x 45 | 12 sp, x 21.5 |
+| Notch (borde interrumpido) | x 40..165 = 126 px | 63 dp × 2 dp |
+| Triángulo del desplegable | 18 × 9 en x 623 | 9 × 4.5 en x 311.5 |
+| Campo Documento | 534 × 96 | 267 × 48 |
+| Botón de Documento | 96 × 96 en (584, 368) · radio 20 | 48 × 48 en (292, 184) · 10 |
+| Pagar / Limpiar | 176 × 80 en y 1126 · radio 20 | 88 × 40 en y 563 · 10 |
+| Icono del pie | 66 × 81 en (325, 1258) | 33 × 40.5 en (162.5, 629) |
+| Barra inferior | desde y 1338 · 113 px | 669 · 56.5 |
+
+### Radio del botón de Documento (fórmula del arco)
+
+`inset(d) = r − √(r² − (r−d)²)`
+
+| d (px) | Predicho (r = 20) | Medido |
+|---|---|---|
+| 1 | 13,8 | 14 |
+| 5 | 6,8 | 7 |
+| 10 | 2,7 | 3 |
+| 17 | 0,2 | 1 |
+
+### Las etiquetas sobre el borde («notch»)
+
+Los dos desplegables llevan la etiqueta **encima del borde**, que se interrumpe
+justo debajo de ella. Medido: el borde desaparece desde el borde izquierdo del
+campo hasta x 165 px (63 dp) y solo en el grosor del borde (4 px = 2 dp); detrás
+de la etiqueta se ve el fondo de la página arriba y el relleno del campo abajo.
+Se reproduce con una `View` de 63 × 2 dp con el mismo relleno del campo
+(`bg_notch_pm.xml`) en la esquina superior izquierda.
+
+### Posicionamiento en Android
+
+`activity_pagomovil.xml` (ConstraintLayout) + `PagomovilActivity`, con los iconos
+recortados del mockup en `res/drawable-xhdpi` (`pm_campana`, `pm_menu`,
+`pm_circulo_pegar`, `pm_circulo_leer`, `pm_boton_doc`, `pm_icono_inferior`) y el
+triángulo como vector (`pm_triangulo.xml`). La barra inferior reutiliza los
+mismos `db_nav1..6` del dashboard, 4 px más arriba.
+
+`DashboardActivity` abre esta pantalla al pulsar **PagomóvilBDV** (la primera
+opción) en el panel de Pagos.
+
+### Validación
+
+| Región | Diff medio | Comprobación |
+|---|---|---|
+| **Global** | **2,56 / 255 (2,03 %)** | la mejor de las seis pantallas |
+| Campana + badge · Menú · Círculos · Botón · Icono del pie | 0,03 · 0,00 · 0,95 · 1,01 · 0,35 | recortes exactos |
+| Campos vacíos 2, 4, 5 y 6 | 0,52 – 1,33 | bordes, radio y relleno exactos |
+| Barra inferior (iconos) | 2,98 | |
+| Botones Pagar / Limpiar | 4,82 / 6,54 | caja 176 × 80 **exacta** |
+| Textos | 10 – 42 | solo forma de letra |
+
+El resto del diff es la **forma de las letras**: posiciones, colores, radios,
+bordes y márgenes son exactos.
+
+
+
 
