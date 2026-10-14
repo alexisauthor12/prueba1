@@ -507,14 +507,15 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
 | «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | diff 38,4 |
 | Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
-| Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 2,57** |
-| Monto «2.400,00 Bs» | mayúscula 389 → 410 | 14,2sp | diff 14,0 |
-| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 | 28,1 · 32,4 · 33 | 10,4 – 26,6 |
+| Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 2,19** |
+| Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | diff 10,2 |
+| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 10,4 – 26,6 |
+| Icono de copiar | 28 × 34 en (**555, 508**) · al lado del número | 15,9 × 19,3 | **diff 0,32** |
 | Flecha del pie | 40 × 39 en (296, 1021) | 22,7 × 22,2 | **diff 0,07** |
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 5,60 / 255 (2,2 %)**.
+**Diff global: 5,51 / 255 (2,2 %)**.
 
 Detalles que solo se ven midiendo:
 
@@ -530,6 +531,19 @@ Detalles que solo se ven midiendo:
   medido. Al tocarlo la bola se desliza.
 - El número de operación (12 dígitos, empieza por `00`) y la fecha son
   aleatorios/actuales; el icono de copiar lo lleva al portapapeles.
+- El **icono de copiar va al lado del número, no encima**: el valor de
+  «Operación:» es el único que no llega al borde, termina en **x 540** (no en
+  los 575 de los demás), y el icono ocupa **555..582 × 508..541** (28 × 34 px).
+  Estaba 7 px a la derecha y más ancho, y se montaba sobre el número:
+  corregido, su diff baja de **12,05 a 0,32** (como los demás iconos) y el de
+  la fila entera de 15,5 a 10,4.
+- El **monto es un blanco suave** (`#F5F5F5`), no blanco puro: el mockup es un
+  JPEG y el texto llega suavizado (el núcleo es blanco, pero el 88 % de sus
+  píxeles claros son grises). Medido, `#F5F5F5` es el que menos se desvía
+  (**diff 10,2**, frente a 14,0 con `#FFFFFF`). Además lleva
+  `transform:translateZ(0)`: al forzar capa de composición, Chrome deja de
+  añadir **flecos naranjas y azules** (antialiasing subpíxel) al texto claro
+  sobre gris, y el diff baja de 13,97 a 10,22.
 
 ---
 

@@ -382,11 +382,11 @@ medidas de abajo salen de `px / 1,75833`.
 | «PagomóvilBDV Personas» | banda 258 → 282 (25 px) | centrado | **14sp** · margen 143,6 |
 | Círculo blanco con check | 45 × 44 | (294, 299) | 28,4 × 27,9 en (165,5 · 168,3) |
 | Caja del monto | 543 × 69 · radio 17 | (45, **365**) | 308,8 × 39,2 · radio 9,7 · margen 207,6 |
-| «2.400,00 Bs» | mayúscula 389 → 410 (22 px) | centrado | **14,2sp** · margen 218,1 |
+| «2.400,00 Bs» | mayúscula 389 → 410 (22 px) · 132 px de ancho | centrado · color **#F5F5F5** | **14,2sp** · margen 218,1 |
 | Etiquetas (negrita) | cap 466 → 483 | x 57 | **12,5sp** · margen izq 32,4 |
-| Valores | igual banda | derecha en 575 | **12,5sp** · margen der 33 |
+| Valores | igual banda | derecha en 575 (**el de Operación, en 540**) | **12,5sp** · margen der 33 (**Operación, 52,9**) |
 | Paso entre filas | **49,5** | caps 466, 515, 565, 615, 664, 713, 763 | **28,1 dp** |
-| Icono copiar | 20 × 32 | (562, 506) | 14,2 × 21,6 en (319,6 · 287,8) |
+| Icono copiar | **28 × 34** | (**555, 508**) · al lado del número | **15,9 × 19,3** en (**315,6 · 288,9**) |
 | Flecha del pie | 40 × 39 | (296, 1021) | 22,7 × 22,2 en (168,3 · 580,7) |
 | Separador | 6 px de alto | y 1096 · color `#272727` | 3,4 dp · margen 623,3 |
 | Riel del interruptor | 63 × 35 · radio 17,5 · `#636363` | (186, 1136) y (186, 1220) | 35,8 × 19,9 · radio 10 · margen 105,8 |
@@ -414,6 +414,21 @@ medidas de abajo salen de `px / 1,75833`.
 5. **La escala del mockup no es 2×**: se deduce del paso entre filas (49,5 px)
    y del ancho del título (362 px = 11,58 em en negrita): con 1,75833 todo cae
    en valores redondos (28,1 dp de paso, 12,5sp de texto).
+6. **El icono de copiar va AL LADO del número, no encima**: medido, el valor de
+   «Operación:» termina en **x 540** (los demás valores llegan a 575) y el icono
+   ocupa **555..582 × 508..541**. Estaba puesto en 562..587 y con 25 px de ancho,
+   o sea montado sobre el número (diff 12,05); con su caja real baja a **0,32**.
+   La trampa es dar por hecho que todos los valores comparten el margen derecho
+   de 33 dp: el de Operación no, porque le deja sitio al icono.
+7. **El monto es blanco suave, no blanco puro**: el núcleo del texto del mockup
+   es `#FFFFFF`, pero al ser JPEG el 88 % de sus píxeles claros son grises
+   (media `#D7D7D7`). Probados seis valores midiendo el diff real de la zona
+   del monto (`#FFFFFF` 13,97 · `#F2F2F2` 13,40 · `#E8E8E8` 13,26 · `#DCDCDC`
+   13,47 · `#D7D7D7` 13,57 · `#CCCCCC` 13,92), con **`#F5F5F5`** y capa de
+   composición se queda en **10,22**. La capa (`transform:translateZ(0)`) es
+   imprescindible: sin ella Chrome pinta el texto claro sobre gris con
+   **antialiasing subpíxel** y le mete flecos naranjas y azules (solo por eso
+   el diff baja de 13,97 a 10,5).
 
 
 ---

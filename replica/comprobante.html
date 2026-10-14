@@ -29,15 +29,21 @@
   #cpCheck{position:absolute;left:291px;top:296px;width:50px;height:49px;z-index:2;}
   #cpCaja{position:absolute;left:45px;top:365px;width:543px;height:69px;
           border-radius:17px;background:#757575;}
+  /* El monto es un blanco suave (#F5F5F5) y lleva capa de composicion
+     (translateZ) para que Chrome no le meta flecos de color: medido contra el
+     mockup, la zona del monto baja de diff 13,97 a 10,22. */
   #cpMonto{position:absolute;left:0;top:386.3px;width:633px;text-align:center;
-           font-size:25px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+           font-size:25px;color:#F5F5F5;line-height:1;white-space:nowrap;
+           transform:translateZ(0);}
 
-  /* ---- Filas: etiqueta (izq, negrita) y valor (der) ---- */
+  /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
+     El icono de copiar va AL LADO del numero, no encima: el numero de la
+     operacion termina en x 540 y el icono ocupa 555..582 (28x34). */
   .cpEtiqueta{position:absolute;left:57px;font-size:22px;font-weight:700;
               color:#FFFFFF;line-height:1;white-space:nowrap;}
   .cpValor{position:absolute;right:58px;font-size:22px;color:#FFFFFF;
            line-height:1;white-space:nowrap;text-align:right;}
-  #cpCopiar{position:absolute;left:562px;top:506px;width:25px;height:38px;}
+  #cpCopiar{position:absolute;left:555px;top:508px;width:28px;height:34px;cursor:pointer;}
 
   /* ---- Pie: flecha, separador y los dos interruptores ---- */
   #cpFlechaPie{position:absolute;left:296px;top:1021px;width:40px;height:39px;}
@@ -65,8 +71,10 @@
   <div class="cpValor" id="cpVal1" style="top:463.6px">13/10/2026</div>
 
   <div class="cpEtiqueta" style="top:512.6px">Operación:</div>
-  <div class="cpValor" id="cpVal2" style="top:512.6px">007652036202</div>
-  <img id="cpCopiar" src="cp_copiar.png" alt="">
+  <!-- El numero termina en x 540 (no en 575 como los demas valores) para
+       dejarle sitio al icono de copiar, que va a su lado (555..582). -->
+  <div class="cpValor" id="cpVal2" style="top:512.6px;right:93px">007652036202</div>
+  <img id="cpCopiar" src="cp_copiar.png" alt="Copiar el número de operación">
 
   <div class="cpEtiqueta" style="top:562.6px">Identificación:</div>
   <div class="cpValor" id="cpVal3" style="top:562.6px">24349893</div>
@@ -134,6 +142,14 @@
     }
     document.getElementById('cpFlecha').addEventListener('click', volver);
     document.getElementById('cpFlechaPie').addEventListener('click', volver);
+
+    /* El icono de copiar copia el numero de operacion (como en la app) */
+    document.getElementById('cpCopiar').addEventListener('click', function(){
+      var numero = document.getElementById('cpVal2').textContent;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(numero)['catch'](function(){});
+      }
+    });
 
     /* Interruptores: al tocar, la bola se desliza (igual que en la app) */
     function interruptor(riel, bola){

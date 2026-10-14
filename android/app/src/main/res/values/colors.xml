@@ -30,6 +30,9 @@
 
     <!-- Comprobante de operacion (medidos sobre el mockup) -->
     <color name="caja_comprobante">#757575</color> <!-- caja gris del monto -->
+    <!-- El monto del mockup tiene el nucleo blanco pero viene suavizado por el
+         JPEG: medido contra el, el mejor valor es un blanco suave. -->
+    <color name="monto_comprobante">#F5F5F5</color>
     <color name="switch_track">#636363</color>     <!-- interruptor: riel -->
     <color name="switch_knob">#BDBDBD</color>      <!-- interruptor: bola -->
     <color name="separador">#272727</color>        <!-- linea del pie -->

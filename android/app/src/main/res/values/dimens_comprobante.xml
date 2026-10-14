@@ -48,10 +48,13 @@
     <dimen name="cp_monto_texto">14.2sp</dimen>
     <dimen name="cp_monto_margin_top">218.1dp</dimen>
 
-    <!-- ===== Filas: etiqueta a 32.4 dp, valor a 33 dp del borde ===== -->
+    <!-- ===== Filas: etiqueta a 32.4 dp, valor a 33 dp del borde =====
+         El valor de "Operacion:" es el unico que no llega al borde: termina en
+         x 540 (52.9 dp) porque a su lado va el icono de copiar (555..582). -->
     <dimen name="cp_fila_texto">12.5sp</dimen>
     <dimen name="cp_etiqueta_margin_izq">32.4dp</dimen>
     <dimen name="cp_valor_margin_der">33dp</dimen>
+    <dimen name="cp_valor2_margin_der">52.9dp</dimen>
     <dimen name="cp_fila1_margin_top">262.3dp</dimen>
     <dimen name="cp_fila2_margin_top">290.2dp</dimen>
     <dimen name="cp_fila3_margin_top">318.6dp</dimen>
@@ -60,10 +63,12 @@
     <dimen name="cp_fila6_margin_top">402.8dp</dimen>
     <dimen name="cp_fila7_margin_top">431.2dp</dimen>
 
-    <dimen name="cp_copiar_ancho">14.2dp</dimen>
-    <dimen name="cp_copiar_alto">21.6dp</dimen>
-    <dimen name="cp_copiar_margin_izq">319.6dp</dimen>
-    <dimen name="cp_copiar_margin_top">287.8dp</dimen>
+    <!-- Icono de copiar: 28x34 px en (555, 508), al lado del numero (que
+         termina en x 540), no encima. -->
+    <dimen name="cp_copiar_ancho">15.9dp</dimen>
+    <dimen name="cp_copiar_alto">19.3dp</dimen>
+    <dimen name="cp_copiar_margin_izq">315.6dp</dimen>
+    <dimen name="cp_copiar_margin_top">288.9dp</dimen>
 
     <!-- ===== Pie: flecha, separador y los dos interruptores ===== -->
     <dimen name="cp_flecha_pie_ancho">22.7dp</dimen>

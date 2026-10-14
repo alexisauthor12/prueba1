@@ -108,7 +108,7 @@
         android:fontFamily="@font/arimo"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:textColor="@color/blanco"
+        android:textColor="@color/monto_comprobante"
         android:textSize="@dimen/cp_monto_texto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
     <TextView android:id="@+id/cpVal2"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila2_margin_top"
+        android:layout_marginEnd="@dimen/cp_valor2_margin_der" android:layout_marginTop="@dimen/cp_fila2_margin_top"
         android:fontFamily="@font/arimo" android:includeFontPadding="false"
         android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
