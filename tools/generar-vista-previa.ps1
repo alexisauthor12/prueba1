@@ -1,41 +1,75 @@
 <#
   generar-vista-previa.ps1
-  Crea replica\vista-previa.html: un UNICO archivo autocontenido con la fuente
-  y las imagenes incrustadas en base64. Sirve para:
+  Crea un UNICO archivo autocontenido por pantalla (fuente e imagenes en
+  base64). Sirve para:
     - ver la pantalla en el PC (se abre en el navegador)
     - pasarla al telefono (WhatsApp, Drive, USB) y abrirla en Chrome
       SIN instalar nada y SIN compilar el APK
+
+  Uso:
+    powershell -File generar-vista-previa.ps1                      (inicio)
+    powershell -File generar-vista-previa.ps1 -Pantalla login
+    powershell -File generar-vista-previa.ps1 -Pantalla clave
+    powershell -File generar-vista-previa.ps1 -Pantalla todas
+
+  Salidas:
+    inicio -> replica\vista-previa.html
+    login  -> replica\vista-previa-login.html
+    clave  -> replica\vista-previa-clave.html   (dialogo sobre el login)
 #>
 param(
-  [string]$Base = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica"
+  [string]$Base = "",
+  [ValidateSet('inicio','login','clave','todas')][string]$Pantalla = 'inicio'
 )
 
-$index = Join-Path $Base "index.html"
-$salida = Join-Path $Base "vista-previa.html"
+$ErrorActionPreference = 'Stop'
+if([string]::IsNullOrEmpty($Base)){
+  $Base = Join-Path (Split-Path -Parent $PSScriptRoot) 'replica'
+}
+if(-not (Test-Path $Base)){ Write-Output ("No existe: " + $Base); exit 1 }
 
-if(-not (Test-Path $index)){ Write-Output "No existe $index"; exit 1 }
-
-$html = Get-Content $index -Raw
-
-# fuente en base64
-$ttf = Join-Path $Base "arimo.ttf"
-if(Test-Path $ttf){
-  $b64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes($ttf))
-  $html = $html.Replace("url('arimo.ttf')", "url(data:font/ttf;base64,$b64)")
-  Write-Output "fuente incrustada: arimo.ttf"
+function Incrustar([string]$html, [string]$archivo, [string]$patron){
+  $p = Join-Path $Base $archivo
+  if(-not (Test-Path $p)){ return $html }
+  $b64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes($p))
+  return $html.Replace($patron, "data:font/ttf;base64,$b64")
 }
 
-# imagenes en base64
-foreach($img in @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png')){
-  $p = Join-Path $Base $img
-  if(Test-Path $p){
-    $b64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes($p))
-    $html = $html.Replace('"' + $img + '"', '"data:image/png;base64,' + $b64 + '"')
-    Write-Output "incrustada: $img"
+function IncrustarImagen([string]$html, [string]$archivo){
+  $p = Join-Path $Base $archivo
+  if(-not (Test-Path $p)){ return $html }
+  $b64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes($p))
+  return $html.Replace('"' + $archivo + '"', '"data:image/png;base64,' + $b64 + '"')
+}
+
+function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch]$ConLogin){
+  $html = Get-Content (Join-Path $Base $origen) -Raw
+  $html = Incrustar $html 'arimo.ttf' "url('arimo.ttf')"
+  foreach($img in $imagenes){ $html = IncrustarImagen $html $img }
+  if($ConLogin){
+    # El login va dentro del iframe: se incrusta como data URI ya autocontenido
+    $login = Get-Content (Join-Path $Base 'login.html') -Raw
+    $login = Incrustar $login 'arimo.ttf' "url('arimo.ttf')"
+    foreach($img in @('logo-bdv.png','ico-huella.png','ico-salir.png')){ $login = IncrustarImagen $login $img }
+    $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($login))
+    $html = $html.Replace('src="login.html"', 'src="data:text/html;base64,' + $b64 + '"')
+  }
+  $salida = Join-Path $Base $destino
+  [IO.File]::WriteAllText($salida, $html, [Text.Encoding]::UTF8)
+  Write-Output ("generado: " + $destino + "  (" + [math]::Round((Get-Item $salida).Length/1KB) + " KB)")
+}
+
+$hacer = @()
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave') } else { $hacer = @($Pantalla) }
+
+foreach($p in $hacer){
+  switch($p){
+    'inicio' { Generar 'index.html' 'vista-previa.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png') }
+    'login'  { Generar 'login.html' 'vista-previa-login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png') }
+    'clave'  { Generar 'clave.html' 'vista-previa-clave.html' @('ico-ojo.png') -ConLogin }
   }
 }
 
-[IO.File]::WriteAllText($salida, $html, [Text.Encoding]::UTF8)
-Write-Output ("generado: $salida  ({0} KB)" -f [math]::Round((Get-Item $salida).Length/1KB))
 Write-Output ""
-Write-Output "Para verlo: abre vista-previa.html en Chrome (o pasalo al telefono y abrelo alli)."
+Write-Output "Para verlo: abre el archivo en Chrome (o pasalo al telefono y abrelo alli)."
+

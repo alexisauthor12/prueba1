@@ -1,4 +1,4 @@
-# BDV · Pantalla de inicio (réplica 1:1 → APK)
+﻿# BDV · Pantalla de inicio (réplica 1:1 → APK)
 
 Réplica **medida píxel a píxel** de la pantalla de inicio del mockup
 `design/referencia-inicio.jpeg`, traducida a una app Android real y compilable
@@ -88,48 +88,108 @@ un marco de teléfono y, al hacer clic en el botón, cambia a la de autenticaci�
 start "" "replica\flujo.html"
 ```
 
+El visor `flujo.html` tiene **3 pasos** navegables: Inicio → Autenticación →
+Diálogo de contraseña (clic en «Ingresa con tu contraseña»), y se vuelve con
+«Cancelar», «Aceptar» o tocando el velo.
+
+## 1c. Diálogo «Ingresa con tu contraseña»
+
+Al pulsar el enlace se abre el diálogo modal del mockup
+`design/referencia-clave.jpeg` (720 × 1456 px @2x, mismo lienzo de 360 × 723 dp).
+
+**Hallazgo clave:** el fondo del diálogo es la propia pantalla de autenticación
+**oscurecida con un velo negro al 53 %**. Verificado con tres colores
+independientes del mockup:
+
+| Zona | Color original | × 0,47 (velo 53 %) | Medido en el mockup |
+|---|---|---|---|
+| fondo | #303030 | **#161616** | #161616 |
+| franja amarilla | #FDC800 | **#775E00** | #755C00 |
+| franja roja | #BB1B47 | **#580D21** | #560D21 |
+
+Por eso no es una pantalla nueva: es una **capa superpuesta** dentro de
+`activity_login.xml` (velo + tarjeta), de modo que el fondo oscurecido es la
+pantalla real y no una captura.
+
+| Elemento | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Tarjeta | 560 × 414 en (80, 524) · radio 20 | 280 × 207 · radio 10 | **exacta** |
+| «Usuario: A\*\*\*\*\*4» | 199 × 20 · 28 px | 14 sp | 197 px (Δ 2) |
+| Campo | 480 × 96 en (120, 674) · borde 4 px #9E9E9E | 240 × 48 · borde 2 | **exacta** |
+| «Contraseña:» | 141 × 20 · 27 px · #757575 | 13,5 sp | **141 px exacta** |
+| Ojo | 43 × 30 en (530, 707) | 21,5 × 15 | **exacto** |
+| Botones | 176 × 80 en y 818 · radio 20 · #BB1B47 | 88 × 40 · radio 10 | **exactos** |
+| Texto de botón | «Aceptar» 83 px · «Cancelar» 93 px | 12,5 sp · tracking −0,025 | 83 / 95 px |
+
+**Diff global del diálogo: 2,23 / 255 · 1,33 % de píxeles** (el mejor de los tres).
+
+Detalles que solo se ven midiendo:
+
+- El radio de la tarjeta, del campo y de los botones es **20 px = 10 dp** en los
+  tres casos (comprobado con `inset(d) = r − √(r² − (r−d)²)`).
+- Los textos de los botones **no van en negrita**: en negrita salían 9-11 px más
+  anchos. Con peso normal + tracking −0,025 em quedan clavados (83 vs 83).
+- El ojo y el «Contraseña:» van **dentro** del campo, así que al posicionarlos hay
+  que descontar los 2 dp del borde (se detectó porque aparecían +4 px
+  abajo/derecha).
+- El Arimo del proyecto es **variable** (eje `wght` 400-700). Los textos del
+  diálogo en el mockup son un 30 % más finos que el peso 400, pero **no es la
+  fuente**: es el rasterizador (el mockup viene de un dispositivo Android). En el
+  APK se verá como en el mockup; en la réplica HTML (Chrome/Windows) se ve algo
+  más grueso.
+
 
 
 ```
 bdv-app/
-├─ design/
-│  ├─ referencia-inicio.jpeg      mockup original
-│  └─ ESPECIFICACIONES.md         todas las medidas, colores y geometría
-├─ replica/
-│  ├─ index.html                  réplica HTML 1:1 (720×1453 px)
-│  ├─ arimo.ttf                   fuente calibrada (la misma que usa el APK)
-│  ├─ logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
-│  ├─ ico-movil.png               icono tarjeta 1
-│  ├─ ico-access.png              icono tarjeta 2
-│  └─ ico-saldos.png              icono tarjeta 3
-├─ tools/
-│  ├─ comparar.ps1                comparador automático contra el mockup
-│  ├─ probar-fuentes.ps1          identificador de tipografía (24 fuentes)
-│  ├─ prueba-fuentes.html         página de la prueba de fuentes
-│  └─ fuentes.png                 captura de la prueba de fuentes
-├─ android/                       proyecto Android (Kotlin + ConstraintLayout)
-│  ├─ settings.gradle.kts
-│  ├─ build.gradle.kts
-│  ├─ gradle.properties
-│  └─ app/
-│     ├─ build.gradle.kts
-│     ├─ proguard-rules.pro
-│     └─ src/main/
-│        ├─ AndroidManifest.xml
-│        ├─ java/ve/com/bdv/inicio/InicioActivity.kt
-│        └─ res/
-│           ├─ layout/activity_inicio.xml
-│           ├─ values/{colors,dimens,strings,themes}.xml
-│           ├─ drawable/fondo_franjas.xml      franjas diagonales (vector)
-│           ├─ drawable/logo_bdv_marca.xml     marca BDV en vector
-│           ├─ drawable/ic_campana.xml         campana (vector)
-│           ├─ drawable/bg_boton.xml           botón (radio 10 dp)
-│           ├─ drawable/bg_tarjeta.xml         tarjeta (radio 12 dp)
-│           ├─ drawable/bg_badge.xml           badge circular
-│           ├─ drawable-xhdpi/                 logo + 3 iconos a 2x
-│           └─ mipmap-*/ic_launcher.png        icono de app (5 densidades)
-└─ .github/workflows/build-apk.yml   compila el APK en la nube
-```
+â”œâ”€â”€ design/
+â”‚  â”œâ”€â”€ referencia-inicio.jpeg      mockups originales
+â”‚  â”œâ”€â”€ referencia-login.jpeg
+â”‚  â”œâ”€â”€ referencia-clave.jpeg
+â”‚  â””â”€â”€ ESPECIFICACIONES.md         todas las medidas, colores y geometrÃ­a
+â”œâ”€â”€ replica/
+â”‚  â”œâ”€â”€ index.html                  rÃ©plica del inicio        (720Ã—1453 px)
+â”‚  â”œâ”€â”€ login.html                  rÃ©plica de autenticaciÃ³n  (720Ã—1460 px)
+â”‚  â”œâ”€â”€ clave.html                  rÃ©plica del diÃ¡logo       (720Ã—1456 px)
+â”‚  â”œâ”€â”€ flujo.html                  visor navegable de las 3 pantallas
+â”‚  â”œâ”€â”€ vista-previa*.html          versiones autocontenidas (para el mÃ³vil)
+â”‚  â”œâ”€â”€ arimo.ttf                   fuente calibrada (la misma que usa el APK)
+â”‚  â”œâ”€â”€ logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
+â”‚  â”œâ”€â”€ ico-movil.png ico-access.png ico-saldos.png   iconos de las tarjetas
+â”‚  â”œâ”€â”€ ico-huella.png ico-salir.png ico-ojo.png      huella, salir, ojo
+â”œâ”€â”€ tools/
+â”‚  â”œâ”€â”€ comparar.ps1                comparador automÃ¡tico (inicio | login | clave)
+â”‚  â”œâ”€â”€ validar-android.ps1         XML + referencias @recurso + usos en Kotlin
+â”‚  â”œâ”€â”€ probar-fuentes.ps1          identificador de tipografÃ­a (24 fuentes)
+â”‚  â”œâ”€â”€ generar-vista-previa.ps1    crea los HTML autocontenidos
+â”‚  â”œâ”€â”€ medir-login.ps1  mapa-login.ps1
+â”‚  â””â”€â”€ prueba-fuentes.html  fuentes.png
+â”œâ”€â”€ android/                       proyecto Android (Kotlin + ConstraintLayout)
+â”‚  â”œâ”€â”€ settings.gradle.kts  build.gradle.kts  gradle.properties
+â”‚  â””â”€â”€ app/
+â”‚     â”œâ”€â”€ build.gradle.kts  proguard-rules.pro
+â”‚     â””â”€â”€ src/main/
+â”‚        â”œâ”€â”€ AndroidManifest.xml
+â”‚        â”œâ”€â”€ java/ve/com/bdv/inicio/
+â”‚        â”‚  â”œâ”€â”€ InicioActivity.kt
+â”‚        â”‚  â””â”€â”€ LoginActivity.kt   (incluye el diÃ¡logo de contraseÃ±a)
+â”‚        â””â”€â”€ res/
+â”‚           â”œâ”€â”€ layout/activity_inicio.xml  activity_login.xml
+â”‚           â”œâ”€â”€ values/{colors,dimens,dimens_login,dimens_clave,
+â”‚           â”‚          strings,strings_login,themes}.xml
+â”‚           â”œâ”€â”€ drawable/fondo_franjas.xml      franjas diagonales (vector)
+â”‚           â”œâ”€â”€ drawable/logo_bdv_marca.xml     marca BDV en vector
+â”‚           â”œâ”€â”€ drawable/ic_campana.xml         campana (vector)
+â”‚           â”œâ”€â”€ drawable/bg_boton.xml           botÃ³n (radio 10 dp)
+â”‚           â”œâ”€â”€ drawable/bg_tarjeta.xml         tarjeta (radio 12 dp)
+â”‚           â”œâ”€â”€ drawable/bg_badge.xml           badge circular
+â”‚           â”œâ”€â”€ drawable/bg_circulo.xml         cÃ­rculo de la huella
+â”‚           â”œâ”€â”€ drawable/bg_dialogo.xml         tarjeta del diÃ¡logo
+â”‚           â”œâ”€â”€ drawable/bg_campo.xml           campo de contraseÃ±a
+â”‚           â”œâ”€â”€ drawable-xhdpi/                 logo + iconos a 2x
+â”‚           â”œâ”€â”€ font/arimo_variable.ttf  font/arimo.xml
+â”‚           â””â”€â”€ mipmap-*/ic_launcher.png        icono de app (5 densidades)
+â””â”€â”€ .github/workflows/build-apk.yml   compila el APK en la nube```
 
 ## 3. Cómo obtener el APK (sin instalar nada)
 
@@ -175,19 +235,27 @@ El APK queda en `android\app\build\outputs\apk\debug\app-debug.apk`.
 ```powershell
 cd "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app"
 
-# 1) renderizar la réplica a 720x1453 con Chrome headless
+# 1) renderizar la réplica con Chrome headless (al tamaño exacto del mockup)
+#    inicio -> 720x1453   login -> 720x1460   clave -> 720x1456
 & "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new `
   --disable-gpu --hide-scrollbars --force-device-scale-factor=1 `
-  --window-size=720,1453 --screenshot="replica\render.png" `
-  "file:///C:/Users/Alexis%20Ruiz/.cline/data/workspaces/chat/bdv-app/replica/index.html"
+  --window-size=720,1456 --screenshot="replica\render.png" `
+  "file:///C:/Users/Alexis%20Ruiz/.cline/data/workspaces/chat/bdv-app/replica/clave.html"
 
 # 2) comparar contra el mockup (tabla de regiones + mapa de peores zonas)
-powershell -ExecutionPolicy Bypass -File tools\comparar.ps1
+powershell -ExecutionPolicy Bypass -File tools\comparar.ps1 -Pantalla clave
+
+# 3) validar el proyecto Android sin necesidad de Android SDK
+powershell -ExecutionPolicy Bypass -File tools\validar-android.ps1
 ```
 
 `comparar.ps1` informa, por cada región: la caja medida en la referencia, la caja
 medida en la réplica y la diferencia media de color. Con eso se corrige cualquier
-desviación en un solo paso.
+desviación en un solo paso. Admite `-Pantalla inicio | login | clave`.
+
+`validar-android.ps1` comprueba de una pasada: **22 XML bien formados**,
+**152 recursos** definidos, **27 ids** y **0 referencias sin resolver**
+(incluidos los usos `R.id.*` / `R.layout.*` en Kotlin).
 
 ## 5. Tipografía: identificada empíricamente
 

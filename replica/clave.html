@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Dialogo de contrasena (replica 1:1, 720x1456 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1456px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* Fondo: la pantalla de login. Este mockup tiene 4 px menos arriba. */
+  #fondo{position:absolute;left:0;top:-4px;width:720px;height:1460px;border:0;}
+
+  /* Velo negro al 53 % (medido sobre el mockup) */
+  #velo{position:absolute;left:0;top:0;width:720px;height:1456px;
+        background:rgba(0,0,0,0.53);}
+
+  /* Tarjeta del dialogo: 560x414 en (80, 524), radio 20 px */
+  #dialogo{position:absolute;left:80px;top:524px;width:560px;height:414px;
+           border-radius:20px;background:#424242;}
+
+  .el{position:absolute;}
+  .txt{left:0;width:560px;text-align:center;line-height:1;white-space:nowrap;}
+
+  /* "Usuario: A*****4" - 28 px, blanco */
+  #usuario{top:52.9px;font-size:28px;color:#FFFFFF;}
+
+  /* Campo de contrasena: 480x96 en (40, 150), radio 20, borde 4 px */
+  #campo{position:absolute;left:40px;top:150px;width:480px;height:96px;box-sizing:border-box;
+         border-radius:20px;border:4px solid #9E9E9E;background:#555555;}
+
+  /* "Contrasena:" - 27 px, #757575 (descontado el borde de 4 px) */
+  #placeholder{left:17px;top:30px;font-size:27px;color:#757575;line-height:1;
+               letter-spacing:-0.011em;white-space:nowrap;}
+
+  /* Ojo para mostrar/ocultar (descontado el borde de 4 px del campo) */
+  #ojo{left:400px;top:23px;width:56px;height:42px;}
+
+  /* Botones: 176x80, radio 20, #BB1B47 */
+  .boton{top:294px;width:176px;height:80px;border-radius:20px;background:#BB1B47;
+         display:flex;align-items:center;justify-content:center;
+         color:#FFFFFF;font-size:25px;font-weight:450;line-height:1;
+         letter-spacing:-0.025em;}
+  #btnAceptar{left:94px;}
+  #btnCancelar{left:290px;}
+</style>
+</head>
+<body>
+  <iframe id="fondo" src="login.html" scrolling="no"></iframe>
+  <div id="velo"></div>
+
+  <div id="dialogo">
+    <div id="usuario" class="el txt">Usuario: A*****4</div>
+
+    <div id="campo">
+      <div id="placeholder" class="el">Contraseña:</div>
+      <img id="ojo" class="el" src="ico-ojo.png" alt="Mostrar contraseña">
+    </div>
+
+    <div id="btnAceptar" class="el boton">Aceptar</div>
+    <div id="btnCancelar" class="el boton">Cancelar</div>
+  </div>
+</body>
+</html>

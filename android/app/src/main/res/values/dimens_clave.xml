@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dialogo modal "Ingresa con tu contrasena" (se abre desde la pantalla de
+  autenticacion). Medidas exactas del mockup design/referencia-clave.jpeg,
+  que mide 720x1456 px @2x y comparte lienzo con la pantalla de login:
+
+      dp = (y_mockup - 10) / 2        dp = x_mockup / 2
+
+  El mockup tiene el fondo oscurecido con un velo negro al 53 %.
+  Los margenes superiores de los textos descuentan el hueco entre el borde de
+  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+-->
+<resources>
+
+    <!-- Velo sobre la pantalla de login (negro al 53 %, medido) -->
+    <color name="velo">#87000000</color>
+
+    <!-- Tarjeta del dialogo: 560x414 px en (80, 524) -> 280x207 dp, radio 10 dp -->
+    <dimen name="clave_radio">10dp</dimen>
+    <dimen name="clave_dialogo_ancho">280dp</dimen>
+    <dimen name="clave_dialogo_alto">207dp</dimen>
+
+    <!-- "Usuario: A*****4" 28 px -> 14 sp, cap-top 28 dp dentro del dialogo -->
+    <dimen name="clave_usuario_texto">14sp</dimen>
+    <dimen name="clave_usuario_margin_top">25dp</dimen>
+
+    <!-- Campo: 480x96 px en (120, 674) -> 240x48 dp, borde 4 px -> 2 dp -->
+    <dimen name="clave_campo_ancho">240dp</dimen>
+    <dimen name="clave_campo_alto">48dp</dimen>
+    <dimen name="clave_campo_borde">2dp</dimen>
+    <dimen name="clave_campo_margin_izq">20dp</dimen>
+    <dimen name="clave_campo_margin_top">75dp</dimen>
+    <dimen name="clave_campo_padding_izq">10.5dp</dimen>
+    <dimen name="clave_campo_padding_der">38dp</dimen>
+    <dimen name="clave_campo_padding_abajo">1.8dp</dimen>
+
+    <!-- "Contrasena:" 27 px -> 13.5 sp -->
+    <dimen name="clave_campo_texto">13.5sp</dimen>
+    <dimen name="clave_campo_tracking">-0.011</dimen>
+
+    <!-- Ojo: recorte de 56x42 px desde (524, 701) -> 28x21 dp en (222, 88.5) dp -->
+    <dimen name="clave_ojo_ancho">28dp</dimen>
+    <dimen name="clave_ojo_alto">21dp</dimen>
+    <dimen name="clave_ojo_margin_izq">222dp</dimen>
+    <dimen name="clave_ojo_margin_top">88.5dp</dimen>
+
+    <!-- Botones: 176x80 px en y 818 -> 88x40 dp, arriba 147 dp -->
+    <dimen name="clave_boton_ancho">88dp</dimen>
+    <dimen name="clave_boton_alto">40dp</dimen>
+    <dimen name="clave_boton_margin_top">147dp</dimen>
+    <dimen name="clave_boton1_margin_izq">47dp</dimen>
+    <dimen name="clave_boton2_margin_izq">145dp</dimen>
+    <dimen name="clave_boton_texto">12.5sp</dimen>
+    <dimen name="clave_boton_tracking">-0.025</dimen>
+
+</resources>

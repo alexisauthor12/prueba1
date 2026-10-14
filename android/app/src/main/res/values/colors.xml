@@ -9,5 +9,13 @@
     <color name="enlace">#A42749</color>
     <color name="blanco">#FFFFFF</color>
     <color name="negro">#000000</color>
+
+    <!-- Dialogo "Ingresa con tu contrasena" (medidos sobre el mockup) -->
+    <color name="velo">#87000000</color>        <!-- negro al 53 % -->
+    <color name="dialogo_fondo">#424242</color> <!-- tarjeta del dialogo -->
+    <color name="campo_fondo">#555555</color>   <!-- relleno del campo -->
+    <color name="campo_borde">#9E9E9E</color>   <!-- borde del campo -->
+    <color name="placeholder">#757575</color>   <!-- "Contrasena:" -->
+
     <color name="ic_launcher_background">#303030</color>
 </resources>

@@ -186,4 +186,124 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- ==================================================================
+         Dialogo modal "Ingresa con tu contrasena".
+         Oculto por defecto; se muestra al pulsar el enlace de arriba.
+         Medidas del mockup design/referencia-clave.jpeg
+         (ver values/dimens_clave.xml).
+         ================================================================== -->
+    <FrameLayout
+        android:id="@+id/panelClave"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Velo negro al 53 % sobre toda la pantalla -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/velo" />
+
+        <!-- Tarjeta: 280 x 207 dp, centrada -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/clave_dialogo_ancho"
+            android:layout_height="@dimen/clave_dialogo_alto"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_dialogo">
+
+            <TextView
+                android:id="@+id/claveUsuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/clave_usuario_margin_top"
+                android:fontFamily="@font/arimo"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/clave_titulo"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/clave_usuario_texto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Campo de contrasena: 240 x 48 dp en (20, 75) dp -->
+            <EditText
+                android:id="@+id/claveCampo"
+                android:layout_width="@dimen/clave_campo_ancho"
+                android:layout_height="@dimen/clave_campo_alto"
+                android:layout_marginStart="@dimen/clave_campo_margin_izq"
+                android:layout_marginTop="@dimen/clave_campo_margin_top"
+                android:background="@drawable/bg_campo"
+                android:fontFamily="@font/arimo"
+                android:gravity="center_vertical"
+                android:hint="@string/clave_contrasena"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:letterSpacing="@dimen/clave_campo_tracking"
+                android:paddingStart="@dimen/clave_campo_padding_izq"
+                android:paddingEnd="@dimen/clave_campo_padding_der"
+                android:paddingBottom="@dimen/clave_campo_padding_abajo"
+                android:singleLine="true"
+                android:textColor="@color/blanco"
+                android:textColorHint="@color/placeholder"
+                android:textSize="@dimen/clave_campo_texto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Ojo para mostrar / ocultar la contrasena -->
+            <ImageView
+                android:id="@+id/claveOjo"
+                android:layout_width="@dimen/clave_ojo_ancho"
+                android:layout_height="@dimen/clave_ojo_alto"
+                android:layout_marginStart="@dimen/clave_ojo_margin_izq"
+                android:layout_marginTop="@dimen/clave_ojo_margin_top"
+                android:contentDescription="@string/clave_ojo_desc"
+                android:src="@drawable/ico_ojo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Botones: 88 x 40 dp, radio 10 dp, en y 147 dp -->
+            <TextView
+                android:id="@+id/claveAceptar"
+                android:layout_width="@dimen/clave_boton_ancho"
+                android:layout_height="@dimen/clave_boton_alto"
+                android:layout_marginStart="@dimen/clave_boton1_margin_izq"
+                android:layout_marginTop="@dimen/clave_boton_margin_top"
+                android:background="@drawable/bg_boton"
+                android:fontFamily="@font/arimo"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:letterSpacing="@dimen/clave_boton_tracking"
+                android:text="@string/clave_aceptar"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/clave_boton_texto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/claveCancelar"
+                android:layout_width="@dimen/clave_boton_ancho"
+                android:layout_height="@dimen/clave_boton_alto"
+                android:layout_marginStart="@dimen/clave_boton2_margin_izq"
+                android:layout_marginTop="@dimen/clave_boton_margin_top"
+                android:background="@drawable/bg_boton"
+                android:fontFamily="@font/arimo"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:letterSpacing="@dimen/clave_boton_tracking"
+                android:text="@string/clave_cancelar"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/clave_boton_texto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

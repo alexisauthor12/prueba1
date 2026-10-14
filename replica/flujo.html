@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>BDV - Flujo: Inicio -> Autenticacion</title>
+<title>BDV - Flujo: Inicio &rarr; Autenticación &rarr; Contraseña</title>
 <style>
   html,body{margin:0;height:100%;background:#101010;overflow:hidden;
             display:flex;align-items:center;justify-content:center;}
@@ -11,10 +11,17 @@
          box-shadow:0 0 0 10px #1b1b1b,0 0 0 11px #2e2e2e,0 30px 90px rgba(0,0,0,.85);
          border-radius:6px;overflow:hidden;background:#303030;}
   #marco iframe{width:720px;height:1460px;border:0;display:block;}
-  .zona{position:absolute;cursor:pointer;border-radius:8px;}
+  .zona{position:absolute;cursor:pointer;border-radius:8px;display:none;}
   .zona:hover{background:rgba(255,255,255,.06);}
+  /* Pantalla de inicio */
   #zonaBoton{left:90px;top:632px;width:540px;height:80px;border-radius:20px;}
-  #zonaVolver{left:150px;top:1375px;width:420px;height:60px;}
+  /* Pantalla de autenticación */
+  #zonaIngresa{left:170px;top:848px;width:380px;height:56px;}
+  #zonaVolver{left:190px;top:1372px;width:350px;height:70px;}
+  /* Diálogo de contraseña: el velo ocupa todo y queda debajo de los botones */
+  #zonaVelo{left:0;top:0;width:720px;height:1456px;border-radius:0;}
+  #zonaAceptar{left:174px;top:818px;width:176px;height:80px;border-radius:20px;}
+  #zonaCancelar{left:370px;top:818px;width:176px;height:80px;border-radius:20px;}
   #etiqueta{position:fixed;left:14px;top:12px;color:#9a9a9a;font:13px Arial,Helvetica,sans-serif;}
   #aviso{position:fixed;left:14px;bottom:12px;color:#6f6f6f;font:12px Arial,Helvetica,sans-serif;}
 </style>
@@ -22,37 +29,69 @@
 <body>
 <div id="marco">
   <iframe id="vista" src="index.html" scrolling="no"></iframe>
-  <div id="zonaBoton" class="zona" title="Iniciar sesión"></div>
-  <div id="zonaVolver" class="zona" title="Volver" style="display:none"></div>
+
+  <div id="zonaBoton" class="zona" title="Iniciar sesión" style="display:block"></div>
+
+  <div id="zonaIngresa" class="zona" title="Ingresa con tu contraseña"></div>
+  <div id="zonaVolver"  class="zona" title="Desvincular dispositivo"></div>
+
+  <div id="zonaVelo"     class="zona" title="Cerrar"></div>
+  <div id="zonaAceptar"  class="zona" title="Aceptar"></div>
+  <div id="zonaCancelar" class="zona" title="Cancelar"></div>
 </div>
-<div id="etiqueta">1 / 2 &nbsp;·&nbsp; Pantalla de inicio</div>
+
+<div id="etiqueta">1 / 3 &nbsp;·&nbsp; Pantalla de inicio</div>
 <div id="aviso">Haz clic en "Iniciar sesión" para ver el flujo de autenticación</div>
+
 <script>
-  var v  = document.getElementById('vista');
-  var zb = document.getElementById('zonaBoton');
-  var zv = document.getElementById('zonaVolver');
-  var et = document.getElementById('etiqueta');
-  var av = document.getElementById('aviso');
-  function irAlLogin(){
-    v.src = 'login.html';
-    zb.style.display = 'none';
-    zv.style.display = 'block';
-    et.textContent = '2 / 2  ·  Pantalla de autenticación';
-    av.textContent = 'Haz clic en "Desvincular dispositivo" para volver al inicio';
+  var marco = document.getElementById('marco');
+  var v     = document.getElementById('vista');
+  var et    = document.getElementById('etiqueta');
+  var av    = document.getElementById('aviso');
+  var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVelo','zonaAceptar','zonaCancelar'];
+
+  function mostrar(ids, alto){
+    for(var i=0;i<zonas.length;i++){
+      document.getElementById(zonas[i]).style.display = 'none';
+    }
+    for(var j=0;j<ids.length;j++){
+      document.getElementById(ids[j]).style.display = 'block';
+    }
+    marco.style.height = alto + 'px';
+    v.style.height = alto + 'px';
+    ajustar();
   }
+
   function irAlInicio(){
     v.src = 'index.html';
-    zv.style.display = 'none';
-    zb.style.display = 'block';
-    et.textContent = '1 / 2  ·  Pantalla de inicio';
+    mostrar(['zonaBoton'], 1460);
+    et.textContent = '1 / 3  ·  Pantalla de inicio';
     av.textContent = 'Haz clic en "Iniciar sesión" para ver el flujo de autenticación';
   }
-  zb.addEventListener('click', irAlLogin);
-  zv.addEventListener('click', irAlInicio);
+  function irAlLogin(){
+    v.src = 'login.html';
+    mostrar(['zonaIngresa','zonaVolver'], 1460);
+    et.textContent = '2 / 3  ·  Pantalla de autenticación';
+    av.textContent = 'Haz clic en "Ingresa con tu contraseña" para abrir el diálogo';
+  }
+  function irAlClave(){
+    v.src = 'clave.html';
+    mostrar(['zonaVelo','zonaAceptar','zonaCancelar'], 1456);
+    et.textContent = '3 / 3  ·  Diálogo "Ingresa con tu contraseña"';
+    av.textContent = 'Haz clic en "Aceptar", "Cancelar" o fuera de la tarjeta para volver';
+  }
+
+  document.getElementById('zonaBoton').addEventListener('click', irAlLogin);
+  document.getElementById('zonaIngresa').addEventListener('click', irAlClave);
+  document.getElementById('zonaVolver').addEventListener('click', irAlInicio);
+  document.getElementById('zonaVelo').addEventListener('click', irAlLogin);
+  document.getElementById('zonaCancelar').addEventListener('click', irAlLogin);
+  document.getElementById('zonaAceptar').addEventListener('click', irAlLogin);
+
   function ajustar(){
-    var m = document.getElementById('marco');
-    var s = Math.min(window.innerWidth / 720, window.innerHeight / 1460) * 0.92;
-    m.style.transform = 'scale(' + s + ')';
+    var alto = parseFloat(marco.style.height) || 1460;
+    var s = Math.min(window.innerWidth / 720, window.innerHeight / alto) * 0.92;
+    marco.style.transform = 'scale(' + s + ')';
   }
   window.addEventListener('resize', ajustar);
   window.addEventListener('load', ajustar);

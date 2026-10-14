@@ -7,4 +7,11 @@
     <string name="login_desvincular">Desvincular dispositivo</string>
     <string name="login_huella_desc">Autenticarse con huella digital</string>
     <string name="login_salir_desc">Desvincular dispositivo</string>
+
+    <!-- Dialogo modal "Ingresa con tu contrasena" -->
+    <string name="clave_titulo">Usuario: A*****4</string>
+    <string name="clave_contrasena">Contraseña:</string>
+    <string name="clave_aceptar">Aceptar</string>
+    <string name="clave_cancelar">Cancelar</string>
+    <string name="clave_ojo_desc">Mostrar contraseña</string>
 </resources>

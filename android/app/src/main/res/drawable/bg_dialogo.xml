@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tarjeta del dialogo de contrasena: relleno #424242, radio 10 dp -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/dialogo_fondo" />
+    <corners android:radius="@dimen/clave_radio" />
+</shape>

@@ -114,3 +114,76 @@ Separación entre shards: **4–5 px (2 dp)** de fondo visible.
    no diseño). Se excluye del diseño.
 4. **Logotipo**: se reproduce como asset de marca recortado a 2x + versión vectorial
    de los 3 shards. Para producción conviene el SVG oficial del banco.
+
+---
+
+## 8. Diálogo «Ingresa con tu contraseña» (referencia-clave.jpeg)
+
+Mockup: **720 × 1456 px** @2x. Comparte lienzo con la pantalla de autenticación
+(360 × 723 dp), con 4 px menos arriba, así que `dp = (y − 10) / 2`.
+
+El fondo **no es un color plano**: es la propia pantalla de autenticación
+oscurecida con un **velo negro al 53 %** (`#000000` con alfa `#87` = 135/255 =
+0,529). Verificado con tres colores independientes:
+
+| Zona | Color original | × 0,47 | Medido en el mockup |
+|---|---|---|---|
+| fondo | #303030 | #161616 | **#161616** |
+| franja amarilla | #FDC800 | #775E00 | **#755C00** |
+| franja roja | #BB1B47 | #580D21 | **#560D21** |
+
+### Medidas (px del mockup → dp)
+
+| Elemento | px | dp | Nota |
+|---|---|---|---|
+| Tarjeta | 560 × 414 en (80, 524) | 280 × 207 | radio 20 px = 10 dp |
+| Relleno de la tarjeta | #424242 | — | opaco |
+| «Usuario: A\*\*\*\*\*4» | 199 × 20 · cap-top 580 | 14 sp | blanco, centrado |
+| Campo | 480 × 96 en (120, 674) | 240 × 48 | radio 20 px = 10 dp |
+| Relleno del campo | #555555 | — | |
+| Borde del campo | 4 px #9E9E9E | 2 dp | |
+| «Contraseña:» | 141 × 20 · x 142..282 | 13,5 sp | #757575, padding izq 11 dp |
+| Ojo (mostrar/ocultar) | 43 × 30 en (530, 707) | 21,5 × 15 | blanco, dentro del campo |
+| Botones | 176 × 80 en y 818 | 88 × 40 | radio 20 px = 10 dp, #BB1B47 |
+| «Aceptar» / «Cancelar» | 83 / 93 px de ancho | 12,5 sp | peso 400, tracking −0,025 em |
+
+### Radio verificado con la fórmula del arco
+
+`inset(d) = r − √(r² − (r−d)²)`, con `d` = distancia al borde recto:
+
+| d (px) | Predicho (r = 20) | Tarjeta | Campo | Botón |
+|---|---|---|---|---|
+| 1 | 13,8 | 13 | 14 | 15 |
+| 4 | 8,0 | 8 | 8 | 7 |
+| 8 | 4,0 | 4 | 3 (d=10) | 4 (d=7) |
+
+Los tres elementos usan **el mismo radio de 20 px = 10 dp**.
+
+### Posicionamiento en Android
+
+No es una pantalla nueva: es una **capa superpuesta** (`@+id/panelClave`,
+`visibility="gone"`) dentro de `activity_login.xml`, de modo que el fondo
+oscurecido es la pantalla real.
+
+```
+FrameLayout  panelClave     (match_parent · clickable · focusable)
+├── View           velo     #87000000          (match_parent)
+└── ConstraintLayout        280 × 207 dp       layout_gravity="center"
+    ├── TextView   claveUsuario   14 sp          marginTop 25 dp
+    ├── EditText   claveCampo     240 × 48 dp    en (20, 75)   borde 2 dp
+    ├── ImageView  claveOjo       28 × 21 dp     en (222, 88,5)
+    ├── TextView   claveAceptar   88 × 40 dp     en (47, 147)
+    └── TextView   claveCancelar  88 × 40 dp     en (145, 147)
+```
+
+`LoginActivity` lo abre al pulsar «Ingresa con tu contraseña» y lo cierra con
+«Aceptar», «Cancelar», el botón atrás o un toque en el velo. El ojo alterna entre
+contraseña visible y oculta.
+
+### Validación
+
+Diff global **2,23 / 255** (1,33 % de píxeles con desviación > 32). Cajas
+comprobadas contra el mockup: tarjeta, campo, botones y ojo **exactos**;
+«Contraseña:» 141 px **exacto**; «Usuario» 197 px (Δ 2); textos de botón
+83 / 95 px.
+

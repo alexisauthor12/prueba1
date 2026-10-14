@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -121,7 +121,21 @@ $lista | Sort-Object -Property Media -Descending | Select-Object -First 14 | For
 Write-Output ""
 
 # --- comparacion por region ---
-if($Pantalla -eq 'login'){
+if($Pantalla -eq 'clave'){
+  $regiones = @(
+    @('VELO_FONDO',      0,  150,  80,  300),
+    @('LOGO_OSCURO',    90,  240, 630,  430),
+    @('DIALOGO',        60,  500, 660,  960),
+    @('USUARIO',       200,  565, 520,  615),
+    @('CAMPO',         100,  655, 620,  790),
+    @('PLACEHOLDER',   125,  695, 400,  745),
+    @('OJO',           510,  690, 595,  755),
+    @('BTN_ACEPTAR',   160,  805, 360,  910),
+    @('BTN_CANCELAR',  360,  805, 560,  910),
+    @('TXT_ACEPTAR',   190,  830, 340,  890),
+    @('TXT_CANCELAR',  380,  830, 540,  890)
+  )
+} elseif($Pantalla -eq 'login'){
   $regiones = @(
     @('CAMPANA',      15,    5, 120,  95),
     @('LOGO',         90,  240, 630, 430),
