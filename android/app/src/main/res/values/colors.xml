@@ -28,5 +28,11 @@
     <color name="campo_pm_fondo">#454545</color>  <!-- relleno de los campos -->
     <color name="chevron_pm">#C9C9C9</color>      <!-- triangulo del desplegable -->
 
+    <!-- Comprobante de operacion (medidos sobre el mockup) -->
+    <color name="caja_comprobante">#757575</color> <!-- caja gris del monto -->
+    <color name="switch_track">#636363</color>     <!-- interruptor: riel -->
+    <color name="switch_knob">#BDBDBD</color>      <!-- interruptor: bola -->
+    <color name="separador">#272727</color>        <!-- linea del pie -->
+
     <color name="ic_launcher_background">#303030</color>
 </resources>

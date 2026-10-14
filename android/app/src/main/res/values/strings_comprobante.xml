@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del comprobante (replica de design/referencia-comprobante.jpeg) -->
+<resources>
+    <string name="cp_titulo">Comprobante de operación</string>
+    <string name="cp_atras_desc">Volver</string>
+    <string name="cp_compartir_desc">Compartir el comprobante</string>
+    <string name="cp_logo_desc">Banco de Venezuela</string>
+    <string name="cp_check_desc">Operación exitosa</string>
+    <string name="cp_copiar_desc">Copiar el número de operación</string>
+    <string name="cp_cerrar_desc">Cerrar el comprobante</string>
+
+    <string name="cp_etiqueta_fecha">Fecha:</string>
+    <string name="cp_etiqueta_operacion">Operación:</string>
+    <string name="cp_etiqueta_identificacion">Identificación:</string>
+    <string name="cp_etiqueta_origen">Origen:</string>
+    <string name="cp_etiqueta_destino">Destino:</string>
+    <string name="cp_etiqueta_banco">Banco:</string>
+    <string name="cp_etiqueta_concepto">Concepto:</string>
+
+    <string name="cp_origen">0102****5124</string>
+    <string name="cp_subtitulo">PagomóvilBDV Personas</string>
+
+    <string name="cp_agregar_beneficiario">Agregar Beneficiario</string>
+    <string name="cp_crear_acceso">Crear Acceso directo</string>
+
+    <string name="cp_copiado">Número de operación copiado</string>
+</resources>

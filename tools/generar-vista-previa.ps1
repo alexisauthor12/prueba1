@@ -21,11 +21,11 @@
     dashboard -> replica\vista-previa-dashboard.html
     pagos     -> replica\vista-previa-pagos.html   (panel sobre el dashboard)
     pagomovil -> replica\vista-previa-pagomovil.html
-    flujo     -> replica\vista-previa-flujo.html   (las seis pantallas)
+    flujo     -> replica\vista-previa-flujo.html   (las siete pantallas)
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','flujo','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','comprobante','flujo','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -70,7 +70,7 @@ function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch
   Write-Output ("generado: " + $destino + "  (" + [math]::Round((Get-Item $salida).Length/1KB) + " KB)")
 }
 
-# El visor flujo.html con las CINCO pantallas incrustadas: sirve para pasar al
+# El visor flujo.html con las SIETE pantallas incrustadas: sirve para pasar al
 # movil y permite escribir la contrasena, entrar al dashboard y abrir el panel
 # de Pagos sin mas archivos.
 function GenerarFlujo(){
@@ -82,13 +82,17 @@ function GenerarFlujo(){
   # Iconos propios de PagomovilBDV (los del nav son los mismos del dashboard)
   $pmIconos = @('pm_campana.png','pm_menu.png','pm_circulo_pegar.png','pm_circulo_leer.png',
                 'pm_boton_doc.png','pm_icono_inferior.png') + $iconos
+  # Iconos propios del comprobante
+  $cpIconos = @('cp_flecha.png','cp_compartir.png','cp_logo.png','cp_check.png',
+                'cp_copiar.png','cp_flecha_pie.png')
   $pares = @(
     @('index.html',     (Construir 'index.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png'))),
     @('login.html',     (Construir 'login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png'))),
     @('clave.html',     (Construir 'clave.html' @('ico-ojo.png') -ConLogin)),
     @('dashboard.html', (Construir 'dashboard.html' $iconos)),
     @('pagos.html',     (Construir 'pagos.html' @('render-dashboard.png'))),
-    @('pagomovil.html', (Construir 'pagomovil.html' $pmIconos))
+    @('pagomovil.html', (Construir 'pagomovil.html' $pmIconos)),
+    @('comprobante.html', (Construir 'comprobante.html' $cpIconos))
   )
   foreach($p in $pares){
     $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($p[1]))
@@ -102,7 +106,7 @@ function GenerarFlujo(){
 }
 
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','pagomovil','flujo') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','pagomovil','comprobante','flujo') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
@@ -119,6 +123,9 @@ foreach($p in $hacer){
         'pm_campana.png','pm_menu.png','pm_circulo_pegar.png','pm_circulo_leer.png',
         'pm_boton_doc.png','pm_icono_inferior.png',
         'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
+    'comprobante' { Generar 'comprobante.html' 'vista-previa-comprobante.html' @(
+        'cp_flecha.png','cp_compartir.png','cp_logo.png','cp_check.png',
+        'cp_copiar.png','cp_flecha_pie.png') }
     'flujo'  { GenerarFlujo }
   }
 }

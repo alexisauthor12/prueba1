@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Comprobante de operación: se abre al pulsar "Pagar" en PagomovilBDV.
+  Replica 1:1 del mockup design/referencia-comprobante.jpeg
+  (633x1280 px -> lienzo de diseno 360 x 727.9 dp).
+  Medidas en values/dimens_comprobante.xml.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hoja">
+
+    <!-- ================= Barra superior ================= -->
+    <ImageView
+        android:id="@+id/cpFlecha"
+        android:layout_width="@dimen/cp_flecha"
+        android:layout_height="@dimen/cp_flecha"
+        android:layout_marginStart="@dimen/cp_flecha_margin_izq"
+        android:layout_marginTop="@dimen/cp_flecha_margin_top"
+        android:contentDescription="@string/cp_atras_desc"
+        android:src="@drawable/cp_flecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cpTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cp_titulo_margin_top"
+        android:fontFamily="@font/arimo"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/cp_titulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_titulo_texto"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cpCompartir"
+        android:layout_width="@dimen/cp_compartir_ancho"
+        android:layout_height="@dimen/cp_compartir_alto"
+        android:layout_marginStart="@dimen/cp_compartir_margin_izq"
+        android:layout_marginTop="@dimen/cp_compartir_margin_top"
+        android:contentDescription="@string/cp_compartir_desc"
+        android:src="@drawable/cp_compartir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Logo, subtitulo y check ================= -->
+    <ImageView
+        android:id="@+id/cpLogo"
+        android:layout_width="@dimen/cp_logo_ancho"
+        android:layout_height="@dimen/cp_logo_alto"
+        android:layout_marginStart="@dimen/cp_logo_margin_izq"
+        android:layout_marginTop="@dimen/cp_logo_margin_top"
+        android:contentDescription="@string/cp_logo_desc"
+        android:src="@drawable/cp_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cpSubtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cp_subtitulo_margin_top"
+        android:fontFamily="@font/arimo"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/cp_subtitulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_subtitulo_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- La caja va antes que el check: el check se dibuja encima -->
+    <View
+        android:id="@+id/cpCaja"
+        android:layout_width="@dimen/cp_caja_ancho"
+        android:layout_height="@dimen/cp_caja_alto"
+        android:layout_marginStart="@dimen/cp_caja_margin_izq"
+        android:layout_marginTop="@dimen/cp_caja_margin_top"
+        android:background="@drawable/bg_caja_cp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cpCheck"
+        android:layout_width="@dimen/cp_check_ancho"
+        android:layout_height="@dimen/cp_check_alto"
+        android:layout_marginStart="@dimen/cp_check_margin_izq"
+        android:layout_marginTop="@dimen/cp_check_margin_top"
+        android:contentDescription="@string/cp_check_desc"
+        android:src="@drawable/cp_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cpMonto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cp_monto_margin_top"
+        android:fontFamily="@font/arimo"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_monto_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Filas (etiqueta izquierda / valor derecha) ================= -->
+    <TextView android:id="@+id/cpEtiq1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila1_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_fecha" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila1_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq2"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila2_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_operacion" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal2"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila2_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/cpCopiar"
+        android:layout_width="@dimen/cp_copiar_ancho" android:layout_height="@dimen/cp_copiar_alto"
+        android:layout_marginStart="@dimen/cp_copiar_margin_izq" android:layout_marginTop="@dimen/cp_copiar_margin_top"
+        android:contentDescription="@string/cp_copiar_desc" android:src="@drawable/cp_copiar"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq3"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila3_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_identificacion" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal3"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila3_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq4"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila4_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_origen" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal4"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila4_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_origen" android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq5"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila5_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_destino" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal5"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila5_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq6"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila6_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_banco" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal6"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila6_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/cpEtiq7"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_etiqueta_margin_izq" android:layout_marginTop="@dimen/cp_fila7_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_etiqueta_concepto" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_fila_texto" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpVal7"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cp_valor_margin_der" android:layout_marginTop="@dimen/cp_fila7_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:textColor="@color/blanco" android:textSize="@dimen/cp_fila_texto"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Pie: flecha, separador e interruptores ================= -->
+    <ImageView android:id="@+id/cpFlechaPie"
+        android:layout_width="@dimen/cp_flecha_pie_ancho" android:layout_height="@dimen/cp_flecha_pie_alto"
+        android:layout_marginStart="@dimen/cp_flecha_pie_margin_izq" android:layout_marginTop="@dimen/cp_flecha_pie_margin_top"
+        android:contentDescription="@string/cp_cerrar_desc" android:src="@drawable/cp_flecha_pie"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:id="@+id/cpSeparador"
+        android:layout_width="0dp" android:layout_height="@dimen/cp_separador_alto"
+        android:layout_marginTop="@dimen/cp_separador_margin_top"
+        android:background="@color/separador"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:id="@+id/cpTrack1"
+        android:layout_width="@dimen/cp_track_ancho" android:layout_height="@dimen/cp_track_alto"
+        android:layout_marginStart="@dimen/cp_track_margin_izq" android:layout_marginTop="@dimen/cp_track1_margin_top"
+        android:background="@drawable/bg_switch_track"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <View android:id="@+id/cpKnob1"
+        android:layout_width="@dimen/cp_knob" android:layout_height="@dimen/cp_knob"
+        android:layout_marginStart="@dimen/cp_knob_margin_izq" android:layout_marginTop="@dimen/cp_knob1_margin_top"
+        android:background="@drawable/bg_switch_knob"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpInt1"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_int_margin_izq" android:layout_marginTop="@dimen/cp_int1_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_agregar_beneficiario" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_int_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:id="@+id/cpTrack2"
+        android:layout_width="@dimen/cp_track_ancho" android:layout_height="@dimen/cp_track_alto"
+        android:layout_marginStart="@dimen/cp_track_margin_izq" android:layout_marginTop="@dimen/cp_track2_margin_top"
+        android:background="@drawable/bg_switch_track"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <View android:id="@+id/cpKnob2"
+        android:layout_width="@dimen/cp_knob" android:layout_height="@dimen/cp_knob"
+        android:layout_marginStart="@dimen/cp_knob_margin_izq" android:layout_marginTop="@dimen/cp_knob2_margin_top"
+        android:background="@drawable/bg_switch_knob"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <TextView android:id="@+id/cpInt2"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cp_int_margin_izq" android:layout_marginTop="@dimen/cp_int2_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/cp_crear_acceso" android:textColor="@color/blanco"
+        android:textSize="@dimen/cp_int_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

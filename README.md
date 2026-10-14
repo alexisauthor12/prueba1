@@ -1,4 +1,4 @@
-﻿# BDV · Réplica 1:1 de la app (Inicio → Login → Contraseña → Dashboard → Pagos → PagomóvilBDV) → APK
+# BDV · Réplica 1:1 de la app (Inicio → Login → Contraseña → Dashboard → Pagos → PagomóvilBDV → Comprobante) → APK
 
 Réplica **medida píxel a píxel** de los mockups de `design/`, traducida a una app
 Android real y compilable a APK **sin instalar nada en tu PC** (se compila en la
@@ -12,6 +12,7 @@ nube con GitHub Actions).
 | 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 4,87 |
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
+| 7 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 5,60 |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -265,7 +266,7 @@ powershell -ExecutionPolicy Bypass -File tools\validar-android.ps1
 `comparar.ps1` informa, por cada región: la caja medida en la referencia, la caja
 medida en la réplica y la diferencia media de color. Con eso se corrige cualquier
 desviación en un solo paso. Admite
-`-Pantalla inicio | login | clave | dashboard | pagos | pagomovil`.
+`-Pantalla inicio | login | clave | dashboard | pagos | pagomovil | comprobante`.
 
 `validar-android.ps1` comprueba de una pasada: **41 XML bien formados**,
 **473 recursos** definidos, **102 ids** y **0 referencias sin resolver**
@@ -466,7 +467,7 @@ Pantalla propia (`PagomovilActivity`) replicada de `design/referencia-pagomovil.
 | Icono del pie | 66 × 81 en (325, 1258) | 33 × 40.5 | **diff 0,35** |
 | Barra inferior | desde y 1338 · 113 px | 669 · 56.5 | iconos 2,98 |
 
-**Diff global: 2,56 / 255 (2,03 %)** — la mejor de las seis pantallas.
+**Diff global: 2,56 / 255 (2,03 %)** — la mejor de las siete pantallas.
 
 Detalles que solo se ven midiendo:
 
@@ -483,5 +484,53 @@ Detalles que solo se ven midiendo:
 
 En la app: se abre desde la primera opción del panel de Pagos. Vista
 autocontenida: `replica/vista-previa-pagomovil.html`.
+
+---
+
+## 11. Comprobante de operación (al pulsar «Pagar» en PagomóvilBDV)
+
+Pantalla propia (`ComprobanteActivity`) replicada de
+`design/referencia-comprobante.jpeg` (633 × 1280 px → **360 × 727.9 dp**;
+el mockup viene a escala 1,758, no 2× como los anteriores).
+Réplica en `replica/comprobante.html`.
+
+Además, los campos **Documento, Teléfono, Monto y Concepto** de PagomóvilBDV
+son editables: al pulsar «Pagar» se abre esta pantalla con los datos escritos
+y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
+
+| Bloque | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Flecha atrás | 32 × 32 en (33, 36) | 18,2 | **diff 0,18** |
+| Título (negrita) | mayúscula 40 → 68 | 16sp | diff 34,5 |
+| Compartir | 38 × 40 en (572, 31) | 21,6 × 22,7 | **diff 0,05** |
+| Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
+| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | diff 38,4 |
+| Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
+| Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 2,57** |
+| Monto «2.400,00 Bs» | mayúscula 389 → 410 | 14,2sp | diff 14,0 |
+| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 | 28,1 · 32,4 · 33 | 10,4 – 26,6 |
+| Flecha del pie | 40 × 39 en (296, 1021) | 22,7 × 22,2 | **diff 0,07** |
+| Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
+| Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
+
+**Diff global: 5,60 / 255 (2,2 %)**.
+
+Detalles que solo se ven midiendo:
+
+- La **caja del monto empieza en y 365**, no en 339: el borde gris del círculo
+  del check engaña al medir por color y hace creer que la caja es 26 px más
+  alta. Corregido, su diff baja de 21,1 a **2,57**.
+- El **check se dibuja encima** de la caja (en el mockup el círculo toca el
+  borde superior de la caja), por eso en el layout la caja va declarada antes.
+- Las **etiquetas van en negrita y los valores en redonda**, al mismo tamaño
+  (12,5sp): medido, las dos bandas ocupan exactamente las mismas filas.
+- El interruptor no es un `Switch` de Android: es un riel `#636363` de 35,8 ×
+  19,9 dp con radio 10 y una bola `#BDBDBD` de 18,2 dp, para clavar el color
+  medido. Al tocarlo la bola se desliza.
+- El número de operación (12 dígitos, empieza por `00`) y la fecha son
+  aleatorios/actuales; el icono de copiar lo lleva al portapapeles.
+
+En la app: `DashboardActivity` → panel de Pagos → `PagomovilActivity` →
+`ComprobanteActivity`. Vista autocontenida: `replica/vista-previa-comprobante.html`.
 
 

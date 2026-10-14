@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Comprobante de operación (replica 1:1, 633x1280 px)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#212121;}
+  body{position:relative;width:633px;height:1280px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* ---- Barra superior: atras (33,36), titulo centrado, compartir ---- */
+  #cpFlecha{position:absolute;left:33px;top:36px;width:32px;height:32px;}
+  #cpTitulo{position:absolute;left:0;top:38.1px;width:633px;text-align:center;
+            font-size:28px;font-weight:700;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  #cpCompartir{position:absolute;left:572px;top:31px;width:38px;height:40px;}
+
+  /* ---- Centro: logo, subtitulo, check y caja del monto ---- */
+  #cpLogo{position:absolute;left:269px;top:147px;width:90px;height:96px;}
+  #cpSubtitulo{position:absolute;left:0;top:255.3px;width:633px;text-align:center;
+               font-size:24.5px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  #cpCheck{position:absolute;left:291px;top:296px;width:50px;height:49px;z-index:2;}
+  #cpCaja{position:absolute;left:45px;top:365px;width:543px;height:69px;
+          border-radius:17px;background:#757575;}
+  #cpMonto{position:absolute;left:0;top:386.3px;width:633px;text-align:center;
+           font-size:25px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+
+  /* ---- Filas: etiqueta (izq, negrita) y valor (der) ---- */
+  .cpEtiqueta{position:absolute;left:57px;font-size:22px;font-weight:700;
+              color:#FFFFFF;line-height:1;white-space:nowrap;}
+  .cpValor{position:absolute;right:58px;font-size:22px;color:#FFFFFF;
+           line-height:1;white-space:nowrap;text-align:right;}
+  #cpCopiar{position:absolute;left:562px;top:506px;width:25px;height:38px;}
+
+  /* ---- Pie: flecha, separador y los dos interruptores ---- */
+  #cpFlechaPie{position:absolute;left:296px;top:1021px;width:40px;height:39px;}
+  #cpSeparador{position:absolute;left:0;top:1096px;width:633px;height:6px;background:#272727;}
+  .cpTrack{position:absolute;left:186px;width:63px;height:35px;border-radius:17.5px;background:#636363;}
+  .cpKnob{position:absolute;left:187px;width:32px;height:32px;border-radius:16px;background:#BDBDBD;}
+  .cpEtiquetaInt{position:absolute;left:273px;font-size:21px;color:#FFFFFF;
+                 line-height:1;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+  <img id="cpFlecha" src="cp_flecha.png" alt="">
+  <div id="cpTitulo">Comprobante de operación</div>
+  <img id="cpCompartir" src="cp_compartir.png" alt="">
+
+  <img id="cpLogo" src="cp_logo.png" alt="">
+  <div id="cpSubtitulo">PagomóvilBDV Personas</div>
+  <img id="cpCheck" src="cp_check.png" alt="">
+  <div id="cpCaja"></div>
+  <div id="cpMonto">2.400,00 Bs</div>
+
+  <!-- Filas: cap-top medidos [466, 515, 565, 615, 664, 713, 763] -->
+  <div class="cpEtiqueta" style="top:463.6px">Fecha:</div>
+  <div class="cpValor"    style="top:463.6px">13/10/2026</div>
+
+  <div class="cpEtiqueta" style="top:512.6px">Operación:</div>
+  <div class="cpValor"    style="top:512.6px">007652036202</div>
+  <img id="cpCopiar" src="cp_copiar.png" alt="">
+
+  <div class="cpEtiqueta" style="top:562.6px">Identificación:</div>
+  <div class="cpValor"    style="top:562.6px">24349893</div>
+
+  <div class="cpEtiqueta" style="top:612.6px">Origen:</div>
+  <div class="cpValor"    style="top:612.6px">0102****5124</div>
+
+  <div class="cpEtiqueta" style="top:661.6px">Destino:</div>
+  <div class="cpValor"    style="top:661.6px">04147459612</div>
+
+  <div class="cpEtiqueta" style="top:710.6px">Banco:</div>
+  <div class="cpValor"    style="top:710.6px">0105 - BANCO MERCANTIL</div>
+
+  <div class="cpEtiqueta" style="top:760.6px">Concepto:</div>
+  <div class="cpValor"    style="top:760.6px">pago</div>
+
+  <!-- Pie -->
+  <img id="cpFlechaPie" src="cp_flecha_pie.png" alt="">
+  <div id="cpSeparador"></div>
+
+  <div class="cpTrack" style="top:1136px"></div>
+  <div class="cpKnob"  style="top:1137.5px"></div>
+  <div class="cpEtiquetaInt" style="top:1142.7px">Agregar Beneficiario</div>
+
+  <div class="cpTrack" style="top:1220px"></div>
+  <div class="cpKnob"  style="top:1221.5px"></div>
+  <div class="cpEtiquetaInt" style="top:1227.7px">Crear Acceso directo</div>
+
+</body>
+</html>

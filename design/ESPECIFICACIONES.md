@@ -358,3 +358,60 @@ bordes y márgenes son exactos.
 
 
 
+
+---
+
+## 11. Comprobante de operación (referencia-comprobante.jpeg)
+
+Se abre al pulsar **Pagar** en PagomóvilBDV, con los datos del formulario.
+
+**Lienzo**: 633 × 1280 px. A diferencia de los otros mockups (720 px = 360 dp
+a 2×), este viene a **escala 1,75833** → lienzo **360 × 727,9 dp**. Todas las
+medidas de abajo salen de `px / 1,75833`.
+
+**Fondo**: `#212121` (el mismo `@color/hoja` del dashboard, no `#303030`).
+
+### 11.1 Medidas (px del mockup)
+
+| Elemento | Medida | Posición | dp / sp |
+|---|---|---|---|
+| Flecha atrás | 32 × 32 | (33, 36) | 18,2 dp en (18,8 · 20,5) |
+| Título «Comprobante de operación» | mayúscula 40 → 68 (29 px) | centrado | **16sp** negrita · margen 19,3 |
+| Icono compartir | 38 × 40 | (572, 31) | 21,6 × 22,7 en (325,3 · 17,6) |
+| Logotipo (shards) | 85 × 90 | (272, 150) | 51,2 × 54,6 en (153 · 83,6) |
+| «PagomóvilBDV Personas» | banda 258 → 282 (25 px) | centrado | **14sp** · margen 143,6 |
+| Círculo blanco con check | 45 × 44 | (294, 299) | 28,4 × 27,9 en (165,5 · 168,3) |
+| Caja del monto | 543 × 69 · radio 17 | (45, **365**) | 308,8 × 39,2 · radio 9,7 · margen 207,6 |
+| «2.400,00 Bs» | mayúscula 389 → 410 (22 px) | centrado | **14,2sp** · margen 218,1 |
+| Etiquetas (negrita) | cap 466 → 483 | x 57 | **12,5sp** · margen izq 32,4 |
+| Valores | igual banda | derecha en 575 | **12,5sp** · margen der 33 |
+| Paso entre filas | **49,5** | caps 466, 515, 565, 615, 664, 713, 763 | **28,1 dp** |
+| Icono copiar | 20 × 32 | (562, 506) | 14,2 × 21,6 en (319,6 · 287,8) |
+| Flecha del pie | 40 × 39 | (296, 1021) | 22,7 × 22,2 en (168,3 · 580,7) |
+| Separador | 6 px de alto | y 1096 · color `#272727` | 3,4 dp · margen 623,3 |
+| Riel del interruptor | 63 × 35 · radio 17,5 · `#636363` | (186, 1136) y (186, 1220) | 35,8 × 19,9 · radio 10 · margen 105,8 |
+| Bola | 32 × 32 · `#BDBDBD` | (187, 1137,5) y (187, 1221,5) | 18,2 dp · margen 106,3 |
+| «Agregar Beneficiario» / «Crear Acceso directo» | banda 1144/1229 | x 273 | **12sp** · margen 155,3 |
+
+### 11.2 Trampas de medición (apuntadas para no repetirlas)
+
+1. **La caja del monto empieza en y 365, no en 339.** Un barrido por color
+   (`≈#757575`) da un bbox que empieza en 340 porque **el borde antialiasado del
+   círculo blanco del check** tiene ese gris. La forma correcta de medirla es
+   buscar, columna a columna, la primera fila con brillo > 60: da 365 en todas
+   las columnas centrales. Ese error hacía la caja 26 px más alta (diff 21,1 en
+   vez de 2,57).
+2. **El check va encima de la caja**: el círculo (299 → 342) solapa el borde
+   superior de la caja (365)… no llega a solapar, pero en el mockup está pegado
+   y con el fondo del círculo recortado. En el layout la caja se declara antes
+   que el `ImageView` del check para que este quede por encima.
+3. **Etiquetas y valores miden igual**: al proyectar por filas, las dos bandas
+   ocupan exactamente las mismas filas (466 → 483), así que van al mismo tamaño
+   (12,5sp); la diferencia es solo el peso (negrita / redonda).
+4. **El interruptor no es un `Switch`**: el riel mide 63 × 35 px con radio 17,5
+   y la bola 32 px, con `#636363` y `#BDBDBD`. Se dibuja con dos `View`
+   redondeadas para clavar los colores medidos.
+5. **La escala del mockup no es 2×**: se deduce del paso entre filas (49,5 px)
+   y del ancho del título (362 px = 11,58 em en negrita): con 1,75833 todo cae
+   en valores redondos (28,1 dp de paso, 12,5sp de texto).
+

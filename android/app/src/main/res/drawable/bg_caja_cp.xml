@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Caja gris del monto del comprobante: #757575, radio 11.4 dp -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/caja_comprobante" />
+    <corners android:radius="@dimen/cp_caja_radio" />
+</shape>

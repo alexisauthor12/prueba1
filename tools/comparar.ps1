@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','comprobante')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -211,6 +211,32 @@ if($Pantalla -eq 'dashboard'){
     @('ICONO_INFERIOR',315, 1250, 400, 1345),
     @('NAV_ICONOS',      0, 1350, 719, 1392),
     @('NAV_TEXTO',       0, 1394, 719, 1445)
+  )
+} elseif($Pantalla -eq 'comprobante'){
+  $regiones = @(
+    @('FONDO',          0,  900,  60, 1000),
+    @('FLECHA_ATRAS',  25,   28,  70,   75),
+    @('TITULO',       110,   30, 510,   80),
+    @('COMPARTIR',    565,   25, 615,   80),
+    @('LOGO',         260,  140, 370,  250),
+    @('SUBTITULO',    170,  258, 470,  300),
+    @('CHECK',        285,  290, 350,  350),
+    @('CAJA',          40,  332, 595,  440),
+    @('MONTO',        240,  380, 395,  418),
+    @('FILA1',         45,  455, 600,  495),
+    @('FILA2',         45,  500, 600,  550),
+    @('COPIAR',       555,  500, 595,  548),
+    @('FILA3',         45,  555, 600,  595),
+    @('FILA4',         45,  605, 600,  650),
+    @('FILA5',         45,  655, 600,  695),
+    @('FILA6',         45,  705, 600,  742),
+    @('FILA7',         45,  752, 600,  795),
+    @('FLECHA_PIE',   290, 1015, 345, 1065),
+    @('SEPARADOR',      0, 1090, 632, 1110),
+    @('TOGGLE1',      180, 1128, 255, 1180),
+    @('TXT_TOG1',     265, 1138, 480, 1175),
+    @('TOGGLE2',      180, 1212, 255, 1265),
+    @('TXT_TOG2',     265, 1222, 480, 1260)
   )
 } elseif($Pantalla -eq 'login'){
   $regiones = @(

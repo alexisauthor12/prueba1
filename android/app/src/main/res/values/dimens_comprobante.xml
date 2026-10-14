@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Comprobante de operación (se abre al pulsar Pagar en PagomovilBDV).
+  Medidas exactas del mockup design/referencia-comprobante.jpeg
+  (633x1280 px -> lienzo de diseno 360 x 727.9 dp):
+
+      dp = px / 1.75833     (633 px = 360 dp)
+
+  Los margenes superiores de los textos descuentan el hueco entre el borde de
+  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+-->
+<resources>
+
+    <!-- ===== Barra superior ===== -->
+    <dimen name="cp_flecha">18.2dp</dimen>
+    <dimen name="cp_flecha_margin_izq">18.8dp</dimen>
+    <dimen name="cp_flecha_margin_top">20.5dp</dimen>
+
+    <dimen name="cp_titulo_texto">16sp</dimen>
+    <dimen name="cp_titulo_margin_top">19.3dp</dimen>
+
+    <dimen name="cp_compartir_ancho">21.6dp</dimen>
+    <dimen name="cp_compartir_alto">22.7dp</dimen>
+    <dimen name="cp_compartir_margin_izq">325.3dp</dimen>
+    <dimen name="cp_compartir_margin_top">17.6dp</dimen>
+
+    <!-- ===== Centro: logo, subtitulo y check ===== -->
+    <dimen name="cp_logo_ancho">51.2dp</dimen>
+    <dimen name="cp_logo_alto">54.6dp</dimen>
+    <dimen name="cp_logo_margin_izq">153dp</dimen>
+    <dimen name="cp_logo_margin_top">83.6dp</dimen>
+
+    <dimen name="cp_subtitulo_texto">14sp</dimen>
+    <dimen name="cp_subtitulo_margin_top">143.6dp</dimen>
+
+    <dimen name="cp_check_ancho">28.4dp</dimen>
+    <dimen name="cp_check_alto">27.9dp</dimen>
+    <dimen name="cp_check_margin_izq">165.5dp</dimen>
+    <dimen name="cp_check_margin_top">168.3dp</dimen>
+
+    <!-- ===== Caja del monto: 543x69 px (308.8x39.2 dp), radio 9.7 dp ===== -->
+    <dimen name="cp_caja_ancho">308.8dp</dimen>
+    <dimen name="cp_caja_alto">39.2dp</dimen>
+    <dimen name="cp_caja_margin_izq">25.6dp</dimen>
+    <dimen name="cp_caja_margin_top">207.6dp</dimen>
+    <dimen name="cp_caja_radio">9.7dp</dimen>
+
+    <dimen name="cp_monto_texto">14.2sp</dimen>
+    <dimen name="cp_monto_margin_top">218.1dp</dimen>
+
+    <!-- ===== Filas: etiqueta a 32.4 dp, valor a 33 dp del borde ===== -->
+    <dimen name="cp_fila_texto">12.5sp</dimen>
+    <dimen name="cp_etiqueta_margin_izq">32.4dp</dimen>
+    <dimen name="cp_valor_margin_der">33dp</dimen>
+    <dimen name="cp_fila1_margin_top">262.3dp</dimen>
+    <dimen name="cp_fila2_margin_top">290.2dp</dimen>
+    <dimen name="cp_fila3_margin_top">318.6dp</dimen>
+    <dimen name="cp_fila4_margin_top">347.1dp</dimen>
+    <dimen name="cp_fila5_margin_top">374.9dp</dimen>
+    <dimen name="cp_fila6_margin_top">402.8dp</dimen>
+    <dimen name="cp_fila7_margin_top">431.2dp</dimen>
+
+    <dimen name="cp_copiar_ancho">14.2dp</dimen>
+    <dimen name="cp_copiar_alto">21.6dp</dimen>
+    <dimen name="cp_copiar_margin_izq">319.6dp</dimen>
+    <dimen name="cp_copiar_margin_top">287.8dp</dimen>
+
+    <!-- ===== Pie: flecha, separador y los dos interruptores ===== -->
+    <dimen name="cp_flecha_pie_ancho">22.7dp</dimen>
+    <dimen name="cp_flecha_pie_alto">22.2dp</dimen>
+    <dimen name="cp_flecha_pie_margin_izq">168.3dp</dimen>
+    <dimen name="cp_flecha_pie_margin_top">580.7dp</dimen>
+
+    <dimen name="cp_separador_alto">3.4dp</dimen>
+    <dimen name="cp_separador_margin_top">623.3dp</dimen>
+
+    <dimen name="cp_track_ancho">35.8dp</dimen>
+    <dimen name="cp_track_alto">19.9dp</dimen>
+    <dimen name="cp_track_radio">10dp</dimen>
+    <dimen name="cp_track_margin_izq">105.8dp</dimen>
+    <dimen name="cp_track1_margin_top">646dp</dimen>
+    <dimen name="cp_track2_margin_top">693.8dp</dimen>
+
+    <dimen name="cp_knob">18.2dp</dimen>
+    <dimen name="cp_knob_radio">9.1dp</dimen>
+    <dimen name="cp_knob_margin_izq">106.3dp</dimen>
+    <dimen name="cp_knob1_margin_top">646.9dp</dimen>
+    <dimen name="cp_knob2_margin_top">694.7dp</dimen>
+
+    <dimen name="cp_int_texto">12sp</dimen>
+    <dimen name="cp_int_margin_izq">155.3dp</dimen>
+    <dimen name="cp_int1_margin_top">648.6dp</dimen>
+    <dimen name="cp_int2_margin_top">696.9dp</dimen>
+
+</resources>
