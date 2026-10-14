@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>BDV - Flujo: Inicio &rarr; Autenticación &rarr; Contraseña &rarr; Dashboard &rarr; Pagos &rarr; PagomóvilBDV &rarr; Comprobante</title>
+<title>BDV - Flujo: Inicio &rarr; Autenticación &rarr; Contraseña &rarr; Dashboard &rarr; Pagos &rarr; PagomóvilBDV &rarr; Banco &rarr; Comprobante</title>
 <style>
   html,body{margin:0;height:100%;background:#101010;overflow:hidden;
             display:flex;align-items:center;justify-content:center;}
@@ -40,6 +40,9 @@
   /* Comprobante de operacion: las dos flechas lo cierran */
   #zonaCpAtras{left:25px;top:28px;width:48px;height:47px;border-radius:0;}
   #zonaCpCerrar{left:288px;top:1011px;width:58px;height:56px;border-radius:0;}
+  /* Selector de banco: "Inicio" y "Pagos" vuelven a PagomovilBDV */
+  #zonaBkInicio{left:0;top:1354px;width:120px;height:87px;border-radius:0;}
+  #zonaBkPagos{left:240px;top:1354px;width:120px;height:87px;border-radius:0;}
   #etiqueta{position:fixed;left:14px;top:12px;color:#9a9a9a;font:13px Arial,Helvetica,sans-serif;}
   #aviso{position:fixed;left:14px;bottom:12px;color:#6f6f6f;font:12px Arial,Helvetica,sans-serif;}
 </style>
@@ -72,9 +75,12 @@
 
   <div id="zonaCpAtras"  class="zona" title="Volver a PagomóvilBDV"></div>
   <div id="zonaCpCerrar" class="zona" title="Volver a PagomóvilBDV"></div>
+
+  <div id="zonaBkInicio" class="zona" title="Volver a PagomóvilBDV"></div>
+  <div id="zonaBkPagos"  class="zona" title="Volver a PagomóvilBDV"></div>
 </div>
 
-<div id="etiqueta">1 / 7 &nbsp;·&nbsp; Pantalla de inicio</div>
+<div id="etiqueta">1 / 8 &nbsp;·&nbsp; Pantalla de inicio</div>
 <div id="aviso">Haz clic en "Iniciar sesión" para ver el flujo de autenticación</div>
 
 <script>
@@ -85,7 +91,7 @@
   var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVeloArriba','zonaVeloAbajo',
                'zonaVeloIzq','zonaVeloDer','zonaDashVolver','zonaDashPagos',
                'zonaPagosVelo','zonaPago1','zonaPago2','zonaPago3','zonaPago4','zonaPago5',
-               'zonaPmNavInicio','zonaCpAtras','zonaCpCerrar'];
+               'zonaPmNavInicio','zonaCpAtras','zonaCpCerrar','zonaBkInicio','zonaBkPagos'];
 
   function mostrar(ids, alto, ancho){
     for(var i=0;i<zonas.length;i++){
@@ -108,38 +114,53 @@
   function irAlInicio(){
     v.src = 'index.html';
     mostrar(['zonaBoton'], 1460);
-    et.textContent = '1 / 7  ·  Pantalla de inicio';
+    et.textContent = '1 / 8  ·  Pantalla de inicio';
     av.textContent = 'Haz clic en "Iniciar sesión" para ver el flujo de autenticación';
   }
   function irAlLogin(){
     v.src = 'login.html';
     mostrar(['zonaIngresa','zonaVolver'], 1460);
-    et.textContent = '2 / 7  ·  Pantalla de autenticación';
+    et.textContent = '2 / 8  ·  Pantalla de autenticación';
     av.textContent = 'Haz clic en "Ingresa con tu contraseña" para abrir el diálogo';
   }
   function irAlClave(){
     v.src = 'clave.html';
     mostrar(['zonaVelo','zonaAceptar','zonaCancelar'], 1456);
-    et.textContent = '3 / 7  ·  Diálogo "Ingresa con tu contraseña"';
+    et.textContent = '3 / 8  ·  Diálogo "Ingresa con tu contraseña"';
     av.textContent = 'Escribe 12345 en el campo y pulsa "Aceptar" para entrar al dashboard';
   }
   function irAlDashboard(){
     v.src = 'dashboard.html';
     mostrar(['zonaDashVolver','zonaDashPagos'], 1450);
-    et.textContent = '4 / 7  ·  Dashboard (con la contraseña 12345)';
+    et.textContent = '4 / 8  ·  Dashboard (con la contraseña 12345)';
     av.textContent = 'Haz clic en "Pagos" (barra inferior) para abrir el panel';
   }
   function irAlPagos(){
     v.src = 'pagos.html';
     mostrar(['zonaPagosVelo','zonaPago1','zonaPago2','zonaPago3','zonaPago4','zonaPago5'], 1446);
-    et.textContent = '5 / 7  ·  Panel de Pagos';
+    et.textContent = '5 / 8  ·  Panel de Pagos';
     av.textContent = 'Haz clic en "PagomóvilBDV" para abrir su pantalla (o en el velo para cerrar)';
   }
-  function irAlPagomovil(){
+  function irAlPagomovil(banco){
+    v.onload = function(){
+      v.onload = null;
+      if(banco){ v.contentWindow.postMessage({tipo:'bdv-banco', banco:banco}, '*'); }
+    };
     v.src = 'pagomovil.html';
     mostrar(['zonaPmNavInicio'], 1451);
-    et.textContent = '6 / 7  ·  PagomóvilBDV';
-    av.textContent = 'Escribe los datos en los campos y pulsa "Pagar" para ver el comprobante';
+    et.textContent = '6 / 8  ·  PagomóvilBDV';
+    av.textContent = 'Escribe los datos, elige el banco y pulsa "Pagar" para ver el comprobante';
+  }
+  /* Selector de banco: se abre al pulsar el campo "Banco:" de PagomovilBDV */
+  function irAlBancos(banco){
+    v.onload = function(){
+      v.onload = null;
+      if(banco){ v.contentWindow.postMessage({tipo:'bdv-banco-actual', banco:banco}, '*'); }
+    };
+    v.src = 'bancos.html';
+    mostrar(['zonaBkInicio','zonaBkPagos'], 1441);
+    et.textContent = '7 / 8  ·  Selección de banco';
+    av.textContent = 'Haz clic en un banco para volver a PagomóvilBDV con el banco elegido';
   }
   /* El comprobante recibe los datos que se escribieron en PagomovilBDV
      (por postMessage, porque la pantalla va dentro de un iframe). */
@@ -151,7 +172,7 @@
     v.src = 'comprobante.html';
     /* 633 x 1280 px: el lienzo del comprobante, mas estrecho que el resto */
     mostrar(['zonaCpAtras','zonaCpCerrar'], 1280, 633);
-    et.textContent = '7 / 7  ·  Comprobante de operación';
+    et.textContent = '8 / 8  ·  Comprobante de operación';
     av.textContent = 'Haz clic en cualquiera de las flechas para volver a PagomóvilBDV';
   }
 
@@ -174,6 +195,8 @@
   document.getElementById('zonaPmNavInicio').addEventListener('click', irAlDashboard);
   document.getElementById('zonaCpAtras').addEventListener('click', irAlPagomovil);
   document.getElementById('zonaCpCerrar').addEventListener('click', irAlPagomovil);
+  document.getElementById('zonaBkInicio').addEventListener('click', function(){ irAlPagomovil(); });
+  document.getElementById('zonaBkPagos').addEventListener('click', function(){ irAlPagomovil(); });
 
   /* El diálogo valida la contraseña por dentro (Aceptar, Enter o Cancelar) y
      avisa con postMessage: aquí solo se cambia de pantalla. */
@@ -183,6 +206,10 @@
     else if(d === 'bdv-login'){ irAlLogin(); }
     /* PagomovilBDV manda los datos al pulsar Pagar */
     else if(d && d.tipo === 'bdv-pagar'){ irAlComprobante(d.datos); }
+    /* PagomovilBDV pide el selector de banco al pulsar el campo "Banco:" */
+    else if(d && d.tipo === 'bdv-banco'){ irAlBancos(d.banco); }
+    /* El selector devuelve el banco elegido */
+    else if(d && d.tipo === 'bdv-banco-elegido'){ irAlPagomovil(d.banco); }
     /* Las flechas del comprobante vuelven a PagomovilBDV */
     else if(d && d.tipo === 'bdv-volver'){ irAlPagomovil(); }
   });

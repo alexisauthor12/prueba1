@@ -415,3 +415,45 @@ medidas de abajo salen de `px / 1,75833`.
    y del ancho del título (362 px = 11,58 em en negrita): con 1,75833 todo cae
    en valores redondos (28,1 dp de paso, 12,5sp de texto).
 
+
+---
+
+## 12. Selección de banco (referencia-bancos.jpeg)
+
+Se abre al pulsar el campo **Banco:** de PagomóvilBDV.
+
+**Lienzo**: 720 × 1441 px @2x → **360 × 720.5 dp**. Ojo: el mockup viene
+**recortado por abajo** (la barra inferior se ve solo hasta y 1441, con 87 px),
+y la réplica reproduce ese recorte para poder comparar 1:1.
+
+### 12.1 Medidas (px del mockup)
+
+| Elemento | Medida | Posición | dp / sp |
+|---|---|---|---|
+| Primera fila (la elegida) | 96 de alto | y **28** | 14 dp · 48 dp de alto |
+| Paso entre filas | **96 exactos** | — | **48 dp** |
+| Texto de fila | 27 px · mayúscula 20 px | x **33** | **13.5sp** · 16.5 dp del borde |
+| Fondo de la fila elegida | `#494949` | y 29 → 125 | — |
+| Fondo del resto / lienzo | `#303030` | — | `@color/fondo` |
+| Barra de desplazamiento | 8 × 738 | (712, 13) · `#CCCCCC` | 4 dp |
+| Barra inferior | 87 px visibles | desde y **1354** | `@color/rojo_marca` |
+| Degradado de la barra | `#7A1233` (1354) → `#BB1B47` (1400) | — | — |
+| Iconos de la barra | 34 – 46 px de ancho | y 1356 – 1392 | **diff 0,2 – 0,5** |
+| Etiquetas de la barra | mayúscula 13 px · «Pagos» 16 px | y 1412 (1408 la activa) | 9sp · 11sp negrita |
+
+### 12.2 Trampas de medición
+
+1. **El mockup está recortado**: el lienzo real de la app es 1451 px (725.5 dp)
+   y aquí solo hay 1441, con la barra inferior cortada a 87 px. Se replica el
+   recorte tal cual; en Android la barra va anclada abajo, completa.
+2. **La barra inferior tiene degradado**, a diferencia de la de PagomóvilBDV
+   (que es `#BB1B47` plano): aquí arriba es `#7A1233` y se aclara hasta y 1400.
+3. **El texto va centrado en la fila**, no con un margen fijo: al ser 96 px de
+   fila y 27 px de fuente, la mayúscula queda a 38 px del borde superior. Con
+   `align-items:center` y `line-height:38px` salen las dos líneas del 0175, el
+   0601 y el 0178 dentro de la misma fila de 96 px.
+4. **La barra de desplazamiento es propia** (8 px `#CCCCCC` pegada al borde
+   derecho), no la del navegador; se dibuja aparte y se mueve al desplazar.
+5. Los **25 bancos** están en el orden del mockup (el alfabético real del
+   sistema financiero venezolano), con los códigos de 4 dígitos delante.
+

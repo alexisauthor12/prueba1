@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','comprobante')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','comprobante','bancos')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -237,6 +237,24 @@ if($Pantalla -eq 'dashboard'){
     @('TXT_TOG1',     265, 1138, 480, 1175),
     @('TOGGLE2',      180, 1212, 255, 1265),
     @('TXT_TOG2',     265, 1222, 480, 1260)
+  )
+} elseif($Pantalla -eq 'bancos'){
+  $regiones = @(
+    @('FONDO',        600,  140, 700,  180),
+    @('FILA_SEL',       0,   28, 720,  124),
+    @('TXT1',          33,   60, 460,   92),
+    @('TXT2',          33,  156, 460,  188),
+    @('TXT3',          33,  252, 670,  284),
+    @('TXT8_2LINEAS',  33,  712, 700,  784),
+    @('TXT14',         33, 1308, 460, 1340),
+    @('SCROLL',       705,   10, 720,  760),
+    @('NAV',            0, 1354, 720, 1441),
+    @('ICONO1',        38, 1356,  78, 1395),
+    @('ICONO3',       278, 1360, 325, 1396),
+    @('ICONO6',       635, 1357, 687, 1396),
+    @('TXTNAV1',       30, 1405,  90, 1430),
+    @('TXTNAV3',      260, 1403, 340, 1433),
+    @('TXTNAV5',      500, 1405, 580, 1430)
   )
 } elseif($Pantalla -eq 'login'){
   $regiones = @(

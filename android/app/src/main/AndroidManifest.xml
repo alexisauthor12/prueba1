@@ -35,6 +35,11 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name=".BancosActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ComprobanteActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

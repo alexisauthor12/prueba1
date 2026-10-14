@@ -105,7 +105,7 @@
   <div class="pmCampo" style="top:524px"></div>
   <div class="pmNotch" style="top:524px"></div>
   <div class="pmEtiqueta" style="top:514.35px">Banco:</div>
-  <div class="pmTexto" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
+  <div class="pmTexto" id="pmTextoBanco" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
   <div class="pmChevron" style="top:568px"></div>
 
   <!-- Campos 4, 5 y 6 (editables) -->
@@ -180,9 +180,33 @@
         telefono:  document.getElementById('inTelefono').value.trim(),
         monto:     montoVenezolano(document.getElementById('inMonto').value.trim()),
         concepto:  document.getElementById('inConcepto').value.trim(),
-        banco:     '0102 - BANCO DE VENEZUELA'
+        banco:     bancoElegido
       };
     }
+
+    /* ---- Banco: al pulsar el campo se abre el selector ---- */
+    var bancoElegido = '0102 - BANCO DE VENEZUELA';
+
+    function ponerBanco(nombre){
+      bancoElegido = nombre;
+      document.getElementById('pmTextoBanco').textContent = nombre;
+    }
+
+    var qb = new URLSearchParams(location.search).get('banco');
+    if(qb){ ponerBanco(qb); }
+
+    document.getElementById('pmCampo3').addEventListener('click', function(){
+      if(window.parent !== window){
+        window.parent.postMessage({tipo:'bdv-banco', banco: bancoElegido}, '*');
+      } else {
+        location.href = 'bancos.html?banco=' + encodeURIComponent(bancoElegido);
+      }
+    });
+
+    /* El visor de flujo devuelve el banco elegido por este mensaje */
+    window.addEventListener('message', function(ev){
+      if(ev.data && ev.data.tipo === 'bdv-banco'){ ponerBanco(ev.data.banco); }
+    });
 
     function avisar(texto){
       var a = document.getElementById('pmAviso');

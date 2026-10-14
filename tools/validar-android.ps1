@@ -36,6 +36,7 @@ foreach($f in Get-ChildItem -Path (Join-Path $Raiz 'res\values') -File -Filter *
   $x = [xml](Get-Content $f.FullName -Raw -Encoding UTF8)
   foreach($n in $x.SelectNodes('//*[@name]')){
     $t = $n.LocalName
+    if($t -match '-array$'){ $t = 'array' }   # string-array / integer-array -> array
     if(@('dimen','color','string','style','integer','bool','array','attr') -contains $t){
       $defs[$t + '/' + $n.name] = $f.Name
     }

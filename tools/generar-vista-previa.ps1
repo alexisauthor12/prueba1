@@ -25,7 +25,7 @@
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','comprobante','flujo','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','pagomovil','bancos','comprobante','flujo','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -56,6 +56,9 @@ function Construir([string]$origen, [string[]]$imagenes, [switch]$ConLogin){
   # otras vistas previas autocontenidas (que ya llevan fuente e imagenes dentro).
   $html = $html.Replace("'comprobante.html?", "'vista-previa-comprobante.html?")
   $html = $html.Replace("'comprobante.html'", "'vista-previa-comprobante.html'")
+  $html = $html.Replace("'bancos.html?", "'vista-previa-bancos.html?")
+  $html = $html.Replace("'bancos.html'", "'vista-previa-bancos.html'")
+  $html = $html.Replace("'pagomovil.html?", "'vista-previa-pagomovil.html?")
   $html = $html.Replace("'pagomovil.html'", "'vista-previa-pagomovil.html'")
   if($ConLogin){
     # El login va dentro del iframe: se incrusta como data URI ya autocontenido
@@ -90,6 +93,8 @@ function GenerarFlujo(){
   # Iconos propios del comprobante
   $cpIconos = @('cp_flecha.png','cp_compartir.png','cp_logo.png','cp_check.png',
                 'cp_copiar.png','cp_flecha_pie.png')
+  # Iconos propios del selector de banco
+  $bkIconos = @('bk_nav1.png','bk_nav2.png','bk_nav3.png','bk_nav4.png','bk_nav5.png','bk_nav6.png')
   $pares = @(
     @('index.html',     (Construir 'index.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png'))),
     @('login.html',     (Construir 'login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png'))),
@@ -97,6 +102,7 @@ function GenerarFlujo(){
     @('dashboard.html', (Construir 'dashboard.html' $iconos)),
     @('pagos.html',     (Construir 'pagos.html' @('render-dashboard.png'))),
     @('pagomovil.html', (Construir 'pagomovil.html' $pmIconos)),
+    @('bancos.html',    (Construir 'bancos.html' $bkIconos)),
     @('comprobante.html', (Construir 'comprobante.html' $cpIconos))
   )
   foreach($p in $pares){
@@ -111,7 +117,7 @@ function GenerarFlujo(){
 }
 
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','pagomovil','comprobante','flujo') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','pagomovil','bancos','comprobante','flujo') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
@@ -128,6 +134,8 @@ foreach($p in $hacer){
         'pm_campana.png','pm_menu.png','pm_circulo_pegar.png','pm_circulo_leer.png',
         'pm_boton_doc.png','pm_icono_inferior.png',
         'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
+    'bancos' { Generar 'bancos.html' 'vista-previa-bancos.html' @(
+        'bk_nav1.png','bk_nav2.png','bk_nav3.png','bk_nav4.png','bk_nav5.png','bk_nav6.png') }
     'comprobante' { Generar 'comprobante.html' 'vista-previa-comprobante.html' @(
         'cp_flecha.png','cp_compartir.png','cp_logo.png','cp_check.png',
         'cp_copiar.png','cp_flecha_pie.png') }

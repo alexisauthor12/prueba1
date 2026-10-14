@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Selector de banco (se abre al pulsar el campo "Banco:" de PagomovilBDV).
+  Medidas exactas del mockup design/referencia-bancos.jpeg
+  (720x1441 px @2x -> lienzo de diseno 360 x 720.5 dp).
+
+      dp = px / 2
+
+  Filas de 96 px (48 dp) con el texto de 27 px (13.5 sp) centrado
+  verticalmente y a 33 px (16.5 dp) del borde izquierdo.
+-->
+<resources>
+
+    <dimen name="bk_fila_alto">48dp</dimen>
+    <dimen name="bk_fila_texto">13.5sp</dimen>
+    <dimen name="bk_fila_padding_izq">16.5dp</dimen>
+    <dimen name="bk_fila_padding_der">13.5dp</dimen>
+    <dimen name="bk_lista_margin_top">14dp</dimen>
+    <dimen name="bk_lista_margin_bottom">0dp</dimen>
+
+    <!-- Barra de desplazamiento: 8 px de ancho (4 dp) en el borde derecho -->
+    <dimen name="bk_scroll_ancho">4dp</dimen>
+
+    <!-- Barra inferior: las mismas medidas que la de PagomovilBDV -->
+    <dimen name="bk_nav_alto">@dimen/pm_nav_alto</dimen>
+
+</resources>

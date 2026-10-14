@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del selector de banco -->
+<resources>
+    <string name="bk_titulo">Seleccionar banco</string>
+    <string name="bk_atras_desc">Volver a PagomóvilBDV</string>
+
+    <!-- Los 25 bancos, en el mismo orden que el mockup -->
+    <string-array name="bk_bancos">
+        <item>0102 - BANCO DE VENEZUELA</item>
+        <item>0156 - 100% BANCO</item>
+        <item>0172 - BANCAMIGA BANCO UNIVERSAL, C.A.</item>
+        <item>0114 - BANCARIBE</item>
+        <item>0171 - BANCO ACTIVO</item>
+        <item>0128 - BANCO CARONÍ</item>
+        <item>0163 - BANCO DEL TESORO</item>
+        <item>0175 - BANCO DIGITAL DE LOS TRABAJADORES, BANCO UNIVERSAL</item>
+        <item>0115 - BANCO EXTERIOR</item>
+        <item>0151 - BANCO FONDO COMÚN</item>
+        <item>0105 - BANCO MERCANTIL</item>
+        <item>0191 - BANCO NACIONAL DE CREDITO</item>
+        <item>0138 - BANCO PLAZA</item>
+        <item>0137 - BANCO SOFITASA</item>
+        <item>0104 - BANCO VENEZOLANO DE CREDITO</item>
+        <item>0168 - BANCRECER</item>
+        <item>0134 - BANESCO</item>
+        <item>0177 - BANFANB</item>
+        <item>0146 - BANGENTE</item>
+        <item>0174 - BANPLUS</item>
+        <item>0108 - BBVA PROVINCIAL</item>
+        <item>0157 - DELSUR BANCO UNIVERSAL</item>
+        <item>0601 - INSTITUTO MUNICIPAL DE CREDITO POPULAR</item>
+        <item>0178 - N58 BANCO DIGITAL BANCO MICROFINANCIERO S A</item>
+        <item>0169 - R4 BANCO MICROFINANCIERO C.A.</item>
+    </string-array>
+
+    <string name="bk_banco_por_defecto">0102 - BANCO DE VENEZUELA</string>
+</resources>

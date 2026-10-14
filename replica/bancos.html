@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=720">
+<title>BDV - Selección de banco (replica 1:1, 720x1441 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1441px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* ---- Lista de bancos ----
+     Filas de 96 px (48 dp) de alto, texto de 28 px a 33 px del borde, centrado
+     verticalmente. El primer banco (el elegido) lleva fondo #494949.
+     El paso entre filas es exacto: 96 px. */
+  #bkLista{position:absolute;left:0;top:28px;width:720px;height:1326px;overflow-y:auto;
+           scrollbar-width:none;}
+  #bkLista::-webkit-scrollbar{width:0;height:0;}
+  .bkFila{height:96px;display:flex;align-items:center;box-sizing:border-box;
+          padding-left:33px;padding-right:27px;
+          font-size:27px;line-height:38px;color:#FFFFFF;}
+  .bkFila.bkSel{background:#494949;}
+
+  /* Barra de desplazamiento propia: 8 px, #CCCCCC */
+  #bkScroll{position:absolute;left:712px;top:13px;width:8px;height:738px;background:#CCCCCC;}
+
+  /* ---- Barra inferior (igual que la de PagomóvilBDV, con la sombra de arriba) ---- */
+  #bkNav{position:absolute;left:0;top:1354px;width:720px;height:87px;
+         background:linear-gradient(to bottom,#7A1233 0px,#A51A40 22px,#BB1B47 46px,#BB1B47 87px);}
+  .bkNavIcono{position:absolute;}
+  .bkNavTexto{position:absolute;width:120px;text-align:center;color:#FFFFFF;
+              font-size:17.5px;line-height:1;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+  <div id="bkLista">
+    <div class="bkFila bkSel">0102 - BANCO DE VENEZUELA</div>
+    <div class="bkFila">0156 - 100% BANCO</div>
+    <div class="bkFila">0172 - BANCAMIGA BANCO UNIVERSAL, C.A.</div>
+    <div class="bkFila">0114 - BANCARIBE</div>
+    <div class="bkFila">0171 - BANCO ACTIVO</div>
+    <div class="bkFila">0128 - BANCO CARONÍ</div>
+    <div class="bkFila">0163 - BANCO DEL TESORO</div>
+    <div class="bkFila">0175 - BANCO DIGITAL DE LOS TRABAJADORES, BANCO UNIVERSAL</div>
+    <div class="bkFila">0115 - BANCO EXTERIOR</div>
+    <div class="bkFila">0151 - BANCO FONDO COMÚN</div>
+    <div class="bkFila">0105 - BANCO MERCANTIL</div>
+    <div class="bkFila">0191 - BANCO NACIONAL DE CREDITO</div>
+    <div class="bkFila">0138 - BANCO PLAZA</div>
+    <div class="bkFila">0137 - BANCO SOFITASA</div>
+    <div class="bkFila">0104 - BANCO VENEZOLANO DE CREDITO</div>
+    <div class="bkFila">0168 - BANCRECER</div>
+    <div class="bkFila">0134 - BANESCO</div>
+    <div class="bkFila">0177 - BANFANB</div>
+    <div class="bkFila">0146 - BANGENTE</div>
+    <div class="bkFila">0174 - BANPLUS</div>
+    <div class="bkFila">0108 - BBVA PROVINCIAL</div>
+    <div class="bkFila">0157 - DELSUR BANCO UNIVERSAL</div>
+    <div class="bkFila">0601 - INSTITUTO MUNICIPAL DE CREDITO POPULAR</div>
+    <div class="bkFila">0178 - N58 BANCO DIGITAL BANCO MICROFINANCIERO S A</div>
+    <div class="bkFila">0169 - R4 BANCO MICROFINANCIERO C.A.</div>
+  </div>
+
+  <div id="bkScroll"></div>
+
+  <div id="bkNav"></div>
+  <img class="bkNavIcono" src="bk_nav1.png" style="left:38px;top:1356px;width:40px;height:39px" alt="Inicio">
+  <img class="bkNavIcono" src="bk_nav2.png" style="left:158px;top:1357px;width:42px;height:39px" alt="Transferencias">
+  <img class="bkNavIcono" src="bk_nav3.png" style="left:278px;top:1360px;width:47px;height:36px" alt="Pagos">
+  <img class="bkNavIcono" src="bk_nav4.png" style="left:399px;top:1356px;width:42px;height:40px" alt="Servicios">
+  <img class="bkNavIcono" src="bk_nav5.png" style="left:516px;top:1360px;width:48px;height:32px" alt="Divisas">
+  <img class="bkNavIcono" src="bk_nav6.png" style="left:635px;top:1357px;width:52px;height:39px" alt="Tarjeta">
+
+  <div class="bkNavTexto" style="left:0px;top:1412px">Inicio</div>
+  <div class="bkNavTexto" style="left:120px;top:1412px">Transfere...</div>
+  <div class="bkNavTexto" style="left:240px;top:1408px;font-size:22px;font-weight:700;letter-spacing:-0.055em">Pagos</div>
+  <div class="bkNavTexto" style="left:360px;top:1412px">Servicios</div>
+  <div class="bkNavTexto" style="left:480px;top:1412px">Divisas</div>
+  <div class="bkNavTexto" style="left:600px;top:1412px">Tarjeta</div>
+
+  <script>
+    /* El banco elegido lleva el fondo #494949. */
+    var filas = document.querySelectorAll('.bkFila');
+    var elegido = new URLSearchParams(location.search).get('banco');
+
+    function marcar(nombre){
+      for(var i=0;i<filas.length;i++){
+        if(filas[i].textContent === nombre){ filas[i].classList.add('bkSel'); }
+        else { filas[i].classList.remove('bkSel'); }
+      }
+    }
+    marcar(elegido || '0102 - BANCO DE VENEZUELA');
+
+    /* Al tocar un banco se vuelve a PagomovilBDV con el banco elegido. */
+    for(var i=0;i<filas.length;i++){
+      (function(f){
+        f.addEventListener('click', function(){
+          var nombre = f.textContent;
+          marcar(nombre);
+          if(window.parent !== window){
+            window.parent.postMessage({tipo:'bdv-banco-elegido', banco: nombre}, '*');
+          } else {
+            location.href = 'pagomovil.html?banco=' + encodeURIComponent(nombre);
+          }
+        });
+      })(filas[i]);
+    }
+
+    /* Barra de desplazamiento propia: 8 px en el borde derecho */
+    var lista = document.getElementById('bkLista');
+    var barra = document.getElementById('bkScroll');
+    var TRACK_TOP = 13, TRACK_ALTO = 1341;
+    function ajustarBarra(){
+      var visible = lista.clientHeight;
+      var contenido = lista.scrollHeight;
+      var alto = Math.max(40, Math.round(TRACK_ALTO * visible / contenido));
+      var max = contenido - visible;
+      var avance = (max > 0) ? (lista.scrollTop / max) : 0;
+      barra.style.height = alto + 'px';
+      barra.style.top = (TRACK_TOP + Math.round(avance * (TRACK_ALTO - alto))) + 'px';
+    }
+    lista.addEventListener('scroll', ajustarBarra);
+    ajustarBarra();
+
+    /* El visor de flujo puede marcar el banco que ya estaba elegido */
+    window.addEventListener('message', function(ev){
+      if(ev.data && ev.data.tipo === 'bdv-banco-actual'){ marcar(ev.data.banco); }
+    });
+  </script>
+
+</body>
+</html>

@@ -12,7 +12,8 @@ nube con GitHub Actions).
 | 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 4,87 |
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
-| 7 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 5,60 |
+| 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | 9,49 |
+| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 5,60 |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -530,8 +531,48 @@ Detalles que solo se ven midiendo:
 - El número de operación (12 dígitos, empieza por `00`) y la fecha son
   aleatorios/actuales; el icono de copiar lo lleva al portapapeles.
 
-En la app: `DashboardActivity` → panel de Pagos → `PagomovilActivity` →
-`ComprobanteActivity`. Vista autocontenida: `replica/vista-previa-comprobante.html`.
+---
+
+## 12. Selección de banco (al pulsar el campo «Banco:» de PagomóvilBDV)
+
+Pantalla propia (`BancosActivity`) replicada de
+`design/referencia-bancos.jpeg` (720 × 1441 px @2x → **360 × 720.5 dp**).
+Réplica en `replica/bancos.html`. El mockup viene **recortado** por abajo
+(la barra inferior se ve a medias), así que la réplica reproduce ese recorte.
+
+| Bloque | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Fila | **96** de alto · paso exacto | **48** | geometría exacta |
+| Texto de la fila | 27 px · cap 20 px · x 33 | **13.5sp** · 16.5 dp | 38,6 – 47,9 |
+| Fila elegida | fondo `#494949` desde y 28 | — | diff 8,4 |
+| Barra de desplazamiento | 8 × 738 en (712, 13) · `#CCCCCC` | 4 dp | **diff 0,07** |
+| Barra inferior | desde y 1354 · con degradado `#7A1233` → `#BB1B47` | 87 px visibles | diff 10,5 |
+| Iconos de la barra | 34 – 46 px de ancho | — | **diff 0,2 – 0,5** |
+
+**Diff global: 9,49 / 255 (3,7 %)** — el más alto de las ocho, porque esta
+pantalla es casi toda texto blanco: la geometría cierra al píxel (filas, paso,
+texto, barra de desplazamiento e iconos) y lo que queda es la forma de las
+letras de la fuente de marca, como en el resto.
+
+Detalles que solo se ven midiendo:
+
+- Las filas empiezan en **y 28** (14 dp) y son de **96 px exactos**: el primer
+  banco (el elegido) se resalta justo de 29 a 125, o sea su fila.
+- El texto va **centrado verticalmente en la fila** y a **33 px** (16.5 dp) del
+  borde; el de dos líneas (0175, 0601 y 0178) ocupa dos líneas dentro de la
+  misma fila de 96 px, y el salto de línea sale solo con 330 dp de ancho.
+- La **barra de desplazamiento** no es la del navegador: es una barra propia de
+  8 px `#CCCCCC` en el borde derecho, que se mueve al desplazar la lista.
+- La barra inferior tiene un **degradado oscuro arriba** (`#7A1233` en y 1354 →
+  `#BB1B47` en y 1400) que no tiene la de PagomóvilBDV; medido y reproducido.
+- Los 25 bancos están en el orden del mockup, que es el alfabético real del
+  sistema venezolano (0102 Banco de Venezuela primero).
+
+En la app: `PagomovilActivity` → campo «Banco:» → `BancosActivity` → al tocar un
+banco vuelve con el elegido en el campo. Vista autocontenida:
+`replica/vista-previa-bancos.html`.
+
+
 
 En la réplica HTML también se puede escribir: los cuatro campos son `<input>`
 reales (el marcador gris se oculta al escribir y el texto blanco cae en el

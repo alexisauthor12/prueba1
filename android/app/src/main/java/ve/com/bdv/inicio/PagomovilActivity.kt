@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.text.DecimalFormat
@@ -29,6 +30,9 @@ class PagomovilActivity : AppCompatActivity() {
     private lateinit var monto: EditText
     private lateinit var concepto: EditText
 
+    /** Banco elegido en el desplegable; lo devuelve BancosActivity. */
+    private var banco: String = "0102 - BANCO DE VENEZUELA"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagomovil)
@@ -51,8 +55,13 @@ class PagomovilActivity : AppCompatActivity() {
         // Buscar por documento y los dos desplegables.
         findViewById<View>(R.id.pmBotonDoc).setOnClickListener { aviso("Buscar por documento") }
         findViewById<View>(R.id.pmCampo1).setOnClickListener { aviso("Operación: Personas") }
+        // El campo Banco abre el selector con los 25 bancos.
         findViewById<View>(R.id.pmCampo3).setOnClickListener {
-            aviso("Banco: 0102 - Banco de Venezuela")
+            startActivityForResult(
+                Intent(this, BancosActivity::class.java)
+                    .putExtra(BancosActivity.EXTRA_BANCO, banco),
+                CODIGO_BANCO
+            )
         }
 
         // Pagar: lleva los datos al comprobante. Limpiar: vacia los campos.
@@ -74,6 +83,18 @@ class PagomovilActivity : AppCompatActivity() {
         findViewById<View>(R.id.navTexto6).setOnClickListener { aviso("Tarjeta") }
     }
 
+    /** Recoge el banco elegido en el selector y lo escribe en el campo. */
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CODIGO_BANCO && resultCode == RESULT_OK) {
+            data?.getStringExtra(BancosActivity.EXTRA_BANCO)?.let {
+                banco = it
+                findViewById<TextView>(R.id.pmTexto3).text = it
+            }
+        }
+    }
+
     /** Abre el comprobante con los datos escritos (Documento, Teléfono, Monto y Concepto). */
     private fun pagar() {
         val doc = documento.text.toString().trim()
@@ -89,7 +110,7 @@ class PagomovilActivity : AppCompatActivity() {
                 .putExtra(ComprobanteActivity.EXTRA_TELEFONO, tel)
                 .putExtra(ComprobanteActivity.EXTRA_MONTO, formatearMonto(mon))
                 .putExtra(ComprobanteActivity.EXTRA_CONCEPTO, concepto.text.toString().trim())
-                .putExtra(ComprobanteActivity.EXTRA_BANCO, BANCO_DEFECTO)
+                .putExtra(ComprobanteActivity.EXTRA_BANCO, banco)
         )
     }
 
@@ -122,7 +143,7 @@ class PagomovilActivity : AppCompatActivity() {
     }
 
     private companion object {
-        /** Banco elegido en el desplegable (unico de la demo). */
-        const val BANCO_DEFECTO = "0102 - BANCO DE VENEZUELA"
+        /** Codigo con el que se le pide el banco al selector. */
+        const val CODIGO_BANCO = 1
     }
 }

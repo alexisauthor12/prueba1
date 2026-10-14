@@ -34,5 +34,9 @@
     <color name="switch_knob">#BDBDBD</color>      <!-- interruptor: bola -->
     <color name="separador">#272727</color>        <!-- linea del pie -->
 
+    <!-- Selector de banco (medidos sobre el mockup) -->
+    <color name="fila_seleccionada">#494949</color> <!-- banco elegido -->
+    <color name="barra_desplazamiento">#CCCCCC</color>
+
     <color name="ic_launcher_background">#303030</color>
 </resources>
