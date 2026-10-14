@@ -210,14 +210,14 @@ bdv-app/
 El repositorio ya está en GitHub y **el APK se compila solo** con cada `push`:
 
 - Repositorio: **https://github.com/alexisauthor12/prueba1**
-- Compilación verificada:
-  **https://github.com/alexisauthor12/prueba1/actions/runs/38626473886**
-  (`success`, 14/10/2026, debug y release)
+- Compilación verificada (con los textos centrados y el monto en Arimo 500):
+  **https://github.com/alexisauthor12/prueba1/actions/runs/38634485635**
+  (run #4, commit `b72dcb1`, `success`, 14/10/2026, debug y release)
 
 1. Abre **Actions → «Compilar APK» → el run más reciente** (tarda 3-4 minutos).
 2. En la sección **Artifacts** descarga:
-   - `bdv-inicio-debug-apk` → dentro está `app-debug.apk` (**el instalable**, 3,7 MB)
-   - `bdv-inicio-release-sin-firmar-apk` → 2,9 MB, para firmar y distribuir
+   - `bdv-inicio-debug-apk` → dentro está `app-debug.apk` (**el instalable**, 3,8 MB)
+   - `bdv-inicio-release-sin-firmar-apk` → 3,1 MB, para firmar y distribuir
 3. Descomprime el `.zip`, pasa el `.apk` al teléfono, ábrelo y activa
    «Instalar apps de origen desconocido».
 
@@ -285,6 +285,11 @@ desviación en un solo paso. Admite
 duplicado** entre los `values/*.xml` y **ningún texto de ancho completo sin
 `android:gravity="center"`** (el fallo que dejaba el subtítulo y el enlace
 pegados al borde izquierdo en el teléfono).
+
+`medir-monto.ps1` mide la zona del monto del comprobante (la caja gris con el
+importe): caja de los trazos en la referencia y en la réplica, diferencia media
+de color y **grosor de trazo** (anchura media de las rachas de tinta), que es lo
+que hace que un texto se vea «marcado».
 
 ## 5. Tipografía: identificada empíricamente
 
