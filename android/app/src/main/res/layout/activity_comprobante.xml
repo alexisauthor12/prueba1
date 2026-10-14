@@ -105,7 +105,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cp_monto_margin_top"
-        android:fontFamily="@font/arimo"
+        android:fontFamily="@font/arimo_medium"
         android:gravity="center"
         android:includeFontPadding="false"
         android:textColor="@color/monto_comprobante"

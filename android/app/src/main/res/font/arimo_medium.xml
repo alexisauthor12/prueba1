@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Arimo en peso 500 (medium), la misma instancia variable del mismo
+  arimo_variable.ttf pero con el eje wght en 500, igual que el 700 de arimo.xml.
+
+  Se usa solo en el monto del comprobante. El mockup lleva la fuente redondeada
+  de la marca (design/referencia-comprobante.jpeg): medida, sus trazos son de
+  3,72 px de media, casi identicos a los de Arimo 400 (3,75 px), pero al ser
+  redonda la letra parece mas gruesa. Con el 500 los trazos miden 4,16 px y el
+  monto se ve tan marcado como en el mockup, con el ancho casi igual
+  (133 px frente a los 132 px del mockup).
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/arimo_variable"
+        android:fontStyle="normal"
+        android:fontWeight="500"
+        android:fontVariationSettings="'wght' 500" />
+</font-family>

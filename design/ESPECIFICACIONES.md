@@ -426,6 +426,19 @@ medidas de abajo salen de `px / 1,75833`.
    del monto (`#FFFFFF` 13,97 · `#F2F2F2` 13,40 · `#E8E8E8` 13,26 · `#DCDCDC`
    13,47 · `#D7D7D7` 13,57 · `#CCCCCC` 13,92), con **`#F5F5F5`** y capa de
    composición se queda en **10,22**.
+7b. **El monto va en peso 500 y el resto en 400**: la fuente del mockup es
+   **redondeada** (la de la marca), así que a igualdad de trazo parece más
+   gruesa. Medido con `tools\medir-monto.ps1` (anchura media de las rachas de
+   tinta en las filas centrales de los dígitos), el mockup da **3,72 px** y
+   Arimo 400 da **3,75 px**: el mismo grosor. Pero el ancho de la caja también
+   coincide (132 px) y en el teléfono el monto se veía «menos marcado» que el
+   mockup. Con Arimo **500** los trazos miden **4,16 px** y el monto se ve tan
+   marcado como la referencia; el ancho pasa a 133 px (1 px más) y el diff
+   global sube solo 0,03 (4,75 → 4,78). Probados 13 tipos (Arimo 400/500/600/700,
+   Arial Rounded MT Bold, Century Gothic, Century Gothic Bold, Corbel, Candara,
+   Segoe UI, Segoe UI Semibold, Leelawadee UI, Nirmala UI) ninguno baja de 10,22
+   del 400: son fuentes del sistema, no la de la marca. En Android el peso se
+   elige con `@font/arimo_medium` (mismo `arimo_variable.ttf`, eje `wght` 500).
 8. **Chrome en Windows pinta el texto con antialiasing subpíxel** (flecos
    naranjas y azules) y el mockup es una captura de teléfono, que usa escala de
    grises. Forzando capa de composición en los textos (`transform:translateZ(0)`)
@@ -508,4 +521,32 @@ de ratón sobre la réplica) y comprueba el resultado: bajar 400 px → `scrollT
 716`; subir 300 → `179`; rueda 300 → `300`; tocar la pista abajo → `1074` (el
 tope); flecha arriba → `978`. Antes de arreglarlo, arrastrar dejaba `scrollTop`
 en `0`.
+
+---
+
+## 13. Textos centrados: `android:gravity="center"`
+
+El mockup centra **todos** los textos que ocupan el ancho de la pantalla. En la
+réplica HTML eso es una línea (`.txt{left:0;width:720px;text-align:center}`), pero
+en Android un `TextView` con `layout_width="0dp"` y anclas a los dos bordes **no**
+centra nada: por defecto alinea a la izquierda, así que el texto queda pegado al
+borde y se ve cortado.
+
+Le pasó a **siete** textos y no se vio en la validación pixel-perfect porque la
+validación se hace sobre la réplica HTML, que sí estaba bien:
+
+| Pantalla | Textos que salían pegados a la izquierda |
+|---|---|
+| Inicio | `subtitulo` («Banco de Venezuela»), `enlace` («Quiero abrir una cuenta…») |
+| Autenticación | `subtitulo`, `sesionComo`, `usuario`, `pulsa`, `ingresa` |
+
+Arreglo: `android:gravity="center"` en los siete (el diálogo de contraseña ya lo
+llevaba, y en el panel de Pagos el título va centrado por
+`layout_gravity="top|center_horizontal"`).
+
+`tools/validar-android.ps1` lo comprueba ahora de forma automática (apartado
+**2c**): recorre los layouts y avisa de cualquier `TextView`/`EditText`/`Button`
+con ancho `0dp` y anclas a los dos bordes que no lleve `gravity` con `center`.
+Estado actual: **OK (todos centrados)**.
+
 

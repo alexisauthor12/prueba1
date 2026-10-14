@@ -4,6 +4,9 @@
 #     1) que todos los XML esten bien formados
 #     2) que no haya recursos duplicados entre los values/*.xml (AAPT2 falla
 #        con "Error: Duplicate resources")
+#     2c) que ningun texto de ancho completo (0dp con anclas a los dos bordes)
+#        se quede sin android:gravity="center": en el mockup van centrados y en
+#        el telefono salian pegados al borde izquierdo
 #     3) que cada @recurso usado exista (dimen, color, string, style, id,
 #        drawable, font, layout, mipmap)
 #     4) que cada R.tipo.nombre usado en Kotlin exista
@@ -74,6 +77,26 @@ Write-Output "RECURSOS DUPLICADOS:"
 if($dups.Count -eq 0){ Write-Output "   OK  (ninguno)" }
 else { foreach($x in ($dups | Sort-Object -Unique)){ Write-Output ('   FALLA  ' + $x) } }
 
+# --- 2c) textos de ancho completo sin centrar -------------------------------
+# En la replica HTML esos textos van con text-align:center; si en el layout se
+# olvida android:gravity="center" quedan pegados al borde izquierdo y el texto
+# se ve cortado (le paso al subtitulo y al enlace de inicio, y a los cinco
+# textos de la pantalla de autenticacion).
+$sinCentrar = @()
+foreach($f in Get-ChildItem -Path (Join-Path $Raiz 'res\layout') -File -Filter *.xml){
+  $txt = Get-Content $f.FullName -Raw -Encoding UTF8
+  foreach($m in [regex]::Matches($txt,'(?s)<(TextView|EditText|Button)\b(.*?)/>')){
+    $cuerpo = $m.Groups[2].Value
+    if(($cuerpo -notmatch 'layout_constraintStart_toStartOf') -or ($cuerpo -notmatch 'layout_constraintEnd_toEndOf')){ continue }
+    $id = if($cuerpo -match 'android:id="@\+id/([^"]+)"'){ $Matches[1] } else { '(sin id)' }
+    if($cuerpo -notmatch 'android:gravity="[^"]*center'){ $sinCentrar += ($f.Name + ' -> ' + $id) }
+  }
+}
+Write-Output ""
+Write-Output "TEXTOS DE ANCHO COMPLETO SIN gravity=center:"
+if($sinCentrar.Count -eq 0){ Write-Output "   OK  (todos centrados)" }
+else { foreach($x in ($sinCentrar | Sort-Object -Unique)){ Write-Output ('   FALLA  ' + $x) } }
+
 # --- 3) referencias ---
 $ids = @{}
 foreach($f in $xmls){
@@ -117,7 +140,7 @@ if($fallosKt.Count -eq 0){ Write-Output ("   OK  (" + $kts.Count + " archivos)")
 else { foreach($x in ($fallosKt | Sort-Object -Unique)){ Write-Output ('   FALLA  ' + $x) } }
 
 Write-Output ""
-if($errores -eq 0 -and $fallos.Count -eq 0 -and $fallosKt.Count -eq 0 -and $dups.Count -eq 0){
+if($errores -eq 0 -and $fallos.Count -eq 0 -and $fallosKt.Count -eq 0 -and $dups.Count -eq 0 -and $sinCentrar.Count -eq 0){
   Write-Output "RESULTADO: todo correcto."
 } else {
   Write-Output "RESULTADO: hay fallos (ver arriba)."

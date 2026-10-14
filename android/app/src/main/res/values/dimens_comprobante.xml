@@ -45,6 +45,10 @@
     <dimen name="cp_caja_margin_top">207.6dp</dimen>
     <dimen name="cp_caja_radio">9.7dp</dimen>
 
+    <!-- Monto: Arimo 500, no 400. El mockup lleva la fuente redondeada de la
+         marca, cuyos trazos miden 3,72 px de media frente a los 3,75 px de
+         Arimo 400: mismo grosor, pero la forma redonda parece mas gruesa. El
+         500 (4,16 px) es el que deja el monto tan marcado como el mockup. -->
     <dimen name="cp_monto_texto">14.2sp</dimen>
     <dimen name="cp_monto_margin_top">218.1dp</dimen>
 

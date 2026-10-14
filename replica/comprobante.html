@@ -35,9 +35,13 @@
           border-radius:17px;background:#757575;}
   /* El monto es un blanco suave (#F5F5F5), no blanco puro: el mockup es JPEG y
      su texto llega suavizado. Medido, es el valor que menos se desvia
-     (diff 10,22 frente a 13,97 con #FFFFFF). */
+     (diff 10,22 frente a 13,97 con #FFFFFF).
+     El mockup lleva la fuente redondeada de la marca: sus trazos miden 3,72 px
+     de media, practicamente lo mismo que Arimo 400 (3,75 px), pero al ser
+     redonda parece mas gruesa. Con Arimo 500 el monto se marca como en el
+     mockup (4,16 px) y el ancho apenas cambia (133 px frente a 132). */
   #cpMonto{transform:translateZ(0);position:absolute;left:0;top:386.3px;width:633px;text-align:center;
-           font-size:25px;color:#F5F5F5;line-height:1;white-space:nowrap;}
+           font-size:25px;font-weight:500;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la

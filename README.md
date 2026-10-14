@@ -13,7 +13,7 @@ nube con GitHub Actions).
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
 | 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | 9,49 |
-| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 5,60 |
+| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 4,78 |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -279,9 +279,12 @@ medida en la réplica y la diferencia media de color. Con eso se corrige cualqui
 desviación en un solo paso. Admite
 `-Pantalla inicio | login | clave | dashboard | pagos | pagomovil | comprobante`.
 
-`validar-android.ps1` comprueba de una pasada: **41 XML bien formados**,
-**473 recursos** definidos, **102 ids** y **0 referencias sin resolver**
-(incluidos los usos `R.id.*` / `R.layout.*` en Kotlin).
+`validar-android.ps1` comprueba de una pasada: **53 XML bien formados**,
+**592 recursos** definidos, **137 ids** y **0 referencias sin resolver**
+(incluidos los usos `R.id.*` / `R.layout.*` en Kotlin), **ningún recurso
+duplicado** entre los `values/*.xml` y **ningún texto de ancho completo sin
+`android:gravity="center"`** (el fallo que dejaba el subtítulo y el enlace
+pegados al borde izquierdo en el teléfono).
 
 ## 5. Tipografía: identificada empíricamente
 
@@ -358,6 +361,11 @@ de Arial → idénticos, como corresponde a fuentes métricamente compatibles.
   ancho** (la del mockup). En pantallas más anchas/estrechas el contenido se ancla
   con márgenes fijos y las franjas al borde inferior: se ve bien, pero para ser
   idéntico al píxel el dispositivo debe ser de 360 dp de ancho.
+- **Textos centrados.** En el mockup van centrados y en Android un `TextView` de
+  ancho completo **no** se centra solo: hay que ponerle `android:gravity="center"`.
+  Sin eso, el subtítulo y el enlace de Inicio (y los cinco textos de la pantalla
+  de autenticación) salían pegados al borde izquierdo. `tools/validar-android.ps1`
+  ya lo comprueba (apartado 2c) y `design/ESPECIFICACIONES.md` §13 lo explica.
 
 
 ---
@@ -525,7 +533,7 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 4,75 / 255 (1,9 %)**.
+**Diff global: 4,78 / 255 (1,9 %)**.
 
 Detalles que solo se ven midiendo:
 
@@ -551,6 +559,15 @@ Detalles que solo se ven midiendo:
   JPEG y el texto llega suavizado (el núcleo es blanco, pero el 88 % de sus
   píxeles claros son grises). Medido, `#F5F5F5` es el que menos se desvía
   (**diff 10,2**, frente a 14,0 con `#FFFFFF`).
+- El **monto va en Arimo 500**, no en 400. El mockup usa la tipografía
+  **redondeada** de la marca: medida, sus trazos son de **3,72 px** de media,
+  casi idénticos a los de Arimo 400 (3,75 px) y al mismo ancho (132 px), pero al
+  ser redonda la letra **parece más gruesa** y en el teléfono se veía «menos
+  marcada» que el mockup. Con el 500 los trazos miden **4,16 px** y el monto se
+  ve tan marcado como la referencia, con el ancho casi igual (133 px frente a
+  132). Cuesta **0,03** de diff global (4,75 → 4,78) y el monto pasa de 10,2 a
+  13,4. En Android es `@font/arimo_medium` (mismo `arimo_variable.ttf` con el eje
+  `wght` en 500, como el 700 de `@font/arimo`).
 - **Todos los textos llevan `transform:translateZ(0)`** (capa de composición):
   así Chrome usa antialiasing **en escala de grises**, como el teléfono que hizo
   el mockup, en vez de meterle flecos naranjas y azules (subpíxel). Solo con eso
