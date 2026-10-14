@@ -14,17 +14,16 @@
     android:layout_height="match_parent"
     android:background="@color/fondo">
 
-    <!-- ================= Lista de bancos ================= -->
+    <!-- ================= Lista de bancos =================
+         Sin barra de desplazamiento nativa: la barra va aparte (bkScroll),
+         asi mide y se coloca exactamente como en el mockup. -->
     <ScrollView
         android:id="@+id/bkLista"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/bk_lista_margin_top"
-        android:scrollbars="vertical"
-        android:scrollbarThumbVertical="@drawable/bk_scroll_thumb"
-        android:scrollbarSize="@dimen/bk_scroll_ancho"
-        android:scrollbarStyle="outsideOverlay"
         android:fillViewport="true"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@id/bkNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +35,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <!-- ============ Barra de desplazamiento (arrastrable) ============
+         Va aparte de la lista para que mida y se coloque igual que en el
+         mockup: 4 dp de ancho pegada al borde derecho. BancosActivity la
+         coloca al desplazar y deja agarrarla y arrastrarla con el dedo
+         para bajar y subir la lista. -->
+    <View
+        android:id="@+id/bkScroll"
+        android:layout_width="@dimen/bk_scroll_ancho"
+        android:layout_height="@dimen/bk_scroll_alto"
+        android:background="@drawable/bk_scroll_thumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- ================= Barra inferior (igual que la de PagomovilBDV) ================= -->
     <View

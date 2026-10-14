@@ -18,8 +18,16 @@
     <dimen name="bk_lista_margin_top">14dp</dimen>
     <dimen name="bk_lista_margin_bottom">0dp</dimen>
 
-    <!-- Barra de desplazamiento: 8 px de ancho (4 dp) en el borde derecho -->
+    <!-- Barra de desplazamiento: 8 px de ancho (4 dp) en el borde derecho.
+         La pista va de y 13 a y 1354 px del mockup, y la barra del mockup mide
+         738 px (369 dp) porque se ve poco mas de la mitad de la lista. -->
     <dimen name="bk_scroll_ancho">4dp</dimen>
+    <dimen name="bk_scroll_alto">369dp</dimen>
+    <dimen name="bk_scroll_pista_top">6.5dp</dimen>
+    <dimen name="bk_scroll_pista_alto">670.5dp</dimen>
+    <dimen name="bk_scroll_min_alto">20dp</dimen>
+    <!-- Zona tactil para agarrar la barra con el dedo (un poco mas ancha que ella) -->
+    <dimen name="bk_scroll_zona_toque">8dp</dimen>
 
     <!-- Barra inferior: las mismas medidas que la de PagomovilBDV -->
     <dimen name="bk_nav_alto">@dimen/pm_nav_alto</dimen>

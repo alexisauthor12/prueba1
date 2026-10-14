@@ -545,7 +545,7 @@ Réplica en `replica/bancos.html`. El mockup viene **recortado** por abajo
 | Fila | **96** de alto · paso exacto | **48** | geometría exacta |
 | Texto de la fila | 27 px · cap 20 px · x 33 | **13.5sp** · 16.5 dp | 38,6 – 47,9 |
 | Fila elegida | fondo `#494949` desde y 28 | — | diff 8,4 |
-| Barra de desplazamiento | 8 × 738 en (712, 13) · `#CCCCCC` | 4 dp | **diff 0,07** |
+| Barra de desplazamiento | 8 × 738 en (712, 13) · `#CCCCCC` · pista 13 → 1354 | 4 dp · pista 670.5 dp | **diff 0,07** |
 | Barra inferior | desde y 1354 · con degradado `#7A1233` → `#BB1B47` | 87 px visibles | diff 10,5 |
 | Iconos de la barra | 34 – 46 px de ancho | — | **diff 0,2 – 0,5** |
 
@@ -562,15 +562,43 @@ Detalles que solo se ven midiendo:
   borde; el de dos líneas (0175, 0601 y 0178) ocupa dos líneas dentro de la
   misma fila de 96 px, y el salto de línea sale solo con 330 dp de ancho.
 - La **barra de desplazamiento** no es la del navegador: es una barra propia de
-  8 px `#CCCCCC` en el borde derecho, que se mueve al desplazar la lista.
+  8 px `#CCCCCC` en el borde derecho, encima de una pista transparente que va
+  de y 13 a y 1354. **Funciona de verdad**: se agarra y se arrastra con el
+  ratón o el dedo para bajar y subir, al tocar la pista la barra salta a esa
+  altura y sigue al dedo, la rueda del ratón desplaza aunque el puntero esté
+  encima de la barra, y con la lista enfocada (tabulador) responden las
+  flechas, AvPág/RePág, Inicio y Fin. La pista es transparente, así que no
+  cambia ni un píxel del mockup (el `SCROLL` sigue en **diff 0,07**).
+- La barra mide **738 px (369 dp)** en el mockup porque solo se ve algo más de
+  la mitad de la lista (13,8 de 25 filas); en la app el alto se calcula solo
+  (`pista × lo que se ve / lo que hay`), así que sale igual sin números fijos.
 - La barra inferior tiene un **degradado oscuro arriba** (`#7A1233` en y 1354 →
   `#BB1B47` en y 1400) que no tiene la de PagomóvilBDV; medido y reproducido.
 - Los 25 bancos están en el orden del mockup, que es el alfabético real del
   sistema venezolano (0102 Banco de Venezuela primero).
 
+### La lista tiene los 25 bancos: el mockup -2 es la misma lista desplazada
+
+El segundo mockup (`design/referencia-bancos-2.jpeg`) **no es otra pantalla ni
+añade bancos**: es esta misma lista **desplazada hasta abajo**, y sus 14 filas
+visibles son las filas 12 a 25 (0191, 0138, 0137 BANCO SOFITASA y las 11 que van
+justo debajo, hasta 0169 R4 BANCO MICROFINANCIERO C.A.). Lo que faltaba no era
+añadir bancos, sino que **la barra funcionase** para poder bajar hasta ellos.
+
+Para verlo sin tocar nada hay una captura de la réplica ya desplazada al final,
+`replica/render-bancos-abajo.png`, que reproduce ese mockup -2 (con la barra
+inferior, que el recorte del mockup no incluye). Y la prueba automática lo
+comprueba fila por fila: «Bancos debajo de SOFITASA (fila 15): los 11 ESTAN».
+
 En la app: `PagomovilActivity` → campo «Banco:» → `BancosActivity` → al tocar un
 banco vuelve con el elegido en el campo. Vista autocontenida:
 `replica/vista-previa-bancos.html`.
+
+En Android la barra es un `View` propio (`@id/bkScroll`, 4 dp, dibujo
+`bk_scroll_thumb.xml`) que `BancosActivity` coloca con `translationY` y con el
+alto calculados; el `ScrollView` lleva `scrollbars="none"` y los **8 dp del
+borde derecho** quedan para la barra: arrastrarlos baja y sube la lista, tocar
+la pista salta de posición, y el resto de la fila sigue eligiendo el banco.
 
 Para comprobar que las pantallas **responden de verdad** a los clics (no solo que
 se vean bien) hay una prueba automática: `tools/probar-interaccion.ps1`. Carga las
@@ -582,6 +610,15 @@ se envían entre pantallas:
 4. Fila resaltada tras el clic: [0114 - BANCARIBE]
 1. Banco pulsado -> estado guardado (banco viejo: 0102 - BANCO DE VENEZUELA)
 2. Campo Banco tras volver: [0114 - BANCARIBE]  ->  APLICADO OK
+5. Lista: 25 bancos | se ven 13.8 filas | recorrido 1074 px
+6. Barra al empezar: top 13px | alto 741px
+7. Arrastro la barra hacia abajo -> scrollTop 716 | barra en top 413px
+8. Arrastro la barra hacia arriba -> scrollTop 179 | barra en top 113px
+9. Rueda del raton sobre la barra -> scrollTop 300
+10. Toco la pista abajo del todo -> scrollTop 1074 (tope 1074) | barra en top 613px
+11. Flecha arriba con la lista enfocada -> scrollTop 978
+12. Bancos debajo de SOFITASA (fila 15): los 11 ESTAN
+13. Ultimo banco de la lista: [0169 - R4 BANCO MICROFINANCIERO C.A.] (total 25)
 ```
 
 

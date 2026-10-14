@@ -23,12 +23,18 @@
   #bkLista{position:absolute;left:0;top:28px;width:720px;height:1326px;overflow-y:auto;
            scrollbar-width:none;}
   #bkLista::-webkit-scrollbar{width:0;height:0;}
+  #bkLista:focus{outline:none;}
   .bkFila{height:96px;display:flex;align-items:center;box-sizing:border-box;
           padding-left:33px;padding-right:27px;
           font-size:27px;line-height:38px;color:#FFFFFF;}
   .bkFila.bkSel{background:#494949;}
 
-  /* Barra de desplazamiento propia: 8 px, #CCCCCC */
+  /* ---- Barra de desplazamiento propia: 8 px #CCCCCC en el borde derecho ----
+     #bkPista es la pista (de y 13 a y 1354) y #bkScroll la barra que se mueve
+     dentro de ella. La pista es transparente: no cambia ni un pixel del
+     mockup, pero sirve para agarrar la barra y arrastrarla para bajar y subir,
+     para saltar al tocar fuera de la barra y para desplazar con la rueda. */
+  #bkPista{position:absolute;left:712px;top:13px;width:8px;height:1341px;}
   #bkScroll{position:absolute;left:712px;top:13px;width:8px;height:738px;background:#CCCCCC;}
 
   /* ---- Barra inferior (igual que la de PagomóvilBDV, con la sombra de arriba) ---- */
@@ -41,7 +47,7 @@
 </head>
 <body>
 
-  <div id="bkLista">
+  <div id="bkLista" tabindex="0">
     <div class="bkFila bkSel">0102 - BANCO DE VENEZUELA</div>
     <div class="bkFila">0156 - 100% BANCO</div>
     <div class="bkFila">0172 - BANCAMIGA BANCO UNIVERSAL, C.A.</div>
@@ -69,6 +75,7 @@
     <div class="bkFila">0169 - R4 BANCO MICROFINANCIERO C.A.</div>
   </div>
 
+  <div id="bkPista"></div>
   <div id="bkScroll"></div>
 
   <div id="bkNav"></div>
@@ -114,20 +121,101 @@
       })(filas[i]);
     }
 
-    /* Barra de desplazamiento propia: 8 px en el borde derecho */
+    /* ---- Barra de desplazamiento propia (la del borde derecho) ----
+       Se agarra y se arrastra con el raton o el dedo para bajar y subir la
+       lista; al tocar la pista fuera de la barra, la barra salta a esa altura
+       y sigue al dedo; la rueda del raton tambien desplaza; y con la lista
+       enfocada (tabulador) funcionan las flechas, AvPag/RePag, Inicio y Fin. */
     var lista = document.getElementById('bkLista');
+    var pista = document.getElementById('bkPista');
     var barra = document.getElementById('bkScroll');
-    var TRACK_TOP = 13, TRACK_ALTO = 1341;
-    function ajustarBarra(){
-      var visible = lista.clientHeight;
+    var TRACK_TOP = 13, TRACK_ALTO = 1341, PASO_FILA = 96;
+
+    function altoBarra(){
       var contenido = lista.scrollHeight;
-      var alto = Math.max(40, Math.round(TRACK_ALTO * visible / contenido));
-      var max = contenido - visible;
+      if(contenido <= 0){ return TRACK_ALTO; }
+      return Math.max(40, Math.round(TRACK_ALTO * lista.clientHeight / contenido));
+    }
+    function topeScroll(){
+      return Math.max(0, lista.scrollHeight - lista.clientHeight);
+    }
+    function ajustarBarra(){
+      var alto = altoBarra();
+      var max = topeScroll();
       var avance = (max > 0) ? (lista.scrollTop / max) : 0;
       barra.style.height = alto + 'px';
       barra.style.top = (TRACK_TOP + Math.round(avance * (TRACK_ALTO - alto))) + 'px';
     }
+    function irA(fraccion){
+      var f = Math.min(1, Math.max(0, fraccion));
+      lista.scrollTop = Math.round(f * topeScroll());
+      ajustarBarra();
+    }
     lista.addEventListener('scroll', ajustarBarra);
+
+    /* Arrastrar la barra (raton o dedo) */
+    var arrastrando = false, toqueY = 0, scrollInicial = 0;
+    function posY(ev){
+      if(ev.touches && ev.touches.length){ return ev.touches[0].clientY; }
+      return ev.clientY;
+    }
+    function empezarArrastre(ev, agarrada){
+      arrastrando = true;
+      toqueY = posY(ev);
+      scrollInicial = lista.scrollTop;
+      if(!agarrada){
+        /* Se ha tocado la pista fuera de la barra: la barra salta a ese punto */
+        var alto = altoBarra();
+        var recorrido = TRACK_ALTO - alto;
+        irA(recorrido > 0 ? (toqueY - TRACK_TOP - alto / 2) / recorrido : 0);
+        scrollInicial = lista.scrollTop;
+      }
+      ev.preventDefault();
+    }
+    function moverArrastre(ev){
+      if(!arrastrando){ return; }
+      var recorrido = TRACK_ALTO - altoBarra();
+      var max = topeScroll();
+      if(recorrido <= 0 || max <= 0){ return; }
+      irA((scrollInicial + (posY(ev) - toqueY) * max / recorrido) / max);
+      ev.preventDefault();
+    }
+    function soltarArrastre(){ arrastrando = false; }
+
+    barra.addEventListener('mousedown', function(ev){ empezarArrastre(ev, true); });
+    pista.addEventListener('mousedown', function(ev){ empezarArrastre(ev, false); });
+    barra.addEventListener('touchstart', function(ev){ empezarArrastre(ev, true); });
+    pista.addEventListener('touchstart', function(ev){ empezarArrastre(ev, false); });
+    document.addEventListener('mousemove', moverArrastre);
+    document.addEventListener('mouseup', soltarArrastre);
+    document.addEventListener('touchmove', moverArrastre, {passive:false});
+    document.addEventListener('touchend', soltarArrastre);
+    document.addEventListener('touchcancel', soltarArrastre);
+
+    /* La rueda del raton sobre la barra (o su pista) tambien desplaza */
+    function girarRueda(ev){
+      var paso = ev.deltaY;
+      if(ev.deltaMode === 1){ paso = paso * PASO_FILA; }
+      lista.scrollTop = lista.scrollTop + paso;
+      ajustarBarra();
+      ev.preventDefault();
+    }
+    barra.addEventListener('wheel', girarRueda, {passive:false});
+    pista.addEventListener('wheel', girarRueda, {passive:false});
+
+    /* Con la lista enfocada, el teclado baja y sube */
+    lista.addEventListener('keydown', function(ev){
+      if(ev.key === 'ArrowDown'){ lista.scrollTop += PASO_FILA; }
+      else if(ev.key === 'ArrowUp'){ lista.scrollTop -= PASO_FILA; }
+      else if(ev.key === 'PageDown'){ lista.scrollTop += lista.clientHeight; }
+      else if(ev.key === 'PageUp'){ lista.scrollTop -= lista.clientHeight; }
+      else if(ev.key === 'Home'){ lista.scrollTop = 0; }
+      else if(ev.key === 'End'){ lista.scrollTop = topeScroll(); }
+      else { return; }
+      ajustarBarra();
+      ev.preventDefault();
+    });
+
     ajustarBarra();
 
     /* El visor de flujo puede marcar el banco que ya estaba elegido */

@@ -435,7 +435,8 @@ y la réplica reproduce ese recorte para poder comparar 1:1.
 | Texto de fila | 27 px · mayúscula 20 px | x **33** | **13.5sp** · 16.5 dp del borde |
 | Fondo de la fila elegida | `#494949` | y 29 → 125 | — |
 | Fondo del resto / lienzo | `#303030` | — | `@color/fondo` |
-| Barra de desplazamiento | 8 × 738 | (712, 13) · `#CCCCCC` | 4 dp |
+| Barra de desplazamiento | 8 × 738 | (712, 13) · `#CCCCCC` | 4 dp · alto 369 dp |
+| Pista de la barra | 8 × 1341 (transparente) | (712, 13) → y 1354 | 4 dp · 670.5 dp |
 | Barra inferior | 87 px visibles | desde y **1354** | `@color/rojo_marca` |
 | Degradado de la barra | `#7A1233` (1354) → `#BB1B47` (1400) | — | — |
 | Iconos de la barra | 34 – 46 px de ancho | y 1356 – 1392 | **diff 0,2 – 0,5** |
@@ -456,4 +457,35 @@ y la réplica reproduce ese recorte para poder comparar 1:1.
    derecho), no la del navegador; se dibuja aparte y se mueve al desplazar.
 5. Los **25 bancos** están en el orden del mockup (el alfabético real del
    sistema financiero venezolano), con los códigos de 4 dígitos delante.
+6. **El mockup `-2` no es otra pantalla**: es esta misma lista **desplazada
+   hasta abajo**. Sus 14 filas visibles son las filas 12 a 25 de la lista (0191,
+   0138, 0137 BANCO SOFITASA y las 11 de debajo, hasta 0169 R4 BANCO
+   MICROFINANCIERO C.A.). No hay bancos que añadir: lo que hacía falta es que la
+   barra funcione para poder bajar hasta ellos.
+7. **La barra no lleva flechas ni adornos**: es un rectángulo plano `#CCCCCC` de
+   8 px (medido: `diff 0,07`). Si alguien la llama «la flecha para bajar y
+   subir», se refiere a esta barra; la pista (13 → 1354) no se ve.
+
+### 12.3 La barra de desplazamiento (bajar y subir)
+
+La barra del borde derecho es propia, no la del navegador, y se comporta como la
+de una app real:
+
+| Gesto | Qué hace |
+|---|---|
+| Agarrar la barra y arrastrar (ratón o dedo) | Baja y sube la lista, 1:1 con el dedo |
+| Tocar la pista (la franja del borde, fuera de la barra) | La barra salta a esa altura y sigue al dedo |
+| Rueda del ratón encima de la barra o de la pista | Desplaza (antes no hacía nada: la barra no está dentro de la lista) |
+| Lista enfocada (tabulador) + flechas / AvPág / RePág / Inicio / Fin | Baja y sube de fila, de pantalla o hasta el final |
+
+Medidas: pista de **13 a 1354 px** (6.5 → 677 dp; 670.5 dp de alto) y barra de
+4 dp de ancho pegada al borde (x 712). El alto de la barra no es fijo:
+`pista × lo que se ve / lo que hay`; con 25 filas de 48 dp sale 741 px (los 738
+del mockup, ±3). En Android el alto mínimo es 20 dp y la franja táctil 8 dp.
+
+Validación: `tools/probar-interaccion.ps1` arrastra la barra de verdad (eventos
+de ratón sobre la réplica) y comprueba el resultado: bajar 400 px → `scrollTop
+716`; subir 300 → `179`; rueda 300 → `300`; tocar la pista abajo → `1074` (el
+tope); flecha arriba → `978`. Antes de arreglarlo, arrastrar dejaba `scrollTop`
+en `0`.
 
