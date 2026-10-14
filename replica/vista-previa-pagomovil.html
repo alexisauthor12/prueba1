@@ -231,7 +231,8 @@
       document.getElementById('inMonto').value     = e.monto || '';
       document.getElementById('inConcepto').value  = e.concepto || '';
       revisarMarcadores();
-      if(e.banco){ ponerBanco(e.banco); }
+      /* El banco NO se restaura aqui: viene aparte en el mensaje 'bdv-banco'
+         (el estado se guardo antes de elegir, asi que traeria el anterior). */
     }
 
     /* El visor de flujo devuelve el banco elegido por este mensaje */

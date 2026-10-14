@@ -572,6 +572,18 @@ En la app: `PagomovilActivity` → campo «Banco:» → `BancosActivity` → al 
 banco vuelve con el elegido en el campo. Vista autocontenida:
 `replica/vista-previa-bancos.html`.
 
+Para comprobar que las pantallas **responden de verdad** a los clics (no solo que
+se vean bien) hay una prueba automática: `tools/probar-interaccion.ps1`. Carga las
+réplicas en iframes, escribe en los campos, hace clic y captura los mensajes que
+se envían entre pantallas:
+
+```
+3. Clic en una fila -> 0114 - BANCARIBE
+4. Fila resaltada tras el clic: [0114 - BANCARIBE]
+1. Banco pulsado -> estado guardado (banco viejo: 0102 - BANCO DE VENEZUELA)
+2. Campo Banco tras volver: [0114 - BANCARIBE]  ->  APLICADO OK
+```
+
 
 
 En la réplica HTML también se puede escribir: los cuatro campos son `<input>`
