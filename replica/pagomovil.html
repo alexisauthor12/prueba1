@@ -88,7 +88,7 @@
   <img id="pmCirculoLeer" src="pm_circulo_leer.png" alt="">
 
   <!-- Campo 1: Operacion (desplegable con etiqueta en el borde) -->
-  <div class="pmCampo" style="top:212px"></div>
+  <div class="pmCampo" id="pmCampo1" style="top:212px"></div>
   <div class="pmNotch" style="top:212px"></div>
   <div class="pmEtiqueta" style="top:201.35px">Operación:</div>
   <div class="pmTexto" style="top:245.9px">Personas</div>
@@ -102,7 +102,7 @@
   <img id="pmBotonDoc" src="pm_boton_doc.png" alt="">
 
   <!-- Campo 3: Banco (desplegable con etiqueta en el borde) -->
-  <div class="pmCampo" style="top:524px"></div>
+  <div class="pmCampo" id="pmCampo3" style="top:524px"></div>
   <div class="pmNotch" style="top:524px"></div>
   <div class="pmEtiqueta" style="top:514.35px">Banco:</div>
   <div class="pmTexto" id="pmTextoBanco" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
@@ -149,6 +149,13 @@
   <div class="pmNavTexto" style="left:600px;top:1410.85px">Tarjeta</div>
 
   <script>
+    /* Atajo seguro: si un elemento no existe, no rompe el resto del script. */
+    function alTocar(id, fn){
+      var e = document.getElementById(id);
+      if(e){ e.addEventListener('click', fn); }
+      return e;
+    }
+
     /* Los cuatro campos son editables: al escribir, el marcador gris se oculta
        y el texto blanco queda exactamente en su sitio. */
     var paresCampos = [['inDocumento','phDocumento'], ['inTelefono','phTelefono'],
@@ -158,11 +165,12 @@
       for(var i=0;i<paresCampos.length;i++){
         var e = document.getElementById(paresCampos[i][0]);
         var m = document.getElementById(paresCampos[i][1]);
-        m.style.display = (e.value.length > 0) ? 'none' : 'block';
+        if(e && m){ m.style.display = (e.value.length > 0) ? 'none' : 'block'; }
       }
     }
     for(var i=0;i<paresCampos.length;i++){
-      document.getElementById(paresCampos[i][0]).addEventListener('input', revisarMarcadores);
+      var campo = document.getElementById(paresCampos[i][0]);
+      if(campo){ campo.addEventListener('input', revisarMarcadores); }
     }
 
     /* Monto en formato venezolano: 2400 -> "2.400,00 Bs" */
@@ -189,13 +197,14 @@
 
     function ponerBanco(nombre){
       bancoElegido = nombre;
-      document.getElementById('pmTextoBanco').textContent = nombre;
+      var t = document.getElementById('pmTextoBanco');
+      if(t){ t.textContent = nombre; }
     }
 
     var qb = new URLSearchParams(location.search).get('banco');
     if(qb){ ponerBanco(qb); }
 
-    document.getElementById('pmCampo3').addEventListener('click', function(){
+    alTocar('pmCampo3', function(){
       if(window.parent !== window){
         window.parent.postMessage({tipo:'bdv-banco', banco: bancoElegido,
                                    estado: estadoFormulario()}, '*');
@@ -234,12 +243,13 @@
 
     function avisar(texto){
       var a = document.getElementById('pmAviso');
+      if(!a){ return; }
       a.textContent = texto;
       a.style.display = 'block';
       setTimeout(function(){ a.style.display = 'none'; }, 2200);
     }
 
-    document.getElementById('pmPagar').addEventListener('click', function(){
+    alTocar('pmPagar', function(){
       if(document.getElementById('inDocumento').value.trim() === '' ||
          document.getElementById('inTelefono').value.trim() === '' ||
          document.getElementById('inMonto').value.trim() === ''){
@@ -259,7 +269,7 @@
       }
     });
 
-    document.getElementById('pmLimpiar').addEventListener('click', function(){
+    alTocar('pmLimpiar', function(){
       document.getElementById('inDocumento').value = '';
       document.getElementById('inTelefono').value = '';
       document.getElementById('inMonto').value = '';
