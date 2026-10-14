@@ -28,17 +28,51 @@ jobs:
         with:
           gradle-version: '8.7'
 
+      - name: Entorno (diagnostico)
+        run: |
+          java -version
+          gradle --version
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" 2>/dev/null || echo "(sin platforms)"
+          ls "$ANDROID_HOME/build-tools" 2>/dev/null || echo "(sin build-tools)"
+
+      - name: Asegurar la plataforma 34 del SDK (si hace falta)
+        run: |
+          if command -v sdkmanager >/dev/null 2>&1; then
+            yes | sdkmanager "platforms;android-34" "build-tools;34.0.0" >/dev/null || echo "sdkmanager no pudo instalar (se continua igual)"
+          else
+            echo "sdkmanager no esta en el PATH; se usa el SDK del runner tal cual"
+          fi
+
       - name: Generar el Gradle wrapper (para poder compilar tambien en local)
         working-directory: android
         run: gradle wrapper --gradle-version 8.7
 
       - name: Compilar APK de depuracion
         working-directory: android
-        run: gradle assembleDebug --no-daemon --stacktrace
+        run: |
+          set -o pipefail
+          gradle assembleDebug --no-daemon --stacktrace 2>&1 | tee ../build-debug.log
 
       - name: Compilar APK de release (sin firmar)
         working-directory: android
-        run: gradle assembleRelease --no-daemon --stacktrace
+        run: |
+          set -o pipefail
+          gradle assembleRelease --no-daemon --stacktrace 2>&1 | tee ../build-release.log
+
+      # Si algo falla, el error de Gradle se publica como anotacion del run:
+      # asi se puede leer desde la API (o en la pestana Actions) sin descargar
+      # el log completo.
+      - name: Si falla, publicar el error de Gradle como anotacion
+        if: failure()
+        run: |
+          for f in build-debug.log build-release.log; do
+            if [ -f "$f" ]; then
+              echo "::error::=== errores de $f ==="
+              grep -A 20 -m 1 "What went wrong" "$f" | head -22 | sed 's/%/%25/g' | while IFS= read -r l; do echo "::error::$l"; done
+              tail -6 "$f" | sed 's/%/%25/g' | while IFS= read -r l; do echo "::error::$l"; done
+            fi
+          done
 
       - name: Publicar APK de depuracion
         uses: actions/upload-artifact@v4
@@ -58,3 +92,4 @@ jobs:
         run: |
           echo "## APK generados" >> $GITHUB_STEP_SUMMARY
           find android/app/build/outputs/apk -name "*.apk" -exec ls -lh {} \; >> $GITHUB_STEP_SUMMARY
+
