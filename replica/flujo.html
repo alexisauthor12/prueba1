@@ -18,14 +18,12 @@
   /* Pantalla de autenticación */
   #zonaIngresa{left:170px;top:848px;width:380px;height:56px;}
   #zonaVolver{left:190px;top:1372px;width:350px;height:70px;}
-  /* Diálogo de contraseña: el velo son cuatro zonas ALREDEDOR de la tarjeta,
-     de modo que el campo de dentro se puede pulsar y escribir. */
+  /* Los botones Aceptar/Cancelar NO llevan zona: los pulsa el propio diálogo
+     (que valida la contraseña) y avisa al visor con postMessage. */
   #zonaVeloArriba{left:0;top:0;width:720px;height:524px;border-radius:0;}
   #zonaVeloAbajo{left:0;top:938px;width:720px;height:518px;border-radius:0;}
   #zonaVeloIzq{left:0;top:524px;width:80px;height:414px;border-radius:0;}
   #zonaVeloDer{left:640px;top:524px;width:80px;height:414px;border-radius:0;}
-  #zonaAceptar{left:174px;top:818px;width:176px;height:80px;border-radius:20px;}
-  #zonaCancelar{left:370px;top:818px;width:176px;height:80px;border-radius:20px;}
   /* Dashboard: la barra inferior vuelve al inicio de sesión */
   #zonaDashVolver{left:0;top:1346px;width:720px;height:104px;border-radius:0;}
   #etiqueta{position:fixed;left:14px;top:12px;color:#9a9a9a;font:13px Arial,Helvetica,sans-serif;}
@@ -45,13 +43,11 @@
   <div id="zonaVeloAbajo"  class="zona" title="Cerrar"></div>
   <div id="zonaVeloIzq"    class="zona" title="Cerrar"></div>
   <div id="zonaVeloDer"    class="zona" title="Cerrar"></div>
-  <div id="zonaAceptar"  class="zona" title="Aceptar"></div>
-  <div id="zonaCancelar" class="zona" title="Cancelar"></div>
 
   <div id="zonaDashVolver" class="zona" title="Volver al inicio de sesión"></div>
 </div>
 
-<div id="etiqueta">1 / 3 &nbsp;·&nbsp; Pantalla de inicio</div>
+<div id="etiqueta">1 / 4 &nbsp;·&nbsp; Pantalla de inicio</div>
 <div id="aviso">Haz clic en "Iniciar sesión" para ver el flujo de autenticación</div>
 
 <script>
@@ -60,7 +56,7 @@
   var et    = document.getElementById('etiqueta');
   var av    = document.getElementById('aviso');
   var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVeloArriba','zonaVeloAbajo',
-               'zonaVeloIzq','zonaVeloDer','zonaAceptar','zonaCancelar','zonaDashVolver'];
+               'zonaVeloIzq','zonaVeloDer','zonaDashVolver'];
 
   function mostrar(ids, alto){
     for(var i=0;i<zonas.length;i++){
@@ -90,7 +86,7 @@
     v.src = 'clave.html';
     mostrar(['zonaVelo','zonaAceptar','zonaCancelar'], 1456);
     et.textContent = '3 / 4  ·  Diálogo "Ingresa con tu contraseña"';
-    av.textContent = 'La contraseña de la demo es 12345 · clic en "Aceptar" para entrar';
+    av.textContent = 'Escribe 12345 en el campo y pulsa "Aceptar" para entrar al dashboard';
   }
   function irAlDashboard(){
     v.src = 'dashboard.html';
@@ -106,24 +102,14 @@
   document.getElementById('zonaVeloAbajo').addEventListener('click', irAlLogin);
   document.getElementById('zonaVeloIzq').addEventListener('click', irAlLogin);
   document.getElementById('zonaVeloDer').addEventListener('click', irAlLogin);
-  document.getElementById('zonaCancelar').addEventListener('click', irAlLogin);
-  document.getElementById('zonaAceptar').addEventListener('click', comprobarClave);
   document.getElementById('zonaDashVolver').addEventListener('click', irAlLogin);
 
-  /* Comprueba la contrasena escrita en el campo del dialogo. */
-  function comprobarClave(){
-    var escrita = '';
-    try {
-      var doc = v.contentDocument || v.contentWindow.document;
-      var campo = doc.getElementById('clave');
-      if(campo){ escrita = campo.value; }
-    } catch(e){ escrita = ''; }
-    if(escrita === '' || escrita === '12345'){
-      irAlDashboard();
-    } else {
-      av.textContent = 'Contrasena incorrecta · la de la demo es 12345';
-    }
-  }
+  /* El diálogo valida la contraseña por dentro (Aceptar, Enter o Cancelar) y
+     avisa con postMessage: aquí solo se cambia de pantalla. */
+  window.addEventListener('message', function(ev){
+    if(ev.data === 'bdv-dashboard'){ irAlDashboard(); }
+    else if(ev.data === 'bdv-login'){ irAlLogin(); }
+  });
 
   function ajustar(){
     var alto = parseFloat(marco.style.height) || 1460;

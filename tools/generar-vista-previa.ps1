@@ -19,7 +19,7 @@
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','dashboard','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','flujo','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -42,25 +42,55 @@ function IncrustarImagen([string]$html, [string]$archivo){
   return $html.Replace('"' + $archivo + '"', '"data:image/png;base64,' + $b64 + '"')
 }
 
-function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch]$ConLogin){
-  $html = Get-Content (Join-Path $Base $origen) -Raw
+function Construir([string]$origen, [string[]]$imagenes, [switch]$ConLogin){
+  $html = Get-Content (Join-Path $Base $origen) -Raw -Encoding UTF8
   $html = Incrustar $html 'arimo.ttf' "url('arimo.ttf')"
   foreach($img in $imagenes){ $html = IncrustarImagen $html $img }
   if($ConLogin){
     # El login va dentro del iframe: se incrusta como data URI ya autocontenido
-    $login = Get-Content (Join-Path $Base 'login.html') -Raw
+    $login = Get-Content (Join-Path $Base 'login.html') -Raw -Encoding UTF8
     $login = Incrustar $login 'arimo.ttf' "url('arimo.ttf')"
     foreach($img in @('logo-bdv.png','ico-huella.png','ico-salir.png')){ $login = IncrustarImagen $login $img }
     $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($login))
     $html = $html.Replace('src="login.html"', 'src="data:text/html;base64,' + $b64 + '"')
   }
+  return $html
+}
+
+function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch]$ConLogin){
+  $html = Construir $origen $imagenes -ConLogin:$ConLogin
   $salida = Join-Path $Base $destino
   [IO.File]::WriteAllText($salida, $html, [Text.Encoding]::UTF8)
   Write-Output ("generado: " + $destino + "  (" + [math]::Round((Get-Item $salida).Length/1KB) + " KB)")
 }
 
+# El visor flujo.html con las CUATRO pantallas incrustadas: sirve para pasar al
+# movil y permite escribir la contrasena y entrar al dashboard sin mas archivos.
+function GenerarFlujo(){
+  $flujo = Get-Content (Join-Path $Base 'flujo.html') -Raw -Encoding UTF8
+  $iconos = @('db_campana.png','db_access.png','db_nfc.png','db_menu.png',
+              'db_ico1.png','db_ico2.png','db_ico3.png','db_ico4.png',
+              'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
+              'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png')
+  $pares = @(
+    @('index.html',     (Construir 'index.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png'))),
+    @('login.html',     (Construir 'login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png'))),
+    @('clave.html',     (Construir 'clave.html' @('ico-ojo.png') -ConLogin)),
+    @('dashboard.html', (Construir 'dashboard.html' $iconos))
+  )
+  foreach($p in $pares){
+    $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($p[1]))
+    $data = 'data:text/html;base64,' + $b64
+    $flujo = $flujo.Replace("'" + $p[0] + "'", "'" + $data + "'")
+    $flujo = $flujo.Replace('"' + $p[0] + '"', '"' + $data + '"')
+  }
+  $salida = Join-Path $Base 'vista-previa-flujo.html'
+  [IO.File]::WriteAllText($salida, $flujo, [Text.Encoding]::UTF8)
+  Write-Output ("generado: vista-previa-flujo.html  (" + [math]::Round((Get-Item $salida).Length/1KB) + " KB)")
+}
+
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','flujo') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
@@ -72,6 +102,7 @@ foreach($p in $hacer){
         'db_ico1.png','db_ico2.png','db_ico3.png','db_ico4.png',
         'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
         'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
+    'flujo'  { GenerarFlujo }
   }
 }
 

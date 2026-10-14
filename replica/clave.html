@@ -72,5 +72,41 @@
     <div id="btnAceptar" class="el boton">Aceptar</div>
     <div id="btnCancelar" class="el boton">Cancelar</div>
   </div>
+  <script>
+    // --- Dialogo funcional: escribir la contrasena y entrar al dashboard ---
+    var campo = document.getElementById('clave');
+    var ojo   = document.getElementById('ojo');
+
+    // El ojo muestra u oculta la contrasena
+    ojo.addEventListener('click', function(){
+      campo.type = (campo.type === 'password') ? 'text' : 'password';
+    });
+
+    // Al pulsar Aceptar (o Enter) se comprueba la contrasena
+    function entrar(){
+      if(campo.value === '12345'){
+        // Avisa al visor flujo.html (si estamos dentro de el)...
+        try {
+          if(window.parent !== window){ window.parent.postMessage('bdv-dashboard', '*'); }
+        } catch(e){}
+        // ...y ademas navega el propio marco, que funciona en los dos casos
+        window.location.href = 'dashboard.html';
+      } else {
+        campo.value = '';
+        alert('Contraseña incorrecta.\n\nLa contraseña de la demo es 12345');
+        campo.focus();
+      }
+    }
+
+    document.getElementById('btnAceptar').addEventListener('click', entrar);
+    document.getElementById('btnCancelar').addEventListener('click', function(){
+      campo.value = '';
+      if(window.parent !== window){ window.parent.postMessage('bdv-login', '*'); }
+    });
+    campo.addEventListener('keydown', function(ev){
+      if(ev.key === 'Enter'){ entrar(); }
+    });
+  </script>
+
 </body>
 </html>
