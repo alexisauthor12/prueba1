@@ -1,5 +1,6 @@
 package ve.com.bdv.inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
@@ -48,11 +49,7 @@ class LoginActivity : AppCompatActivity() {
         // --- Dialogo "Ingresa con tu contrasena" ---
         findViewById<View>(R.id.claveOjo).setOnClickListener { alternarClave() }
         findViewById<View>(R.id.claveCancelar).setOnClickListener { cerrarClave() }
-        findViewById<View>(R.id.claveAceptar).setOnClickListener {
-            // Replica de interfaz: no se valida ni se envia la contrasena.
-            cerrarClave()
-            aviso("Acceso con contraseña (demo)")
-        }
+        findViewById<View>(R.id.claveAceptar).setOnClickListener { validarClave() }
         // Tocar el velo (fuera de la tarjeta) cierra el dialogo.
         panelClave.setOnClickListener { cerrarClave() }
 
@@ -93,6 +90,23 @@ class LoginActivity : AppCompatActivity() {
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
         campo.setSelection(pos.coerceAtMost(campo.text.length))
+    }
+
+    /**
+     * Contrasena de la demo. La app no captura credenciales reales: es una
+     * replica de interfaz y esta constante solo sirve para el flujo del mockup.
+     */
+    private val CLAVE = "12345"
+
+    /** Comprueba la contrasena; si es correcta abre el dashboard. */
+    private fun validarClave() {
+        if (campo.text.toString() == CLAVE) {
+            cerrarClave()
+            startActivity(Intent(this, DashboardActivity::class.java))
+        } else {
+            campo.text = null
+            aviso(getString(R.string.clave_error))
+        }
     }
 
     private fun aviso(texto: String) {

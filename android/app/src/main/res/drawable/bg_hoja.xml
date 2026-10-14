@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hoja del historico: #212121, solo las esquinas de arriba redondeadas -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/hoja" />
+    <corners android:topLeftRadius="@dimen/db_hoja_radio"
+        android:topRightRadius="@dimen/db_hoja_radio" />
+</shape>

@@ -14,4 +14,5 @@
     <string name="clave_aceptar">Aceptar</string>
     <string name="clave_cancelar">Cancelar</string>
     <string name="clave_ojo_desc">Mostrar contraseña</string>
+    <string name="clave_error">Contraseña incorrecta</string>
 </resources>

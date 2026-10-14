@@ -19,7 +19,7 @@
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -60,13 +60,18 @@ function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch
 }
 
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
     'inicio' { Generar 'index.html' 'vista-previa.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png') }
     'login'  { Generar 'login.html' 'vista-previa-login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png') }
     'clave'  { Generar 'clave.html' 'vista-previa-clave.html' @('ico-ojo.png') -ConLogin }
+    'dashboard' { Generar 'dashboard.html' 'vista-previa-dashboard.html' @(
+        'db_campana.png','db_access.png','db_nfc.png','db_menu.png',
+        'db_ico1.png','db_ico2.png','db_ico3.png','db_ico4.png',
+        'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
+        'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
   }
 }
 

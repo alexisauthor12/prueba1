@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Dashboard (replica 1:1, 720x1450 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1450px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  .el{position:absolute;line-height:1;white-space:nowrap;color:#FFFFFF;}
+
+  /* --- Barra superior --- */
+  #inicio{left:147px;top:45.5px;font-size:32px;font-weight:600;}
+
+  /* --- Tarjeta de saldo: 632x168 en (44,154), radio 40 px --- */
+  #tarjeta{position:absolute;left:44px;top:154px;width:632px;height:169px;
+           border-radius:40px;background:#BB1B47;}
+  /* Segunda tarjeta del carrusel: solo asoma su borde izquierdo */
+  #tarjeta2{position:absolute;left:702px;top:154px;width:632px;height:169px;
+            border-radius:40px;background:#BB1B47;}
+  #saldo{left:71px;top:180.9px;font-size:19.5px;letter-spacing:0.03em;}
+  #monto{left:70px;top:226.2px;font-size:25.4px;}
+  #cuenta{left:70px;top:277.9px;font-size:19.5px;letter-spacing:0.077em;}
+  #movimientos{left:412px;top:275.3px;font-size:24.5px;letter-spacing:-0.01em;}
+
+  /* --- Puntos del carrusel: 16 px, paso 32, en y 369 --- */
+  .punto{position:absolute;top:369px;width:16px;height:16px;border-radius:50%;}
+  #p1{left:320px;background:#BB1B47;}
+  #p2{left:352px;background:#EDEDED;}
+  #p3{left:384px;background:#EDEDED;}
+
+  /* --- Hoja inferior: desde y 412, radio superior 32 px --- */
+  #hoja{position:absolute;left:0;top:412px;width:720px;height:1038px;
+        border-radius:32px 32px 0 0;background:#212121;}
+  #historico{left:22px;top:442.4px;font-size:24px;letter-spacing:-0.007em;}
+  #actualizar{left:584px;top:441.4px;font-size:24px;color:#C97E93;}
+  #hoy{left:21px;top:505.9px;font-size:19.5px;color:#9F9F9F;letter-spacing:0.036em;}
+
+  /* --- Filas: paso 118 px --- */
+  .desc{left:88px;font-size:20.5px;letter-spacing:-0.006em;}
+  .monto{left:0;width:697px;text-align:right;font-size:20.5px;}
+  .hora{left:0;width:696px;text-align:right;font-size:17.5px;color:#9F9F9F;}
+
+  /* --- Barra inferior: 6 columnas de 120 px, desde y 1346 --- */
+  #nav{position:absolute;left:0;top:1346px;width:720px;height:104px;background:#BB1B47;}
+  .etiqueta{position:absolute;top:1418.8px;width:120px;text-align:center;
+            font-size:19.5px;color:#FFFFFF;line-height:1;}
+  .etiqueta.activa{top:1414.4px;font-size:23.5px;}
+</style>
+</head>
+<body>
+
+  <!-- ===== Barra superior ===== -->
+  <img class="el" src="db_campana.png" width="56" height="62" style="left:36px;top:25px" alt="">
+  <div class="el" id="inicio">Inicio</div>
+  <img class="el" src="db_access.png" width="68" height="68" style="left:446px;top:28px" alt="">
+  <img class="el" src="db_nfc.png"    width="68" height="68" style="left:542px;top:28px" alt="">
+  <img class="el" src="db_menu.png"   width="38" height="30" style="left:653px;top:46px" alt="">
+
+  <!-- ===== Tarjeta de saldo ===== -->
+  <div id="tarjeta"></div>
+  <div id="tarjeta2"></div>
+  <div class="el" id="saldo">Saldo Cuenta Ahorro</div>
+  <div class="el" id="monto">Bs. 28.406,96</div>
+  <div class="el" id="cuenta">0102****5124</div>
+  <img class="el" src="db_ico1.png" width="42" height="42" style="left:387px;top:169px" alt="">
+  <img class="el" src="db_ico2.png" width="46" height="42" style="left:452px;top:169px" alt="">
+  <img class="el" src="db_ico3.png" width="40" height="41" style="left:522px;top:171px" alt="">
+  <img class="el" src="db_ico4.png" width="42" height="42" style="left:588px;top:169px" alt="">
+  <img class="el" src="db_chart.png"  width="38" height="32" style="left:368px;top:273px" alt="">
+  <div class="el" id="movimientos">Movimientos en línea</div>
+  <img class="el" src="db_flecha.png" width="20" height="24" style="left:622px;top:278px" alt="">
+
+  <!-- ===== Puntos ===== -->
+  <div class="punto" id="p1"></div>
+  <div class="punto" id="p2"></div>
+  <div class="punto" id="p3"></div>
+
+  <!-- ===== Hoja inferior ===== -->
+  <div id="hoja"></div>
+  <div class="el" id="historico">Histórico de operaciones</div>
+  <div class="el" id="actualizar">Actualizar</div>
+  <div class="el" id="hoy">HOY</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:559px" alt="">
+  <div class="el desc" style="top:572.7px">PagomóvilBDV a otros bancos</div>
+  <div class="el monto" style="top:560.2px">340,00 Bs</div>
+  <div class="el hora" style="top:589.1px">05:26 PM</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:677px" alt="">
+  <div class="el desc" style="top:690.7px">PagomóvilBDV a otros bancos</div>
+  <div class="el monto" style="top:678.2px">260,00 Bs</div>
+  <div class="el hora" style="top:707.1px">04:57 PM</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:795px" alt="">
+  <div class="el desc" style="top:808.7px">PagomóvilBDV a otros bancos</div>
+  <div class="el monto" style="top:796.2px">900,00 Bs</div>
+  <div class="el hora" style="top:825.1px">01:17 PM</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:913px" alt="">
+  <div class="el desc" style="top:926.7px">PagomóvilBDV a otros bancos</div>
+  <div class="el monto" style="top:914.2px">2.400,00 Bs</div>
+  <div class="el hora" style="top:943.1px">12:52 PM</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:1031px" alt="">
+  <div class="el desc" style="top:1044.7px">PagomóvilBDV</div>
+  <div class="el monto" style="top:1032.2px">260,00 Bs</div>
+  <div class="el hora" style="top:1061.1px">09:02 AM</div>
+
+  <img class="el" src="db_telefono.png" width="32" height="48" style="left:27px;top:1149px" alt="">
+  <div class="el desc" style="top:1162.7px">PagomóvilBDV</div>
+  <div class="el monto" style="top:1150.2px">1.009,02 Bs</div>
+  <div class="el hora" style="top:1179.1px">07:58 AM</div>
+
+  <img class="el" src="db_chevron.png" width="28" height="40" style="left:28px;top:1280px" alt="">
+  <div class="el desc" style="top:1289.7px">Pago de Servicios</div>
+  <div class="el monto" style="top:1276.2px">400,00 Bs</div>
+  <div class="el hora" style="top:1305.1px">07:58 AM</div>
+
+  <!-- ===== Barra inferior ===== -->
+  <div id="nav"></div>
+  <img class="el" src="db_nav1.png" width="42" height="41" style="left:37px;top:1363px" alt="">
+  <img class="el" src="db_nav2.png" width="44" height="41" style="left:157px;top:1365px" alt="">
+  <img class="el" src="db_nav3.png" width="48" height="41" style="left:277px;top:1368px" alt="">
+  <img class="el" src="db_nav4.png" width="44" height="43" style="left:398px;top:1364px" alt="">
+  <img class="el" src="db_nav5.png" width="50" height="34" style="left:515px;top:1368px" alt="">
+  <img class="el" src="db_nav6.png" width="54" height="42" style="left:634px;top:1365px" alt="">
+
+  <div class="etiqueta activa" style="left:0">Inicio</div>
+  <div class="etiqueta" style="left:120px">Transfere...</div>
+  <div class="etiqueta" style="left:240px">Pagos</div>
+  <div class="etiqueta" style="left:360px">Servicios</div>
+  <div class="etiqueta" style="left:480px">Divisas</div>
+  <div class="etiqueta" style="left:600px">Tarjeta</div>
+
+</body>
+</html>

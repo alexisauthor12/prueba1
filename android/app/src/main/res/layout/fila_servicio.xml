@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila 7: "Pago de Servicios", con icono de flecha y 8.5 dp mas abajo -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filaServicio"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/db_fila_alto">
+
+    <ImageView
+        android:id="@+id/servicioIcono"
+        android:layout_width="@dimen/db_fila7_icono_ancho"
+        android:layout_height="@dimen/db_fila7_icono_alto"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="@dimen/db_fila7_icono_margin_izq"
+        android:layout_marginTop="@dimen/db_fila7_icono_margin_top"
+        android:contentDescription="@string/db_servicio_desc"
+        android:src="@drawable/db_chevron" />
+
+    <TextView
+        android:id="@+id/servicioDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="@dimen/db_fila_desc_margin_izq"
+        android:layout_marginTop="@dimen/db_fila7_desc_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_f7_desc"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_fila_desc_texto" />
+
+    <TextView
+        android:id="@+id/servicioMonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="@dimen/db_fila_monto_margin_der"
+        android:layout_marginTop="@dimen/db_fila_monto_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_f7_monto"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_fila_monto_texto" />
+
+    <TextView
+        android:id="@+id/servicioHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="@dimen/db_fila_hora_margin_der"
+        android:layout_marginTop="@dimen/db_fila_hora_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_f7_hora"
+        android:textColor="@color/texto_gris"
+        android:textSize="@dimen/db_fila_hora_texto" />
+
+</FrameLayout>

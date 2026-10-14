@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Fila del historico (se incluye 6 veces; el texto, el monto y la hora los
+  rellena DashboardActivity desde la lista de movimientos).
+  Los margenes son relativos a la fila.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/db_fila_alto">
+
+    <ImageView
+        android:id="@+id/filaIcono"
+        android:layout_width="@dimen/db_fila_icono_ancho"
+        android:layout_height="@dimen/db_fila_icono_alto"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="@dimen/db_fila_icono_margin_izq"
+        android:layout_marginTop="@dimen/db_fila_icono_margin_top"
+        android:contentDescription="@string/db_movil_desc"
+        android:src="@drawable/db_telefono" />
+
+    <TextView
+        android:id="@+id/filaDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="@dimen/db_fila_desc_margin_izq"
+        android:layout_marginTop="@dimen/db_fila_desc_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_fila_desc_texto" />
+
+    <TextView
+        android:id="@+id/filaMonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="@dimen/db_fila_monto_margin_der"
+        android:layout_marginTop="@dimen/db_fila_monto_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_fila_monto_texto" />
+
+    <TextView
+        android:id="@+id/filaHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="@dimen/db_fila_hora_margin_der"
+        android:layout_marginTop="@dimen/db_fila_hora_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:textColor="@color/texto_gris"
+        android:textSize="@dimen/db_fila_hora_texto" />
+
+</FrameLayout>

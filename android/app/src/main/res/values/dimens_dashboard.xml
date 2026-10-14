@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dashboard (tras ingresar la contrasena). Medidas exactas del mockup
+  design/referencia-dashboard.jpeg (720x1450 px @2x -> 360 x 725 dp):
+
+      dp = px / 2
+
+  Los margenes superiores de los textos descuentan el hueco entre el borde de
+  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+-->
+<resources>
+
+    <!-- ===== Barra superior ===== -->
+    <dimen name="db_campana_ancho">28dp</dimen>
+    <dimen name="db_campana_alto">31dp</dimen>
+    <dimen name="db_campana_margin_izq">18dp</dimen>
+    <dimen name="db_campana_margin_top">12.5dp</dimen>
+
+    <dimen name="db_titulo_texto">16sp</dimen>
+    <dimen name="db_titulo_margin_izq">73.5dp</dimen>
+    <dimen name="db_titulo_margin_top">21dp</dimen>
+
+    <dimen name="db_access">34dp</dimen>
+    <dimen name="db_access_margin_izq">223dp</dimen>
+    <dimen name="db_access_margin_top">14dp</dimen>
+    <dimen name="db_nfc">34dp</dimen>
+    <dimen name="db_nfc_margin_izq">271dp</dimen>
+    <dimen name="db_nfc_margin_top">14dp</dimen>
+
+    <dimen name="db_menu_ancho">19dp</dimen>
+    <dimen name="db_menu_alto">15dp</dimen>
+    <dimen name="db_menu_margin_izq">326.5dp</dimen>
+    <dimen name="db_menu_margin_top">23dp</dimen>
+
+    <!-- ===== Tarjeta de saldo: 316 x 84.5 dp en (22, 77), radio 20 dp ===== -->
+    <dimen name="db_tarjeta_ancho">316dp</dimen>
+    <dimen name="db_tarjeta_alto">84.5dp</dimen>
+    <dimen name="db_tarjeta_margin_izq">22dp</dimen>
+    <dimen name="db_tarjeta_margin_top">77dp</dimen>
+    <dimen name="db_tarjeta_radio">20dp</dimen>
+
+    <dimen name="db_saldo_texto">9.75sp</dimen>
+    <dimen name="db_saldo_margin_izq">35.5dp</dimen>
+    <dimen name="db_saldo_margin_top">89.4dp</dimen>
+
+    <dimen name="db_monto_texto">12.7sp</dimen>
+    <dimen name="db_monto_margin_izq">35dp</dimen>
+    <dimen name="db_monto_margin_top">111.8dp</dimen>
+
+    <dimen name="db_cuenta_texto">9.75sp</dimen>
+    <dimen name="db_cuenta_margin_izq">35dp</dimen>
+    <dimen name="db_cuenta_margin_top">137.9dp</dimen>
+
+    <dimen name="db_ico1_ancho">21dp</dimen>
+    <dimen name="db_ico1_alto">21dp</dimen>
+    <dimen name="db_ico1_margin_izq">193.5dp</dimen>
+    <dimen name="db_ico1_margin_top">84.5dp</dimen>
+    <dimen name="db_ico2_ancho">23dp</dimen>
+    <dimen name="db_ico2_alto">21dp</dimen>
+    <dimen name="db_ico2_margin_izq">226dp</dimen>
+    <dimen name="db_ico2_margin_top">84.5dp</dimen>
+    <dimen name="db_ico3_ancho">20dp</dimen>
+    <dimen name="db_ico3_alto">20.5dp</dimen>
+    <dimen name="db_ico3_margin_izq">261dp</dimen>
+    <dimen name="db_ico3_margin_top">85.5dp</dimen>
+    <dimen name="db_ico4_ancho">21dp</dimen>
+    <dimen name="db_ico4_alto">21dp</dimen>
+    <dimen name="db_ico4_margin_izq">294dp</dimen>
+    <dimen name="db_ico4_margin_top">84.5dp</dimen>
+
+    <dimen name="db_chart_ancho">19dp</dimen>
+    <dimen name="db_chart_alto">16dp</dimen>
+    <dimen name="db_chart_margin_izq">184dp</dimen>
+    <dimen name="db_chart_margin_top">136.5dp</dimen>
+
+    <dimen name="db_mov_texto">12.25sp</dimen>
+    <dimen name="db_mov_margin_izq">206dp</dimen>
+    <dimen name="db_mov_margin_top">136.4dp</dimen>
+
+    <dimen name="db_flecha_ancho">10dp</dimen>
+    <dimen name="db_flecha_alto">12dp</dimen>
+    <dimen name="db_flecha_margin_izq">311dp</dimen>
+    <dimen name="db_flecha_margin_top">139dp</dimen>
+
+    <!-- ===== Puntos del carrusel: 8 dp, paso 16, en y 184.5 ===== -->
+    <dimen name="db_punto">8dp</dimen>
+    <dimen name="db_punto_margin_top">184.5dp</dimen>
+    <dimen name="db_punto1_margin_izq">160dp</dimen>
+    <dimen name="db_punto2_margin_izq">176dp</dimen>
+    <dimen name="db_punto3_margin_izq">192dp</dimen>
+
+    <!-- ===== Hoja del historico: desde y 206, radio superior 16 dp ===== -->
+    <dimen name="db_hoja_margin_top">206dp</dimen>
+    <dimen name="db_hoja_radio">16dp</dimen>
+
+    <dimen name="db_hist_texto">12sp</dimen>
+    <dimen name="db_hist_margin_izq">11dp</dimen>
+    <dimen name="db_hist_margin_top">219.9dp</dimen>
+
+    <dimen name="db_act_texto">12sp</dimen>
+    <dimen name="db_act_margin_izq">292dp</dimen>
+    <dimen name="db_act_margin_top">219.4dp</dimen>
+
+    <dimen name="db_hoy_texto">9.75sp</dimen>
+    <dimen name="db_hoy_margin_izq">10.5dp</dimen>
+    <dimen name="db_hoy_margin_top">251.9dp</dimen>
+
+    <!-- ===== Filas: contenedor en y 279.3, paso 59 dp =====
+         Los margenes de dentro son relativos a la fila. -->
+    <dimen name="db_filas_margin_top">279.3dp</dimen>
+    <dimen name="db_fila_alto">59dp</dimen>
+    <dimen name="db_fila_icono_ancho">16dp</dimen>
+    <dimen name="db_fila_icono_alto">24dp</dimen>
+    <dimen name="db_fila_icono_margin_izq">13.5dp</dimen>
+    <dimen name="db_fila_icono_margin_top">0.2dp</dimen>
+
+    <dimen name="db_fila_desc_texto">10.25sp</dimen>
+    <dimen name="db_fila_desc_margin_izq">44dp</dimen>
+    <dimen name="db_fila_desc_margin_top">6dp</dimen>
+
+    <dimen name="db_fila_monto_texto">10.25sp</dimen>
+    <dimen name="db_fila_monto_margin_der">11.5dp</dimen>
+    <dimen name="db_fila_monto_margin_top">0dp</dimen>
+
+    <dimen name="db_fila_hora_texto">8.75sp</dimen>
+    <dimen name="db_fila_hora_margin_der">12dp</dimen>
+    <dimen name="db_fila_hora_margin_top">14.3dp</dimen>
+
+    <!-- Fila 7 (Pago de Servicios): contenedor propio en y 637.3 -->
+    <dimen name="db_fila7_margin_top">637.3dp</dimen>
+    <dimen name="db_fila7_icono_ancho">14dp</dimen>
+    <dimen name="db_fila7_icono_alto">20dp</dimen>
+    <dimen name="db_fila7_icono_margin_izq">14dp</dimen>
+    <dimen name="db_fila7_icono_margin_top">2.7dp</dimen>
+    <dimen name="db_fila7_desc_margin_top">6.5dp</dimen>
+
+    <!-- ===== Barra inferior: desde y 673 ===== -->
+    <dimen name="db_nav_margin_top">673dp</dimen>
+    <dimen name="db_nav_columna">60dp</dimen>
+    <dimen name="db_nav_texto">9.75sp</dimen>
+    <dimen name="db_nav_texto_activo">11.75sp</dimen>
+    <dimen name="db_nav_texto_margin_top">708.4dp</dimen>
+    <dimen name="db_nav_texto_activo_margin_top">706dp</dimen>
+
+    <dimen name="db_nav1_ancho">21dp</dimen>
+    <dimen name="db_nav1_alto">20.5dp</dimen>
+    <dimen name="db_nav1_margin_izq">18.5dp</dimen>
+    <dimen name="db_nav1_margin_top">681.5dp</dimen>
+    <dimen name="db_nav2_ancho">22dp</dimen>
+    <dimen name="db_nav2_alto">20.5dp</dimen>
+    <dimen name="db_nav2_margin_izq">78.5dp</dimen>
+    <dimen name="db_nav2_margin_top">682.5dp</dimen>
+    <dimen name="db_nav3_ancho">24dp</dimen>
+    <dimen name="db_nav3_alto">20.5dp</dimen>
+    <dimen name="db_nav3_margin_izq">138.5dp</dimen>
+    <dimen name="db_nav3_margin_top">684dp</dimen>
+    <dimen name="db_nav4_ancho">22dp</dimen>
+    <dimen name="db_nav4_alto">21.5dp</dimen>
+    <dimen name="db_nav4_margin_izq">199dp</dimen>
+    <dimen name="db_nav4_margin_top">682dp</dimen>
+    <dimen name="db_nav5_ancho">25dp</dimen>
+    <dimen name="db_nav5_alto">17dp</dimen>
+    <dimen name="db_nav5_margin_izq">257.5dp</dimen>
+    <dimen name="db_nav5_margin_top">684dp</dimen>
+    <dimen name="db_nav6_ancho">27dp</dimen>
+    <dimen name="db_nav6_alto">21dp</dimen>
+    <dimen name="db_nav6_margin_izq">317dp</dimen>
+    <dimen name="db_nav6_margin_top">682.5dp</dimen>
+
+</resources>

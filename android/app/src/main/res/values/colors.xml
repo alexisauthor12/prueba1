@@ -17,5 +17,12 @@
     <color name="campo_borde">#9E9E9E</color>   <!-- borde del campo -->
     <color name="placeholder">#757575</color>   <!-- "Contrasena:" -->
 
+    <!-- Dashboard (medidos sobre el mockup) -->
+    <color name="hoja">#212121</color>          <!-- hoja del historico -->
+    <color name="texto_gris">#9F9F9F</color>    <!-- "HOY" y las horas -->
+    <color name="rosa_actualizar">#C97E93</color>
+    <color name="punto">#EDEDED</color>         <!-- puntos del carrusel -->
+    <color name="blanco_hueso">#FFF2FD</color>
+
     <color name="ic_launcher_background">#303030</color>
 </resources>

@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login','clave')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -121,7 +121,32 @@ $lista | Sort-Object -Property Media -Descending | Select-Object -First 14 | For
 Write-Output ""
 
 # --- comparacion por region ---
-if($Pantalla -eq 'clave'){
+if($Pantalla -eq 'dashboard'){
+  $regiones = @(
+    @('CAMPANA',        30,   20, 100, 100),
+    @('TITULO_INICIO', 130,   35, 245,  90),
+    @('ACCESS',        440,   22, 520, 100),
+    @('NFC',           535,   22, 615, 100),
+    @('MENU',          645,   40, 700,  80),
+    @('TARJETA',        30,  140, 690, 335),
+    @('TXT_SALDO',      60,  175, 350, 205),
+    @('TXT_MONTO',      60,  220, 350, 255),
+    @('TXT_CUENTA',     60,  270, 350, 300),
+    @('ICONOS_TARJ',   380,  160, 640, 215),
+    @('MOVIMIENTOS',   360,  265, 645, 310),
+    @('PUNTOS',        310,  360, 410, 395),
+    @('TITULO_HOJA',    15,  435, 300, 475),
+    @('ACTUALIZAR',    575,  435, 700, 470),
+    @('HOY',            15,  500,  75, 530),
+    @('FILA1_ICONO',    20,  550,  65, 615),
+    @('FILA1_TEXTO',    80,  565, 400, 600),
+    @('FILA1_MONTO',   580,  555, 710, 590),
+    @('FILA1_HORA',    600,  585, 710, 615),
+    @('FILA7',          20, 1275, 260, 1330),
+    @('NAV_ICONOS',      0, 1355, 719, 1412),
+    @('NAV_TEXTO',       0, 1412, 719, 1445)
+  )
+} elseif($Pantalla -eq 'clave'){
   $regiones = @(
     @('VELO_FONDO',      0,  150,  80,  300),
     @('LOGO_OSCURO',    90,  240, 630,  430),

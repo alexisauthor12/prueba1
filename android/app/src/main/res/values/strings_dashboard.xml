@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del dashboard (replica de design/referencia-dashboard.jpeg) -->
+<resources>
+    <string name="db_inicio">Inicio</string>
+    <string name="db_access_desc">Access</string>
+    <string name="db_nfc_desc">NFC S7B</string>
+    <string name="db_menu_desc">Menú</string>
+
+    <!-- Tarjeta de saldo -->
+    <string name="db_saldo_titulo">Saldo Cuenta Ahorro</string>
+    <string name="db_saldo">Bs. 28.406,96</string>
+    <string name="db_cuenta">0102****5124</string>
+    <string name="db_movimientos">Movimientos en línea</string>
+    <string name="db_refrescar_desc">Actualizar saldo</string>
+    <string name="db_ocultar_desc">Ocultar saldo</string>
+    <string name="db_qr_desc">Pagar con código QR</string>
+    <string name="db_compartir_desc">Compartir cuenta</string>
+    <string name="db_movimientos_desc">Ver movimientos en línea</string>
+
+    <!-- Hoja del historico -->
+    <string name="db_historico">Histórico de operaciones</string>
+    <string name="db_actualizar">Actualizar</string>
+    <string name="db_hoy">HOY</string>
+
+    <!-- Barra inferior -->
+    <string name="db_nav_inicio">Inicio</string>
+    <string name="db_nav_transferir">Transfere...</string>
+    <string name="db_nav_pagos">Pagos</string>
+    <string name="db_nav_servicios">Servicios</string>
+    <string name="db_nav_divisas">Divisas</string>
+    <string name="db_nav_tarjeta">Tarjeta</string>
+    <string name="db_movil_desc">Pago móvil</string>
+    <string name="db_servicio_desc">Pago de servicios</string>
+
+    <!-- Filas del historico (texto, monto, hora) -->
+    <string name="db_f1_desc">PagomóvilBDV a otros bancos</string>
+    <string name="db_f1_monto">340,00 Bs</string>
+    <string name="db_f1_hora">05:26 PM</string>
+    <string name="db_f2_desc">PagomóvilBDV a otros bancos</string>
+    <string name="db_f2_monto">260,00 Bs</string>
+    <string name="db_f2_hora">04:57 PM</string>
+    <string name="db_f3_desc">PagomóvilBDV a otros bancos</string>
+    <string name="db_f3_monto">900,00 Bs</string>
+    <string name="db_f3_hora">01:17 PM</string>
+    <string name="db_f4_desc">PagomóvilBDV a otros bancos</string>
+    <string name="db_f4_monto">2.400,00 Bs</string>
+    <string name="db_f4_hora">12:52 PM</string>
+    <string name="db_f5_desc">PagomóvilBDV</string>
+    <string name="db_f5_monto">260,00 Bs</string>
+    <string name="db_f5_hora">09:02 AM</string>
+    <string name="db_f6_desc">PagomóvilBDV</string>
+    <string name="db_f6_monto">1.009,02 Bs</string>
+    <string name="db_f6_hora">07:58 AM</string>
+    <string name="db_f7_desc">Pago de Servicios</string>
+    <string name="db_f7_monto">400,00 Bs</string>
+    <string name="db_f7_hora">07:58 AM</string>
+</resources>

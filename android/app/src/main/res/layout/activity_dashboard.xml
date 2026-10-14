@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dashboard del BDV: se abre al ingresar la contrasena correcta.
+  Replica 1:1 del mockup design/referencia-dashboard.jpeg
+  (720x1450 px @2x -> lienzo de diseno 360 x 725 dp).
+  Medidas en values/dimens_dashboard.xml.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <!-- ================= Barra superior ================= -->
+    <ImageView
+        android:id="@+id/dbCampana"
+        android:layout_width="@dimen/db_campana_ancho"
+        android:layout_height="@dimen/db_campana_alto"
+        android:layout_marginStart="@dimen/db_campana_margin_izq"
+        android:layout_marginTop="@dimen/db_campana_margin_top"
+        android:contentDescription="@string/notificaciones"
+        android:src="@drawable/db_campana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dbTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_titulo_margin_izq"
+        android:layout_marginTop="@dimen/db_titulo_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_inicio"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_titulo_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/dbAccess"
+        android:layout_width="@dimen/db_access"
+        android:layout_height="@dimen/db_access"
+        android:layout_marginStart="@dimen/db_access_margin_izq"
+        android:layout_marginTop="@dimen/db_access_margin_top"
+        android:contentDescription="@string/db_access_desc"
+        android:src="@drawable/db_access"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/dbNfc"
+        android:layout_width="@dimen/db_nfc"
+        android:layout_height="@dimen/db_nfc"
+        android:layout_marginStart="@dimen/db_nfc_margin_izq"
+        android:layout_marginTop="@dimen/db_nfc_margin_top"
+        android:contentDescription="@string/db_nfc_desc"
+        android:src="@drawable/db_nfc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/dbMenu"
+        android:layout_width="@dimen/db_menu_ancho"
+        android:layout_height="@dimen/db_menu_alto"
+        android:layout_marginStart="@dimen/db_menu_margin_izq"
+        android:layout_marginTop="@dimen/db_menu_margin_top"
+        android:contentDescription="@string/db_menu_desc"
+        android:src="@drawable/db_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Tarjeta de saldo ================= -->
+    <View
+        android:id="@+id/dbTarjeta"
+        android:layout_width="@dimen/db_tarjeta_ancho"
+        android:layout_height="@dimen/db_tarjeta_alto"
+        android:layout_marginStart="@dimen/db_tarjeta_margin_izq"
+        android:layout_marginTop="@dimen/db_tarjeta_margin_top"
+        android:background="@drawable/bg_tarjeta_dashboard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Segunda tarjeta del carrusel: solo asoma su borde izquierdo -->
+    <View
+        android:layout_width="@dimen/db_tarjeta_ancho"
+        android:layout_height="@dimen/db_tarjeta_alto"
+        android:layout_marginStart="351dp"
+        android:layout_marginTop="@dimen/db_tarjeta_margin_top"
+        android:background="@drawable/bg_tarjeta_dashboard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dbSaldoTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_saldo_margin_izq"
+        android:layout_marginTop="@dimen/db_saldo_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_saldo_titulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_saldo_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dbSaldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_monto_margin_izq"
+        android:layout_marginTop="@dimen/db_monto_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_saldo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_monto_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dbCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_cuenta_margin_izq"
+        android:layout_marginTop="@dimen/db_cuenta_margin_top"
+        android:fontFamily="@font/arimo"
+        android:includeFontPadding="false"
+        android:text="@string/db_cuenta"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/db_cuenta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Iconos de la tarjeta -->
+    <ImageView android:id="@+id/dbIco1"
+        android:layout_width="@dimen/db_ico1_ancho" android:layout_height="@dimen/db_ico1_alto"
+        android:layout_marginStart="@dimen/db_ico1_margin_izq" android:layout_marginTop="@dimen/db_ico1_margin_top"
+        android:contentDescription="@string/db_refrescar_desc" android:src="@drawable/db_ico1"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/dbIco2"
+        android:layout_width="@dimen/db_ico2_ancho" android:layout_height="@dimen/db_ico2_alto"
+        android:layout_marginStart="@dimen/db_ico2_margin_izq" android:layout_marginTop="@dimen/db_ico2_margin_top"
+        android:contentDescription="@string/db_ocultar_desc" android:src="@drawable/db_ico2"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/dbIco3"
+        android:layout_width="@dimen/db_ico3_ancho" android:layout_height="@dimen/db_ico3_alto"
+        android:layout_marginStart="@dimen/db_ico3_margin_izq" android:layout_marginTop="@dimen/db_ico3_margin_top"
+        android:contentDescription="@string/db_qr_desc" android:src="@drawable/db_ico3"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/dbIco4"
+        android:layout_width="@dimen/db_ico4_ancho" android:layout_height="@dimen/db_ico4_alto"
+        android:layout_marginStart="@dimen/db_ico4_margin_izq" android:layout_marginTop="@dimen/db_ico4_margin_top"
+        android:contentDescription="@string/db_compartir_desc" android:src="@drawable/db_ico4"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/dbChart"
+        android:layout_width="@dimen/db_chart_ancho" android:layout_height="@dimen/db_chart_alto"
+        android:layout_marginStart="@dimen/db_chart_margin_izq" android:layout_marginTop="@dimen/db_chart_margin_top"
+        android:contentDescription="@string/db_movimientos_desc" android:src="@drawable/db_chart"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/dbMovimientos"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_mov_margin_izq" android:layout_marginTop="@dimen/db_mov_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/db_movimientos" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_mov_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/dbFlecha"
+        android:layout_width="@dimen/db_flecha_ancho" android:layout_height="@dimen/db_flecha_alto"
+        android:layout_marginStart="@dimen/db_flecha_margin_izq" android:layout_marginTop="@dimen/db_flecha_margin_top"
+        android:contentDescription="@string/db_movimientos_desc" android:src="@drawable/db_flecha"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Puntos del carrusel -->
+    <View android:layout_width="@dimen/db_punto" android:layout_height="@dimen/db_punto"
+        android:layout_marginStart="@dimen/db_punto1_margin_izq" android:layout_marginTop="@dimen/db_punto_margin_top"
+        android:background="@drawable/bg_punto_activo"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:layout_width="@dimen/db_punto" android:layout_height="@dimen/db_punto"
+        android:layout_marginStart="@dimen/db_punto2_margin_izq" android:layout_marginTop="@dimen/db_punto_margin_top"
+        android:background="@drawable/bg_punto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <View android:layout_width="@dimen/db_punto" android:layout_height="@dimen/db_punto"
+        android:layout_marginStart="@dimen/db_punto3_margin_izq" android:layout_marginTop="@dimen/db_punto_margin_top"
+        android:background="@drawable/bg_punto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Hoja del historico ================= -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="519dp"
+        android:layout_marginTop="@dimen/db_hoja_margin_top"
+        android:background="@drawable/bg_hoja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/dbHistorico"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_hist_margin_izq" android:layout_marginTop="@dimen/db_hist_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/db_historico" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_hist_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/dbActualizar"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_act_margin_izq" android:layout_marginTop="@dimen/db_act_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/db_actualizar" android:textColor="@color/rosa_actualizar"
+        android:textSize="@dimen/db_act_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/dbHoy"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_hoy_margin_izq" android:layout_marginTop="@dimen/db_hoy_margin_top"
+        android:fontFamily="@font/arimo" android:includeFontPadding="false"
+        android:text="@string/db_hoy" android:textColor="@color/texto_gris"
+        android:textSize="@dimen/db_hoy_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Filas 1..6: 59 dp cada una -->
+    <LinearLayout
+        android:id="@+id/filas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/db_filas_margin_top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/fila_historico" />
+        <include layout="@layout/fila_historico" />
+        <include layout="@layout/fila_historico" />
+        <include layout="@layout/fila_historico" />
+        <include layout="@layout/fila_historico" />
+        <include layout="@layout/fila_historico" />
+
+    </LinearLayout>
+
+    <!-- Fila 7 (Pago de Servicios): contenedor propio -->
+    <include
+        layout="@layout/fila_servicio"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/db_fila_alto"
+        android:layout_marginTop="@dimen/db_fila7_margin_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ================= Barra inferior ================= -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="@dimen/db_nav_margin_top"
+        android:background="@color/rojo_marca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView android:id="@+id/nav1"
+        android:layout_width="@dimen/db_nav1_ancho" android:layout_height="@dimen/db_nav1_alto"
+        android:layout_marginStart="@dimen/db_nav1_margin_izq" android:layout_marginTop="@dimen/db_nav1_margin_top"
+        android:contentDescription="@string/db_nav_inicio" android:src="@drawable/db_nav1"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav2"
+        android:layout_width="@dimen/db_nav2_ancho" android:layout_height="@dimen/db_nav2_alto"
+        android:layout_marginStart="@dimen/db_nav2_margin_izq" android:layout_marginTop="@dimen/db_nav2_margin_top"
+        android:contentDescription="@string/db_nav_transferir" android:src="@drawable/db_nav2"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav3"
+        android:layout_width="@dimen/db_nav3_ancho" android:layout_height="@dimen/db_nav3_alto"
+        android:layout_marginStart="@dimen/db_nav3_margin_izq" android:layout_marginTop="@dimen/db_nav3_margin_top"
+        android:contentDescription="@string/db_nav_pagos" android:src="@drawable/db_nav3"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav4"
+        android:layout_width="@dimen/db_nav4_ancho" android:layout_height="@dimen/db_nav4_alto"
+        android:layout_marginStart="@dimen/db_nav4_margin_izq" android:layout_marginTop="@dimen/db_nav4_margin_top"
+        android:contentDescription="@string/db_nav_servicios" android:src="@drawable/db_nav4"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav5"
+        android:layout_width="@dimen/db_nav5_ancho" android:layout_height="@dimen/db_nav5_alto"
+        android:layout_marginStart="@dimen/db_nav5_margin_izq" android:layout_marginTop="@dimen/db_nav5_margin_top"
+        android:contentDescription="@string/db_nav_divisas" android:src="@drawable/db_nav5"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/nav6"
+        android:layout_width="@dimen/db_nav6_ancho" android:layout_height="@dimen/db_nav6_alto"
+        android:layout_marginStart="@dimen/db_nav6_margin_izq" android:layout_marginTop="@dimen/db_nav6_margin_top"
+        android:contentDescription="@string/db_nav_tarjeta" android:src="@drawable/db_nav6"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto1"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="0dp" android:layout_marginTop="@dimen/db_nav_texto_activo_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_inicio" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto_activo"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto2"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/db_nav_columna" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_transferir" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto3"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="120dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_pagos" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto4"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="180dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_servicios" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto5"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="240dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_divisas" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/navTexto6"
+        android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
+        android:layout_marginStart="300dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
+        android:fontFamily="@font/arimo" android:gravity="center" android:includeFontPadding="false"
+        android:text="@string/db_nav_tarjeta" android:textColor="@color/blanco"
+        android:textSize="@dimen/db_nav_texto"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

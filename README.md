@@ -333,3 +333,62 @@ de Arial → idénticos, como corresponde a fuentes métricamente compatibles.
   con márgenes fijos y las franjas al borde inferior: se ve bien, pero para ser
   idéntico al píxel el dispositivo debe ser de 360 dp de ancho.
 
+
+---
+
+## 8. Dashboard (tras ingresar la contraseña)
+
+La contraseña de la demo es **12345** (`LoginActivity.CLAVE`). El campo la
+enmascara (`inputType="textPassword"`) y el icono del ojo alterna entre puntos
+y texto. Al pulsar «Aceptar»:
+
+- si coincide → se abre `DashboardActivity`
+- si no → aviso «Contraseña incorrecta» y el campo se limpia
+
+Réplica del mockup `design/referencia-dashboard.jpeg` (720 × 1450 px @2x →
+**360 × 725 dp**), medida con el mismo método.
+
+| Bloque | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Tarjeta de saldo | 632 × 169 en (44, 154) · radio 40 | 316 × 84.5 · radio 20 | **exacta** |
+| 2.ª tarjeta del carrusel | asoma desde x 702 | 351 dp | **exacta** |
+| Puntos | 16 px · paso 32 · y 369 | 8 dp · paso 16 | **exactos** |
+| Hoja del histórico | desde y 412 · radio superior 32 | radio 16 | **exacta** |
+| Filas | paso 118 · icono 24×40 en (31, 563) | paso 59 | **exactas** |
+| Barra inferior | desde y 1346 · 6 columnas de 120 | 60 dp por columna | **exacta** |
+
+| Texto | Ancho en el mockup | En la réplica |
+|---|---|---|
+| «Saldo Cuenta Ahorro» | 190 px | **190 px** |
+| «Bs. 28.406,96» | 157 px | 154 px |
+| «0102\*\*\*\*\*5124» | 133 px | 132 px |
+| «Inicio» (título) | 81 px | 81 px |
+| «Inicio» (etiqueta del nav) | 53 px | 53 px |
+| Etiquetas del nav | 99 / 54 / 80 / 63 / 62 px | 98 / 54 / 78 / 62 / 59 px |
+
+**Diff global: 5,19 / 255 · 3,77 % de píxeles.** Sale más alto que en las otras
+pantallas porque aquí hay mucho más texto y el error de forma de letra se
+acumula (la tipografía de marca sigue siendo la limitación conocida); la
+geometría y los colores sí son exactos.
+
+Detalles que solo se ven midiendo:
+
+- La barra superior es `#303030` (el mismo fondo del inicio) y la hoja `#212121`.
+- «Actualizar» **no** es rosa brillante sino `#C97E93`; «HOY» y las horas son
+  `#9F9F9F`, no blancos.
+- La tarjeta es un **carrusel**: a la derecha asoma la siguiente desde x 702
+  (9 px). Sin ese detalle el diff no baja.
+- La fila 7 («Pago de Servicios») va **8,5 dp más abajo** que el paso regular de
+  59 dp y usa un chevron en vez del icono de móvil.
+- El radio de la tarjeta (40 px = 20 dp) y el de la hoja (32 px = 16 dp) se
+  dedujeron aplicando la fórmula del arco sobre la esquina real del mockup.
+- Los 18 iconos (campana, access, NFC, menú, 4 de la tarjeta, gráfico, flecha,
+  móvil, chevron y los 6 del nav) están recortados del mockup con el fondo
+  emparejado, e incluidos en `res/drawable-xhdpi`.
+
+### Verlo sin compilar
+
+`replica/flujo.html` tiene ya **4 pasos**: Inicio → Autenticación → Diálogo
+(contraseña 12345) → Dashboard. Y `replica/vista-previa-dashboard.html` es la
+versión autocontenida para pasar al móvil.
+

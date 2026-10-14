@@ -82,8 +82,8 @@ foreach($f in $kts){
     $tipo = $m.Groups[1].Value
     $nom  = $m.Groups[2].Value
     if($tipo -eq 'id'){ if(-not $ids.ContainsKey($nom)){ $fallosKt += ($f.Name + ' -> R.id.' + $nom) } }
-    elseif($tipo -eq 'layout'){
-      if(-not $defs.ContainsKey('layout/' + $nom)){ $fallosKt += ($f.Name + ' -> R.layout.' + $nom) }
+    else{
+      if(-not $defs.ContainsKey($tipo + '/' + $nom)){ $fallosKt += ($f.Name + ' -> R.' + $tipo + '.' + $nom) }
     }
   }
 }
