@@ -207,31 +207,41 @@ bdv-app/
 
 ## 3. Cómo obtener el APK (sin instalar nada)
 
-1. Crea un repositorio **vacío** en GitHub (por ejemplo `bdv-inicio`).
-2. En esta carpeta ejecuta (Git ya está configurado en tu equipo):
+El repositorio ya está en GitHub y **el APK se compila solo** con cada `push`:
 
-   ```powershell
-   cd "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app"
-   git init
-   git add .
-   git commit -m "Pantalla de inicio BDV: replica 1:1 + proyecto Android"
-   git branch -M main
-   git remote add origin https://github.com/TU-USUARIO/bdv-inicio.git
-   git push -u origin main
-   ```
+- Repositorio: **https://github.com/alexisauthor12/prueba1**
+- Compilación verificada:
+  **https://github.com/alexisauthor12/prueba1/actions/runs/38626473886**
+  (`success`, 14/10/2026, debug y release)
 
-   En el primer `push` se abrirá el navegador para que te identifiques
-   (Credential Manager de Windows; no hay que escribir tokens a mano).
+1. Abre **Actions → «Compilar APK» → el run más reciente** (tarda 3-4 minutos).
+2. En la sección **Artifacts** descarga:
+   - `bdv-inicio-debug-apk` → dentro está `app-debug.apk` (**el instalable**, 3,7 MB)
+   - `bdv-inicio-release-sin-firmar-apk` → 2,9 MB, para firmar y distribuir
+3. Descomprime el `.zip`, pasa el `.apk` al teléfono, ábrelo y activa
+   «Instalar apps de origen desconocido».
 
-3. Abre en GitHub: **Actions → Compilar APK → el run más reciente**.
-   Tarda unos 3-5 minutos.
-4. En la sección **Artifacts** descarga:
-   - `bdv-inicio-debug-apk` → `app-debug.apk` (instalable directamente)
-   - `bdv-inicio-release-sin-firmar-apk` → para firmar y distribuir
-5. Pasa el `.apk` al teléfono, ábrelo y activa "Instalar apps de origen desconocido".
+**Repetir tras cualquier cambio:**
 
-**Repetir tras cualquier cambio:** `git add . ; git commit -m "cambio" ; git push`
-y en 3-5 minutos tendrás un APK nuevo en Actions.
+```powershell
+cd "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app"
+git add . ; git commit -m "cambio" ; git push
+```
+
+En 3-4 minutos hay un APK nuevo en Actions. Si algo falla, el workflow publica el
+error de Gradle como **anotación del run** (se ve en la pestaña Actions y también
+se puede leer por la API sin descargar el log completo).
+
+Qué hace la compilación: JDK 17 (temurin) + Gradle 8.7 + AGP 8.5.2 + Kotlin
+1.9.24, `compileSdk 34` / `minSdk 26` (Android 8.0 o superior), y publica el APK
+de depuración y el de release sin firmar.
+
+> **Nota de la primera puesta en marcha.** Los dos primeros runs fallaron en
+> `:app:mergeDebugResources` porque `color/velo` estaba definido en
+> `values/colors.xml` **y otra vez** en `values/dimens_clave.xml` (AAPT2:
+> «Duplicate resources»). Corregido en `1dde4b0`, y `tools/validar-android.ps1`
+> ahora comprueba recursos duplicados entre los `values/*.xml` para que no
+> vuelva a colarse.
 
 ### Compilar en local (opcional, si algún día quieres más velocidad)
 
