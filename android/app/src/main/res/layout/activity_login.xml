@@ -206,6 +206,7 @@
 
         <!-- Velo negro al 53 % sobre toda la pantalla -->
         <View
+            android:id="@+id/velo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/velo" />

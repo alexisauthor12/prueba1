@@ -18,8 +18,12 @@
   /* Pantalla de autenticación */
   #zonaIngresa{left:170px;top:848px;width:380px;height:56px;}
   #zonaVolver{left:190px;top:1372px;width:350px;height:70px;}
-  /* Diálogo de contraseña: el velo ocupa todo y queda debajo de los botones */
-  #zonaVelo{left:0;top:0;width:720px;height:1456px;border-radius:0;}
+  /* Diálogo de contraseña: el velo son cuatro zonas ALREDEDOR de la tarjeta,
+     de modo que el campo de dentro se puede pulsar y escribir. */
+  #zonaVeloArriba{left:0;top:0;width:720px;height:524px;border-radius:0;}
+  #zonaVeloAbajo{left:0;top:938px;width:720px;height:518px;border-radius:0;}
+  #zonaVeloIzq{left:0;top:524px;width:80px;height:414px;border-radius:0;}
+  #zonaVeloDer{left:640px;top:524px;width:80px;height:414px;border-radius:0;}
   #zonaAceptar{left:174px;top:818px;width:176px;height:80px;border-radius:20px;}
   #zonaCancelar{left:370px;top:818px;width:176px;height:80px;border-radius:20px;}
   /* Dashboard: la barra inferior vuelve al inicio de sesión */
@@ -37,7 +41,10 @@
   <div id="zonaIngresa" class="zona" title="Ingresa con tu contraseña"></div>
   <div id="zonaVolver"  class="zona" title="Desvincular dispositivo"></div>
 
-  <div id="zonaVelo"     class="zona" title="Cerrar"></div>
+  <div id="zonaVeloArriba" class="zona" title="Cerrar"></div>
+  <div id="zonaVeloAbajo"  class="zona" title="Cerrar"></div>
+  <div id="zonaVeloIzq"    class="zona" title="Cerrar"></div>
+  <div id="zonaVeloDer"    class="zona" title="Cerrar"></div>
   <div id="zonaAceptar"  class="zona" title="Aceptar"></div>
   <div id="zonaCancelar" class="zona" title="Cancelar"></div>
 
@@ -52,7 +59,8 @@
   var v     = document.getElementById('vista');
   var et    = document.getElementById('etiqueta');
   var av    = document.getElementById('aviso');
-  var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVelo','zonaAceptar','zonaCancelar','zonaDashVolver'];
+  var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVeloArriba','zonaVeloAbajo',
+               'zonaVeloIzq','zonaVeloDer','zonaAceptar','zonaCancelar','zonaDashVolver'];
 
   function mostrar(ids, alto){
     for(var i=0;i<zonas.length;i++){
@@ -94,10 +102,28 @@
   document.getElementById('zonaBoton').addEventListener('click', irAlLogin);
   document.getElementById('zonaIngresa').addEventListener('click', irAlClave);
   document.getElementById('zonaVolver').addEventListener('click', irAlInicio);
-  document.getElementById('zonaVelo').addEventListener('click', irAlLogin);
+  document.getElementById('zonaVeloArriba').addEventListener('click', irAlLogin);
+  document.getElementById('zonaVeloAbajo').addEventListener('click', irAlLogin);
+  document.getElementById('zonaVeloIzq').addEventListener('click', irAlLogin);
+  document.getElementById('zonaVeloDer').addEventListener('click', irAlLogin);
   document.getElementById('zonaCancelar').addEventListener('click', irAlLogin);
-  document.getElementById('zonaAceptar').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaAceptar').addEventListener('click', comprobarClave);
   document.getElementById('zonaDashVolver').addEventListener('click', irAlLogin);
+
+  /* Comprueba la contrasena escrita en el campo del dialogo. */
+  function comprobarClave(){
+    var escrita = '';
+    try {
+      var doc = v.contentDocument || v.contentWindow.document;
+      var campo = doc.getElementById('clave');
+      if(campo){ escrita = campo.value; }
+    } catch(e){ escrita = ''; }
+    if(escrita === '' || escrita === '12345'){
+      irAlDashboard();
+    } else {
+      av.textContent = 'Contrasena incorrecta · la de la demo es 12345';
+    }
+  }
 
   function ajustar(){
     var alto = parseFloat(marco.style.height) || 1460;

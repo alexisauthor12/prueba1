@@ -50,8 +50,9 @@ class LoginActivity : AppCompatActivity() {
         findViewById<View>(R.id.claveOjo).setOnClickListener { alternarClave() }
         findViewById<View>(R.id.claveCancelar).setOnClickListener { cerrarClave() }
         findViewById<View>(R.id.claveAceptar).setOnClickListener { validarClave() }
-        // Tocar el velo (fuera de la tarjeta) cierra el dialogo.
-        panelClave.setOnClickListener { cerrarClave() }
+        // Tocar el velo (fuera de la tarjeta) cierra el dialogo. El panel solo
+        // absorbe los toques: pulsar la tarjeta o el campo NO lo cierra.
+        findViewById<View>(R.id.velo).setOnClickListener { cerrarClave() }
 
         // El boton "atras" cierra el dialogo si esta abierto.
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
