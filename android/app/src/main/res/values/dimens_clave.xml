@@ -12,8 +12,9 @@
 -->
 <resources>
 
-    <!-- Velo sobre la pantalla de login (negro al 53 %, medido) -->
-    <color name="velo">#87000000</color>
+    <!-- El velo del dialogo (#87000000, negro al 53 %) esta en
+         values/colors.xml. Aqui habia una copia y AAPT2 aborta la compilacion
+         con "Error: Duplicate resources" (color/velo en colors.xml y aqui). -->
 
     <!-- Tarjeta del dialogo: 560x414 px en (80, 524) -> 280x207 dp, radio 10 dp -->
     <dimen name="clave_radio">10dp</dimen>

@@ -2,9 +2,11 @@
 # validar-android.ps1
 #   Comprueba, sin necesidad de Android SDK:
 #     1) que todos los XML esten bien formados
-#     2) que cada @recurso usado exista (dimen, color, string, style, id,
+#     2) que no haya recursos duplicados entre los values/*.xml (AAPT2 falla
+#        con "Error: Duplicate resources")
+#     3) que cada @recurso usado exista (dimen, color, string, style, id,
 #        drawable, font, layout, mipmap)
-#     3) que cada R.tipo.nombre usado en Kotlin exista
+#     4) que cada R.tipo.nombre usado en Kotlin exista
 #
 #   Uso:  powershell -ExecutionPolicy Bypass -File validar-android.ps1
 # ---------------------------------------------------------------------------
@@ -51,6 +53,27 @@ foreach($d in Get-ChildItem -Path (Join-Path $Raiz 'res') -Directory){
   }
 }
 
+# --- 2b) recursos duplicados: AAPT2 aborta con "Error: Duplicate resources"
+#         si el mismo tipo/nombre se define en dos archivos de values/
+$dups = @()
+$vistos = @{}
+foreach($f in Get-ChildItem -Path (Join-Path $Raiz 'res\values') -File -Filter *.xml){
+  $x = [xml](Get-Content $f.FullName -Raw -Encoding UTF8)
+  foreach($n in $x.SelectNodes('//*[@name]')){
+    $t = $n.LocalName
+    if($t -match '-array$'){ $t = 'array' }
+    if(@('dimen','color','string','style','integer','bool','array','attr') -contains $t){
+      $clave = $t + '/' + $n.name
+      if($vistos.ContainsKey($clave)){ $dups += ($clave + '  en ' + $vistos[$clave] + ' y ' + $f.Name) }
+      else { $vistos[$clave] = $f.Name }
+    }
+  }
+}
+Write-Output ""
+Write-Output "RECURSOS DUPLICADOS:"
+if($dups.Count -eq 0){ Write-Output "   OK  (ninguno)" }
+else { foreach($x in ($dups | Sort-Object -Unique)){ Write-Output ('   FALLA  ' + $x) } }
+
 # --- 3) referencias ---
 $ids = @{}
 foreach($f in $xmls){
@@ -94,7 +117,7 @@ if($fallosKt.Count -eq 0){ Write-Output ("   OK  (" + $kts.Count + " archivos)")
 else { foreach($x in ($fallosKt | Sort-Object -Unique)){ Write-Output ('   FALLA  ' + $x) } }
 
 Write-Output ""
-if($errores -eq 0 -and $fallos.Count -eq 0 -and $fallosKt.Count -eq 0){
+if($errores -eq 0 -and $fallos.Count -eq 0 -and $fallosKt.Count -eq 0 -and $dups.Count -eq 0){
   Write-Output "RESULTADO: todo correcto."
 } else {
   Write-Output "RESULTADO: hay fallos (ver arriba)."
