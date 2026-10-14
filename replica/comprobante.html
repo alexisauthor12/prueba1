@@ -61,26 +61,26 @@
 
   <!-- Filas: cap-top medidos [466, 515, 565, 615, 664, 713, 763] -->
   <div class="cpEtiqueta" style="top:463.6px">Fecha:</div>
-  <div class="cpValor"    style="top:463.6px">13/10/2026</div>
+  <div class="cpValor" id="cpVal1" style="top:463.6px">13/10/2026</div>
 
   <div class="cpEtiqueta" style="top:512.6px">Operación:</div>
-  <div class="cpValor"    style="top:512.6px">007652036202</div>
+  <div class="cpValor" id="cpVal2" style="top:512.6px">007652036202</div>
   <img id="cpCopiar" src="cp_copiar.png" alt="">
 
   <div class="cpEtiqueta" style="top:562.6px">Identificación:</div>
-  <div class="cpValor"    style="top:562.6px">24349893</div>
+  <div class="cpValor" id="cpVal3" style="top:562.6px">24349893</div>
 
   <div class="cpEtiqueta" style="top:612.6px">Origen:</div>
-  <div class="cpValor"    style="top:612.6px">0102****5124</div>
+  <div class="cpValor" id="cpVal4" style="top:612.6px">0102****5124</div>
 
   <div class="cpEtiqueta" style="top:661.6px">Destino:</div>
-  <div class="cpValor"    style="top:661.6px">04147459612</div>
+  <div class="cpValor" id="cpVal5" style="top:661.6px">04147459612</div>
 
   <div class="cpEtiqueta" style="top:710.6px">Banco:</div>
-  <div class="cpValor"    style="top:710.6px">0105 - BANCO MERCANTIL</div>
+  <div class="cpValor" id="cpVal6" style="top:710.6px">0105 - BANCO MERCANTIL</div>
 
   <div class="cpEtiqueta" style="top:760.6px">Concepto:</div>
-  <div class="cpValor"    style="top:760.6px">pago</div>
+  <div class="cpValor" id="cpVal7" style="top:760.6px">pago</div>
 
   <!-- Pie -->
   <img id="cpFlechaPie" src="cp_flecha_pie.png" alt="">
@@ -93,6 +93,61 @@
   <div class="cpTrack" style="top:1220px"></div>
   <div class="cpKnob"  style="top:1221.5px"></div>
   <div class="cpEtiquetaInt" style="top:1227.7px">Crear Acceso directo</div>
+
+  <script>
+    /* El comprobante se puede abrir de tres formas:
+       1) solo (comprobante.html)          -> datos del mockup, tal cual.
+       2) con parametros (comprobante.html?documento=...&telefono=...&monto=...)
+          -> los datos que se escribieron en PagomovilBDV.
+       3) dentro del visor de flujo: el visor manda los datos por postMessage. */
+    function dosDigitos(n){ return (n < 10 ? '0' : '') + n; }
+
+    function pintar(d){
+      if(d.documento){ document.getElementById('cpVal3').textContent = d.documento; }
+      if(d.telefono){  document.getElementById('cpVal5').textContent = d.telefono; }
+      if(d.monto){     document.getElementById('cpMonto').textContent = d.monto; }
+      if(d.concepto){  document.getElementById('cpVal7').textContent = d.concepto; }
+      if(d.banco){     document.getElementById('cpVal6').textContent = d.banco; }
+      /* Fecha de hoy y numero de operacion (12 digitos, empieza por 00) */
+      var h = new Date();
+      document.getElementById('cpVal1').textContent =
+        dosDigitos(h.getDate()) + '/' + dosDigitos(h.getMonth() + 1) + '/' + h.getFullYear();
+      document.getElementById('cpVal2').textContent =
+        '00' + (1000000000 + Math.floor(Math.random() * 9000000000));
+    }
+
+    var q = new URLSearchParams(location.search);
+    if(q.get('documento') || q.get('telefono') || q.get('monto')){
+      pintar({documento: q.get('documento'), telefono: q.get('telefono'), monto: q.get('monto'),
+              concepto: q.get('concepto'), banco: q.get('banco')});
+    }
+
+    window.addEventListener('message', function(ev){
+      if(ev.data && ev.data.tipo === 'bdv-datos'){ pintar(ev.data.datos); }
+    });
+
+    /* Las dos flechas vuelven a PagomovilBDV (o avisan al visor de flujo) */
+    function volver(){
+      if(window.parent !== window){ window.parent.postMessage({tipo:'bdv-volver'}, '*'); }
+      else { location.href = 'pagomovil.html'; }
+    }
+    document.getElementById('cpFlecha').addEventListener('click', volver);
+    document.getElementById('cpFlechaPie').addEventListener('click', volver);
+
+    /* Interruptores: al tocar, la bola se desliza (igual que en la app) */
+    function interruptor(riel, bola){
+      var encendido = false;
+      var recorrido = 63 - 32;
+      document.getElementById(riel).addEventListener('click', alternar);
+      document.getElementById(bola).addEventListener('click', alternar);
+      function alternar(){
+        encendido = !encendido;
+        document.getElementById(bola).style.transform = 'translateX(' + (encendido ? recorrido : 0) + 'px)';
+      }
+    }
+    interruptor('cpTrack1', 'cpKnob1');
+    interruptor('cpTrack2', 'cpKnob2');
+  </script>
 
 </body>
 </html>

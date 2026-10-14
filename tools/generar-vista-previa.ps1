@@ -52,6 +52,11 @@ function Construir([string]$origen, [string[]]$imagenes, [switch]$ConLogin){
   $html = Get-Content (Join-Path $Base $origen) -Raw -Encoding UTF8
   $html = Incrustar $html 'arimo.ttf' "url('arimo.ttf')"
   foreach($img in $imagenes){ $html = IncrustarImagen $html $img }
+  # Al abrir la vista previa suelta, la navegacion entre pantallas apunta a las
+  # otras vistas previas autocontenidas (que ya llevan fuente e imagenes dentro).
+  $html = $html.Replace("'comprobante.html?", "'vista-previa-comprobante.html?")
+  $html = $html.Replace("'comprobante.html'", "'vista-previa-comprobante.html'")
+  $html = $html.Replace("'pagomovil.html'", "'vista-previa-pagomovil.html'")
   if($ConLogin){
     # El login va dentro del iframe: se incrusta como data URI ya autocontenido
     $login = Get-Content (Join-Path $Base 'login.html') -Raw -Encoding UTF8

@@ -533,4 +533,10 @@ Detalles que solo se ven midiendo:
 En la app: `DashboardActivity` → panel de Pagos → `PagomovilActivity` →
 `ComprobanteActivity`. Vista autocontenida: `replica/vista-previa-comprobante.html`.
 
+En la réplica HTML también se puede escribir: los cuatro campos son `<input>`
+reales (el marcador gris se oculta al escribir y el texto blanco cae en el
+mismo sitio, ±1 px), «Pagar» lleva los datos al comprobante — por URL al abrir
+la pantalla suelta, o por `postMessage` dentro del visor de flujo — y el monto
+sale con `montoVenezolano()`: `2400` → `2.400,00 Bs`.
+
 

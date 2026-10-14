@@ -40,6 +40,19 @@
            letter-spacing:-0.025em;}
   .pmPlaceholder{position:absolute;left:59.8px;font-size:28px;color:#9F9F9F;line-height:1;white-space:nowrap;
                  letter-spacing:-0.005em;}
+  /* Campo editable de verdad: va encima del marcador gris y lo tapa al escribir */
+  .pmEntrada{position:absolute;left:59.8px;height:96px;box-sizing:border-box;
+             margin:0;border:0;outline:0;background:transparent;
+             font-family:'Arimo',Arial,Helvetica,sans-serif;font-size:28px;color:#FFFFFF;
+             line-height:28px;letter-spacing:-0.025em;padding:0 0 6.2px 0;
+             -webkit-appearance:none;appearance:none;border-radius:0;}
+  .pmEntrada::placeholder{color:transparent;}
+  .pmEntrada::-webkit-outer-spin-button,
+  .pmEntrada::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  /* Aviso flotante (validacion) */
+  #pmAviso{position:absolute;left:60px;top:1070px;width:600px;padding:16px 0;border-radius:16px;
+           background:#000000;color:#FFFFFF;font-size:24px;text-align:center;display:none;
+           border:2px solid #BB1B47;}
   /* Triangulo del desplegable: 18 x 9 px en x 623 */
   .pmChevron{position:absolute;left:623px;width:0;height:0;
              border-left:9px solid transparent;border-right:9px solid transparent;
@@ -80,9 +93,11 @@
   <div class="pmTexto" style="top:245.9px">Personas</div>
   <div class="pmChevron" style="top:256px"></div>
 
-  <!-- Campo 2: Documento (con boton rojo) -->
+  <!-- Campo 2: Documento (editable, con boton rojo) -->
   <div class="pmCampo" style="top:368px;width:534px"></div>
-  <div class="pmPlaceholder" style="top:398.9px">Documento:</div>
+  <div class="pmPlaceholder" id="phDocumento" style="top:398.9px">Documento:</div>
+  <input class="pmEntrada" id="inDocumento" type="text" inputmode="numeric" maxlength="12"
+         autocomplete="off" style="top:368px;width:500px">
   <img id="pmBotonDoc" src="pm_boton_doc.png" alt="">
 
   <!-- Campo 3: Banco (desplegable con etiqueta en el borde) -->
@@ -92,15 +107,23 @@
   <div class="pmTexto" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
   <div class="pmChevron" style="top:568px"></div>
 
-  <!-- Campos 4, 5 y 6 -->
+  <!-- Campos 4, 5 y 6 (editables) -->
   <div class="pmCampo" style="top:680px"></div>
-  <div class="pmPlaceholder" style="top:710.9px">Teléfono:</div>
+  <div class="pmPlaceholder" id="phTelefono" style="top:710.9px">Teléfono:</div>
+  <input class="pmEntrada" id="inTelefono" type="tel" inputmode="tel" maxlength="14"
+         autocomplete="off" style="top:680px;width:600px">
 
   <div class="pmCampo" style="top:836px"></div>
-  <div class="pmPlaceholder" style="top:866.9px">Monto:</div>
+  <div class="pmPlaceholder" id="phMonto" style="top:866.9px">Monto:</div>
+  <input class="pmEntrada" id="inMonto" type="text" inputmode="decimal" maxlength="14"
+         autocomplete="off" style="top:836px;width:600px">
 
   <div class="pmCampo" style="top:992px"></div>
-  <div class="pmPlaceholder" style="top:1022.9px">Concepto:</div>
+  <div class="pmPlaceholder" id="phConcepto" style="top:1022.9px">Concepto:</div>
+  <input class="pmEntrada" id="inConcepto" type="text" maxlength="40"
+         autocomplete="off" style="top:992px;width:600px">
+
+  <div id="pmAviso"></div>
 
   <!-- Botones -->
   <div class="pmBoton" id="pmPagar"><span style="top:28px">Pagar</span></div>
@@ -123,6 +146,81 @@
   <div class="pmNavTexto" style="left:360px;top:1410.85px">Servicios</div>
   <div class="pmNavTexto" style="left:480px;top:1410.85px">Divisas</div>
   <div class="pmNavTexto" style="left:600px;top:1410.85px">Tarjeta</div>
+
+  <script>
+    /* Los cuatro campos son editables: al escribir, el marcador gris se oculta
+       y el texto blanco queda exactamente en su sitio. */
+    var paresCampos = [['inDocumento','phDocumento'], ['inTelefono','phTelefono'],
+                       ['inMonto','phMonto'], ['inConcepto','phConcepto']];
+
+    function revisarMarcadores(){
+      for(var i=0;i<paresCampos.length;i++){
+        var e = document.getElementById(paresCampos[i][0]);
+        var m = document.getElementById(paresCampos[i][1]);
+        m.style.display = (e.value.length > 0) ? 'none' : 'block';
+      }
+    }
+    for(var i=0;i<paresCampos.length;i++){
+      document.getElementById(paresCampos[i][0]).addEventListener('input', revisarMarcadores);
+    }
+
+    /* Monto en formato venezolano: 2400 -> "2.400,00 Bs" */
+    function montoVenezolano(txt){
+      var limpio = txt.replace(/\./g, '').replace(',', '.');
+      var n = parseFloat(limpio);
+      if(isNaN(n)){ n = 0; }
+      var partes = n.toFixed(2).split('.');
+      return partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + partes[1] + ' Bs';
+    }
+
+    function datosPago(){
+      return {
+        documento: document.getElementById('inDocumento').value.trim(),
+        telefono:  document.getElementById('inTelefono').value.trim(),
+        monto:     montoVenezolano(document.getElementById('inMonto').value.trim()),
+        concepto:  document.getElementById('inConcepto').value.trim(),
+        banco:     '0102 - BANCO DE VENEZUELA'
+      };
+    }
+
+    function avisar(texto){
+      var a = document.getElementById('pmAviso');
+      a.textContent = texto;
+      a.style.display = 'block';
+      setTimeout(function(){ a.style.display = 'none'; }, 2200);
+    }
+
+    document.getElementById('pmPagar').addEventListener('click', function(){
+      if(document.getElementById('inDocumento').value.trim() === '' ||
+         document.getElementById('inTelefono').value.trim() === '' ||
+         document.getElementById('inMonto').value.trim() === ''){
+        avisar('Complete Documento, Teléfono y Monto');
+        return;
+      }
+      var d = datosPago();
+      if(window.parent !== window){
+        /* Dentro del visor de flujo: el visor abre el comprobante con estos datos */
+        window.parent.postMessage({tipo:'bdv-pagar', datos:d}, '*');
+      } else {
+        location.href = 'comprobante.html?documento=' + encodeURIComponent(d.documento) +
+                        '&telefono=' + encodeURIComponent(d.telefono) +
+                        '&monto='    + encodeURIComponent(d.monto) +
+                        '&concepto=' + encodeURIComponent(d.concepto) +
+                        '&banco='    + encodeURIComponent(d.banco);
+      }
+    });
+
+    document.getElementById('pmLimpiar').addEventListener('click', function(){
+      document.getElementById('inDocumento').value = '';
+      document.getElementById('inTelefono').value = '';
+      document.getElementById('inMonto').value = '';
+      document.getElementById('inConcepto').value = '';
+      revisarMarcadores();
+      document.getElementById('inDocumento').focus();
+    });
+
+    revisarMarcadores();
+  </script>
 
 </body>
 

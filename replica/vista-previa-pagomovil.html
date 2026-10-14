@@ -40,6 +40,19 @@
            letter-spacing:-0.025em;}
   .pmPlaceholder{position:absolute;left:59.8px;font-size:28px;color:#9F9F9F;line-height:1;white-space:nowrap;
                  letter-spacing:-0.005em;}
+  /* Campo editable de verdad: va encima del marcador gris y lo tapa al escribir */
+  .pmEntrada{position:absolute;left:59.8px;height:96px;box-sizing:border-box;
+             margin:0;border:0;outline:0;background:transparent;
+             font-family:'Arimo',Arial,Helvetica,sans-serif;font-size:28px;color:#FFFFFF;
+             line-height:28px;letter-spacing:-0.025em;padding:0 0 6.2px 0;
+             -webkit-appearance:none;appearance:none;border-radius:0;}
+  .pmEntrada::placeholder{color:transparent;}
+  .pmEntrada::-webkit-outer-spin-button,
+  .pmEntrada::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  /* Aviso flotante (validacion) */
+  #pmAviso{position:absolute;left:60px;top:1070px;width:600px;padding:16px 0;border-radius:16px;
+           background:#000000;color:#FFFFFF;font-size:24px;text-align:center;display:none;
+           border:2px solid #BB1B47;}
   /* Triangulo del desplegable: 18 x 9 px en x 623 */
   .pmChevron{position:absolute;left:623px;width:0;height:0;
              border-left:9px solid transparent;border-right:9px solid transparent;
@@ -80,9 +93,11 @@
   <div class="pmTexto" style="top:245.9px">Personas</div>
   <div class="pmChevron" style="top:256px"></div>
 
-  <!-- Campo 2: Documento (con boton rojo) -->
+  <!-- Campo 2: Documento (editable, con boton rojo) -->
   <div class="pmCampo" style="top:368px;width:534px"></div>
-  <div class="pmPlaceholder" style="top:398.9px">Documento:</div>
+  <div class="pmPlaceholder" id="phDocumento" style="top:398.9px">Documento:</div>
+  <input class="pmEntrada" id="inDocumento" type="text" inputmode="numeric" maxlength="12"
+         autocomplete="off" style="top:368px;width:500px">
   <img id="pmBotonDoc" src="data:image/png;base64,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" alt="">
 
   <!-- Campo 3: Banco (desplegable con etiqueta en el borde) -->
@@ -92,15 +107,23 @@
   <div class="pmTexto" style="top:557.9px">0102 - BANCO DE VENEZUELA</div>
   <div class="pmChevron" style="top:568px"></div>
 
-  <!-- Campos 4, 5 y 6 -->
+  <!-- Campos 4, 5 y 6 (editables) -->
   <div class="pmCampo" style="top:680px"></div>
-  <div class="pmPlaceholder" style="top:710.9px">Teléfono:</div>
+  <div class="pmPlaceholder" id="phTelefono" style="top:710.9px">Teléfono:</div>
+  <input class="pmEntrada" id="inTelefono" type="tel" inputmode="tel" maxlength="14"
+         autocomplete="off" style="top:680px;width:600px">
 
   <div class="pmCampo" style="top:836px"></div>
-  <div class="pmPlaceholder" style="top:866.9px">Monto:</div>
+  <div class="pmPlaceholder" id="phMonto" style="top:866.9px">Monto:</div>
+  <input class="pmEntrada" id="inMonto" type="text" inputmode="decimal" maxlength="14"
+         autocomplete="off" style="top:836px;width:600px">
 
   <div class="pmCampo" style="top:992px"></div>
-  <div class="pmPlaceholder" style="top:1022.9px">Concepto:</div>
+  <div class="pmPlaceholder" id="phConcepto" style="top:1022.9px">Concepto:</div>
+  <input class="pmEntrada" id="inConcepto" type="text" maxlength="40"
+         autocomplete="off" style="top:992px;width:600px">
+
+  <div id="pmAviso"></div>
 
   <!-- Botones -->
   <div class="pmBoton" id="pmPagar"><span style="top:28px">Pagar</span></div>
@@ -123,6 +146,81 @@
   <div class="pmNavTexto" style="left:360px;top:1410.85px">Servicios</div>
   <div class="pmNavTexto" style="left:480px;top:1410.85px">Divisas</div>
   <div class="pmNavTexto" style="left:600px;top:1410.85px">Tarjeta</div>
+
+  <script>
+    /* Los cuatro campos son editables: al escribir, el marcador gris se oculta
+       y el texto blanco queda exactamente en su sitio. */
+    var paresCampos = [['inDocumento','phDocumento'], ['inTelefono','phTelefono'],
+                       ['inMonto','phMonto'], ['inConcepto','phConcepto']];
+
+    function revisarMarcadores(){
+      for(var i=0;i<paresCampos.length;i++){
+        var e = document.getElementById(paresCampos[i][0]);
+        var m = document.getElementById(paresCampos[i][1]);
+        m.style.display = (e.value.length > 0) ? 'none' : 'block';
+      }
+    }
+    for(var i=0;i<paresCampos.length;i++){
+      document.getElementById(paresCampos[i][0]).addEventListener('input', revisarMarcadores);
+    }
+
+    /* Monto en formato venezolano: 2400 -> "2.400,00 Bs" */
+    function montoVenezolano(txt){
+      var limpio = txt.replace(/\./g, '').replace(',', '.');
+      var n = parseFloat(limpio);
+      if(isNaN(n)){ n = 0; }
+      var partes = n.toFixed(2).split('.');
+      return partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + partes[1] + ' Bs';
+    }
+
+    function datosPago(){
+      return {
+        documento: document.getElementById('inDocumento').value.trim(),
+        telefono:  document.getElementById('inTelefono').value.trim(),
+        monto:     montoVenezolano(document.getElementById('inMonto').value.trim()),
+        concepto:  document.getElementById('inConcepto').value.trim(),
+        banco:     '0102 - BANCO DE VENEZUELA'
+      };
+    }
+
+    function avisar(texto){
+      var a = document.getElementById('pmAviso');
+      a.textContent = texto;
+      a.style.display = 'block';
+      setTimeout(function(){ a.style.display = 'none'; }, 2200);
+    }
+
+    document.getElementById('pmPagar').addEventListener('click', function(){
+      if(document.getElementById('inDocumento').value.trim() === '' ||
+         document.getElementById('inTelefono').value.trim() === '' ||
+         document.getElementById('inMonto').value.trim() === ''){
+        avisar('Complete Documento, Teléfono y Monto');
+        return;
+      }
+      var d = datosPago();
+      if(window.parent !== window){
+        /* Dentro del visor de flujo: el visor abre el comprobante con estos datos */
+        window.parent.postMessage({tipo:'bdv-pagar', datos:d}, '*');
+      } else {
+        location.href = 'vista-previa-comprobante.html?documento=' + encodeURIComponent(d.documento) +
+                        '&telefono=' + encodeURIComponent(d.telefono) +
+                        '&monto='    + encodeURIComponent(d.monto) +
+                        '&concepto=' + encodeURIComponent(d.concepto) +
+                        '&banco='    + encodeURIComponent(d.banco);
+      }
+    });
+
+    document.getElementById('pmLimpiar').addEventListener('click', function(){
+      document.getElementById('inDocumento').value = '';
+      document.getElementById('inTelefono').value = '';
+      document.getElementById('inMonto').value = '';
+      document.getElementById('inConcepto').value = '';
+      revisarMarcadores();
+      document.getElementById('inDocumento').focus();
+    });
+
+    revisarMarcadores();
+  </script>
 
 </body>
 

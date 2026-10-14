@@ -31,7 +31,8 @@
         <activity
             android:name=".PagomovilActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ComprobanteActivity"
