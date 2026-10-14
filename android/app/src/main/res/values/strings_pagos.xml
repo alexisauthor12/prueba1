@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del panel de Pagos (replica de design/referencia-pagos.jpeg) -->
+<resources>
+    <string name="pg_titulo">Pagos</string>
+    <string name="pg_item1">PagomóvilBDV</string>
+    <string name="pg_item2">PagomóvilBDV QR</string>
+    <string name="pg_item3">Tarjeta de crédito</string>
+    <string name="pg_item4">Financiamiento especial</string>
+    <string name="pg_item5">Pagos compartidos</string>
+</resources>

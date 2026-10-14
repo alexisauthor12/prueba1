@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -56,7 +57,6 @@ class DashboardActivity : AppCompatActivity() {
         // Acciones de la barra inferior.
         findViewById<View>(R.id.nav1).setOnClickListener { aviso("Inicio") }
         findViewById<View>(R.id.nav2).setOnClickListener { aviso("Transferencias") }
-        findViewById<View>(R.id.nav3).setOnClickListener { aviso("Pagos") }
         findViewById<View>(R.id.nav4).setOnClickListener { aviso("Servicios") }
         findViewById<View>(R.id.nav5).setOnClickListener { aviso("Divisas") }
         findViewById<View>(R.id.nav6).setOnClickListener { aviso("Tarjeta") }
@@ -64,6 +64,60 @@ class DashboardActivity : AppCompatActivity() {
         findViewById<View>(R.id.dbMenu).setOnClickListener { aviso("Menú") }
         findViewById<View>(R.id.dbAccess).setOnClickListener { aviso("Access") }
         findViewById<View>(R.id.dbNfc).setOnClickListener { aviso("NFC S7B") }
+
+        prepararPanelPagos()
+    }
+
+    /**
+     * Panel de Pagos: la hoja que aparece sobre el dashboard al pulsar "Pagos"
+     * en la barra inferior (replica de design/referencia-pagos.jpeg).
+     * Se cierra al tocar el velo, al elegir una opcion o con el boton atras.
+     */
+    private fun prepararPanelPagos() {
+        val velo = findViewById<View>(R.id.pgVelo)
+        val panel = findViewById<View>(R.id.pgPanel)
+
+        // "Pagos" de la barra inferior (icono y texto) abre el panel.
+        findViewById<View>(R.id.nav3).setOnClickListener { mostrarPagos() }
+        findViewById<View>(R.id.navTexto3).setOnClickListener { mostrarPagos() }
+
+        // El velo cierra; el panel consume el toque para no cerrarse solo.
+        velo.setOnClickListener { ocultarPagos() }
+        panel.setOnClickListener { /* toque dentro del panel: no hace nada */ }
+
+        // Cada opcion cierra el panel y avisa de la eleccion.
+        for (id in intArrayOf(
+            R.id.pgItem1, R.id.pgItem2, R.id.pgItem3, R.id.pgItem4, R.id.pgItem5
+        )) {
+            val item = findViewById<TextView>(id)
+            item.setOnClickListener {
+                ocultarPagos()
+                aviso(item.text.toString())
+            }
+        }
+
+        // Boton atras: cierra el panel si esta abierto.
+        val atras = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                ocultarPagos()
+            }
+        }
+        callbackPagos = atras
+        onBackPressedDispatcher.addCallback(this, atras)
+    }
+
+    private var callbackPagos: OnBackPressedCallback? = null
+
+    private fun mostrarPagos() {
+        findViewById<View>(R.id.pgVelo).visibility = View.VISIBLE
+        findViewById<View>(R.id.pgPanel).visibility = View.VISIBLE
+        callbackPagos?.isEnabled = true
+    }
+
+    private fun ocultarPagos() {
+        findViewById<View>(R.id.pgVelo).visibility = View.GONE
+        findViewById<View>(R.id.pgPanel).visibility = View.GONE
+        callbackPagos?.isEnabled = false
     }
 
     private fun aviso(texto: String) {

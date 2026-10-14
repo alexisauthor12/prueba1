@@ -1,8 +1,19 @@
-﻿# BDV · Pantalla de inicio (réplica 1:1 → APK)
+﻿# BDV · Réplica 1:1 de la app (Inicio → Login → Contraseña → Dashboard → Pagos) → APK
 
-Réplica **medida píxel a píxel** de la pantalla de inicio del mockup
-`design/referencia-inicio.jpeg`, traducida a una app Android real y compilable
-a APK **sin instalar nada en tu PC** (se compila en la nube con GitHub Actions).
+Réplica **medida píxel a píxel** de los mockups de `design/`, traducida a una app
+Android real y compilable a APK **sin instalar nada en tu PC** (se compila en la
+nube con GitHub Actions).
+
+| # | Pantalla | Mockup | Réplica HTML | Diff (sobre 255) |
+|---|---|---|---|---|
+| 1 | Inicio | `referencia-inicio.jpeg` | `replica/index.html` | 2,49 |
+| 2 | Autenticación | `referencia-login.jpeg` | `replica/login.html` | 3,49 |
+| 3 | Diálogo «Ingresa con tu contraseña» | `referencia-clave.jpeg` | `replica/clave.html` | 2,24 |
+| 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 4,87 |
+| 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
+
+El flujo completo se puede recorrer sin compilar: abre
+`replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
 
 ---
 
@@ -237,6 +248,7 @@ cd "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app"
 
 # 1) renderizar la réplica con Chrome headless (al tamaño exacto del mockup)
 #    inicio -> 720x1453   login -> 720x1460   clave -> 720x1456
+#    dashboard -> 720x1450   pagos -> 720x1446
 & "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new `
   --disable-gpu --hide-scrollbars --force-device-scale-factor=1 `
   --window-size=720,1456 --screenshot="replica\render.png" `
@@ -251,10 +263,11 @@ powershell -ExecutionPolicy Bypass -File tools\validar-android.ps1
 
 `comparar.ps1` informa, por cada región: la caja medida en la referencia, la caja
 medida en la réplica y la diferencia media de color. Con eso se corrige cualquier
-desviación en un solo paso. Admite `-Pantalla inicio | login | clave`.
+desviación en un solo paso. Admite
+`-Pantalla inicio | login | clave | dashboard | pagos`.
 
-`validar-android.ps1` comprueba de una pasada: **22 XML bien formados**,
-**152 recursos** definidos, **27 ids** y **0 referencias sin resolver**
+`validar-android.ps1` comprueba de una pasada: **35 XML bien formados**,
+**369 recursos** definidos, **77 ids** y **0 referencias sin resolver**
 (incluidos los usos `R.id.*` / `R.layout.*` en Kotlin).
 
 ## 5. Tipografía: identificada empíricamente
@@ -388,7 +401,49 @@ Detalles que solo se ven midiendo:
 
 ### Verlo sin compilar
 
-`replica/flujo.html` tiene ya **4 pasos**: Inicio → Autenticación → Diálogo
-(contraseña 12345) → Dashboard. Y `replica/vista-previa-dashboard.html` es la
-versión autocontenida para pasar al móvil.
+`replica/flujo.html` tiene ya **5 pasos**: Inicio → Autenticación → Diálogo
+(contraseña 12345) → Dashboard → Panel de Pagos. Y
+`replica/vista-previa-dashboard.html` es la versión autocontenida para pasar al móvil.
+
+---
+
+## 9. Panel de Pagos (al pulsar «Pagos» en la barra inferior)
+
+No es una pantalla nueva: es una **hoja inferior** que se abre **sobre el propio
+dashboard** oscurecido, tal como se ve en `design/referencia-pagos.jpeg`
+(720 × 1446 px @2x). Réplica en `replica/pagos.html`.
+
+| Bloque | Medida (px del mockup) | dp | Comprobación |
+|---|---|---|---|
+| Velo negro | 53 % sobre el dashboard | `#87000000` | **fondo `#161616` idéntico** |
+| Panel | ancho completo desde y 803 · radio 40 | 322 dp anclado abajo · radio 20 | **exacto** |
+| Cabecera roja | 720 × 84 | 360 × 42 | **diff 1,80** |
+| «Pagos» | 81 × 27 · centrado | 14,5 sp bold | 80 × 26 px |
+| Opciones | paso **112** | paso **56 dp** | **exacto** |
+
+| Texto | Ancho en el mockup | En la réplica |
+|---|---|---|
+| «PagomóvilBDV» | 206 px | 202 px |
+| «PagomóvilBDV QR» | 257 px | 258 px |
+| «Tarjeta de crédito» | 236 px | 234 px |
+| «Financiamiento especial» | 325 px | 324 px |
+| «Pagos compartidos» | 260 px | 259 px |
+
+**Diff del panel: 5,59 / 255 (2,2 %).** Los márgenes laterales y el pie dan
+**0,00** (el `#303030` del panel es idéntico) y la cabecera 1,80; el resto es la
+forma de las letras, la limitación conocida.
+
+Detalles que solo se ven midiendo:
+
+- El panel **tapa la barra inferior roja** por completo: en el mockup el cuerpo
+  `#303030` llega hasta y 1446 y la barra (desde y 1346) no se ve.
+- El alto del panel es exactamente su contenido: **42 + 5 × 56 = 322 dp**.
+- El velo es **el mismo** del diálogo de contraseña (53 %), reutilizado tal cual.
+- Al elegir una opción el panel se cierra y se muestra un aviso: ninguna opción
+  hace operaciones reales (es una réplica de interfaz).
+
+En la app: `DashboardActivity` lo abre desde `nav3` / `navTexto3`, y lo cierra con
+el velo, una opción o el botón atrás. Vista autocontenida:
+`replica/vista-previa-pagos.html`.
+
 

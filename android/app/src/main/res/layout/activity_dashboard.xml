@@ -348,4 +348,100 @@
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- ================= Panel de Pagos (hoja inferior) =================
+         Se abre al pulsar "Pagos" en la barra inferior y se cierra al tocar
+         el velo o cualquier opcion. Medidas del mockup
+         design/referencia-pagos.jpeg: 322 dp anclados abajo
+         (42 de cabecera + 5 filas de 56), radio superior 20 dp. -->
+    <View
+        android:id="@+id/pgVelo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/velo"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/pgPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_panel_pagos"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pg_cabecera_alto"
+            android:background="@drawable/bg_panel_cabecera">
+
+            <TextView
+                android:id="@+id/pgTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="@dimen/pg_titulo_margin_top"
+                android:fontFamily="@font/arimo"
+                android:includeFontPadding="false"
+                android:text="@string/pg_titulo"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/pg_titulo_texto"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <TextView android:id="@+id/pgItem1"
+            android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
+            android:fontFamily="@font/arimo" android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/pg_item_margin_izq"
+            android:paddingTop="@dimen/pg_item_texto_margin_top"
+            android:text="@string/pg_item1" android:textColor="@color/blanco"
+            android:textSize="@dimen/pg_item_texto" />
+
+        <TextView android:id="@+id/pgItem2"
+            android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
+            android:fontFamily="@font/arimo" android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/pg_item_margin_izq"
+            android:paddingTop="@dimen/pg_item_texto_margin_top"
+            android:text="@string/pg_item2" android:textColor="@color/blanco"
+            android:textSize="@dimen/pg_item_texto" />
+
+        <TextView android:id="@+id/pgItem3"
+            android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
+            android:fontFamily="@font/arimo" android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/pg_item_margin_izq"
+            android:paddingTop="@dimen/pg_item_texto_margin_top"
+            android:text="@string/pg_item3" android:textColor="@color/blanco"
+            android:textSize="@dimen/pg_item_texto" />
+
+        <TextView android:id="@+id/pgItem4"
+            android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
+            android:fontFamily="@font/arimo" android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/pg_item_margin_izq"
+            android:paddingTop="@dimen/pg_item_texto_margin_top"
+            android:text="@string/pg_item4" android:textColor="@color/blanco"
+            android:textSize="@dimen/pg_item_texto" />
+
+        <TextView android:id="@+id/pgItem5"
+            android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
+            android:fontFamily="@font/arimo" android:gravity="top|start"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/pg_item_margin_izq"
+            android:paddingTop="@dimen/pg_item_texto_margin_top"
+            android:text="@string/pg_item5" android:textColor="@color/blanco"
+            android:textSize="@dimen/pg_item_texto" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

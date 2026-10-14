@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Panel de Pagos (hoja inferior que se abre al pulsar "Pagos" en la barra
+  inferior). Medidas exactas del mockup design/referencia-pagos.jpeg
+  (720x1446 px @2x -> 360 x 723 dp):
+
+      dp = px / 2
+
+  El panel esta anclado abajo y mide 322 dp = 42 (cabecera) + 5 filas x 56.
+  Los margenes superiores de los textos descuentan el hueco entre el borde de
+  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+-->
+<resources>
+
+    <!-- ===== Panel: 322 dp de alto, radio superior 20 dp ===== -->
+    <dimen name="pg_panel_radio">20dp</dimen>
+
+    <!-- ===== Cabecera roja: 42 dp, titulo centrado ===== -->
+    <dimen name="pg_cabecera_alto">42dp</dimen>
+    <dimen name="pg_titulo_texto">14.5sp</dimen>
+    <dimen name="pg_titulo_margin_top">11.87dp</dimen>
+
+    <!-- ===== Opciones: paso 56 dp, texto a 15.5 dp del borde ===== -->
+    <dimen name="pg_item_alto">56dp</dimen>
+    <dimen name="pg_item_texto">15.25sp</dimen>
+    <dimen name="pg_item_margin_izq">15.5dp</dimen>
+    <dimen name="pg_item_texto_margin_top">16.71dp</dimen>
+
+</resources>

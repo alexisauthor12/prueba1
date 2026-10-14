@@ -10,16 +10,20 @@
     powershell -File generar-vista-previa.ps1                      (inicio)
     powershell -File generar-vista-previa.ps1 -Pantalla login
     powershell -File generar-vista-previa.ps1 -Pantalla clave
+    powershell -File generar-vista-previa.ps1 -Pantalla pagos
     powershell -File generar-vista-previa.ps1 -Pantalla todas
 
   Salidas:
-    inicio -> replica\vista-previa.html
-    login  -> replica\vista-previa-login.html
-    clave  -> replica\vista-previa-clave.html   (dialogo sobre el login)
+    inicio    -> replica\vista-previa.html
+    login     -> replica\vista-previa-login.html
+    clave     -> replica\vista-previa-clave.html   (dialogo sobre el login)
+    dashboard -> replica\vista-previa-dashboard.html
+    pagos     -> replica\vista-previa-pagos.html   (panel sobre el dashboard)
+    flujo     -> replica\vista-previa-flujo.html   (las cinco pantallas)
 #>
 param(
   [string]$Base = "",
-  [ValidateSet('inicio','login','clave','dashboard','flujo','todas')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos','flujo','todas')][string]$Pantalla = 'inicio'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -64,8 +68,9 @@ function Generar([string]$origen, [string]$destino, [string[]]$imagenes, [switch
   Write-Output ("generado: " + $destino + "  (" + [math]::Round((Get-Item $salida).Length/1KB) + " KB)")
 }
 
-# El visor flujo.html con las CUATRO pantallas incrustadas: sirve para pasar al
-# movil y permite escribir la contrasena y entrar al dashboard sin mas archivos.
+# El visor flujo.html con las CINCO pantallas incrustadas: sirve para pasar al
+# movil y permite escribir la contrasena, entrar al dashboard y abrir el panel
+# de Pagos sin mas archivos.
 function GenerarFlujo(){
   $flujo = Get-Content (Join-Path $Base 'flujo.html') -Raw -Encoding UTF8
   $iconos = @('db_campana.png','db_access.png','db_nfc.png','db_menu.png',
@@ -76,7 +81,8 @@ function GenerarFlujo(){
     @('index.html',     (Construir 'index.html' @('logo-bdv.png','ico-movil.png','ico-access.png','ico-saldos.png'))),
     @('login.html',     (Construir 'login.html' @('logo-bdv.png','ico-huella.png','ico-salir.png'))),
     @('clave.html',     (Construir 'clave.html' @('ico-ojo.png') -ConLogin)),
-    @('dashboard.html', (Construir 'dashboard.html' $iconos))
+    @('dashboard.html', (Construir 'dashboard.html' $iconos)),
+    @('pagos.html',     (Construir 'pagos.html' @('render-dashboard.png')))
   )
   foreach($p in $pares){
     $b64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($p[1]))
@@ -90,7 +96,7 @@ function GenerarFlujo(){
 }
 
 $hacer = @()
-if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','flujo') } else { $hacer = @($Pantalla) }
+if($Pantalla -eq 'todas'){ $hacer = @('inicio','login','clave','dashboard','pagos','flujo') } else { $hacer = @($Pantalla) }
 
 foreach($p in $hacer){
   switch($p){
@@ -102,6 +108,7 @@ foreach($p in $hacer){
         'db_ico1.png','db_ico2.png','db_ico3.png','db_ico4.png',
         'db_chart.png','db_flecha.png','db_telefono.png','db_chevron.png',
         'db_nav1.png','db_nav2.png','db_nav3.png','db_nav4.png','db_nav5.png','db_nav6.png') }
+    'pagos'  { Generar 'pagos.html' 'vista-previa-pagos.html' @('render-dashboard.png') }
     'flujo'  { GenerarFlujo }
   }
 }

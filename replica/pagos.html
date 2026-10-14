@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Panel de Pagos (replica 1:1, 720x1446 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1446px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* Fondo: el dashboard renderizado (720x1450, se recorta a 1446) */
+  #fondo{position:absolute;left:0;top:0;width:720px;height:1450px;
+         background:url("render-dashboard.png") no-repeat 0 0;
+         background-size:720px 1450px;}
+
+  /* Velo negro al 53 % (medido: #303030 -> #161616, #BB1B47 -> #560D21) */
+  #velo{position:absolute;left:0;top:0;width:720px;height:1446px;
+        background:rgba(0,0,0,0.53);}
+
+  /* Panel: desde y 803, radio superior 40 px, cuerpo #303030 */
+  #panel{position:absolute;left:0;top:803px;width:720px;height:643px;
+         border-radius:40px 40px 0 0;background:#303030;}
+
+  /* Cabecera roja: 84 px de alto, mismo radio arriba */
+  #cabecera{position:absolute;left:0;top:0;width:720px;height:84px;
+            border-radius:40px 40px 0 0;background:#BB1B47;}
+
+  /* "Pagos": cap-top 30 px dentro del panel, 29 px, negrita, centrado */
+  #titulo{position:absolute;left:0;top:26.8px;width:720px;text-align:center;
+          font-size:29px;font-weight:700;letter-spacing:-0.03em;
+          color:#FFFFFF;line-height:1;white-space:nowrap;}
+
+  /* Opciones: paso 112 px, cap-top 927 + 112i, x 31, 30,5 px, blancas */
+  .item{position:absolute;left:31px;font-size:30.5px;color:#FFFFFF;
+        line-height:1;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+  <div id="fondo"></div>
+  <div id="velo"></div>
+
+  <div id="panel">
+    <div id="cabecera"></div>
+    <div id="titulo">Pagos</div>
+
+    <div class="item" style="top:120.6px">PagomóvilBDV</div>
+    <div class="item" style="top:232.6px">PagomóvilBDV QR</div>
+    <div class="item" style="top:344.6px">Tarjeta de crédito</div>
+    <div class="item" style="top:456.6px">Financiamiento especial</div>
+    <div class="item" style="top:568.6px">Pagos compartidos</div>
+  </div>
+
+</body>
+</html>

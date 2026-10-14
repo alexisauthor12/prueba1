@@ -10,7 +10,7 @@ param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
   [int]$Paso = 1,
-  [ValidateSet('inicio','login','clave','dashboard')][string]$Pantalla = 'inicio'
+  [ValidateSet('inicio','login','clave','dashboard','pagos')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -159,6 +159,23 @@ if($Pantalla -eq 'dashboard'){
     @('BTN_CANCELAR',  360,  805, 560,  910),
     @('TXT_ACEPTAR',   190,  830, 340,  890),
     @('TXT_CANCELAR',  380,  830, 540,  890)
+  )
+} elseif($Pantalla -eq 'pagos'){
+  $regiones = @(
+    @('VELO_FONDO',     0,  200,  80,  300),
+    @('ESQ_IZQ_PANEL',  0,  795,  90,  860),
+    @('CABECERA',       0,  808, 719,  880),
+    @('TITULO_PAGOS', 240,  820, 480,  875),
+    @('BORDE_CABECERA', 0,  880, 719,  894),
+    @('ITEM1',          0,  915, 719,  972),
+    @('ITEM2',          0, 1027, 719, 1084),
+    @('ITEM3',          0, 1139, 719, 1196),
+    @('ITEM4',          0, 1251, 719, 1308),
+    @('ITEM5',          0, 1363, 719, 1420),
+    @('MARGEN_IZQ',     0,  900,  28, 1400),
+    @('MARGEN_DER',   400,  900, 719, 1400),
+    @('PIE',            0, 1425, 719, 1445),
+    @('PANEL_COMPLETO', 0,  803, 719, 1445)
   )
 } elseif($Pantalla -eq 'login'){
   $regiones = @(

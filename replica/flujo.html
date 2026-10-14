@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>BDV - Flujo: Inicio &rarr; Autenticación &rarr; Contraseña</title>
+<title>BDV - Flujo: Inicio &rarr; Autenticación &rarr; Contraseña &rarr; Dashboard &rarr; Pagos</title>
 <style>
   html,body{margin:0;height:100%;background:#101010;overflow:hidden;
             display:flex;align-items:center;justify-content:center;}
@@ -24,8 +24,17 @@
   #zonaVeloAbajo{left:0;top:938px;width:720px;height:518px;border-radius:0;}
   #zonaVeloIzq{left:0;top:524px;width:80px;height:414px;border-radius:0;}
   #zonaVeloDer{left:640px;top:524px;width:80px;height:414px;border-radius:0;}
-  /* Dashboard: la barra inferior vuelve al inicio de sesión */
+  /* Dashboard: la barra inferior vuelve al inicio de sesión.
+     La columna "Pagos" (x 240..360) abre el panel de Pagos. */
   #zonaDashVolver{left:0;top:1346px;width:720px;height:104px;border-radius:0;}
+  #zonaDashPagos{left:240px;top:1346px;width:120px;height:104px;border-radius:0;}
+  /* Panel de Pagos: el velo de arriba y cada opción cierran el panel */
+  #zonaPagosVelo{left:0;top:0;width:720px;height:803px;border-radius:0;}
+  #zonaPago1{left:0;top:887px;width:720px;height:112px;border-radius:0;}
+  #zonaPago2{left:0;top:999px;width:720px;height:112px;border-radius:0;}
+  #zonaPago3{left:0;top:1111px;width:720px;height:112px;border-radius:0;}
+  #zonaPago4{left:0;top:1223px;width:720px;height:112px;border-radius:0;}
+  #zonaPago5{left:0;top:1335px;width:720px;height:111px;border-radius:0;}
   #etiqueta{position:fixed;left:14px;top:12px;color:#9a9a9a;font:13px Arial,Helvetica,sans-serif;}
   #aviso{position:fixed;left:14px;bottom:12px;color:#6f6f6f;font:12px Arial,Helvetica,sans-serif;}
 </style>
@@ -45,9 +54,17 @@
   <div id="zonaVeloDer"    class="zona" title="Cerrar"></div>
 
   <div id="zonaDashVolver" class="zona" title="Volver al inicio de sesión"></div>
+  <div id="zonaDashPagos"  class="zona" title="Abrir el panel de Pagos"></div>
+
+  <div id="zonaPagosVelo" class="zona" title="Cerrar el panel"></div>
+  <div id="zonaPago1" class="zona" title="PagomóvilBDV"></div>
+  <div id="zonaPago2" class="zona" title="PagomóvilBDV QR"></div>
+  <div id="zonaPago3" class="zona" title="Tarjeta de crédito"></div>
+  <div id="zonaPago4" class="zona" title="Financiamiento especial"></div>
+  <div id="zonaPago5" class="zona" title="Pagos compartidos"></div>
 </div>
 
-<div id="etiqueta">1 / 4 &nbsp;·&nbsp; Pantalla de inicio</div>
+<div id="etiqueta">1 / 5 &nbsp;·&nbsp; Pantalla de inicio</div>
 <div id="aviso">Haz clic en "Iniciar sesión" para ver el flujo de autenticación</div>
 
 <script>
@@ -56,7 +73,8 @@
   var et    = document.getElementById('etiqueta');
   var av    = document.getElementById('aviso');
   var zonas = ['zonaBoton','zonaIngresa','zonaVolver','zonaVeloArriba','zonaVeloAbajo',
-               'zonaVeloIzq','zonaVeloDer','zonaDashVolver'];
+               'zonaVeloIzq','zonaVeloDer','zonaDashVolver','zonaDashPagos',
+               'zonaPagosVelo','zonaPago1','zonaPago2','zonaPago3','zonaPago4','zonaPago5'];
 
   function mostrar(ids, alto){
     for(var i=0;i<zonas.length;i++){
@@ -73,26 +91,32 @@
   function irAlInicio(){
     v.src = 'index.html';
     mostrar(['zonaBoton'], 1460);
-    et.textContent = '1 / 4  ·  Pantalla de inicio';
+    et.textContent = '1 / 5  ·  Pantalla de inicio';
     av.textContent = 'Haz clic en "Iniciar sesión" para ver el flujo de autenticación';
   }
   function irAlLogin(){
     v.src = 'login.html';
     mostrar(['zonaIngresa','zonaVolver'], 1460);
-    et.textContent = '2 / 4  ·  Pantalla de autenticación';
+    et.textContent = '2 / 5  ·  Pantalla de autenticación';
     av.textContent = 'Haz clic en "Ingresa con tu contraseña" para abrir el diálogo';
   }
   function irAlClave(){
     v.src = 'clave.html';
     mostrar(['zonaVelo','zonaAceptar','zonaCancelar'], 1456);
-    et.textContent = '3 / 4  ·  Diálogo "Ingresa con tu contraseña"';
+    et.textContent = '3 / 5  ·  Diálogo "Ingresa con tu contraseña"';
     av.textContent = 'Escribe 12345 en el campo y pulsa "Aceptar" para entrar al dashboard';
   }
   function irAlDashboard(){
     v.src = 'dashboard.html';
-    mostrar(['zonaDashVolver'], 1450);
-    et.textContent = '4 / 4  ·  Dashboard (con la contraseña 12345)';
-    av.textContent = 'Haz clic en la barra inferior para volver al inicio de sesión';
+    mostrar(['zonaDashVolver','zonaDashPagos'], 1450);
+    et.textContent = '4 / 5  ·  Dashboard (con la contraseña 12345)';
+    av.textContent = 'Haz clic en "Pagos" (barra inferior) para abrir el panel';
+  }
+  function irAlPagos(){
+    v.src = 'pagos.html';
+    mostrar(['zonaPagosVelo','zonaPago1','zonaPago2','zonaPago3','zonaPago4','zonaPago5'], 1446);
+    et.textContent = '5 / 5  ·  Panel de Pagos';
+    av.textContent = 'Haz clic en una opción (o en el velo de arriba) para cerrar el panel';
   }
 
   document.getElementById('zonaBoton').addEventListener('click', irAlLogin);
@@ -103,6 +127,14 @@
   document.getElementById('zonaVeloIzq').addEventListener('click', irAlLogin);
   document.getElementById('zonaVeloDer').addEventListener('click', irAlLogin);
   document.getElementById('zonaDashVolver').addEventListener('click', irAlLogin);
+  document.getElementById('zonaDashPagos').addEventListener('click', irAlPagos);
+
+  document.getElementById('zonaPagosVelo').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaPago1').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaPago2').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaPago3').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaPago4').addEventListener('click', irAlDashboard);
+  document.getElementById('zonaPago5').addEventListener('click', irAlDashboard);
 
   /* El diálogo valida la contraseña por dentro (Aceptar, Enter o Cancelar) y
      avisa con postMessage: aquí solo se cambia de pantalla. */

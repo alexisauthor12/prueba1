@@ -187,3 +187,88 @@ comprobadas contra el mockup: tarjeta, campo, botones y ojo **exactos**;
 «Contraseña:» 141 px **exacto**; «Usuario» 197 px (Δ 2); textos de botón
 83 / 95 px.
 
+---
+
+## 9. Panel de Pagos (referencia-pagos.jpeg)
+
+Al pulsar **Pagos** en la barra inferior del dashboard no se cambia de pantalla:
+se abre una **hoja inferior** (bottom sheet) sobre el propio dashboard.
+
+Mockup: **720 × 1446 px** @2x → `dp = px ÷ 2`.
+
+El fondo es el dashboard real con un **velo negro al 53 %** (el mismo `#87000000`
+del diálogo). Verificado con tres colores independientes:
+
+| Zona | Color original | × 0,47 | Medido en el mockup |
+|---|---|---|---|
+| barra superior | #303030 | #161616 | **#161616** |
+| tarjeta de saldo | #BB1B47 | #580D21 | **#560D21** |
+| hoja del histórico | #212121 | #0F0F0F | **#0F0F0F** |
+
+### Medidas (px del mockup → dp)
+
+| Elemento | px | dp | Nota |
+|---|---|---|---|
+| Panel | ancho completo, desde y 803 | 322 de alto, anclado abajo | radio superior 40 px = **20 dp** |
+| Cabecera | 720 × 84 desde y 803 | 360 × 42 | `#BB1B47`, radio 40 arriba |
+| «Pagos» | 81 × 27 · cap-top 833 · centro x 360 | 14,5 sp bold | blanco |
+| Opciones | paso **112** px · cap-top 927 + 112·i | paso **56 dp** | 15,25 sp, blanco |
+| «PagomóvilBDV» | 206 px · x 34 | margen izq 15,5 dp | |
+| «PagomóvilBDV QR» | 257 px · x 34 | | |
+| «Tarjeta de crédito» | 236 px · x 32 | | |
+| «Financiamiento especial» | 325 px · x 34 | | |
+| «Pagos compartidos» | 260 px · x 34 | | |
+
+El alto del panel sale exacto de su contenido: **42 + 5 × 56 = 322 dp**, y en el
+mockup (723 dp de alto) arranca justo en y = 401,5 dp → 723 − 401,5 = 321,5 dp.
+Por eso se ancla abajo con `wrap_content`.
+
+### Radio verificado con la fórmula del arco
+
+`inset(d) = r − √(r² − (r−d)²)` sobre la esquina superior izquierda de la cabecera:
+
+| d (px) | Predicho (r = 40) | Medido |
+|---|---|---|
+| 1 | 31,1 | 31 |
+| 5 | 20,6 | 22 |
+| 12 | 11,4 | 13 |
+| 20 | 5,4 | 6 |
+| 30 | 1,3 | 2 |
+
+### Posicionamiento en Android
+
+Capa superpuesta dentro de `activity_dashboard.xml` (el fondo oscurecido es el
+dashboard real):
+
+```
+View          pgVelo    #87000000            (match_parent, visibility=gone)
+LinearLayout  pgPanel   wrap_content · abajo (match_parent de ancho)
+├── FrameLayout          42 dp   → bg_panel_cabecera (#BB1B47, radio 20 arriba)
+│   └── TextView pgTitulo   14,5 sp bold, centrado
+├── TextView pgItem1     56 dp   15,25 sp, paddingStart 15,5 dp
+├── TextView pgItem2     56 dp
+├── TextView pgItem3     56 dp
+├── TextView pgItem4     56 dp
+└── TextView pgItem5     56 dp
+```
+
+`DashboardActivity` lo abre con el icono **y** el texto «Pagos» (`nav3`,
+`navTexto3`), y lo cierra al tocar el velo, al elegir una opción o con el botón
+atrás (solo mientras está visible).
+
+### Validación
+
+| Región | Diff medio | Comprobación |
+|---|---|---|
+| **Fondo (velo)** | **0** | `#161616` idéntico |
+| **Panel completo** (y 803..1445) | **5,59 / 255 (2,2 %)** | |
+| Cabecera roja | **1,80** | color y geometría exactos |
+| Márgenes laterales y pie | **0,00** | `#303030` idéntico |
+| Título «Pagos» | 6,25 | 80 × 26 px vs 81 × 27 del mockup |
+| Opciones 1..5 | 9,1 – 12,1 | anchos 202 / 258 / 234 / 324 / 259 px vs 206 / 257 / 236 / 325 / 260 |
+
+El resto del diff es la **forma de las letras** (la tipografía de marca sigue
+siendo la limitación conocida): posiciones, colores, radios y márgenes son
+exactos.
+
+
