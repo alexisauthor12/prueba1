@@ -141,10 +141,11 @@
     et.textContent = '5 / 8  ·  Panel de Pagos';
     av.textContent = 'Haz clic en "PagomóvilBDV" para abrir su pantalla (o en el velo para cerrar)';
   }
-  function irAlPagomovil(banco){
+  function irAlPagomovil(banco, estado){
     v.onload = function(){
       v.onload = null;
       if(banco){ v.contentWindow.postMessage({tipo:'bdv-banco', banco:banco}, '*'); }
+      if(estado){ v.contentWindow.postMessage({tipo:'bdv-estado', estado:estado}, '*'); }
     };
     v.src = 'pagomovil.html';
     mostrar(['zonaPmNavInicio'], 1451);
@@ -152,7 +153,9 @@
     av.textContent = 'Escribe los datos, elige el banco y pulsa "Pagar" para ver el comprobante';
   }
   /* Selector de banco: se abre al pulsar el campo "Banco:" de PagomovilBDV */
-  function irAlBancos(banco){
+  var estadoPagomovil = null;
+  function irAlBancos(banco, estado){
+    if(estado){ estadoPagomovil = estado; }
     v.onload = function(){
       v.onload = null;
       if(banco){ v.contentWindow.postMessage({tipo:'bdv-banco-actual', banco:banco}, '*'); }
@@ -207,9 +210,9 @@
     /* PagomovilBDV manda los datos al pulsar Pagar */
     else if(d && d.tipo === 'bdv-pagar'){ irAlComprobante(d.datos); }
     /* PagomovilBDV pide el selector de banco al pulsar el campo "Banco:" */
-    else if(d && d.tipo === 'bdv-banco'){ irAlBancos(d.banco); }
+    else if(d && d.tipo === 'bdv-banco'){ irAlBancos(d.banco, d.estado); }
     /* El selector devuelve el banco elegido */
-    else if(d && d.tipo === 'bdv-banco-elegido'){ irAlPagomovil(d.banco); }
+    else if(d && d.tipo === 'bdv-banco-elegido'){ irAlPagomovil(d.banco, estadoPagomovil); }
     /* Las flechas del comprobante vuelven a PagomovilBDV */
     else if(d && d.tipo === 'bdv-volver'){ irAlPagomovil(); }
   });

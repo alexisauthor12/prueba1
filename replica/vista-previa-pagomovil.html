@@ -197,15 +197,39 @@
 
     document.getElementById('pmCampo3').addEventListener('click', function(){
       if(window.parent !== window){
-        window.parent.postMessage({tipo:'bdv-banco', banco: bancoElegido}, '*');
+        window.parent.postMessage({tipo:'bdv-banco', banco: bancoElegido,
+                                   estado: estadoFormulario()}, '*');
       } else {
         location.href = 'vista-previa-bancos.html?banco=' + encodeURIComponent(bancoElegido);
       }
     });
 
+    /* Lo escrito en los campos, para no perderlo al ir al selector de banco */
+    function estadoFormulario(){
+      return {
+        documento: document.getElementById('inDocumento').value,
+        telefono:  document.getElementById('inTelefono').value,
+        monto:     document.getElementById('inMonto').value,
+        concepto:  document.getElementById('inConcepto').value,
+        banco:     bancoElegido
+      };
+    }
+
+    function restaurarFormulario(e){
+      if(!e){ return; }
+      document.getElementById('inDocumento').value = e.documento || '';
+      document.getElementById('inTelefono').value  = e.telefono || '';
+      document.getElementById('inMonto').value     = e.monto || '';
+      document.getElementById('inConcepto').value  = e.concepto || '';
+      revisarMarcadores();
+      if(e.banco){ ponerBanco(e.banco); }
+    }
+
     /* El visor de flujo devuelve el banco elegido por este mensaje */
     window.addEventListener('message', function(ev){
-      if(ev.data && ev.data.tipo === 'bdv-banco'){ ponerBanco(ev.data.banco); }
+      if(!ev.data){ return; }
+      if(ev.data.tipo === 'bdv-banco'){ ponerBanco(ev.data.banco); }
+      else if(ev.data.tipo === 'bdv-estado'){ restaurarFormulario(ev.data.estado); }
     });
 
     function avisar(texto){
