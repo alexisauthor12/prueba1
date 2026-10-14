@@ -87,14 +87,20 @@
                'zonaPagosVelo','zonaPago1','zonaPago2','zonaPago3','zonaPago4','zonaPago5',
                'zonaPmNavInicio','zonaCpAtras','zonaCpCerrar'];
 
-  function mostrar(ids, alto){
+  function mostrar(ids, alto, ancho){
     for(var i=0;i<zonas.length;i++){
       document.getElementById(zonas[i]).style.display = 'none';
     }
     for(var j=0;j<ids.length;j++){
       document.getElementById(ids[j]).style.display = 'block';
     }
+    /* Cada pantalla tiene su propio lienzo: las del flujo 720 px y el
+       comprobante 633 px (su mockup viene a otra escala). */
+    var w = ancho || 720;
+    marco.style.width  = w + 'px';
     marco.style.height = alto + 'px';
+    marco.style.background = (w === 633) ? '#212121' : '#303030';
+    v.style.width  = w + 'px';
     v.style.height = alto + 'px';
     ajustar();
   }
@@ -143,7 +149,8 @@
       if(datos){ v.contentWindow.postMessage({tipo:'bdv-datos', datos:datos}, '*'); }
     };
     v.src = 'comprobante.html';
-    mostrar(['zonaCpAtras','zonaCpCerrar'], 1280);
+    /* 633 x 1280 px: el lienzo del comprobante, mas estrecho que el resto */
+    mostrar(['zonaCpAtras','zonaCpCerrar'], 1280, 633);
     et.textContent = '7 / 7  ·  Comprobante de operación';
     av.textContent = 'Haz clic en cualquiera de las flechas para volver a PagomóvilBDV';
   }
@@ -181,8 +188,9 @@
   });
 
   function ajustar(){
-    var alto = parseFloat(marco.style.height) || 1460;
-    var s = Math.min(window.innerWidth / 720, window.innerHeight / alto) * 0.92;
+    var alto  = parseFloat(marco.style.height) || 1460;
+    var ancho = parseFloat(marco.style.width)  || 720;
+    var s = Math.min(window.innerWidth / ancho, window.innerHeight / alto) * 0.92;
     marco.style.transform = 'scale(' + s + ')';
   }
   window.addEventListener('resize', ajustar);

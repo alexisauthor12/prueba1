@@ -539,4 +539,10 @@ mismo sitio, ±1 px), «Pagar» lleva los datos al comprobante — por URL al ab
 la pantalla suelta, o por `postMessage` dentro del visor de flujo — y el monto
 sale con `montoVenezolano()`: `2400` → `2.400,00 Bs`.
 
+El **visor de flujo cambia de lienzo por pantalla**: las seis primeras usan el
+suyo de 720 px y el comprobante el de **633 px** (`mostrar(ids, alto, ancho)`),
+para que el marco no deje franja a los lados. Las réplicas llevan
+`<meta name="viewport">` con su ancho real, así que en el móvil se ven a escala
+1:1 sin desplazarse.
+
 
