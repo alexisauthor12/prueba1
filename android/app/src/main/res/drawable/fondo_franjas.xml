@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Franjas diagonales del borde inferior.
+  Poligonos medidos sobre el mockup (px), trasladados -1040 en Y:
+    amarilla (0,3.7) (357,180) (161,277) (0,209)
+    azul     (720,4) (0,356) (0,413) (293,413) (720,210)
+    roja     (720,210) (720,413) (293,413)
+  El viewport es 720 x 413 px = 360 x 206.5 dp.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="206.5dp"
+    android:viewportWidth="720"
+    android:viewportHeight="413">
+
+    <path
+        android:fillColor="#FDC800"
+        android:pathData="M0,3.7 L357,180 L161,277 L0,209 Z" />
+
+    <path
+        android:fillColor="#0068B1"
+        android:pathData="M720,4 L0,356 L0,413 L293,413 L720,210 Z" />
+
+    <path
+        android:fillColor="#BB1B47"
+        android:pathData="M720,210 L720,413 L293,413 Z" />
+</vector>

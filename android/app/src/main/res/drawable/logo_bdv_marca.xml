@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Marca BDV (los 3 "shards" del simbolo V) en vector, con los vertices
+  medidos sobre el mockup. Se ofrece como alternativa escalable al PNG;
+  el layout usa el PNG recortado (drawable-xhdpi/logo_bdv.png) porque
+  incluye el logotipo "BDV", que es rotulado y no una fuente estandar.
+    amarillo (64.7,8) (80,34.3) (60.8,163.7) (0,41.5)
+    azul     (84,42) (128,132) (66,171.5) (74,90.5)
+    rojo     (153,0) (132.3,130.6) (88,42)
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="76.5dp"
+    android:height="85.75dp"
+    android:viewportWidth="153"
+    android:viewportHeight="171.5">
+
+    <path
+        android:fillColor="#FDC800"
+        android:pathData="M64.7,8 L80,34.3 L60.8,163.7 L0,41.5 Z" />
+
+    <path
+        android:fillColor="#0068B1"
+        android:pathData="M84,42 L128,132 L66,171.5 L74,90.5 Z" />
+
+    <path
+        android:fillColor="#BB1B47"
+        android:pathData="M153,0 L132.3,130.6 L88,42 Z" />
+</vector>

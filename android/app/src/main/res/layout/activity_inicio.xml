@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Réplica 1:1 del mockup. Mockup 720x1453 px @2x  ->  diseño 360 x 726.5 dp.
+  dp = px / 2  ·  sp = px / 2   (ver design/ESPECIFICACIONES.md)
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <!-- ===== Franjas diagonales, ancladas al borde inferior ===== -->
+    <ImageView
+        android:id="@+id/franjas"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/franjas_alto"
+        android:scaleType="fitXY"
+        android:src="@drawable/fondo_franjas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ===== Campana de notificaciones ===== -->
+    <ImageView
+        android:id="@+id/campana"
+        android:layout_width="@dimen/campana"
+        android:layout_height="@dimen/campana"
+        android:layout_marginStart="@dimen/campana_margin_izq"
+        android:layout_marginTop="@dimen/campana_margin_top"
+        android:contentDescription="@string/notificaciones"
+        android:src="@drawable/ic_campana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/badge"
+        android:layout_width="@dimen/badge"
+        android:layout_height="@dimen/badge"
+        android:layout_marginStart="@dimen/badge_margin_izq"
+        android:layout_marginTop="@dimen/badge_margin_top"
+        android:background="@drawable/bg_badge"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/badge_tres"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/badge_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ===== Logotipo de marca ===== -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/logo_ancho"
+        android:layout_height="@dimen/logo_alto"
+        android:layout_marginStart="@dimen/logo_margin_izq"
+        android:layout_marginTop="@dimen/logo_margin_top"
+        android:contentDescription="@string/logo_desc"
+        android:src="@drawable/logo_bdv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ===== Subtítulo ===== -->
+    <TextView
+        android:id="@+id/subtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/subtitulo_margin_top"
+        android:includeFontPadding="false"
+        android:letterSpacing="@dimen/subtitulo_tracking"
+        android:text="@string/subtitulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/subtitulo_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ===== Botón principal ===== -->
+    <TextView
+        android:id="@+id/boton"
+        android:layout_width="@dimen/boton_ancho"
+        android:layout_height="@dimen/boton_alto"
+        android:layout_marginStart="@dimen/boton_margin_izq"
+        android:layout_marginTop="@dimen/boton_margin_top"
+        android:background="@drawable/bg_boton"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/iniciar_sesion"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/boton_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ===== Enlace ===== -->
+    <TextView
+        android:id="@+id/enlace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/enlace_margin_top"
+        android:includeFontPadding="false"
+        android:letterSpacing="@dimen/enlace_tracking"
+        android:text="@string/enlace_abrir_cuenta"
+        android:textColor="@color/enlace"
+        android:textSize="@dimen/enlace_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ===== Tarjeta 1 · PagomóvilBDV ===== -->
+    <FrameLayout
+        android:id="@+id/tarjeta1"
+        android:layout_width="@dimen/tarjeta"
+        android:layout_height="@dimen/tarjeta"
+        android:layout_marginStart="@dimen/tarjeta1_margin_izq"
+        android:layout_marginTop="@dimen/tarjeta_margin_top"
+        android:background="@drawable/bg_tarjeta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/ico_movil_ancho"
+            android:layout_height="@dimen/ico_movil_alto"
+            android:layout_gravity="center"
+            android:src="@drawable/ico_movil" />
+    </FrameLayout>
+
+    <!-- ===== Tarjeta 2 · Pagos AccessPay ===== -->
+    <FrameLayout
+        android:id="@+id/tarjeta2"
+        android:layout_width="@dimen/tarjeta"
+        android:layout_height="@dimen/tarjeta"
+        android:layout_marginStart="@dimen/tarjeta2_margin_izq"
+        android:layout_marginTop="@dimen/tarjeta_margin_top"
+        android:background="@drawable/bg_tarjeta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/ico_access"
+            android:layout_height="@dimen/ico_access"
+            android:layout_gravity="center"
+            android:src="@drawable/ico_access" />
+    </FrameLayout>
+
+    <!-- ===== Tarjeta 3 · Ver mis saldos ===== -->
+    <FrameLayout
+        android:id="@+id/tarjeta3"
+        android:layout_width="@dimen/tarjeta"
+        android:layout_height="@dimen/tarjeta"
+        android:layout_marginStart="@dimen/tarjeta3_margin_izq"
+        android:layout_marginTop="@dimen/tarjeta_margin_top"
+        android:background="@drawable/bg_tarjeta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/ico_saldos_ancho"
+            android:layout_height="@dimen/ico_saldos_alto"
+            android:layout_gravity="center"
+            android:src="@drawable/ico_saldos" />
+    </FrameLayout>
+
+    <!-- ===== Etiquetas ===== -->
+    <TextView
+        android:id="@+id/etiqueta1"
+        android:layout_width="@dimen/etiqueta_ancho"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/etiqueta1_margin_izq"
+        android:layout_marginTop="@dimen/etiqueta_margin_top"
+        android:letterSpacing="@dimen/etiqueta_tracking"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="@dimen/etiqueta_interlineado"
+        android:text="@string/etiqueta_1"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/etiqueta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/etiqueta2"
+        android:layout_width="@dimen/etiqueta_ancho"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/etiqueta2_margin_izq"
+        android:layout_marginTop="@dimen/etiqueta_margin_top"
+        android:letterSpacing="@dimen/etiqueta_tracking"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="@dimen/etiqueta_interlineado"
+        android:text="@string/etiqueta_2"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/etiqueta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/etiqueta3"
+        android:layout_width="@dimen/etiqueta_ancho"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/etiqueta3_margin_izq"
+        android:layout_marginTop="@dimen/etiqueta_margin_top"
+        android:letterSpacing="@dimen/etiqueta_tracking"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="@dimen/etiqueta_interlineado"
+        android:text="@string/etiqueta_3"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/etiqueta_texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

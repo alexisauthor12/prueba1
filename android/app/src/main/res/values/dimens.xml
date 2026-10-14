@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Medidas exactas del mockup (720x1453 px @2x  ->  360 x 726.5 dp).
+  dp = px / 2     sp = px / 2
+  Los márgenes superiores de los textos ya descuentan el hueco que hay
+  entre el borde de la caja de texto y la altura de mayúscula:
+      margen = capTop - (ascent - capHeight) * tamaño
+      Roboto: 0.927 - 0.711 = 0.216 em
+-->
+<resources>
+
+    <!-- Franjas diagonales -->
+    <dimen name="franjas_alto">206.5dp</dimen>
+
+    <!-- Campana de notificaciones -->
+    <dimen name="campana">27dp</dimen>
+    <dimen name="campana_margin_izq">15.5dp</dimen>
+    <dimen name="campana_margin_top">11.2dp</dimen>
+    <dimen name="badge">16dp</dimen>
+    <dimen name="badge_margin_izq">28dp</dimen>
+    <dimen name="badge_margin_top">9.5dp</dimen>
+    <dimen name="badge_texto">9sp</dimen>
+
+    <!-- Logotipo -->
+    <dimen name="logo_ancho">258dp</dimen>
+    <dimen name="logo_alto">91dp</dimen>
+    <dimen name="logo_margin_izq">50dp</dimen>
+    <dimen name="logo_margin_top">162.5dp</dimen>
+
+    <!-- Subtítulo: cap-top 264dp, 24sp -->
+    <dimen name="subtitulo_texto">24sp</dimen>
+    <dimen name="subtitulo_margin_top">258.8dp</dimen>
+    <dimen name="subtitulo_tracking">0.0246</dimen>
+
+    <!-- Botón: 270x40dp en (45 , 316)dp, radio 10dp -->
+    <dimen name="boton_ancho">270dp</dimen>
+    <dimen name="boton_alto">40dp</dimen>
+    <dimen name="boton_margin_izq">45dp</dimen>
+    <dimen name="boton_margin_top">316dp</dimen>
+    <dimen name="boton_texto">11sp</dimen>
+    <dimen name="boton_radio">10dp</dimen>
+
+    <!-- Enlace: cap-top 398.5dp, 13sp -->
+    <dimen name="enlace_texto">13sp</dimen>
+    <dimen name="enlace_margin_top">395.7dp</dimen>
+    <dimen name="enlace_tracking">-0.0323</dimen>
+
+    <!-- Tarjetas: 56x56dp, radio 12dp, arriba 441dp -->
+    <dimen name="tarjeta">56dp</dimen>
+    <dimen name="tarjeta_margin_top">441dp</dimen>
+    <dimen name="tarjeta_radio">12dp</dimen>
+    <dimen name="tarjeta1_margin_izq">39.5dp</dimen>
+    <dimen name="tarjeta2_margin_izq">152dp</dimen>
+    <dimen name="tarjeta3_margin_izq">264.5dp</dimen>
+    <dimen name="ico_movil_ancho">21dp</dimen>
+    <dimen name="ico_movil_alto">31dp</dimen>
+    <dimen name="ico_access">31.5dp</dimen>
+    <dimen name="ico_saldos_ancho">27.5dp</dimen>
+    <dimen name="ico_saldos_alto">26dp</dimen>
+
+    <!-- Etiquetas: cap-top 510dp, 10sp, interlineado 14dp -->
+    <dimen name="etiqueta_texto">10sp</dimen>
+    <dimen name="etiqueta_margin_top">507.8dp</dimen>
+    <dimen name="etiqueta_ancho">120dp</dimen>
+    <dimen name="etiqueta_interlineado">2.3dp</dimen>
+    <dimen name="etiqueta_tracking">0.0325</dimen>
+    <dimen name="etiqueta1_margin_izq">7.25dp</dimen>
+    <dimen name="etiqueta2_margin_izq">119.75dp</dimen>
+    <dimen name="etiqueta3_margin_izq">232.25dp</dimen>
+
+</resources>

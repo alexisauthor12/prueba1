@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BDV Inicio</string>
+    <string name="logo_desc">BDV Banco de Venezuela</string>
+    <string name="subtitulo">Banco de Venezuela</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="enlace_abrir_cuenta">Quiero abrir una cuenta en el BDV</string>
+    <string name="etiqueta_1">PagomóvilBDV</string>
+    <string name="etiqueta_2">Pagos\nAccessPay</string>
+    <string name="etiqueta_3">Ver mis\nsaldos</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="badge_tres">3</string>
+</resources>
