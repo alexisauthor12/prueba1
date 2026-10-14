@@ -46,7 +46,49 @@ y se comparó píxel a píxel contra la referencia:
 > el mockup usa una tipografía de marca que no está instalada en el equipo.
 > Colores, tamaños, espaciados, radios, posiciones e iconos son exactos.
 
-## 2. Estructura del proyecto
+## 1b. Pantalla de autenticación (flujo del botón «Iniciar sesión»)
+
+Replicada con el mismo método a partir de `design/referencia-login.jpeg`.
+
+**Hallazgo clave:** el mockup del login mide 720 × 1460 px, pero tiene **14 px de
+más arriba**. Al restarlos, la campana, el subtítulo y las franjas diagonales
+coinciden **exactamente** con la pantalla de inicio → el lienzo de diseño real es
+**360 × 723 dp**.
+
+| Elemento | Medida (px) | dp | Diff |
+|---|---|---|---|
+| Campana + badge | 48 × 52 en (40, 33) | igual que inicio | **6,88** |
+| Logotipo | 505 × 159 en (107, 261) | 258 × 91 | **2,03** |
+| «Banco de Venezuela» | 437 × 36 | 24 sp | 33,84 |
+| «Iniciar sesión como» | 255 × 25 | 16 sp | 21,65 |
+| «A\*\*\*\*\*4» | 106 × 20 | 16 sp | 19,49 |
+| «Pulsa para autenticarte» | 279 × 23 | 14 sp | 35,61 |
+| Círculo con huella | 112 × 112 en (304, 728) | 56 × 56 dp | **3,26** |
+| Huella digital | 52 × 58 | 26 × 29 dp | **3,41** |
+| «Ingresa con tu contraseña» | 347 × 17 + subrayado 351 px | 16 sp | 15,78 |
+| «Desvincular dispositivo» | icono 34 × 36 + texto 269 × 23 | 13 sp bold | 7,81 / 41,89 |
+| Franjas diagonales | mismo vector que el inicio | — | 1-3 px |
+
+**Diff global del login: 3,49 / 255 · 2,50 % de píxeles.**
+(El inicio quedó en 2,49 / 1,98 %.)
+
+### Navegación en la app
+
+El botón «Iniciar sesión» abre `LoginActivity`
+(`startActivity(Intent(this, LoginActivity::class.java))`), y
+«Desvincular dispositivo» vuelve con `finish()`.
+
+### Cómo verlo sin compilar
+
+`replica\flujo.html` es un **visor navegable**: muestra la pantalla de inicio en
+un marco de teléfono y, al hacer clic en el botón, cambia a la de autenticación
+(y vuelve con «Desvincular dispositivo»). Se abre con:
+
+```powershell
+start "" "replica\flujo.html"
+```
+
+
 
 ```
 bdv-app/

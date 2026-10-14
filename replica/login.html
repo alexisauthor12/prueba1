@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Autenticacion (replica 1:1, 720x1460 px @2x)</title>
+<style>
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
+  html,body{margin:0;padding:0;background:#303030;}
+  body{position:relative;width:720px;height:1460px;overflow:hidden;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       -webkit-font-smoothing:antialiased;}
+
+  /* El mockup del login tiene 14 px de mas arriba; el contenido real
+     (campana, subtitulo, franjas) coincide con el de la pantalla de inicio. */
+  #pantalla{position:absolute;left:0;top:14px;width:720px;height:1453px;overflow:hidden;}
+
+  .el{position:absolute;}
+  .txt{left:0;width:720px;text-align:center;line-height:1;white-space:nowrap;}
+
+  /* franjas diagonales (mismo vector que la pantalla de inicio) */
+  #franjas{left:0;bottom:0;width:720px;height:413px;}
+
+  /* campana + badge */
+  #campana{left:31px;top:22px;width:54px;height:54px;}
+  #badge{left:56px;top:19px;width:32px;height:32px;border-radius:16px;background:#A32C24;}
+  #badge3{left:56px;top:25.65px;width:32px;text-align:center;line-height:1;
+          font-size:18px;font-weight:600;color:#FFFFFF;}
+
+  /* logotipo */
+  #logo{left:100px;top:234px;width:516px;height:182px;}
+
+  /* textos */
+  #subtitulo{top:430.7px;font-size:48px;color:#FFFFFF;}
+  #sesionComo{top:504.5px;font-size:32px;color:#FFFFFF;letter-spacing:-0.94px;}
+  #usuario{top:578.5px;font-size:32px;color:#FFFFFF;letter-spacing:0.83px;}
+  #pulsa{top:661.9px;font-size:28px;color:#FFFFFF;letter-spacing:-0.30px;}
+  #ingresa{top:851.5px;font-size:32px;color:#A42749;text-decoration:underline;
+           letter-spacing:-0.72px;}
+
+  /* boton circular con huella */
+  #circulo{left:304px;top:714px;width:112px;height:112px;border-radius:56px;background:#BB1B47;}
+  #huella{left:330px;top:736px;width:60px;height:68px;}
+
+  /* fila inferior */
+  #salir{left:205px;top:1375px;width:44px;height:46px;}
+  #desvincular{left:244px;top:1386.1px;font-size:26px;font-weight:700;color:#FFFFFF;}
+</style>
+</head>
+<body>
+<div id="pantalla">
+
+  <svg id="franjas" class="el" viewBox="0 0 720 413" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#FDC800" d="M0,3.7 L357,180 L161,277 L0,209 Z"/>
+    <path fill="#0068B1" d="M720,4 L0,356 L0,413 L293,413 L720,210 Z"/>
+    <path fill="#BB1B47" d="M720,210 L720,413 L293,413 Z"/>
+  </svg>
+
+  <svg id="campana" class="el" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#FFFFFF" d="M12,22c1.1,0 2,-0.9 2,-2h-4c0,1.1 0.9,2 2,2zM18,16v-5c0,-3.07 -1.63,-5.64 -4.5,-6.32V4c0,-0.83 -0.67,-1.5 -1.5,-1.5s-1.5,0.67 -1.5,1.5v0.68C7.64,5.36 6,7.92 6,11v5l-2,2v1h16v-1l-2,-2zM16,17H8v-6c0,-2.48 1.51,-4.5 4,-4.5s4,2.02 4,4.5v6z"/>
+  </svg>
+  <div id="badge" class="el"></div>
+  <div id="badge3" class="el">3</div>
+
+  <img id="logo" class="el" src="logo-bdv.png" alt="BDV Banco de Venezuela">
+
+  <div id="subtitulo" class="el txt">Banco de Venezuela</div>
+  <div id="sesionComo" class="el txt">Iniciar sesión como</div>
+  <div id="usuario" class="el txt">A*****4</div>
+  <div id="pulsa" class="el txt">Pulsa para autenticarte</div>
+
+  <div id="circulo" class="el"></div>
+  <img id="huella" class="el" src="ico-huella.png" alt="Huella digital">
+
+  <div id="ingresa" class="el txt">Ingresa con tu contraseña</div>
+
+  <img id="salir" class="el" src="ico-salir.png" alt="">
+  <div id="desvincular" class="el">Desvincular dispositivo</div>
+
+</div>
+</body>
+</html>

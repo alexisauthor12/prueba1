@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV - Flujo: Inicio -> Autenticacion</title>
+<style>
+  html,body{margin:0;height:100%;background:#101010;overflow:hidden;
+            display:flex;align-items:center;justify-content:center;}
+  #marco{position:relative;width:720px;height:1460px;flex:0 0 auto;
+         transform-origin:center center;
+         box-shadow:0 0 0 10px #1b1b1b,0 0 0 11px #2e2e2e,0 30px 90px rgba(0,0,0,.85);
+         border-radius:6px;overflow:hidden;background:#303030;}
+  #marco iframe{width:720px;height:1460px;border:0;display:block;}
+  .zona{position:absolute;cursor:pointer;border-radius:8px;}
+  .zona:hover{background:rgba(255,255,255,.06);}
+  #zonaBoton{left:90px;top:632px;width:540px;height:80px;border-radius:20px;}
+  #zonaVolver{left:150px;top:1375px;width:420px;height:60px;}
+  #etiqueta{position:fixed;left:14px;top:12px;color:#9a9a9a;font:13px Arial,Helvetica,sans-serif;}
+  #aviso{position:fixed;left:14px;bottom:12px;color:#6f6f6f;font:12px Arial,Helvetica,sans-serif;}
+</style>
+</head>
+<body>
+<div id="marco">
+  <iframe id="vista" src="index.html" scrolling="no"></iframe>
+  <div id="zonaBoton" class="zona" title="Iniciar sesión"></div>
+  <div id="zonaVolver" class="zona" title="Volver" style="display:none"></div>
+</div>
+<div id="etiqueta">1 / 2 &nbsp;·&nbsp; Pantalla de inicio</div>
+<div id="aviso">Haz clic en "Iniciar sesión" para ver el flujo de autenticación</div>
+<script>
+  var v  = document.getElementById('vista');
+  var zb = document.getElementById('zonaBoton');
+  var zv = document.getElementById('zonaVolver');
+  var et = document.getElementById('etiqueta');
+  var av = document.getElementById('aviso');
+  function irAlLogin(){
+    v.src = 'login.html';
+    zb.style.display = 'none';
+    zv.style.display = 'block';
+    et.textContent = '2 / 2  ·  Pantalla de autenticación';
+    av.textContent = 'Haz clic en "Desvincular dispositivo" para volver al inicio';
+  }
+  function irAlInicio(){
+    v.src = 'index.html';
+    zv.style.display = 'none';
+    zb.style.display = 'block';
+    et.textContent = '1 / 2  ·  Pantalla de inicio';
+    av.textContent = 'Haz clic en "Iniciar sesión" para ver el flujo de autenticación';
+  }
+  zb.addEventListener('click', irAlLogin);
+  zv.addEventListener('click', irAlInicio);
+  function ajustar(){
+    var m = document.getElementById('marco');
+    var s = Math.min(window.innerWidth / 720, window.innerHeight / 1460) * 0.92;
+    m.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', ajustar);
+  window.addEventListener('load', ajustar);
+  ajustar();
+</script>
+</body>
+</html>

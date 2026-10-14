@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_sesion_como">Iniciar sesión como</string>
+    <string name="login_usuario">A*****4</string>
+    <string name="login_pulsa">Pulsa para autenticarte</string>
+    <string name="login_ingresa">Ingresa con tu contraseña</string>
+    <string name="login_desvincular">Desvincular dispositivo</string>
+    <string name="login_huella_desc">Autenticarse con huella digital</string>
+    <string name="login_salir_desc">Desvincular dispositivo</string>
+</resources>

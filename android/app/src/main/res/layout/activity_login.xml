@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Pantalla de autenticacion. Medidas exactas del mockup
+  (720x1460 px @2x con 14 px de mas arriba -> lienzo 360 x 723 dp).
+  Ver design/ESPECIFICACIONES.md y values/dimens_login.xml
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
+
+    <ImageView
+        android:id="@+id/franjas"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/franjas_alto"
+        android:scaleType="fitXY"
+        android:src="@drawable/fondo_franjas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Campana + badge (identicos a la pantalla de inicio) -->
+    <ImageView
+        android:id="@+id/campana"
+        android:layout_width="@dimen/campana"
+        android:layout_height="@dimen/campana"
+        android:layout_marginStart="@dimen/campana_margin_izq"
+        android:layout_marginTop="@dimen/campana_margin_top"
+        android:contentDescription="@string/notificaciones"
+        android:src="@drawable/ic_campana"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/badge"
+        android:layout_width="@dimen/badge"
+        android:layout_height="@dimen/badge"
+        android:layout_marginStart="@dimen/badge_margin_izq"
+        android:layout_marginTop="@dimen/badge_margin_top"
+        android:background="@drawable/bg_badge"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/badge_tres"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/badge_texto"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Logotipo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/logo_ancho"
+        android:layout_height="@dimen/logo_alto"
+        android:layout_marginStart="@dimen/logo_margin_izq"
+        android:layout_marginTop="@dimen/login_logo_margin_top"
+        android:contentDescription="@string/logo_desc"
+        android:src="@drawable/logo_bdv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_subtitulo_margin_top"
+        android:includeFontPadding="false"
+        android:text="@string/subtitulo"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/login_subtitulo_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sesionComo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_sesion_margin_top"
+        android:includeFontPadding="false"
+        android:text="@string/login_sesion_como"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/login_sesion_texto"
+        android:letterSpacing="-0.0294"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/usuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_usuario_margin_top"
+        android:includeFontPadding="false"
+        android:text="@string/login_usuario"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/login_usuario_texto"
+        android:letterSpacing="0.0259"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pulsa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_pulsa_margin_top"
+        android:includeFontPadding="false"
+        android:text="@string/login_pulsa"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/login_pulsa_texto"
+        android:letterSpacing="-0.0107"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Boton circular con huella digital -->
+    <FrameLayout
+        android:id="@+id/circulo"
+        android:layout_width="@dimen/login_circulo"
+        android:layout_height="@dimen/login_circulo"
+        android:layout_marginStart="@dimen/login_circulo_margin_izq"
+        android:layout_marginTop="@dimen/login_circulo_margin_top"
+        android:background="@drawable/bg_circulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/login_huella_ancho"
+            android:layout_height="@dimen/login_huella_alto"
+            android:layout_gravity="center"
+            android:contentDescription="@string/login_huella_desc"
+            android:src="@drawable/ico_huella" />
+    </FrameLayout>
+
+    <!-- Enlace "Ingresa con tu contrasena" + su subrayado -->
+    <TextView
+        android:id="@+id/ingresa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_ingresa_margin_top"
+        android:includeFontPadding="false"
+        android:text="@string/login_ingresa"
+        android:textColor="@color/enlace"
+        android:textSize="@dimen/login_ingresa_texto"
+        android:letterSpacing="-0.0225"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ingresaSubrayado"
+        android:layout_width="175.5dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/login_ingresa_subrayado_margin_top"
+        android:background="@color/enlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Fila inferior: desvincular dispositivo (anclada abajo) -->
+    <ImageView
+        android:id="@+id/salir"
+        android:layout_width="@dimen/login_salir_ancho"
+        android:layout_height="@dimen/login_salir_alto"
+        android:layout_marginStart="@dimen/login_salir_margin_izq"
+        android:layout_marginBottom="@dimen/login_salir_margin_bottom"
+        android:contentDescription="@string/login_salir_desc"
+        android:src="@drawable/ico_salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/desvincular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/login_desvincular_margin_izq"
+        android:layout_marginBottom="@dimen/login_desvincular_margin_bottom"
+        android:includeFontPadding="false"
+        android:text="@string/login_desvincular"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/login_desvincular_texto"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

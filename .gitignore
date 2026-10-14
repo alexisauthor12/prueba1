@@ -17,3 +17,6 @@ android/.idea/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# --- Vista previa generada (683 KB, se regenera con tools\generar-vista-previa.ps1) ---
+replica/vista-previa.html

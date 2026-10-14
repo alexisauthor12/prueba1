@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>BDV · Vista completa (escalada para caber en pantalla)</title>
+<style>
+  html,body{margin:0;height:100%;background:#101010;overflow:hidden;
+            display:flex;align-items:center;justify-content:center;}
+  #marco{
+    width:720px;height:1453px;border:0;flex:0 0 auto;
+    transform-origin:center center;
+    box-shadow:0 0 0 10px #1b1b1b, 0 0 0 11px #2e2e2e, 0 30px 90px rgba(0,0,0,.85);
+    border-radius:6px;
+  }
+  #aviso{position:fixed;left:12px;bottom:10px;color:#6f6f6f;font:12px Arial,sans-serif;
+         font-family:Arial,Helvetica,sans-serif;}
+</style>
+</head>
+<body>
+  <iframe id="marco" src="vista-previa.html" scrolling="no"></iframe>
+  <div id="aviso">Vista 1:1 de la pantalla de inicio · 720×1453 px (diseño 360×726.5 dp) · escalada para caber</div>
+  <script>
+    function ajustar(){
+      var m = document.getElementById('marco');
+      var s = Math.min(window.innerWidth / 720, window.innerHeight / 1453) * 0.94;
+      m.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', ajustar);
+    window.addEventListener('load', ajustar);
+    ajustar();
+  </script>
+</body>
+</html>

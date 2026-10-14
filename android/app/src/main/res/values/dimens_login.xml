@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Pantalla de AUTENTICACION (flujo del boton "Iniciar sesion").
+  El mockup mide 720x1460 px @2x, pero tiene 14 px de mas arriba: al restarlos
+  la campana, el subtitulo y las franjas coinciden exactamente con la pantalla
+  de inicio. Por eso el lienzo de diseno es 360 x 723 dp y:
+
+      dp = (y_mockup - 14) / 2        dp = x_mockup / 2
+
+  Los margenes superiores de los textos ya descuentan el hueco entre el borde
+  de la caja de texto y la altura de mayuscula (Arimo: 0.216 em).
+-->
+<resources>
+
+    <!-- Logotipo: contenido en x 107..611, y 261..419 del mockup -->
+    <dimen name="login_logo_margin_top">117dp</dimen>
+
+    <!-- "Banco de Venezuela" 24sp, cap-top 218dp -->
+    <dimen name="login_subtitulo_texto">24sp</dimen>
+    <dimen name="login_subtitulo_margin_top">212.8dp</dimen>
+
+    <!-- "Iniciar sesion como" 16sp, cap-top 254dp -->
+    <dimen name="login_sesion_texto">16sp</dimen>
+    <dimen name="login_sesion_margin_top">250.5dp</dimen>
+
+    <!-- "A*****4" 16sp, cap-top 291dp -->
+    <dimen name="login_usuario_texto">16sp</dimen>
+    <dimen name="login_usuario_margin_top">287.5dp</dimen>
+
+    <!-- "Pulsa para autenticarte" 14sp, cap-top 332dp -->
+    <dimen name="login_pulsa_texto">14sp</dimen>
+    <dimen name="login_pulsa_margin_top">329dp</dimen>
+
+    <!-- Boton circular con huella: 112x112 px en (304 , 728) del mockup -->
+    <dimen name="login_circulo">56dp</dimen>
+    <dimen name="login_circulo_margin_izq">152dp</dimen>
+    <dimen name="login_circulo_margin_top">357dp</dimen>
+    <dimen name="login_huella_ancho">30dp</dimen>
+    <dimen name="login_huella_alto">34dp</dimen>
+
+    <!-- "Ingresa con tu contrasena" 16sp, cap-top 427.5dp -->
+    <dimen name="login_ingresa_texto">16sp</dimen>
+    <dimen name="login_ingresa_margin_top">424dp</dimen>
+    <dimen name="login_ingresa_subrayado_margin_top">440dp</dimen>
+
+    <!-- Fila inferior, anclada al borde inferior -->
+    <dimen name="login_salir_ancho">22dp</dimen>
+    <dimen name="login_salir_alto">23dp</dimen>
+    <dimen name="login_salir_margin_izq">102.5dp</dimen>
+    <dimen name="login_salir_margin_bottom">12.5dp</dimen>
+
+    <dimen name="login_desvincular_texto">13sp</dimen>
+    <dimen name="login_desvincular_margin_izq">122dp</dimen>
+    <dimen name="login_desvincular_margin_bottom">17.5dp</dimen>
+
+</resources>

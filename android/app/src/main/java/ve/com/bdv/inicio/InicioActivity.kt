@@ -1,5 +1,6 @@
 package ve.com.bdv.inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -34,7 +35,10 @@ class InicioActivity : AppCompatActivity() {
         val tarjeta3: View = findViewById(R.id.tarjeta3)
 
         campana.setOnClickListener { aviso("Notificaciones (3)") }
-        boton.setOnClickListener { aviso("Iniciar sesión") }
+        boton.setOnClickListener {
+            // Flujo del boton: abre la pantalla de autenticacion
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
         enlace.setOnClickListener { aviso("Abrir una cuenta en el BDV") }
         tarjeta1.setOnClickListener { aviso("PagomóvilBDV") }
         tarjeta2.setOnClickListener { aviso("Pagos AccessPay") }

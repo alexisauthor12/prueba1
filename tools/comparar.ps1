@@ -9,7 +9,8 @@
 param(
   [string]$Ref    = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\design\referencia-inicio.jpeg",
   [string]$Render = "C:\Users\Alexis Ruiz\.cline\data\workspaces\chat\bdv-app\replica\render.png",
-  [int]$Paso = 1
+  [int]$Paso = 1,
+  [ValidateSet('inicio','login')][string]$Pantalla = 'inicio'
 )
 
 Add-Type -AssemblyName System.Drawing
@@ -79,7 +80,7 @@ Write-Output ("RENDER     : {0} x {1}" -f $B.W,$B.H)
 Write-Output ""
 
 # --- fondo de cada imagen (muestra en zona vacia) ---
-$pa = 300*$A.Stride + 360*3; $pb = 300*$B.Stride + 360*3
+$pa = 200*$A.Stride + 20*3; $pb = 200*$B.Stride + 20*3
 $bgA = @($A.Data[$pa+2],$A.Data[$pa+1],$A.Data[$pa])
 $bgB = @($B.Data[$pb+2],$B.Data[$pb+1],$B.Data[$pb])
 Write-Output ("FONDO ref = #{0:X2}{1:X2}{2:X2}    render = #{3:X2}{4:X2}{5:X2}" -f $bgA[0],$bgA[1],$bgA[2],$bgB[0],$bgB[1],$bgB[2])
@@ -120,23 +121,40 @@ $lista | Sort-Object -Property Media -Descending | Select-Object -First 14 | For
 Write-Output ""
 
 # --- comparacion por region ---
-$regiones = @(
-  @('CAMPANA',    30,  10, 100,  85),
-  @('BADGE',      50,  12,  95,  56),
-  @('LOGO',       95, 320, 625, 515),
-  @('SUBTITULO', 100, 515, 620, 580),
-  @('BOTON',      60, 615, 660, 725),
-  @('TEXTO_BOTON',200, 645, 520, 700),
-  @('ENLACE',    150, 780, 570, 830),
-  @('TARJETA_1',  60, 870, 220, 1000),
-  @('TARJETA_2', 290, 870, 430, 1000),
-  @('TARJETA_3', 515, 870, 660, 1000),
-  @('ETIQ_1',     55,1005, 215, 1045),
-  @('ETIQ_2_l1', 300,1005, 420, 1045),
-  @('ETIQ_2_l2', 300,1042, 420, 1078),
-  @('ETIQ_3_l1', 540,1005, 635, 1045),
-  @('ETIQ_3_l2', 540,1042, 635, 1078)
-)
+if($Pantalla -eq 'login'){
+  $regiones = @(
+    @('CAMPANA',      15,    5, 120,  95),
+    @('LOGO',         90,  240, 630, 430),
+    @('SUBTITULO',   100,  440, 620, 500),
+    @('SESION_COMO', 200,  510, 520, 555),
+    @('USUARIO',     280,  585, 440, 615),
+    @('PULSA',       200,  665, 520, 700),
+    @('CIRCULO',     290,  715, 430, 850),
+    @('HUELLA',      320,  745, 400, 825),
+    @('INGRESA',     170,  855, 550, 885),
+    @('SUBRAYADO',   170,  886, 550, 902),
+    @('PIE_ICONO',   195, 1385, 252, 1440),
+    @('PIE_TEXTO',   240, 1390, 530, 1440)
+  )
+} else {
+  $regiones = @(
+    @('CAMPANA',    30,  10, 100,  85),
+    @('BADGE',      50,  12,  95,  56),
+    @('LOGO',       95, 320, 625, 515),
+    @('SUBTITULO', 100, 515, 620, 580),
+    @('BOTON',      60, 615, 660, 725),
+    @('TEXTO_BOTON',200, 645, 520, 700),
+    @('ENLACE',    150, 780, 570, 830),
+    @('TARJETA_1',  60, 870, 220, 1000),
+    @('TARJETA_2', 290, 870, 430, 1000),
+    @('TARJETA_3', 515, 870, 660, 1000),
+    @('ETIQ_1',     55,1005, 215, 1045),
+    @('ETIQ_2_l1', 300,1005, 420, 1045),
+    @('ETIQ_2_l2', 300,1042, 420, 1078),
+    @('ETIQ_3_l1', 540,1005, 635, 1045),
+    @('ETIQ_3_l2', 540,1042, 635, 1078)
+  )
+}
 Write-Output "REGION                  REFERENCIA                              RENDER                                             DIFF"
 foreach($r in $regiones){
   $n=$r[0]; $x0=$r[1]; $y0=$r[2]; $x1=$r[3]; $y1=$r[4]
