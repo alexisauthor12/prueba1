@@ -4,5 +4,8 @@
         <item name="android:windowBackground">@color/fondo</item>
         <item name="android:statusBarColor">@color/fondo</item>
         <item name="android:navigationBarColor">@color/fondo</item>
+        <!-- Fuente calibrada contra el mockup (metrica compatible con Arial) -->
+        <item name="android:fontFamily">@font/arimo</item>
     </style>
 </resources>
+

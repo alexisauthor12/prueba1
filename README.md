@@ -13,9 +13,23 @@ y se comparó píxel a píxel contra la referencia:
 
 | Métrica | Valor |
 |---|---|
-| Diferencia media | **2,61 / 255** (1,02 %) |
-| Píxeles con desviación > 32 | **1,97 %** |
+| Diferencia media | **2,49 / 255** (0,98 %) con Arial · **2,51** con Arimo |
+| Píxeles con desviación > 32 | **1,98 %** · 2,00 % con Arimo |
 | Desviación de posición de todos los bloques | **±1 px** |
+
+### Diff por región (0 = idéntico, medido sobre el canal más desviado)
+
+| Región | Diff medio | Estado |
+|---|---|---|
+| Logotipo | **0,55** | prácticamente idéntico |
+| Tarjetas 1 · 2 · 3 | 2,19 · 2,20 · 2,54 | exactas (resto = ruido JPEG) |
+| Botón (rectángulo) | **3,41** | borde y radio exactos |
+| Texto del botón | **7,82** | mejorado un 52 % al pasar a Arial |
+| Enlace | **10,68** | mejorado un 34 % |
+| Campana | 11,44 | forma del icono |
+| Badge + campana | 18,40 | antialiasing del círculo |
+| Subtítulo | 30,20 | solo forma de las letras |
+| Etiquetas | 10,03 – 29,45 | solo forma de las letras |
 
 | Región | Referencia | Réplica | Δ |
 |---|---|---|---|
@@ -41,12 +55,16 @@ bdv-app/
 │  └─ ESPECIFICACIONES.md         todas las medidas, colores y geometría
 ├─ replica/
 │  ├─ index.html                  réplica HTML 1:1 (720×1453 px)
+│  ├─ arimo.ttf                   fuente calibrada (la misma que usa el APK)
 │  ├─ logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
 │  ├─ ico-movil.png               icono tarjeta 1
 │  ├─ ico-access.png              icono tarjeta 2
 │  └─ ico-saldos.png              icono tarjeta 3
 ├─ tools/
-│  └─ comparar.ps1                comparador automático contra el mockup
+│  ├─ comparar.ps1                comparador automático contra el mockup
+│  ├─ probar-fuentes.ps1          identificador de tipografía (24 fuentes)
+│  ├─ prueba-fuentes.html         página de la prueba de fuentes
+│  └─ fuentes.png                 captura de la prueba de fuentes
 ├─ android/                       proyecto Android (Kotlin + ConstraintLayout)
 │  ├─ settings.gradle.kts
 │  ├─ build.gradle.kts
@@ -129,29 +147,61 @@ powershell -ExecutionPolicy Bypass -File tools\comparar.ps1
 medida en la réplica y la diferencia media de color. Con eso se corrige cualquier
 desviación en un solo paso.
 
-## 5. Ajustes finos ya aplicados
+## 5. Tipografía: identificada empíricamente
 
-Los textos se compensaron con `letter-spacing` / `android:letterSpacing` para que
-el **ancho total** coincida con el mockup a pesar de no tener la fuente original:
+Se probaron **24 fuentes** del sistema renderizando el subtítulo a 48 px,
+alineándolo con el original y midiendo la diferencia real de los trazos
+(`tools/probar-fuentes.ps1`). Resultado:
 
-| Texto | Ancho mockup | Compensación |
-|---|---|---|
-| Banco de Venezuela | 437 px | `letterSpacing 0.0246 em` |
-| Quiero abrir una cuenta en el BDV | 363 px | `letterSpacing −0.0323 em` |
-| PagomóvilBDV / Pagos / AccessPay / saldos | ±0 px | `letterSpacing 0.0325 em` |
+| Puesto | Fuente | Ancho medido | Diff |
+|---|---|---|---|
+| 🥇 | **Arial / Helvetica** | **436 px** (real 437) | **55,67** |
+| 2 | Microsoft Sans Serif | 436 px | 62,08 |
+| 3 | Sitka Text (con serifas) | 440 px | 63,15 |
+| … | … | … | … |
+| 16 | Segoe UI (la inicial) | 417 px | 77,58 |
+
+**Arial gana**: coincide en ancho (436 vs 437 = 0,2 % de error), en altura de
+mayúscula y en forma. Al aplicarlo, el diff global bajó de 2,61 a **2,49** y el
+texto del botón mejoró un **52 %**.
+
+### Compensaciones de ancho aplicadas
+
+| Texto | Ancho mockup | Réplica | Compensación |
+|---|---|---|---|
+| Banco de Venezuela | 437 px | 436 px | sin tracking |
+| Quiero abrir una cuenta en el BDV | 363 px | 363 px | `letter-spacing −1,03 px` |
+| PagomóvilBDV | 137 px | 134 px | sin tracking |
+| Pagos / AccessPay / Ver mis / saldos | 54/96/67/58 | 56/100/67/58 | sin tracking |
 
 ## 6. Lo único que falta para el 100 %
 
-**La tipografía.** El mockup usa una fuente de marca (no es Roboto, Arial ni
-Segoe UI). Si me pasas el archivo `.ttf`/`.otf`:
+**El archivo de la fuente de marca.** Arial es la más cercana de las 24 probadas,
+pero no es la del mockup: por eso el subtítulo y las etiquetas mantienen un diff
+de 10-30 sobre 255 (solo forma de los trazos, no posición ni tamaño).
 
-1. Se copia a `android/app/src/main/res/font/`.
+Si consigues el `.ttf`/`.otf` del banco:
+
+1. Se copia a `android/app/src/main/res/font/` y a `replica/` como webfont.
 2. Se añade `android:fontFamily="@font/tu_fuente"` a los 5 `TextView`.
-3. Se recalcula el `letterSpacing` (probablemente a 0) y los márgenes superiores.
-4. Se recompila → el diff bajaría del 1,97 % a prácticamente 0.
+3. Se vuelve a correr `tools/probar-fuentes.ps1` cambiando la lista de fuentes
+   por la nueva → el script recalcula el mejor tracking automáticamente.
+4. Se recompila → el diff bajaría a prácticamente 0.
 
-Mientras tanto, los anchos, posiciones y tamaños ya están calibrados, así que
-la diferencia es solo la forma de los trazos de las letras.
+**Solución ya aplicada:** Android no trae Arial, así que el proyecto **incluye
+Arimo** (licencia Apache 2.0, métricamente compatible con Arial) en
+`android/app/src/main/res/font/arimo_variable.ttf`, declarada en
+`res/font/arimo.xml` y aplicada **desde el tema**
+(`<item name="android:fontFamily">@font/arimo</item>`), por lo que todos los
+textos de la app usan la fuente calibrada sin tocar el layout.
+
+La réplica HTML usa **el mismo archivo** (`replica/arimo.ttf` vía `@font-face`),
+de modo que lo que se ve en la réplica es exactamente lo que se verá en el APK.
+Validado: con Arimo el diff global es **2,51 / 2,00 %** frente a **2,49 / 1,98 %**
+de Arial → idénticos, como corresponde a fuentes métricamente compatibles.
+
+> Nota: para poder usar `@font` desde el tema se subió `minSdk` a **26**
+> (Android 8.0 o superior, ~97 % de los dispositivos en 2026).
 
 ## 7. Notas importantes
 

@@ -9,7 +9,9 @@ android {
 
     defaultConfig {
         applicationId = "ve.com.bdv.inicio"
-        minSdk = 21
+        // API 26+ : necesaria para usar la fuente de marca desde el tema
+        // (recurso @font). Android 8.0 o superior.
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

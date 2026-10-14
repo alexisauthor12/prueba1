@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Familia Arimo (licencia Apache 2.0), metricamente compatible con Arial.
+  Es la fuente mas cercana a la del mockup de las 24 que se probaron
+  (ver README, seccion 5). Se usa la instancia variable para los dos pesos.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/arimo_variable"
+        android:fontStyle="normal"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/arimo_variable"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:fontVariationSettings="'wght' 700" />
+</font-family>

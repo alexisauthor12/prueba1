@@ -4,9 +4,16 @@
 <meta charset="utf-8">
 <title>BDV · Pantalla de inicio — réplica 1:1 (720×1453 px @2x)</title>
 <style>
+  /* La misma fuente que lleva el APK (Arimo, metrica compatible con Arial) */
+  @font-face{
+    font-family:'Arimo';
+    src:url('arimo.ttf') format('truetype');
+    font-weight:400 700;
+    font-style:normal;
+  }
   html,body{margin:0;padding:0;background:#303030;}
   body{position:relative;width:720px;height:1453px;overflow:hidden;
-       font-family:"Segoe UI",Roboto,Arial,sans-serif;
+       font-family:'Arimo',Arial,Helvetica,sans-serif;
        -webkit-font-smoothing:antialiased;}
   .el{position:absolute;}
   .txt{left:0;width:720px;text-align:center;line-height:1;white-space:nowrap;}
@@ -17,15 +24,14 @@
   /* campana + badge de notificaciones */
   #campana{left:31px;top:22px;width:54px;height:54px;}
   #badge{left:56px;top:19px;width:32px;height:32px;border-radius:16px;background:#A32C24;}
-  #badge3{left:56px;top:25.6px;width:32px;text-align:center;line-height:1;
+  #badge3{left:56px;top:25.65px;width:32px;text-align:center;line-height:1;
           font-size:18px;font-weight:600;color:#FFFFFF;}
 
   /* logotipo de marca */
   #logo{left:100px;top:325px;width:516px;height:182px;}
 
   /* subtítulo */
-  #subtitulo{top:519.7px;font-size:48px;font-weight:400;color:#FFFFFF;
-             letter-spacing:1.18px;}
+  #subtitulo{top:522.7px;font-size:48px;font-weight:400;color:#FFFFFF;}
 
   /* botón */
   #boton{left:90px;top:632px;width:540px;height:80px;border-radius:20px;background:#BB1B47;}
@@ -33,7 +39,7 @@
 
   /* enlace */
   #enlace{top:793.6px;font-size:26px;font-weight:400;color:#A42749;
-          letter-spacing:-0.84px;}
+          letter-spacing:-1.03px;}
 
   /* tarjetas */
   .tarjeta{top:882px;width:112px;height:112px;border-radius:24px;background:#BB1B47;}
@@ -45,10 +51,10 @@
 
   /* etiquetas */
   .lab{width:240px;text-align:center;font-size:20px;line-height:28px;
-       color:#FFFFFF;white-space:nowrap;letter-spacing:0.65px;}
-  #lab1{left:14.5px;top:1011.4px;}
-  #lab2{left:239.5px;top:1011.4px;}
-  #lab3{left:464.5px;top:1011.4px;}
+       color:#FFFFFF;white-space:nowrap;}
+  #lab1{left:14.5px;top:1013.4px;}
+  #lab2{left:239.5px;top:1013.4px;}
+  #lab3{left:464.5px;top:1013.4px;}
 
   /* recorte negro inferior del mockup */
   #barraInferior{left:0;top:1447px;width:720px;height:6px;background:#000000;}
