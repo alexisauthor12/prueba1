@@ -167,8 +167,8 @@ bdv-app/
 │  ├── clave.html                  réplica del diálogo       (720×1456 px)
 │  ├── flujo.html                  visor navegable de las 3 pantallas
 │  ├── vista-previa*.html          versiones autocontenidas (para el móvil)
-│  ├── arimo.ttf                   fuente calibrada (la misma que usa el APK)
-│  ├── nunito.ttf                  tipografia de marca (la usa el comprobante)
+│  ├── arimo.ttf                   fuente calibrada (para comparar, ya sin uso en la app)
+│  ├── nunito.ttf                  tipografía de marca (la usan las ocho pantallas)
 │  ├── logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
 │  ├── ico-movil.png ico-access.png ico-saldos.png   iconos de las tarjetas
 │  ├── ico-huella.png ico-salir.png ico-ojo.png      huella, salir, ojo
