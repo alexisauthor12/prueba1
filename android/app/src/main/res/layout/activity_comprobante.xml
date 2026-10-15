@@ -27,9 +27,10 @@
     <!-- Titulo: Nunito 650 (nunito_semibold), no la negrita de la familia.
          Medido contra el mockup, que lleva el titulo con trazos de 4,66 px de
          media: con el 700 de Arimo salian 5,26 y con Nunito 650 salen 4,62.
-         El interletra (0,02393 em = 0,67 px a 28 px) deja el texto en los 360 px
-         de ancho del mockup, y la translationX reproduce que en el mockup el
-         titulo va 8,5 px a la izquierda del centro (ESPECIFICACIONES.md, 7b). -->
+         El interletra (0,01607 em = 0,45 px a 28 px, el mejor de los probados)
+         deja el texto en los 360 px de ancho del mockup, y la translationX
+         reproduce que en el mockup el titulo va 8,5 px a la izquierda del centro
+         (ESPECIFICACIONES.md, 14.2). -->
     <TextView
         android:id="@+id/cpTitulo"
         android:layout_width="0dp"
@@ -38,7 +39,7 @@
         android:fontFamily="@font/nunito_semibold"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:letterSpacing="0.02393"
+        android:letterSpacing="0.01607"
         android:text="@string/cp_titulo"
         android:textColor="@color/blanco"
         android:textSize="@dimen/cp_titulo_texto"
