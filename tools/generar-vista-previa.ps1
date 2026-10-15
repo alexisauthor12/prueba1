@@ -51,6 +51,8 @@ function IncrustarImagen([string]$html, [string]$archivo){
 function Construir([string]$origen, [string[]]$imagenes, [switch]$ConLogin){
   $html = Get-Content (Join-Path $Base $origen) -Raw -Encoding UTF8
   $html = Incrustar $html 'arimo.ttf' "url('arimo.ttf')"
+  # El comprobante usa Nunito, la tipografia de marca (ver ESPECIFICACIONES, 14).
+  $html = Incrustar $html 'nunito.ttf' "url('nunito.ttf')"
   foreach($img in $imagenes){ $html = IncrustarImagen $html $img }
   # Al abrir la vista previa suelta, la navegacion entre pantallas apunta a las
   # otras vistas previas autocontenidas (que ya llevan fuente e imagenes dentro).

@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=633">
 <title>BDV - Comprobante de operación (replica 1:1, 633x1280 px)</title>
 <style>
+  /* Nunito: es la tipografia de marca del banco (la web oficial usa
+     "font-family: Nunito, sans-serif") y la unica de las 13 probadas que baja
+     la diferencia de los textos. Licencia SIL OFL 1.1 (se puede incrustar).
+     Se ajusta cada texto con su propio interletra: Nunito es mas estrecha que
+     Arial y, sin compensar, el ancho se desviaba 4-16 px. */
   @font-face{
-    font-family:'Arimo';
-    src:url('arimo.ttf') format('truetype');
-    font-weight:400 700;
+    font-family:'Nunito';
+    src:url('nunito.ttf') format('truetype');
+    font-weight:200 1000;
     font-style:normal;
   }
   html,body{margin:0;padding:0;background:#212121;}
   body{position:relative;width:633px;height:1280px;overflow:hidden;
-       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       font-family:'Nunito',Arial,Helvetica,sans-serif;
        -webkit-font-smoothing:antialiased;}
 
   /* ---- Barra superior: atras (33,36), titulo centrado, compartir ----
@@ -22,34 +27,39 @@
      en vez de meterle flecos naranjas y azules (subpixel). Medido, el diff
      global baja de 5,56 a 4,80 y cada texto entre un 10 % y un 20 %. */
   #cpFlecha{position:absolute;left:33px;top:36px;width:32px;height:32px;}
-  #cpTitulo{transform:translateZ(0);position:absolute;left:0;top:38.1px;width:633px;text-align:center;
-            font-size:28px;font-weight:700;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  /* Titulo: Nunito 650, medido contra el mockup (trazo 4,57 px frente a 4,66).
+     El interletra (0,45 px a 28 px) es el que menos diferencia deja de 0,35 a
+     0,8 px probados. El mockup lo lleva 8,5 px a la izquierda del centro (tinta
+     de x126 a x490, margenes 126 y 143: como si el texto llevase espacios de
+     mas al final). */
+  #cpTitulo{transform:translateZ(0);position:absolute;left:-8.5px;top:40.1px;width:633px;text-align:center;
+            font-size:28px;font-weight:650;letter-spacing:0.45px;color:#FFFFFF;line-height:1;white-space:nowrap;}
   #cpCompartir{position:absolute;left:572px;top:31px;width:38px;height:40px;}
 
   /* ---- Centro: logo, subtitulo, check y caja del monto ---- */
   #cpLogo{position:absolute;left:269px;top:147px;width:90px;height:96px;}
-  #cpSubtitulo{transform:translateZ(0);position:absolute;left:0;top:255.3px;width:633px;text-align:center;
-               font-size:24.5px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  /* Subtitulo: interletra medido (probados -0,4 / -0,137 / +0,1 px; el +0,1 es el
+     que menos diferencia deja, 10,5 frente a 22,6 y 10,7). */
+  #cpSubtitulo{transform:translateZ(0);position:absolute;left:0;top:257.3px;width:633px;text-align:center;
+               font-size:24.5px;letter-spacing:0.1px;color:#FFFFFF;line-height:1;white-space:nowrap;}
   #cpCheck{position:absolute;left:291px;top:296px;width:50px;height:49px;z-index:2;}
   #cpCaja{position:absolute;left:45px;top:365px;width:543px;height:69px;
           border-radius:17px;background:#757575;}
   /* El monto es un blanco suave (#F5F5F5), no blanco puro: el mockup es JPEG y
      su texto llega suavizado. Medido, es el valor que menos se desvia
      (diff 10,22 frente a 13,97 con #FFFFFF).
-     El mockup lleva la fuente redondeada de la marca: sus trazos miden 3,72 px
-     de media, practicamente lo mismo que Arimo 400 (3,75 px), pero al ser
-     redonda parece mas gruesa. Con Arimo 500 el monto se marca como en el
-     mockup (4,16 px) y el ancho apenas cambia (133 px frente a 132). */
-  #cpMonto{transform:translateZ(0);position:absolute;left:0;top:386.3px;width:633px;text-align:center;
-           font-size:25px;font-weight:500;color:#F5F5F5;line-height:1;white-space:nowrap;}
+     Con Nunito (la fuente de marca) y peso 500 el monto baja a 5,77: es el
+     texto que mas gana con la tipografia correcta. */
+  #cpMonto{transform:translateZ(0);position:absolute;left:0;top:387.3px;width:633px;text-align:center;
+           font-size:25px;font-weight:500;letter-spacing:-0.273px;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la
      operacion termina en x 540 y el icono ocupa 555..582 (28x34). */
   .cpEtiqueta{transform:translateZ(0);position:absolute;left:57px;font-size:22px;font-weight:700;
-              color:#FFFFFF;line-height:1;white-space:nowrap;}
-  .cpValor{transform:translateZ(0);position:absolute;right:58px;font-size:22px;color:#FFFFFF;
-           line-height:1;white-space:nowrap;text-align:right;}
+              letter-spacing:-1px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  .cpValor{transform:translateZ(0);position:absolute;right:58px;font-size:22px;letter-spacing:-0.6px;
+           color:#FFFFFF;line-height:1;white-space:nowrap;text-align:right;}
   #cpCopiar{position:absolute;left:555px;top:508px;width:28px;height:34px;cursor:pointer;}
 
   /* ---- Pie: flecha, separador y los dos interruptores ---- */
@@ -57,8 +67,8 @@
   #cpSeparador{position:absolute;left:0;top:1096px;width:633px;height:6px;background:#272727;}
   .cpTrack{position:absolute;left:186px;width:63px;height:35px;border-radius:17.5px;background:#636363;}
   .cpKnob{position:absolute;left:187px;width:32px;height:32px;border-radius:16px;background:#BDBDBD;}
-  .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;color:#FFFFFF;
-                 line-height:1;white-space:nowrap;}
+  .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;letter-spacing:-0.1px;
+                 color:#FFFFFF;line-height:1;white-space:nowrap;}
 </style>
 </head>
 <body>

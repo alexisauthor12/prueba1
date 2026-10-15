@@ -7,7 +7,10 @@
       dp = px / 1.75833     (633 px = 360 dp)
 
   Los margenes superiores de los textos descuentan el hueco entre el borde de
-  la caja y la altura de mayuscula (Arimo: 0.216 em), igual que en el resto.
+  la caja y la altura de mayuscula, que con Nunito (la fuente de marca: ascenso
+  1.011 em y capHeight 0.715 em, medidos con tools/medir-metricas.ps1) es de
+  0.296 em. Con Arimo era 0.216 em, asi que al cambiar de fuente todos los
+  margenes bajan 0.081 em para que la tinta caiga en el mismo pixel.
 -->
 <resources>
 
@@ -17,7 +20,11 @@
     <dimen name="cp_flecha_margin_top">20.5dp</dimen>
 
     <dimen name="cp_titulo_texto">16sp</dimen>
-    <dimen name="cp_titulo_margin_top">19.3dp</dimen>
+    <dimen name="cp_titulo_margin_top">18dp</dimen>
+    <!-- El mockup lleva el titulo 8,5 px (4.83 dp) a la izquierda del centro:
+         su tinta va de x 126 a x 490 en un lienzo de 633 px, con margenes 126 y
+         143. Se reproduce con una translationX. -->
+    <dimen name="cp_titulo_desplazamiento">-4.8dp</dimen>
 
     <dimen name="cp_compartir_ancho">21.6dp</dimen>
     <dimen name="cp_compartir_alto">22.7dp</dimen>
@@ -31,7 +38,7 @@
     <dimen name="cp_logo_margin_top">83.6dp</dimen>
 
     <dimen name="cp_subtitulo_texto">14sp</dimen>
-    <dimen name="cp_subtitulo_margin_top">143.6dp</dimen>
+    <dimen name="cp_subtitulo_margin_top">142.5dp</dimen>
 
     <dimen name="cp_check_ancho">28.4dp</dimen>
     <dimen name="cp_check_alto">27.9dp</dimen>
@@ -45,12 +52,12 @@
     <dimen name="cp_caja_margin_top">207.6dp</dimen>
     <dimen name="cp_caja_radio">9.7dp</dimen>
 
-    <!-- Monto: Arimo 500, no 400. El mockup lleva la fuente redondeada de la
-         marca, cuyos trazos miden 3,72 px de media frente a los 3,75 px de
-         Arimo 400: mismo grosor, pero la forma redonda parece mas gruesa. El
-         500 (4,16 px) es el que deja el monto tan marcado como el mockup. -->
+    <!-- Monto: Nunito 500. Medido, el mockup lleva el monto con trazos de
+         3,93 px de media; Nunito 400 da 3,6 y el 500 clava los 3,93 px con el
+         ancho exacto del mockup (132 px). Con Arimo la diferencia de esta zona
+         era 13,4 y con Nunito baja a 5,8: es el texto que mas gana. -->
     <dimen name="cp_monto_texto">14.2sp</dimen>
-    <dimen name="cp_monto_margin_top">218.1dp</dimen>
+    <dimen name="cp_monto_margin_top">217dp</dimen>
 
     <!-- ===== Filas: etiqueta a 32.4 dp, valor a 33 dp del borde =====
          El valor de "Operacion:" es el unico que no llega al borde: termina en
@@ -59,13 +66,13 @@
     <dimen name="cp_etiqueta_margin_izq">32.4dp</dimen>
     <dimen name="cp_valor_margin_der">33dp</dimen>
     <dimen name="cp_valor2_margin_der">52.9dp</dimen>
-    <dimen name="cp_fila1_margin_top">262.3dp</dimen>
-    <dimen name="cp_fila2_margin_top">290.2dp</dimen>
-    <dimen name="cp_fila3_margin_top">318.6dp</dimen>
-    <dimen name="cp_fila4_margin_top">347.1dp</dimen>
-    <dimen name="cp_fila5_margin_top">374.9dp</dimen>
-    <dimen name="cp_fila6_margin_top">402.8dp</dimen>
-    <dimen name="cp_fila7_margin_top">431.2dp</dimen>
+    <dimen name="cp_fila1_margin_top">261.3dp</dimen>
+    <dimen name="cp_fila2_margin_top">289.2dp</dimen>
+    <dimen name="cp_fila3_margin_top">317.6dp</dimen>
+    <dimen name="cp_fila4_margin_top">346.1dp</dimen>
+    <dimen name="cp_fila5_margin_top">373.9dp</dimen>
+    <dimen name="cp_fila6_margin_top">401.8dp</dimen>
+    <dimen name="cp_fila7_margin_top">430.2dp</dimen>
 
     <!-- Icono de copiar: 28x34 px en (555, 508), al lado del numero (que
          termina en x 540), no encima. -->
@@ -98,7 +105,7 @@
 
     <dimen name="cp_int_texto">12sp</dimen>
     <dimen name="cp_int_margin_izq">155.3dp</dimen>
-    <dimen name="cp_int1_margin_top">648.6dp</dimen>
-    <dimen name="cp_int2_margin_top">696.9dp</dimen>
+    <dimen name="cp_int1_margin_top">647.6dp</dimen>
+    <dimen name="cp_int2_margin_top">695.9dp</dimen>
 
 </resources>

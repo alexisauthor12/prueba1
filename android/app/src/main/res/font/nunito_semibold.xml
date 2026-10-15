@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nunito en peso 650: el titulo "Comprobante de operación". Es el peso medido
+  contra el mockup, que lleva el titulo con trazos de 4,66 px de media: con
+  Nunito 400 mide 3,2, con 600 mide 4,10, con 650 mide 4,62 y con 800 mide 5,84.
+  El 650 es el que deja el titulo igual de marcado que el mockup.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="650"
+        android:fontVariationSettings="'wght' 650" />
+</font-family>

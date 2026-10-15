@@ -426,19 +426,17 @@ medidas de abajo salen de `px / 1,75833`.
    del monto (`#FFFFFF` 13,97 · `#F2F2F2` 13,40 · `#E8E8E8` 13,26 · `#DCDCDC`
    13,47 · `#D7D7D7` 13,57 · `#CCCCCC` 13,92), con **`#F5F5F5`** y capa de
    composición se queda en **10,22**.
-7b. **El monto va en peso 500 y el resto en 400**: la fuente del mockup es
-   **redondeada** (la de la marca), así que a igualdad de trazo parece más
-   gruesa. Medido con `tools\medir-monto.ps1` (anchura media de las rachas de
-   tinta en las filas centrales de los dígitos), el mockup da **3,72 px** y
-   Arimo 400 da **3,75 px**: el mismo grosor. Pero el ancho de la caja también
-   coincide (132 px) y en el teléfono el monto se veía «menos marcado» que el
-   mockup. Con Arimo **500** los trazos miden **4,16 px** y el monto se ve tan
-   marcado como la referencia; el ancho pasa a 133 px (1 px más) y el diff
-   global sube solo 0,03 (4,75 → 4,78). Probados 13 tipos (Arimo 400/500/600/700,
-   Arial Rounded MT Bold, Century Gothic, Century Gothic Bold, Corbel, Candara,
-   Segoe UI, Segoe UI Semibold, Leelawadee UI, Nirmala UI) ninguno baja de 10,22
-   del 400: son fuentes del sistema, no la de la marca. En Android el peso se
-   elige con `@font/arimo_medium` (mismo `arimo_variable.ttf`, eje `wght` 500).
+7b. **La fuente del mockup es Nunito, la tipografÃ­a de marca del banco, y sÃ­ se
+   puede usar**: al principio se dio por hecho que era una tipografÃ­a propia no
+   disponible y se probaron 13 fuentes del sistema (Arimo 400/500/600/700, Arial
+   Rounded MT Bold, Century Gothic y Bold, Corbel, Candara, Segoe UI y Semibold,
+   Leelawadee UI, Nirmala UI) sin bajar el monto de 10,22. La respuesta estaba en
+   la web oficial: **bancodevenezuela.com declara `font-family: Nunito,
+   sans-serif`**. Nunito es SIL OFL 1.1 (se puede incrustar en la app y en el
+   APK) y con ella el monto baja de 13,41 a **5,77** y el tÃ­tulo de 31,0 a
+   **22,33**. Los trazos medidos cuadran: monto 3,93 px en el mockup frente a
+   4,03 con Nunito 500, y tÃ­tulo 4,66 frente a 4,57 con Nunito 650. Los pesos e
+   interletras de cada texto estÃ¡n en la secciÃ³n 14.
 8. **Chrome en Windows pinta el texto con antialiasing subpíxel** (flecos
    naranjas y azules) y el mockup es una captura de teléfono, que usa escala de
    grises. Forzando capa de composición en los textos (`transform:translateZ(0)`)
@@ -549,4 +547,86 @@ llevaba, y en el panel de Pagos el título va centrado por
 con ancho `0dp` y anclas a los dos bordes que no lleve `gravity` con `center`.
 Estado actual: **OK (todos centrados)**.
 
+---
 
+## 14. La tipografÃ­a del mockup es Nunito (y se puede incrustar)
+
+La primera pasada dio por hecho que el mockup usaba una tipografÃ­a propia del
+banco que no estaba en el equipo, y se probaron 13 fuentes del sistema sin bajar
+la diferencia. La respuesta estaba en la web oficial: **bancodevenezuela.com
+declara `font-family: Nunito, sans-serif`**.
+
+Nunito es de Google Fonts con licencia **SIL OFL 1.1**: se puede incrustar en la
+app y dentro del APK sin problema. Se descargÃ³ la instancia variable
+(`replica/nunito.ttf` y `android/app/src/main/res/font/nunito_variable.ttf`) y se
+ajustÃ³ cada texto midiendo su tinta contra el mockup.
+
+### 14.1 Lo que se midiÃ³ (comprobante)
+
+| Texto | TamaÃ±o | Peso | Interletra | Tinta en el mockup | Tinta en la rÃ©plica | Trazo |
+|---|---|---|---|---|---|---|
+| Â«Comprobante de operaciÃ³nÂ» | 28 px | 650 | +0,45 px | x 128..487 Â· y 41..67 | x 128..487 Â· y 41..67 | 4,66 / 4,57 |
+| Â«PagomÃ³vilBDV PersonasÂ» | 24,5 px | 400 | +0,1 px | x 182..451 Â· y 258..305 | x 180..453 Â· y 258..305 | 3,45 / 3,25 |
+| Â«2.400,00 BsÂ» | 25 px | 500 | âˆ’0,273 px | x 251..382 Â· y 389..409 | x 251..382 Â· y 389..409 | 3,93 / 4,03 |
+| Etiquetas (Â«Fecha:Â»â€¦) | 22 px | 700 | âˆ’1 px | 56Ã—15 px | 57Ã—16 px | 2,81 / 4,40 |
+| Valores (Â«13/10/2026Â»â€¦) | 22 px | 400 | âˆ’0,6 px | 107Ã—15 px | 109Ã—17 px | 1,58 / 2,77 |
+| Interruptores del pie | 21 px | 400 | âˆ’0,1 px | 190Ã—20 px | 189Ã—19 px | 2,69 / 2,53 |
+
+Diferencias por zona al pasar de Arimo a Nunito (sobre 255, menos es mejor):
+
+| Zona | Arimo | Nunito |
+|---|---|---|
+| Monto | 13,41 | **5,77** |
+| TÃ­tulo | 30,99 | **22,33** |
+| SubtÃ­tulo | 40,90 | **11,89** |
+| Texto del interruptor 1 | 21,02 | **9,41** |
+| Texto del interruptor 2 | 30,57 | **12,69** |
+| **Media de los 12 textos** | 18,92 | **11,53** |
+| **Diff global de la pantalla** | 4,78 | **3,51** (2,81 % de pÃ­xeles) |
+
+### 14.2 Trampa nueva: el tÃ­tulo del mockup NO estÃ¡ centrado
+
+La tinta del tÃ­tulo va de **x 126 a x 490** en un lienzo de 633 px: mÃ¡rgenes
+**126 y 143 px**, o sea **8,5 px a la izquierda del centro**. El subtÃ­tulo y el
+monto sÃ­ van centrados (su tinta va de 182 a 451 y de 251 a 382, con el centro
+justo en 316,5). Es como si el texto del mockup llevase espacios de mÃ¡s al final.
+Se reproduce con `left:-8.5px` en el HTML y con `android:translationX="-4.8dp"`
+en Android (dimen `cp_titulo_desplazamiento`); es lo que baja el diff del tÃ­tulo
+de 32,8 a **22,33**.
+
+### 14.3 CÃ³mo se pasa a Android
+
+| En el HTML | En Android |
+|---|---|
+| `font-family:'Nunito'` con peso 400 | `android:fontFamily="@font/nunito"` |
+| peso 500 (monto) | `@font/nunito_medium` (`fontVariationSettings="'wght' 500"`) |
+| peso 650 (tÃ­tulo) | `@font/nunito_semibold` (`'wght' 650`) |
+| peso 700 (etiquetas) | `@font/nunito` + `android:textStyle="bold"` |
+| `letter-spacing: Npx` | `android:letterSpacing="N / tamaÃ±o"` (en em) |
+
+Los mÃ¡rgenes verticales tambiÃ©n cambian: el hueco entre el borde de la caja y la
+altura de mayÃºscula pasa de **0,2153 em** (Arimo) a **0,2960 em** (Nunito), asÃ­
+que todos los `margin_top` del comprobante bajan **0,081 em**. Se mide con
+`tools/medir-metricas.ps1`; sin corregirlo, todos los textos quedan 1 px arriba.
+
+### 14.4 CÃ³mo se vuelve a medir (y las trampas de Chrome)
+
+El bucle de ajuste es: renderizar, medir la tinta de cada texto, cambiar el valor
+y repetir. Al renderizar con Chrome headless hay dos trampas que cuestan un rato
+largo:
+
+1. **`--user-data-dir` y `--screenshot` con espacios** (por ejemplo
+   `C:\Users\Alexis Ruiz\...`) se parten en dos argumentos y Chrome falla con
+   `Multiple targets are not supported in headless mode` (cÃ³digo 13), **sin
+   escribir el PNG y sin decir nada por consola**. SoluciÃ³n: rutas cortas 8.3
+   (`GetFolder($env:TEMP).ShortPath`) y todos los argumentos en un Ãºnico string.
+2. **Reutilizar el mismo perfil**: si queda una instancia de Chrome viva, la
+   nueva responde Â«Se estÃ¡ abriendo en una sesiÃ³n de navegador existenteÂ» y **no
+   vuelve a capturar**: se miden nÃºmeros del render viejo y uno se los cree.
+   SoluciÃ³n: un `--user-data-dir` nuevo (GUID) por captura y comprobar que el PNG
+   se ha escrito de verdad.
+
+Y una tercera del lado de PowerShell: al leer y reescribir un HTML sin
+`-Encoding UTF8` los acentos se corrompen (Â«operaciÃ³nÂ» â†’ Â«operaciÃƒÂ³nÂ») y las
+medidas del texto que se estÃ¡ ajustando salen mal. `tools/generar-vista-previa.ps1`
+ya usa `-Raw -Encoding UTF8`.

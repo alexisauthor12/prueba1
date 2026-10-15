@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Familia Nunito (licencia SIL OFL 1.1), la fuente de marca del Banco de
+  Venezuela: bancodevenezuela.com declara font-family: Nunito, sans-serif.
+
+  Es la fuente del mockup. Medida contra design/referencia-comprobante.jpeg
+  acierta el ancho, el alto y el grosor de trazo de los textos del comprobante
+  (ver design/ESPECIFICACIONES.md, seccion 13): con Arimo el monto quedaba en
+  13,4 de diferencia y el titulo en 31,0; con Nunito bajan a 5,8 y 22,4.
+
+  Se usa la instancia variable para los cuatro pesos del comprobante.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="400" />
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:fontVariationSettings="'wght' 700" />
+</font-family>

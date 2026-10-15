@@ -13,7 +13,7 @@ nube con GitHub Actions).
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
 | 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | 9,49 |
-| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | 4,78 |
+| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,51** |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -168,12 +168,15 @@ bdv-app/
 â”‚  â”œâ”€â”€ flujo.html                  visor navegable de las 3 pantallas
 â”‚  â”œâ”€â”€ vista-previa*.html          versiones autocontenidas (para el mÃ³vil)
 â”‚  â”œâ”€â”€ arimo.ttf                   fuente calibrada (la misma que usa el APK)
+â”‚  â”œâ”€â”€ nunito.ttf                  tipografia de marca (la usa el comprobante)
 â”‚  â”œâ”€â”€ logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
 â”‚  â”œâ”€â”€ ico-movil.png ico-access.png ico-saldos.png   iconos de las tarjetas
 â”‚  â”œâ”€â”€ ico-huella.png ico-salir.png ico-ojo.png      huella, salir, ojo
 â”œâ”€â”€ tools/
 â”‚  â”œâ”€â”€ comparar.ps1                comparador automÃ¡tico (inicio | login | clave)
 â”‚  â”œâ”€â”€ validar-android.ps1         XML + referencias @recurso + usos en Kotlin
+â”‚  â”œâ”€â”€ medir-metricas.ps1           ascenso y capHeight de una fuente
+â”‚  â”œâ”€â”€ medir-monto.ps1              grosor de trazo de un texto
 â”‚  â”œâ”€â”€ probar-fuentes.ps1          identificador de tipografÃ­a (24 fuentes)
 â”‚  â”œâ”€â”€ generar-vista-previa.ps1    crea los HTML autocontenidos
 â”‚  â”œâ”€â”€ medir-login.ps1  mapa-login.ps1
@@ -202,6 +205,9 @@ bdv-app/
 â”‚           â”œâ”€â”€ drawable/bg_campo.xml           campo de contraseÃ±a
 â”‚           â”œâ”€â”€ drawable-xhdpi/                 logo + iconos a 2x
 â”‚           â”œâ”€â”€ font/arimo_variable.ttf  font/arimo.xml
+â”‚           â”œâ”€â”€ font/arimo_variable.ttf  nunito_variable.ttf
+â”‚           â”œâ”€â”€ font/arimo.xml  arimo_medium.xml  nunito.xml
+â”‚           â”œâ”€â”€         nunito_medium.xml  nunito_semibold.xml
 â”‚           â””â”€â”€ mipmap-*/ic_launcher.png        icono de app (5 densidades)
 â””â”€â”€ .github/workflows/build-apk.yml   compila el APK en la nube```
 
@@ -240,6 +246,8 @@ de depuración y el de release sin firmar.
 > `:app:mergeDebugResources` porque `color/velo` estaba definido en
 > `values/colors.xml` **y otra vez** en `values/dimens_clave.xml` (AAPT2:
 > «Duplicate resources»). Corregido en `1dde4b0`, y `tools/validar-android.ps1`
+> «Duplicate resources»). Corregido en `1dde4b0`, y `tools/medir-metricas.ps1           ascenso y capHeight de una fuente
+> «Duplicate resources»). Corregido en `1dde4b0`, y `tools/medir-monto.ps1              grosor de trazo de un texto
 > ahora comprueba recursos duplicados entre los `values/*.xml` para que no
 > vuelva a colarse.
 
@@ -272,6 +280,8 @@ powershell -ExecutionPolicy Bypass -File tools\comparar.ps1 -Pantalla clave
 
 # 3) validar el proyecto Android sin necesidad de Android SDK
 powershell -ExecutionPolicy Bypass -File tools\validar-android.ps1
+powershell -ExecutionPolicy Bypass -File tools\medir-metricas.ps1           ascenso y capHeight de una fuente
+powershell -ExecutionPolicy Bypass -File tools\medir-monto.ps1              grosor de trazo de un texto
 ```
 
 `comparar.ps1` informa, por cada región: la caja medida en la referencia, la caja
@@ -280,6 +290,8 @@ desviación en un solo paso. Admite
 `-Pantalla inicio | login | clave | dashboard | pagos | pagomovil | comprobante`.
 
 `validar-android.ps1` comprueba de una pasada: **53 XML bien formados**,
+`medir-metricas.ps1           ascenso y capHeight de una fuente
+`medir-monto.ps1              grosor de trazo de un texto
 **592 recursos** definidos, **137 ids** y **0 referencias sin resolver**
 (incluidos los usos `R.id.*` / `R.layout.*` en Kotlin), **ningún recurso
 duplicado** entre los `values/*.xml` y **ningún texto de ancho completo sin
@@ -305,9 +317,16 @@ alineándolo con el original y midiendo la diferencia real de los trazos
 | … | … | … | … |
 | 16 | Segoe UI (la inicial) | 417 px | 77,58 |
 
-**Arial gana**: coincide en ancho (436 vs 437 = 0,2 % de error), en altura de
-mayúscula y en forma. Al aplicarlo, el diff global bajó de 2,61 a **2,49** y el
-texto del botón mejoró un **52 %**.
+**Arial gana** entre las fuentes *del sistema*: coincide en ancho (436 vs 437 =
+0,2 % de error), en altura de mayúscula y en forma. Al aplicarlo, el diff global
+bajó de 2,61 a **2,49** y el texto del botón mejoró un **52 %**.
+
+> **La fuente de marca sí existe: es Nunito.** La búsqueda se hizo solo entre las
+> fuentes instaladas en el equipo; la de la app del banco es **Nunito** (lo
+> declara `bancodevenezuela.com`: `font-family: Nunito, sans-serif`), es de
+> Google Fonts con licencia SIL OFL 1.1 y se puede incrustar en el APK. Con ella
+> el comprobante baja de 4,78 a **3,51**. Los detalles, en
+> `design/ESPECIFICACIONES.md`, sección 14.
 
 ### Compensaciones de ancho aplicadas
 
@@ -335,6 +354,9 @@ Si consigues el `.ttf`/`.otf` del banco:
 **Solución ya aplicada:** Android no trae Arial, así que el proyecto **incluye
 Arimo** (licencia Apache 2.0, métricamente compatible con Arial) en
 `android/app/src/main/res/font/arimo_variable.ttf`, declarada en
+`android/app/src/main/res/font/arimo_variable.ttf  nunito_variable.ttf
+`android/app/src/main/res/font/arimo.xml  arimo_medium.xml  nunito.xml
+`android/app/src/main/res/        nunito_medium.xml  nunito_semibold.xml
 `res/font/arimo.xml` y aplicada **desde el tema**
 (`<item name="android:fontFamily">@font/arimo</item>`), por lo que todos los
 textos de la app usan la fuente calibrada sin tocar el layout.
@@ -370,6 +392,8 @@ de Arial → idénticos, como corresponde a fuentes métricamente compatibles.
   ancho completo **no** se centra solo: hay que ponerle `android:gravity="center"`.
   Sin eso, el subtítulo y el enlace de Inicio (y los cinco textos de la pantalla
   de autenticación) salían pegados al borde izquierdo. `tools/validar-android.ps1`
+  de autenticación) salían pegados al borde izquierdo. `tools/medir-metricas.ps1           ascenso y capHeight de una fuente
+  de autenticación) salían pegados al borde izquierdo. `tools/medir-monto.ps1              grosor de trazo de un texto
   ya lo comprueba (apartado 2c) y `design/ESPECIFICACIONES.md` §13 lo explica.
 
 
@@ -525,20 +549,21 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Bloque | Medida (px del mockup) | dp | Comprobación |
 |---|---|---|---|
 | Flecha atrás | 32 × 32 en (33, 36) | 18,2 | **diff 0,18** |
-| Título (negrita) | mayúscula 40 → 68 | 16sp | diff 30,5 |
+| Título (**Nunito 650**) | mayúscula 40 → 68 · 356 px de ancho | 16sp | **diff 22,3** |
 | Compartir | 38 × 40 en (572, 31) | 21,6 × 22,7 | **diff 0,05** |
 | Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
-| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | diff 33,0 |
+| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | **diff 11,9** |
 | Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
-| Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 2,19** |
-| Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | diff 10,2 |
-| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 8,9 – 23,2 |
+| Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 1,74** |
+| Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | **diff 5,8** |
+| 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 5,2 – 19,1 |
 | Icono de copiar | 28 × 34 en (**555, 508**) · al lado del número | 15,9 × 19,3 | **diff 0,32** |
 | Flecha del pie | 40 × 39 en (296, 1021) | 22,7 × 22,2 | **diff 0,07** |
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 4,78 / 255 (1,9 %)**.
+**Diff global: 3,51 / 255 · 2,81 % de píxeles con desviación > 32** (con Arimo era
+4,78; el cambio a Nunito baja un 27 %).
 
 Detalles que solo se ven midiendo:
 
@@ -564,15 +589,28 @@ Detalles que solo se ven midiendo:
   JPEG y el texto llega suavizado (el núcleo es blanco, pero el 88 % de sus
   píxeles claros son grises). Medido, `#F5F5F5` es el que menos se desvía
   (**diff 10,2**, frente a 14,0 con `#FFFFFF`).
-- El **monto va en Arimo 500**, no en 400. El mockup usa la tipografía
-  **redondeada** de la marca: medida, sus trazos son de **3,72 px** de media,
-  casi idénticos a los de Arimo 400 (3,75 px) y al mismo ancho (132 px), pero al
-  ser redonda la letra **parece más gruesa** y en el teléfono se veía «menos
-  marcada» que el mockup. Con el 500 los trazos miden **4,16 px** y el monto se
-  ve tan marcado como la referencia, con el ancho casi igual (133 px frente a
-  132). Cuesta **0,03** de diff global (4,75 → 4,78) y el monto pasa de 10,2 a
-  13,4. En Android es `@font/arimo_medium` (mismo `arimo_variable.ttf` con el eje
-  `wght` en 500, como el 700 de `@font/arimo`).
+- **La tipografía del mockup es Nunito**, la de marca del banco. Al principio se
+  buscó entre las fuentes del sistema (24 probadas) y ninguna bajaba el monto de
+  10,2; la pista estaba en la web oficial del banco, que declara
+  `font-family: Nunito, sans-serif`. Nunito es de Google Fonts con licencia
+  **SIL OFL 1.1** (se puede incrustar en el APK) y con ella el monto baja a
+  **5,77**, el título a 22,3, el subtítulo a 11,9 y los dos interruptores a 9,4 y
+  12,7: el diff global pasa de 4,78 a **3,51**. Cada texto lleva su peso y su
+  interletra medidos (título Nunito 650 con +0,45 px; monto Nunito 500 con
+  −0,273 px; etiquetas 700 con −1 px; valores 400 con −0,6 px). En Android son
+  `@font/nunito`, `@font/nunito_medium` (eje `wght` 500) y
+  `@font/nunito_semibold` (650), con `android:letterSpacing` en em. El detalle
+  completo está en `design/ESPECIFICACIONES.md`, sección 14.
+- **En el mockup el título no está centrado**: su tinta va de x 126 a x 490 en un
+  lienzo de 633 px (márgenes 126 y 143), o sea **8,5 px a la izquierda del
+  centro**; el subtítulo y el monto sí van centrados. Se reproduce a propósito
+  (`left:-8.5px` en el HTML, `android:translationX="-4.8dp"` en Android): es lo
+  que baja el diff del título de 32,8 a **22,3**.
+- **Los márgenes verticales se recalculan al cambiar de fuente**: el hueco entre
+  el borde de la caja y la altura de mayúscula mide **0,2153 em en Arimo** y
+  **0,2960 em en Nunito** (medido con `tools/medir-metricas.ps1`), así que al
+  pasar a Nunito todos los `margin_top` del comprobante bajan **0,081 em**. Sin
+  esa corrección todos los textos quedan 1 px arriba.
 - **Todos los textos llevan `transform:translateZ(0)`** (capa de composición):
   así Chrome usa antialiasing **en escala de grises**, como el teléfono que hizo
   el mockup, en vez de meterle flecos naranjas y azules (subpíxel). Solo con eso

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nunito en peso 500 (medium): el monto del comprobante. Medido, el mockup lleva
+  el monto con trazos de 3,93 px; Nunito 400 da 3,6 y el 500 clava los 3,93 px
+  manteniendo el ancho (132 px, igual que el mockup).
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="500"
+        android:fontVariationSettings="'wght' 500" />
+</font-family>
