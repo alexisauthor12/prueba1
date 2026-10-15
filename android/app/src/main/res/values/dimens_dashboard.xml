@@ -18,7 +18,7 @@
 
     <dimen name="db_titulo_texto">16sp</dimen>
     <dimen name="db_titulo_margin_izq">73.5dp</dimen>
-    <dimen name="db_titulo_margin_top">21dp</dimen>
+    <dimen name="db_titulo_margin_top">19.7dp</dimen>
 
     <dimen name="db_access">34dp</dimen>
     <dimen name="db_access_margin_izq">223dp</dimen>
@@ -41,15 +41,15 @@
 
     <dimen name="db_saldo_texto">9.75sp</dimen>
     <dimen name="db_saldo_margin_izq">35.5dp</dimen>
-    <dimen name="db_saldo_margin_top">89.4dp</dimen>
+    <dimen name="db_saldo_margin_top">88.6dp</dimen>
 
     <dimen name="db_monto_texto">12.7sp</dimen>
     <dimen name="db_monto_margin_izq">35dp</dimen>
-    <dimen name="db_monto_margin_top">111.8dp</dimen>
+    <dimen name="db_monto_margin_top">110.8dp</dimen>
 
     <dimen name="db_cuenta_texto">9.75sp</dimen>
     <dimen name="db_cuenta_margin_izq">35dp</dimen>
-    <dimen name="db_cuenta_margin_top">137.9dp</dimen>
+    <dimen name="db_cuenta_margin_top">137.1dp</dimen>
 
     <dimen name="db_ico1_ancho">21dp</dimen>
     <dimen name="db_ico1_alto">21dp</dimen>
@@ -75,7 +75,7 @@
 
     <dimen name="db_mov_texto">12.25sp</dimen>
     <dimen name="db_mov_margin_izq">206dp</dimen>
-    <dimen name="db_mov_margin_top">136.4dp</dimen>
+    <dimen name="db_mov_margin_top">135.4dp</dimen>
 
     <dimen name="db_flecha_ancho">10dp</dimen>
     <dimen name="db_flecha_alto">12dp</dimen>
@@ -95,15 +95,15 @@
 
     <dimen name="db_hist_texto">12sp</dimen>
     <dimen name="db_hist_margin_izq">11dp</dimen>
-    <dimen name="db_hist_margin_top">219.9dp</dimen>
+    <dimen name="db_hist_margin_top">218.9dp</dimen>
 
     <dimen name="db_act_texto">12sp</dimen>
     <dimen name="db_act_margin_izq">292dp</dimen>
-    <dimen name="db_act_margin_top">219.4dp</dimen>
+    <dimen name="db_act_margin_top">218.4dp</dimen>
 
     <dimen name="db_hoy_texto">9.75sp</dimen>
     <dimen name="db_hoy_margin_izq">10.5dp</dimen>
-    <dimen name="db_hoy_margin_top">251.9dp</dimen>
+    <dimen name="db_hoy_margin_top">251.1dp</dimen>
 
     <!-- ===== Filas: contenedor en y 279.3, paso 59 dp =====
          Los margenes de dentro son relativos a la fila. -->
@@ -116,15 +116,15 @@
 
     <dimen name="db_fila_desc_texto">10.25sp</dimen>
     <dimen name="db_fila_desc_margin_izq">44dp</dimen>
-    <dimen name="db_fila_desc_margin_top">6dp</dimen>
+    <dimen name="db_fila_desc_margin_top">5.2dp</dimen>
 
     <dimen name="db_fila_monto_texto">10.25sp</dimen>
     <dimen name="db_fila_monto_margin_der">11.5dp</dimen>
-    <dimen name="db_fila_monto_margin_top">0dp</dimen>
+    <dimen name="db_fila_monto_margin_top">-0.8dp</dimen>
 
     <dimen name="db_fila_hora_texto">8.75sp</dimen>
     <dimen name="db_fila_hora_margin_der">12dp</dimen>
-    <dimen name="db_fila_hora_margin_top">14.3dp</dimen>
+    <dimen name="db_fila_hora_margin_top">13.6dp</dimen>
 
     <!-- Fila 7 (Pago de Servicios): contenedor propio en y 637.3 -->
     <dimen name="db_fila7_margin_top">637.3dp</dimen>
@@ -132,15 +132,15 @@
     <dimen name="db_fila7_icono_alto">20dp</dimen>
     <dimen name="db_fila7_icono_margin_izq">14dp</dimen>
     <dimen name="db_fila7_icono_margin_top">2.7dp</dimen>
-    <dimen name="db_fila7_desc_margin_top">6.5dp</dimen>
+    <dimen name="db_fila7_desc_margin_top">5.7dp</dimen>
 
     <!-- ===== Barra inferior: desde y 673 ===== -->
     <dimen name="db_nav_margin_top">673dp</dimen>
     <dimen name="db_nav_columna">60dp</dimen>
     <dimen name="db_nav_texto">9.75sp</dimen>
     <dimen name="db_nav_texto_activo">11.75sp</dimen>
-    <dimen name="db_nav_texto_margin_top">708.4dp</dimen>
-    <dimen name="db_nav_texto_activo_margin_top">706dp</dimen>
+    <dimen name="db_nav_texto_margin_top">707.6dp</dimen>
+    <dimen name="db_nav_texto_activo_margin_top">705dp</dimen>
 
     <dimen name="db_nav1_ancho">21dp</dimen>
     <dimen name="db_nav1_alto">20.5dp</dimen>

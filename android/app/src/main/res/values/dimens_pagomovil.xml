@@ -19,7 +19,7 @@
 
     <dimen name="pm_titulo_texto">16sp</dimen>
     <dimen name="pm_titulo_margin_izq">71.7dp</dimen>
-    <dimen name="pm_titulo_margin_top">17.04dp</dimen>
+    <dimen name="pm_titulo_margin_top">15.7dp</dimen>
 
     <dimen name="pm_menu_ancho">18dp</dimen>
     <dimen name="pm_menu_alto">15dp</dimen>
@@ -36,7 +36,7 @@
     <dimen name="pm_accion_tracking">-0.03</dimen>
     <dimen name="pm_accion_margin_izq">65.9dp</dimen>
     <dimen name="pm_accion_margin_der">65.9dp</dimen>
-    <dimen name="pm_accion_margin_top">65.2dp</dimen>
+    <dimen name="pm_accion_margin_top">64.1dp</dimen>
 
     <!-- ===== Campos: 640x96 px (320x48 dp), borde 4 px, radio 20 px ===== -->
     <dimen name="pm_campo_ancho">320dp</dimen>
@@ -66,8 +66,8 @@
     <!-- ===== Etiquetas sobre el borde ("Operacion:", "Banco:") ===== -->
     <dimen name="pm_etiqueta_texto">12sp</dimen>
     <dimen name="pm_etiqueta_margin_izq">21.5dp</dimen>
-    <dimen name="pm_etiqueta1_margin_top">99.4dp</dimen>
-    <dimen name="pm_etiqueta3_margin_top">255.9dp</dimen>
+    <dimen name="pm_etiqueta1_margin_top">98.4dp</dimen>
+    <dimen name="pm_etiqueta3_margin_top">254.9dp</dimen>
 
     <!-- ===== Desplegables: triangulo de 18x9 px en x 623 ===== -->
     <dimen name="pm_chevron_ancho">9dp</dimen>
@@ -84,7 +84,7 @@
     <!-- ===== Botones Pagar / Limpiar: 176x80 px (88x40 dp) ===== -->
     <dimen name="pm_boton_ancho">88dp</dimen>
     <dimen name="pm_boton_alto">40dp</dimen>
-    <dimen name="pm_boton_margin_top">563dp</dimen>
+    <dimen name="pm_boton_margin_top">562dp</dimen>
     <dimen name="pm_boton1_margin_izq">84.5dp</dimen>
     <dimen name="pm_boton2_margin_izq">187.5dp</dimen>
     <dimen name="pm_boton_texto">12sp</dimen>
@@ -100,8 +100,8 @@
     <dimen name="pm_nav_alto">56.5dp</dimen>
     <dimen name="pm_nav_texto">9.75sp</dimen>
     <dimen name="pm_nav_texto_activo">11.75sp</dimen>
-    <dimen name="pm_nav_texto_margin_top">704.4dp</dimen>
-    <dimen name="pm_nav_texto_activo_margin_top">703.96dp</dimen>
+    <dimen name="pm_nav_texto_margin_top">703.6dp</dimen>
+    <dimen name="pm_nav_texto_activo_margin_top">703dp</dimen>
     <dimen name="pm_nav_texto_tracking_activo">-0.04</dimen>
 
     <dimen name="pm_nav1_margin_top">679.5dp</dimen>

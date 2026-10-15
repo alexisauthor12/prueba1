@@ -6,13 +6,13 @@ nube con GitHub Actions).
 
 | # | Pantalla | Mockup | Réplica HTML | Diff (sobre 255) |
 |---|---|---|---|---|
-| 1 | Inicio | `referencia-inicio.jpeg` | `replica/index.html` | 2,49 |
-| 2 | Autenticación | `referencia-login.jpeg` | `replica/login.html` | 3,49 |
-| 3 | Diálogo «Ingresa con tu contraseña» | `referencia-clave.jpeg` | `replica/clave.html` | 2,24 |
-| 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 4,87 |
-| 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 5,59 (panel) |
-| 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | **2,56** |
-| 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | 9,49 |
+| 1 | Inicio | `referencia-inicio.jpeg` | `replica/index.html` | **2,25** |
+| 2 | Autenticación | `referencia-login.jpeg` | `replica/login.html` | 3,46 |
+| 3 | Diálogo «Ingresa con tu contraseña» | `referencia-clave.jpeg` | `replica/clave.html` | **2,08** |
+| 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 5,17 |
+| 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 6,21 (panel) |
+| 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | 2,68 |
+| 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | **5,46** |
 | 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,51** |
 
 El flujo completo se puede recorrer sin compilar: abre
@@ -156,60 +156,60 @@ Detalles que solo se ven midiendo:
 
 ```
 bdv-app/
-â”œâ”€â”€ design/
-â”‚  â”œâ”€â”€ referencia-inicio.jpeg      mockups originales
-â”‚  â”œâ”€â”€ referencia-login.jpeg
-â”‚  â”œâ”€â”€ referencia-clave.jpeg
-â”‚  â””â”€â”€ ESPECIFICACIONES.md         todas las medidas, colores y geometrÃ­a
-â”œâ”€â”€ replica/
-â”‚  â”œâ”€â”€ index.html                  rÃ©plica del inicio        (720Ã—1453 px)
-â”‚  â”œâ”€â”€ login.html                  rÃ©plica de autenticaciÃ³n  (720Ã—1460 px)
-â”‚  â”œâ”€â”€ clave.html                  rÃ©plica del diÃ¡logo       (720Ã—1456 px)
-â”‚  â”œâ”€â”€ flujo.html                  visor navegable de las 3 pantallas
-â”‚  â”œâ”€â”€ vista-previa*.html          versiones autocontenidas (para el mÃ³vil)
-â”‚  â”œâ”€â”€ arimo.ttf                   fuente calibrada (la misma que usa el APK)
-â”‚  â”œâ”€â”€ nunito.ttf                  tipografia de marca (la usa el comprobante)
-â”‚  â”œâ”€â”€ logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
-â”‚  â”œâ”€â”€ ico-movil.png ico-access.png ico-saldos.png   iconos de las tarjetas
-â”‚  â”œâ”€â”€ ico-huella.png ico-salir.png ico-ojo.png      huella, salir, ojo
-â”œâ”€â”€ tools/
-â”‚  â”œâ”€â”€ comparar.ps1                comparador automÃ¡tico (inicio | login | clave)
-â”‚  â”œâ”€â”€ validar-android.ps1         XML + referencias @recurso + usos en Kotlin
-â”‚  â”œâ”€â”€ medir-metricas.ps1           ascenso y capHeight de una fuente
-â”‚  â”œâ”€â”€ medir-monto.ps1              grosor de trazo de un texto
-â”‚  â”œâ”€â”€ probar-fuentes.ps1          identificador de tipografÃ­a (24 fuentes)
-â”‚  â”œâ”€â”€ generar-vista-previa.ps1    crea los HTML autocontenidos
-â”‚  â”œâ”€â”€ medir-login.ps1  mapa-login.ps1
-â”‚  â””â”€â”€ prueba-fuentes.html  fuentes.png
-â”œâ”€â”€ android/                       proyecto Android (Kotlin + ConstraintLayout)
-â”‚  â”œâ”€â”€ settings.gradle.kts  build.gradle.kts  gradle.properties
-â”‚  â””â”€â”€ app/
-â”‚     â”œâ”€â”€ build.gradle.kts  proguard-rules.pro
-â”‚     â””â”€â”€ src/main/
-â”‚        â”œâ”€â”€ AndroidManifest.xml
-â”‚        â”œâ”€â”€ java/ve/com/bdv/inicio/
-â”‚        â”‚  â”œâ”€â”€ InicioActivity.kt
-â”‚        â”‚  â””â”€â”€ LoginActivity.kt   (incluye el diÃ¡logo de contraseÃ±a)
-â”‚        â””â”€â”€ res/
-â”‚           â”œâ”€â”€ layout/activity_inicio.xml  activity_login.xml
-â”‚           â”œâ”€â”€ values/{colors,dimens,dimens_login,dimens_clave,
-â”‚           â”‚          strings,strings_login,themes}.xml
-â”‚           â”œâ”€â”€ drawable/fondo_franjas.xml      franjas diagonales (vector)
-â”‚           â”œâ”€â”€ drawable/logo_bdv_marca.xml     marca BDV en vector
-â”‚           â”œâ”€â”€ drawable/ic_campana.xml         campana (vector)
-â”‚           â”œâ”€â”€ drawable/bg_boton.xml           botÃ³n (radio 10 dp)
-â”‚           â”œâ”€â”€ drawable/bg_tarjeta.xml         tarjeta (radio 12 dp)
-â”‚           â”œâ”€â”€ drawable/bg_badge.xml           badge circular
-â”‚           â”œâ”€â”€ drawable/bg_circulo.xml         cÃ­rculo de la huella
-â”‚           â”œâ”€â”€ drawable/bg_dialogo.xml         tarjeta del diÃ¡logo
-â”‚           â”œâ”€â”€ drawable/bg_campo.xml           campo de contraseÃ±a
-â”‚           â”œâ”€â”€ drawable-xhdpi/                 logo + iconos a 2x
-â”‚           â”œâ”€â”€ font/arimo_variable.ttf  font/arimo.xml
-â”‚           â”œâ”€â”€ font/arimo_variable.ttf  nunito_variable.ttf
-â”‚           â”œâ”€â”€ font/arimo.xml  arimo_medium.xml  nunito.xml
-â”‚           â”œâ”€â”€         nunito_medium.xml  nunito_semibold.xml
-â”‚           â””â”€â”€ mipmap-*/ic_launcher.png        icono de app (5 densidades)
-â””â”€â”€ .github/workflows/build-apk.yml   compila el APK en la nube```
+├── design/
+│  ├── referencia-inicio.jpeg      mockups originales
+│  ├── referencia-login.jpeg
+│  ├── referencia-clave.jpeg
+│  └── ESPECIFICACIONES.md         todas las medidas, colores y geometría
+├── replica/
+│  ├── index.html                  réplica del inicio        (720×1453 px)
+│  ├── login.html                  réplica de autenticación  (720×1460 px)
+│  ├── clave.html                  réplica del diálogo       (720×1456 px)
+│  ├── flujo.html                  visor navegable de las 3 pantallas
+│  ├── vista-previa*.html          versiones autocontenidas (para el móvil)
+│  ├── arimo.ttf                   fuente calibrada (la misma que usa el APK)
+│  ├── nunito.ttf                  tipografia de marca (la usa el comprobante)
+│  ├── logo-bdv.png                logotipo recortado a 2x (fondo limpiado)
+│  ├── ico-movil.png ico-access.png ico-saldos.png   iconos de las tarjetas
+│  ├── ico-huella.png ico-salir.png ico-ojo.png      huella, salir, ojo
+├── tools/
+│  ├── comparar.ps1                comparador automático (inicio | login | clave)
+│  ├── validar-android.ps1         XML + referencias @recurso + usos en Kotlin
+│  ├── medir-metricas.ps1           ascenso y capHeight de una fuente
+│  ├── medir-monto.ps1              grosor de trazo de un texto
+│  ├── probar-fuentes.ps1          identificador de tipografía (24 fuentes)
+│  ├── generar-vista-previa.ps1    crea los HTML autocontenidos
+│  ├── medir-login.ps1  mapa-login.ps1
+│  └── prueba-fuentes.html  fuentes.png
+├── android/                       proyecto Android (Kotlin + ConstraintLayout)
+│  ├── settings.gradle.kts  build.gradle.kts  gradle.properties
+│  └── app/
+│     ├── build.gradle.kts  proguard-rules.pro
+│     └── src/main/
+│        ├── AndroidManifest.xml
+│        ├── java/ve/com/bdv/inicio/
+│        │  ├── InicioActivity.kt
+│        │  └── LoginActivity.kt   (incluye el diálogo de contraseña)
+│        └── res/
+│           ├── layout/activity_inicio.xml  activity_login.xml
+│           ├── values/{colors,dimens,dimens_login,dimens_clave,
+│           │          strings,strings_login,themes}.xml
+│           ├── drawable/fondo_franjas.xml      franjas diagonales (vector)
+│           ├── drawable/logo_bdv_marca.xml     marca BDV en vector
+│           ├── drawable/ic_campana.xml         campana (vector)
+│           ├── drawable/bg_boton.xml           botón (radio 10 dp)
+│           ├── drawable/bg_tarjeta.xml         tarjeta (radio 12 dp)
+│           ├── drawable/bg_badge.xml           badge circular
+│           ├── drawable/bg_circulo.xml         círculo de la huella
+│           ├── drawable/bg_dialogo.xml         tarjeta del diálogo
+│           ├── drawable/bg_campo.xml           campo de contraseña
+│           ├── drawable-xhdpi/                 logo + iconos a 2x
+│           ├── font/arimo_variable.ttf  font/arimo.xml
+│           ├── font/arimo_variable.ttf  nunito_variable.ttf
+│           ├── font/arimo.xml  arimo_medium.xml  nunito.xml
+│           ├──         nunito_medium.xml  nunito_semibold.xml
+│           └── mipmap-*/ic_launcher.png        icono de app (5 densidades)
+└── .github/workflows/build-apk.yml   compila el APK en la nube```
 
 ## 3. Cómo obtener el APK (sin instalar nada)
 

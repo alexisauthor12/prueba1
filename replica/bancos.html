@@ -6,14 +6,14 @@
 <title>BDV - Selección de banco (replica 1:1, 720x1441 px @2x)</title>
 <style>
   @font-face{
-    font-family:'Arimo';
-    src:url('arimo.ttf') format('truetype');
+    font-family:'Nunito';
+    src:url('nunito.ttf') format('truetype');
     font-weight:400 700;
     font-style:normal;
   }
   html,body{margin:0;padding:0;background:#303030;}
   body{position:relative;width:720px;height:1441px;overflow:hidden;
-       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       font-family:'Nunito',Arial,Helvetica,sans-serif;
        -webkit-font-smoothing:antialiased;}
 
   /* ---- Lista de bancos ----
@@ -24,8 +24,14 @@
            scrollbar-width:none;}
   #bkLista::-webkit-scrollbar{width:0;height:0;}
   #bkLista:focus{outline:none;}
+  /* El texto va centrado en la fila (display:flex), asi que al cambiar de fuente
+     la tinta NO se mueve con el line-height: se mueve con el centrado, porque
+     Nunito reparte el ascenso y el descendente de otra forma (1.011/0.353 frente
+     a 0.9053/0.2119 de Arimo) y deja la letra 2 px mas arriba. Se corrige con
+     padding-top:4px (con box-sizing:border-box la fila sigue midiendo 96 px y el
+     contenido baja 2 px). */
   .bkFila{height:96px;display:flex;align-items:center;box-sizing:border-box;
-          padding-left:33px;padding-right:27px;
+          padding-left:33px;padding-right:27px;padding-top:4px;
           font-size:27px;line-height:38px;color:#FFFFFF;}
   .bkFila.bkSel{background:#494949;}
 

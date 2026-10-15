@@ -17,19 +17,19 @@
 
     <!-- "Banco de Venezuela" 24sp, cap-top 218dp -->
     <dimen name="login_subtitulo_texto">24sp</dimen>
-    <dimen name="login_subtitulo_margin_top">212.8dp</dimen>
+    <dimen name="login_subtitulo_margin_top">210.9dp</dimen>
 
     <!-- "Iniciar sesion como" 16sp, cap-top 254dp -->
     <dimen name="login_sesion_texto">16sp</dimen>
-    <dimen name="login_sesion_margin_top">250.5dp</dimen>
+    <dimen name="login_sesion_margin_top">249.2dp</dimen>
 
     <!-- "A*****4" 16sp, cap-top 291dp -->
     <dimen name="login_usuario_texto">16sp</dimen>
-    <dimen name="login_usuario_margin_top">287.5dp</dimen>
+    <dimen name="login_usuario_margin_top">286.2dp</dimen>
 
     <!-- "Pulsa para autenticarte" 14sp, cap-top 332dp -->
     <dimen name="login_pulsa_texto">14sp</dimen>
-    <dimen name="login_pulsa_margin_top">329dp</dimen>
+    <dimen name="login_pulsa_margin_top">327.9dp</dimen>
 
     <!-- Boton circular con huella: 112x112 px en (304 , 728) del mockup -->
     <dimen name="login_circulo">56dp</dimen>
@@ -40,7 +40,7 @@
 
     <!-- "Ingresa con tu contrasena" 16sp, cap-top 427.5dp -->
     <dimen name="login_ingresa_texto">16sp</dimen>
-    <dimen name="login_ingresa_margin_top">424dp</dimen>
+    <dimen name="login_ingresa_margin_top">422.7dp</dimen>
     <dimen name="login_ingresa_subrayado_margin_top">440dp</dimen>
 
     <!-- Fila inferior, anclada al borde inferior -->

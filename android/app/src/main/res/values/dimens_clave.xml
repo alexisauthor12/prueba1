@@ -23,14 +23,14 @@
 
     <!-- "Usuario: A*****4" 28 px -> 14 sp, cap-top 28 dp dentro del dialogo -->
     <dimen name="clave_usuario_texto">14sp</dimen>
-    <dimen name="clave_usuario_margin_top">25dp</dimen>
+    <dimen name="clave_usuario_margin_top">23.9dp</dimen>
 
     <!-- Campo: 480x96 px en (120, 674) -> 240x48 dp, borde 4 px -> 2 dp -->
     <dimen name="clave_campo_ancho">240dp</dimen>
     <dimen name="clave_campo_alto">48dp</dimen>
     <dimen name="clave_campo_borde">2dp</dimen>
     <dimen name="clave_campo_margin_izq">20dp</dimen>
-    <dimen name="clave_campo_margin_top">75dp</dimen>
+    <dimen name="clave_campo_margin_top">73.9dp</dimen>
     <dimen name="clave_campo_padding_izq">10.5dp</dimen>
     <dimen name="clave_campo_padding_der">38dp</dimen>
     <dimen name="clave_campo_padding_abajo">1.8dp</dimen>
@@ -48,7 +48,7 @@
     <!-- Botones: 176x80 px en y 818 -> 88x40 dp, arriba 147 dp -->
     <dimen name="clave_boton_ancho">88dp</dimen>
     <dimen name="clave_boton_alto">40dp</dimen>
-    <dimen name="clave_boton_margin_top">147dp</dimen>
+    <dimen name="clave_boton_margin_top">146dp</dimen>
     <dimen name="clave_boton1_margin_izq">47dp</dimen>
     <dimen name="clave_boton2_margin_izq">145dp</dimen>
     <dimen name="clave_boton_texto">12.5sp</dimen>

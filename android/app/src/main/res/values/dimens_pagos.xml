@@ -18,7 +18,7 @@
     <!-- ===== Cabecera roja: 42 dp, titulo centrado ===== -->
     <dimen name="pg_cabecera_alto">42dp</dimen>
     <dimen name="pg_titulo_texto">14.5sp</dimen>
-    <dimen name="pg_titulo_margin_top">11.87dp</dimen>
+    <dimen name="pg_titulo_margin_top">10.7dp</dimen>
 
     <!-- ===== Opciones: paso 56 dp, texto a 15.5 dp del borde ===== -->
     <dimen name="pg_item_alto">56dp</dimen>

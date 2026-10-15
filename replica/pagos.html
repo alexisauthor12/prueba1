@@ -5,14 +5,14 @@
 <title>BDV - Panel de Pagos (replica 1:1, 720x1446 px @2x)</title>
 <style>
   @font-face{
-    font-family:'Arimo';
-    src:url('arimo.ttf') format('truetype');
+    font-family:'Nunito';
+    src:url('nunito.ttf') format('truetype');
     font-weight:400 700;
     font-style:normal;
   }
   html,body{margin:0;padding:0;background:#303030;}
   body{position:relative;width:720px;height:1446px;overflow:hidden;
-       font-family:'Arimo',Arial,Helvetica,sans-serif;
+       font-family:'Nunito',Arial,Helvetica,sans-serif;
        -webkit-font-smoothing:antialiased;}
 
   /* Fondo: el dashboard renderizado (720x1450, se recorta a 1446) */
@@ -38,8 +38,13 @@
           color:#FFFFFF;line-height:1;white-space:nowrap;}
 
   /* Opciones: paso 112 px, cap-top 927 + 112i, x 31, 30,5 px, blancas */
+  /* Los items son textos absolutos: al cambiar de fuente la tinta sube 2 px
+     (0,0656 em a 30,5 px) porque Nunito reparte ascenso y descendente de otra
+     forma. En vez de tocar el "top" de los cinco, se compensa en el line-height:
+     la tinta cae en (line-height - 1,364)/2 + 0,296 em, asi que para bajarla
+     0,0656 em hace falta 1,2166. */
   .item{position:absolute;left:31px;font-size:30.5px;color:#FFFFFF;
-        line-height:1;white-space:nowrap;}
+        line-height:1.2166;white-space:nowrap;}
 </style>
 </head>
 <body>

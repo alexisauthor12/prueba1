@@ -426,17 +426,17 @@ medidas de abajo salen de `px / 1,75833`.
    del monto (`#FFFFFF` 13,97 · `#F2F2F2` 13,40 · `#E8E8E8` 13,26 · `#DCDCDC`
    13,47 · `#D7D7D7` 13,57 · `#CCCCCC` 13,92), con **`#F5F5F5`** y capa de
    composición se queda en **10,22**.
-7b. **La fuente del mockup es Nunito, la tipografÃ­a de marca del banco, y sÃ­ se
-   puede usar**: al principio se dio por hecho que era una tipografÃ­a propia no
+7b. **La fuente del mockup es Nunito, la tipografía de marca del banco, y sí se
+   puede usar**: al principio se dio por hecho que era una tipografía propia no
    disponible y se probaron 13 fuentes del sistema (Arimo 400/500/600/700, Arial
    Rounded MT Bold, Century Gothic y Bold, Corbel, Candara, Segoe UI y Semibold,
    Leelawadee UI, Nirmala UI) sin bajar el monto de 10,22. La respuesta estaba en
    la web oficial: **bancodevenezuela.com declara `font-family: Nunito,
    sans-serif`**. Nunito es SIL OFL 1.1 (se puede incrustar en la app y en el
-   APK) y con ella el monto baja de 13,41 a **5,77** y el tÃ­tulo de 31,0 a
+   APK) y con ella el monto baja de 13,41 a **5,77** y el título de 31,0 a
    **22,33**. Los trazos medidos cuadran: monto 3,93 px en el mockup frente a
-   4,03 con Nunito 500, y tÃ­tulo 4,66 frente a 4,57 con Nunito 650. Los pesos e
-   interletras de cada texto estÃ¡n en la secciÃ³n 14.
+   4,03 con Nunito 500, y título 4,66 frente a 4,57 con Nunito 650. Los pesos e
+   interletras de cada texto están en la sección 14.
 8. **Chrome en Windows pinta el texto con antialiasing subpíxel** (flecos
    naranjas y azules) y el mockup es una captura de teléfono, que usa escala de
    grises. Forzando capa de composición en los textos (`transform:translateZ(0)`)
@@ -549,67 +549,67 @@ Estado actual: **OK (todos centrados)**.
 
 ---
 
-## 14. La tipografÃ­a del mockup es Nunito (y se puede incrustar)
+## 14. La tipografía del mockup es Nunito (y se puede incrustar)
 
-La primera pasada dio por hecho que el mockup usaba una tipografÃ­a propia del
+La primera pasada dio por hecho que el mockup usaba una tipografía propia del
 banco que no estaba en el equipo, y se probaron 13 fuentes del sistema sin bajar
 la diferencia. La respuesta estaba en la web oficial: **bancodevenezuela.com
 declara `font-family: Nunito, sans-serif`**.
 
 Nunito es de Google Fonts con licencia **SIL OFL 1.1**: se puede incrustar en la
-app y dentro del APK sin problema. Se descargÃ³ la instancia variable
+app y dentro del APK sin problema. Se descargó la instancia variable
 (`replica/nunito.ttf` y `android/app/src/main/res/font/nunito_variable.ttf`) y se
-ajustÃ³ cada texto midiendo su tinta contra el mockup.
+ajustó cada texto midiendo su tinta contra el mockup.
 
-### 14.1 Lo que se midiÃ³ (comprobante)
+### 14.1 Lo que se midió (comprobante)
 
-| Texto | TamaÃ±o | Peso | Interletra | Tinta en el mockup | Tinta en la rÃ©plica | Trazo |
+| Texto | Tamaño | Peso | Interletra | Tinta en el mockup | Tinta en la réplica | Trazo |
 |---|---|---|---|---|---|---|
-| Â«Comprobante de operaciÃ³nÂ» | 28 px | 650 | +0,45 px | x 128..487 Â· y 41..67 | x 128..487 Â· y 41..67 | 4,66 / 4,57 |
-| Â«PagomÃ³vilBDV PersonasÂ» | 24,5 px | 400 | +0,1 px | x 182..451 Â· y 258..305 | x 180..453 Â· y 258..305 | 3,45 / 3,25 |
-| Â«2.400,00 BsÂ» | 25 px | 500 | âˆ’0,273 px | x 251..382 Â· y 389..409 | x 251..382 Â· y 389..409 | 3,93 / 4,03 |
-| Etiquetas (Â«Fecha:Â»â€¦) | 22 px | 700 | âˆ’1 px | 56Ã—15 px | 57Ã—16 px | 2,81 / 4,40 |
-| Valores (Â«13/10/2026Â»â€¦) | 22 px | 400 | âˆ’0,6 px | 107Ã—15 px | 109Ã—17 px | 1,58 / 2,77 |
-| Interruptores del pie | 21 px | 400 | âˆ’0,1 px | 190Ã—20 px | 189Ã—19 px | 2,69 / 2,53 |
+| «Comprobante de operación» | 28 px | 650 | +0,45 px | x 128..487 · y 41..67 | x 128..487 · y 41..67 | 4,66 / 4,57 |
+| «PagomóvilBDV Personas» | 24,5 px | 400 | +0,1 px | x 182..451 · y 258..305 | x 180..453 · y 258..305 | 3,45 / 3,25 |
+| «2.400,00 Bs» | 25 px | 500 | −0,273 px | x 251..382 · y 389..409 | x 251..382 · y 389..409 | 3,93 / 4,03 |
+| Etiquetas («Fecha:»…) | 22 px | 700 | −1 px | 56×15 px | 57×16 px | 2,81 / 4,40 |
+| Valores («13/10/2026»…) | 22 px | 400 | −0,6 px | 107×15 px | 109×17 px | 1,58 / 2,77 |
+| Interruptores del pie | 21 px | 400 | −0,1 px | 190×20 px | 189×19 px | 2,69 / 2,53 |
 
 Diferencias por zona al pasar de Arimo a Nunito (sobre 255, menos es mejor):
 
 | Zona | Arimo | Nunito |
 |---|---|---|
 | Monto | 13,41 | **5,77** |
-| TÃ­tulo | 30,99 | **22,33** |
-| SubtÃ­tulo | 40,90 | **11,89** |
+| Título | 30,99 | **22,33** |
+| Subtítulo | 40,90 | **11,89** |
 | Texto del interruptor 1 | 21,02 | **9,41** |
 | Texto del interruptor 2 | 30,57 | **12,69** |
 | **Media de los 12 textos** | 18,92 | **11,53** |
-| **Diff global de la pantalla** | 4,78 | **3,51** (2,81 % de pÃ­xeles) |
+| **Diff global de la pantalla** | 4,78 | **3,51** (2,81 % de píxeles) |
 
-### 14.2 Trampa nueva: el tÃ­tulo del mockup NO estÃ¡ centrado
+### 14.2 Trampa nueva: el título del mockup NO está centrado
 
-La tinta del tÃ­tulo va de **x 126 a x 490** en un lienzo de 633 px: mÃ¡rgenes
-**126 y 143 px**, o sea **8,5 px a la izquierda del centro**. El subtÃ­tulo y el
-monto sÃ­ van centrados (su tinta va de 182 a 451 y de 251 a 382, con el centro
-justo en 316,5). Es como si el texto del mockup llevase espacios de mÃ¡s al final.
+La tinta del título va de **x 126 a x 490** en un lienzo de 633 px: márgenes
+**126 y 143 px**, o sea **8,5 px a la izquierda del centro**. El subtítulo y el
+monto sí van centrados (su tinta va de 182 a 451 y de 251 a 382, con el centro
+justo en 316,5). Es como si el texto del mockup llevase espacios de más al final.
 Se reproduce con `left:-8.5px` en el HTML y con `android:translationX="-4.8dp"`
-en Android (dimen `cp_titulo_desplazamiento`); es lo que baja el diff del tÃ­tulo
+en Android (dimen `cp_titulo_desplazamiento`); es lo que baja el diff del título
 de 32,8 a **22,33**.
 
-### 14.3 CÃ³mo se pasa a Android
+### 14.3 Cómo se pasa a Android
 
 | En el HTML | En Android |
 |---|---|
 | `font-family:'Nunito'` con peso 400 | `android:fontFamily="@font/nunito"` |
 | peso 500 (monto) | `@font/nunito_medium` (`fontVariationSettings="'wght' 500"`) |
-| peso 650 (tÃ­tulo) | `@font/nunito_semibold` (`'wght' 650`) |
+| peso 650 (título) | `@font/nunito_semibold` (`'wght' 650`) |
 | peso 700 (etiquetas) | `@font/nunito` + `android:textStyle="bold"` |
-| `letter-spacing: Npx` | `android:letterSpacing="N / tamaÃ±o"` (en em) |
+| `letter-spacing: Npx` | `android:letterSpacing="N / tamaño"` (en em) |
 
-Los mÃ¡rgenes verticales tambiÃ©n cambian: el hueco entre el borde de la caja y la
-altura de mayÃºscula pasa de **0,2153 em** (Arimo) a **0,2960 em** (Nunito), asÃ­
+Los márgenes verticales también cambian: el hueco entre el borde de la caja y la
+altura de mayúscula pasa de **0,2153 em** (Arimo) a **0,2960 em** (Nunito), así
 que todos los `margin_top` del comprobante bajan **0,081 em**. Se mide con
 `tools/medir-metricas.ps1`; sin corregirlo, todos los textos quedan 1 px arriba.
 
-### 14.4 CÃ³mo se vuelve a medir (y las trampas de Chrome)
+### 14.4 Cómo se vuelve a medir (y las trampas de Chrome)
 
 El bucle de ajuste es: renderizar, medir la tinta de cada texto, cambiar el valor
 y repetir. Al renderizar con Chrome headless hay dos trampas que cuestan un rato
@@ -617,16 +617,86 @@ largo:
 
 1. **`--user-data-dir` y `--screenshot` con espacios** (por ejemplo
    `C:\Users\Alexis Ruiz\...`) se parten en dos argumentos y Chrome falla con
-   `Multiple targets are not supported in headless mode` (cÃ³digo 13), **sin
-   escribir el PNG y sin decir nada por consola**. SoluciÃ³n: rutas cortas 8.3
-   (`GetFolder($env:TEMP).ShortPath`) y todos los argumentos en un Ãºnico string.
+   `Multiple targets are not supported in headless mode` (código 13), **sin
+   escribir el PNG y sin decir nada por consola**. Solución: rutas cortas 8.3
+   (`GetFolder($env:TEMP).ShortPath`) y todos los argumentos en un único string.
 2. **Reutilizar el mismo perfil**: si queda una instancia de Chrome viva, la
-   nueva responde Â«Se estÃ¡ abriendo en una sesiÃ³n de navegador existenteÂ» y **no
-   vuelve a capturar**: se miden nÃºmeros del render viejo y uno se los cree.
-   SoluciÃ³n: un `--user-data-dir` nuevo (GUID) por captura y comprobar que el PNG
+   nueva responde «Se está abriendo en una sesión de navegador existente» y **no
+   vuelve a capturar**: se miden números del render viejo y uno se los cree.
+   Solución: un `--user-data-dir` nuevo (GUID) por captura y comprobar que el PNG
    se ha escrito de verdad.
 
 Y una tercera del lado de PowerShell: al leer y reescribir un HTML sin
-`-Encoding UTF8` los acentos se corrompen (Â«operaciÃ³nÂ» â†’ Â«operaciÃƒÂ³nÂ») y las
-medidas del texto que se estÃ¡ ajustando salen mal. `tools/generar-vista-previa.ps1`
+`-Encoding UTF8` los acentos se corrompen («operación» → «operación») y las
+medidas del texto que se está ajustando salen mal. `tools/generar-vista-previa.ps1`
 ya usa `-Raw -Encoding UTF8`.
+
+---
+
+## 15. Nunito en las siete pantallas restantes
+
+La sección 14 pasó el comprobante a Nunito. Las otras siete pantallas seguían con
+Arimo (elegido por descarte entre las fuentes del sistema), así que la app tenía
+dos tipografías a la vez. Ya están todas con Nunito, que es la de marca.
+
+### 15.1 Al cambiar de fuente la tinta se mueve, y depende de cómo esté colocado el texto
+
+Nunito reparte distinto el ascenso y el descendente que Arimo (1,011 y 0,353 em
+frente a 0,9053 y 0,2119) y tiene otra altura de mayúscula, así que la letra no
+cae a la misma altura. Cómo se corrige depende de la colocación, y averiguarlo
+costó varios renders:
+
+| Colocación del texto | Qué mueve la tinta | Arreglo |
+|---|---|---|
+| Absoluto con `top` y `line-height:1` | el `line-height` | cambiar el `line-height` |
+| Centrado en flex (`display:flex;align-items:center`) | **no** el `line-height`: manda el centrado | `padding-top` |
+
+Medido pantalla a pantalla:
+
+| Pantalla | Cómo van los textos | Desfase con Nunito | Arreglo aplicado |
+|---|---|---|---|
+| Bancos | filas de 96 px con `display:flex` | la letra sube 2 px | `padding-top:4px` en `.bkFila` (con `box-sizing:border-box` la fila sigue midiendo 96 px) |
+| Pagos | ítems absolutos de 30,5 px | la letra sube 2 px | `line-height:1.2166` en `.item` |
+| Dashboard | textos absolutos | ya cuadraban | solo el ancho del título (`letter-spacing:0.042em`) |
+
+La fórmula del `line-height` es la que deja la tinta donde estaba con Arimo:
+`(line-height − 1,364)/2 + 0,296 = (1 − 1,1172)/2 + 0,2153`, y se le suma el
+desfase medido cuando hace falta (en Pagos, 2 px = 0,0656 em a 30,5 px, de ahí el
+1,2166).
+
+### 15.2 Resultado
+
+| Pantalla | Con Arimo | Con Nunito | Cambio |
+|---|---|---|---|
+| Bancos | 9,49 | **5,61** | −41 % |
+| Comprobante | 4,78 | **3,51** | −27 % |
+| Inicio | 2,49 | **2,25** | −10 % |
+| Clave | 2,24 | **2,08** | −7 % |
+| Login | 3,49 | 3,46 | −1 % |
+| PagomóvilBDV | 2,56 | 2,68 | +5 % |
+| Dashboard | 4,87 | 5,17 | +6 % |
+| Pagos | 5,59 | 6,21 | +11 % |
+
+En las tres pantallas donde el número sube, la diferencia está en los **textos
+pequeños**: la referencia es un JPEG y en letra pequeña el desenfoque le quita
+contraste, así que el mockup parece más fino que cualquier fuente real. Medido con
+`tools/medir-monto.ps1` (grosor de trazo), en la descripción de una fila del
+dashboard el mockup da **1,49 px** y la réplica **3,25 px**; en el monto del
+comprobante, que es letra grande, mockup y réplica coinciden (3,93 y 4,03). Aun
+así la tipografía es la correcta en todas, y en las pantallas con texto grande
+(Bancos, Comprobante) el cambio se nota mucho.
+
+### 15.3 El título del dashboard: el ancho cuadraba, pero el diff empeoraba
+
+En el dashboard el título («Inicio») medía 73 px de ancho en la réplica y 81 en el
+mockup, con el mismo grosor de trazo (4,71 y 4,77 px), así que en principio solo
+faltaba interletra. Se probó `letter-spacing:0.042em`: el ancho pasó a cuadrar
+(80 px frente a 81), pero la diferencia de esa zona **subió** de 24,9 a 28,1 y la
+global de 5,17 a 5,20. Al repartir el hueco entre las letras, cada trazo cae en una
+fase distinta y el antialiasing se desvía más que antes, así que se dejó sin
+interletra.
+
+La lección (la misma que con el título del comprobante, sección 14.1): lo que hay
+que bajar es la diferencia, no cuadrar el ancho. Un texto un poco más ancho o más
+estrecho puede dar menos diferencia que el que mide exacto, porque sus trazos caen
+en mejor sitio.

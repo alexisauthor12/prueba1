@@ -18,7 +18,7 @@
     <dimen name="campana_margin_top">11.2dp</dimen>
     <dimen name="badge">16dp</dimen>
     <dimen name="badge_margin_izq">28dp</dimen>
-    <dimen name="badge_margin_top">9.5dp</dimen>
+    <dimen name="badge_margin_top">8.8dp</dimen>
     <dimen name="badge_texto">9sp</dimen>
 
     <!-- Logotipo -->
@@ -29,20 +29,20 @@
 
     <!-- Subtítulo: cap-top 264dp, 24sp -->
     <dimen name="subtitulo_texto">24sp</dimen>
-    <dimen name="subtitulo_margin_top">258.8dp</dimen>
+    <dimen name="subtitulo_margin_top">256.9dp</dimen>
     <dimen name="subtitulo_tracking">0.0246</dimen>
 
     <!-- Botón: 270x40dp en (45 , 316)dp, radio 10dp -->
     <dimen name="boton_ancho">270dp</dimen>
     <dimen name="boton_alto">40dp</dimen>
     <dimen name="boton_margin_izq">45dp</dimen>
-    <dimen name="boton_margin_top">316dp</dimen>
+    <dimen name="boton_margin_top">315.1dp</dimen>
     <dimen name="boton_texto">11sp</dimen>
     <dimen name="boton_radio">10dp</dimen>
 
     <!-- Enlace: cap-top 398.5dp, 13sp -->
     <dimen name="enlace_texto">13sp</dimen>
-    <dimen name="enlace_margin_top">395.7dp</dimen>
+    <dimen name="enlace_margin_top">394.6dp</dimen>
     <dimen name="enlace_tracking">-0.0323</dimen>
 
     <!-- Tarjetas: 56x56dp, radio 12dp, arriba 441dp -->
@@ -60,7 +60,7 @@
 
     <!-- Etiquetas: cap-top 510dp, 10sp, interlineado 14dp -->
     <dimen name="etiqueta_texto">10sp</dimen>
-    <dimen name="etiqueta_margin_top">507.8dp</dimen>
+    <dimen name="etiqueta_margin_top">507dp</dimen>
     <dimen name="etiqueta_ancho">120dp</dimen>
     <dimen name="etiqueta_interlineado">2.3dp</dimen>
     <dimen name="etiqueta_tracking">0.0325</dimen>
