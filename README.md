@@ -13,7 +13,7 @@ nube con GitHub Actions).
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | **5,72** (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | 2,73 |
 | 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | **4,78** |
-| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,34** |
+| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,36** |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -552,17 +552,17 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Título (**Nunito 800**) | mayúscula 40 → 68 · 356 px de ancho | 16sp | **diff 23,9** |
 | Compartir | 38 × 40 en (572, 31) | 21,6 × 22,7 | **diff 0,05** |
 | Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
-| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | **diff 8,5** |
+| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | **diff 9,6** |
 | Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
 | Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 1,74** |
-| Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | **diff 5,9** |
+| Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,5sp | **diff 8,0** |
 | 7 filas | paso **49,5** · etiqueta x 57 · valor x 575 (Operación, x 540) | 28,1 · 32,4 · 33 | 5,2 – 19,1 |
 | Icono de copiar | 28 × 34 en (**555, 508**) · al lado del número | 15,9 × 19,3 | **diff 0,32** |
 | Flecha del pie | 40 × 39 en (296, 1021) | 22,7 × 22,2 | **diff 0,07** |
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 3,34 / 255 · 2,67 % de píxeles con desviación > 32** (con Arimo era
+**Diff global: 3,36 / 255 · 2,71 % de píxeles con desviación > 32** (con Arimo era
 4,78; el cambio a Nunito baja un 27 %).
 
 Detalles que solo se ven midiendo:

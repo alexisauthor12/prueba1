@@ -566,23 +566,23 @@ ajustó cada texto midiendo su tinta contra el mockup.
 | Texto | Tamaño | Peso | Interletra | Tinta en el mockup | Tinta en la réplica | Trazo |
 |---|---|---|---|---|---|---|
 | «Comprobante de operación» | 28 px | 800 | +0,21 px | x 128..487 · y 41..67 | x 128..487 · y 41..67 | 4,66 / 4,57 |
-| «PagomóvilBDV Personas» | 24,5 px | 600 | -0,26 px | x 182..451 · y 258..305 | x 180..453 · y 258..305 | 3,45 / 3,25 |
-| «2.400,00 Bs» | 25 px | 600 | −0,35 px | x 251..382 · y 389..409 | x 251..382 · y 389..409 | 3,93 / 4,52 |
+| «PagomóvilBDV Personas» | 24,5 px | 650 | -0,35 px | x 182..451 · y 258..305 | x 180..453 · y 258..305 | 3,45 / 3,25 |
+| «2.400,00 Bs» | 25,5 px | 650 | −0,7 px | x 251..382 · y 389..409 | x 251..382 · y 389..409 | 3,93 / 4,52 |
 | Etiquetas («Fecha:»…) | 22 px | 700 | −1 px | 56×15 px | 57×16 px | 2,81 / 4,40 |
 | Valores («13/10/2026»…) | 22 px | 500 | −0,9 px | 107×15 px | 109×17 px | 1,58 / 2,77 |
-| Interruptores del pie | 21 px | 500 | −0,1 px | 190×20 px | 189×19 px | 2,69 / 2,53 |
+| Interruptores del pie | 21 px | 550 | −0,1 px | 190×20 px | 189×19 px | 2,69 / 2,53 |
 
 Diferencias por zona al pasar de Arimo a Nunito (sobre 255, menos es mejor):
 
 | Zona | Arimo | Nunito |
 |---|---|---|
-| Monto | 13,41 | **5,90** |
+| Monto | 13,41 | **7,99** |
 | Título | 30,99 | **23,91** |
-| Subtítulo | 40,90 | **8,52** |
-| Texto del interruptor 1 | 21,02 | **16,49** |
-| Texto del interruptor 2 | 30,57 | **20,30** |
-| **Media de los 12 textos** | 18,92 | **11,69** |
-| **Diff global de la pantalla** | 4,78 | **3,34** (2,67 % de píxeles) |
+| Subtítulo | 40,90 | **9,57** |
+| Texto del interruptor 1 | 21,02 | **15,97** |
+| Texto del interruptor 2 | 30,57 | **19,08** |
+| **Media de los 12 textos** | 18,92 | **11,81** |
+| **Diff global de la pantalla** | 4,78 | **3,36** (2,71 % de píxeles) |
 
 ### 14.2 Trampa nueva: el título del mockup NO está centrado
 

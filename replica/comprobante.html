@@ -38,11 +38,11 @@
   #cpLogo{position:absolute;left:269px;top:147px;width:90px;height:96px;}
   /* Subtitulo: interletra medido (probados -0,4 / -0,137 / +0,1 px; el +0,1 es el
      que menos diferencia deja, 10,5 frente a 22,6 y 10,7). */
-  /* Subtitulo: Nunito 600 (400 -> 500 -> 600). El mockup es un JPEG y el
-     desenfoque engorda la letra, asi que cuanto mas fino se veia, mas habia que
-     subir para que se viera igual de marcado. */
+  /* Subtitulo: Nunito 650 (400 -> 500 -> 600 -> 650). El mockup es un JPEG y el
+     desenfoque engorda la letra; el interletra se recalcula para que la tinta
+     siga midiendo los 270 px del mockup. */
   #cpSubtitulo{transform:translateZ(0);position:absolute;left:0;top:257.3px;width:633px;text-align:center;
-               font-size:24.5px;font-weight:600;letter-spacing:-0.26px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+               font-size:24.5px;font-weight:650;letter-spacing:-0.35px;color:#FFFFFF;line-height:1;white-space:nowrap;}
   #cpCheck{position:absolute;left:291px;top:296px;width:50px;height:49px;z-index:2;}
   #cpCaja{position:absolute;left:45px;top:365px;width:543px;height:69px;
           border-radius:17px;background:#757575;}
@@ -51,12 +51,11 @@
      (diff 10,22 frente a 13,97 con #FFFFFF).
      Con Nunito (la fuente de marca) y peso 500 el monto baja a 5,77: es el
      texto que mas gana con la tipografia correcta. */
-  /* Monto: Nunito 600 (se probo el 650, "un pelo mas grueso", y se dejo el 600,
-     que es el punto que mejor queda). Medido con renders de verdad: 500 -> 5,77 ·
-     600 -> 5,90 · 650 -> 7,04 · 700 -> 8,62. El tamano no se toca: la tinta mide
-     132x21 px en el mockup y en la replica. */
-  #cpMonto{transform:translateZ(0);position:absolute;left:0;top:387.3px;width:633px;text-align:center;
-           font-size:25px;font-weight:600;letter-spacing:-0.35px;color:#F5F5F5;line-height:1;white-space:nowrap;}
+  /* Monto: Nunito 650 y 25,5 px (un poco mas grande y mas marcado, como pide el
+     mockup). Al engrosar y crecer la letra ocupa mas ancho, asi que el interletra
+     se recalcula para que la tinta siga midiendo los 132 px del mockup. */
+  #cpMonto{transform:translateZ(0);position:absolute;left:0;top:386.3px;width:633px;text-align:center;
+           font-size:25.5px;font-weight:650;letter-spacing:-0.7px;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la
@@ -79,8 +78,11 @@
      en el movil se notaba. Colores medidos: riel #636363 y bola #BDBDBD. */
   .cpTrack{position:absolute;left:186px;width:64px;height:36px;border-radius:18px;background:#636363;}
   .cpKnob{position:absolute;left:187px;width:34.5px;height:34.5px;border-radius:17.25px;background:#BDBDBD;}
-  .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;font-weight:500;
-                 letter-spacing:-0.1px;color:#FFFFFF;line-height:1;white-space:nowrap;}
+  /* Rotulos de los interruptores: Nunito 550, mismo tamano (21 px). Probado: a
+     600 y 21,5 px se pasan (la diferencia sube a 30) y a 500 la tinta cuadra
+     exacta (190 y 191 px). El 550 es el punto "un poco mas marcado". */
+  .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;font-weight:550;
+                 letter-spacing:-0.15px;color:#FFFFFF;line-height:1;white-space:nowrap;}
 </style>
 </head>
 <body>

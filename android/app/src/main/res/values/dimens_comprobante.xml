@@ -52,13 +52,11 @@
     <dimen name="cp_caja_margin_top">207.6dp</dimen>
     <dimen name="cp_caja_radio">9.7dp</dimen>
 
-    <!-- Monto: Nunito 600. El mockup es un JPEG y el desenfoque engorda la letra,
-         asi que con el 500 se veia "menos marcado" que la referencia. Medido, el
-         600 cuesta solo 0,13 de diferencia en la zona (5,77 -> 5,90) y el 650
-         sube a 7,04. El tamano no se toca: la tinta mide 132x21 px en el mockup y
-         en la replica. -->
-    <dimen name="cp_monto_texto">14.2sp</dimen>
-    <dimen name="cp_monto_margin_top">217dp</dimen>
+    <!-- Monto: Nunito 650 y 14,5sp (25,5 px), un poco mas grande y marcado que
+         antes. El interletra (-0.7 px) y el margen se recalcularon para que la
+         tinta siga midiendo los 132x21 px del mockup. -->
+    <dimen name="cp_monto_texto">14.5sp</dimen>
+    <dimen name="cp_monto_margin_top">216.4dp</dimen>
 
     <!-- ===== Filas: etiqueta a 32.4 dp, valor a 33 dp del borde =====
          El valor de "Operacion:" es el unico que no llega al borde: termina en
