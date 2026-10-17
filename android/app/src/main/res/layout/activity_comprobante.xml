@@ -24,19 +24,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Titulo: Nunito 650 (nunito_semibold), no la negrita de la familia.
-         Medido contra el mockup, que lleva el titulo con trazos de 4,66 px de
-         media: con el 700 de Arimo salian 5,26 y con Nunito 650 salen 4,62.
-         El interletra (0,01607 em = 0,45 px a 28 px, el mejor de los probados)
-         deja el texto en los 360 px de ancho del mockup, y la translationX
-         reproduce que en el mockup el titulo va 8,5 px a la izquierda del centro
-         (ESPECIFICACIONES.md, 14.2). -->
+    <!-- Titulo: Nunito 700 (nunito_700). El mockup es un JPEG y el desenfoque
+         engorda la letra: a 650 se veia mas fino que la referencia. Con el 700
+         queda igual de marcado. -->
     <TextView
         android:id="@+id/cpTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cp_titulo_margin_top"
-        android:fontFamily="@font/nunito_semibold"
+        android:fontFamily="@font/nunito_700"
         android:gravity="center"
         android:includeFontPadding="false"
         android:letterSpacing="0.01607"
@@ -76,7 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cp_subtitulo_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:gravity="center"
         android:includeFontPadding="false"
         android:letterSpacing="0.00408"
@@ -270,7 +266,7 @@
     <TextView android:id="@+id/cpInt1"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/cp_int_margin_izq" android:layout_marginTop="@dimen/cp_int1_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/cp_agregar_beneficiario" android:textColor="@color/blanco"
         android:textSize="@dimen/cp_int_texto" android:letterSpacing="-0.00476"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -288,7 +284,7 @@
     <TextView android:id="@+id/cpInt2"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/cp_int_margin_izq" android:layout_marginTop="@dimen/cp_int2_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/cp_crear_acceso" android:textColor="@color/blanco"
         android:textSize="@dimen/cp_int_texto" android:letterSpacing="-0.00476"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />

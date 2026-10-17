@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nunito en peso 700: el titulo "Comprobante de operacion". El mockup es un JPEG
+  y el desenfoque engorda la letra, asi que a 650 se veia mas fino que la
+  referencia; con el 700 queda igual de marcado.
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:fontVariationSettings="'wght' 700" />
+</font-family>
