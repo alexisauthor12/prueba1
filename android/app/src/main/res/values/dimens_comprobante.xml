@@ -91,18 +91,21 @@
     <dimen name="cp_separador_alto">3.4dp</dimen>
     <dimen name="cp_separador_margin_top">623.3dp</dimen>
 
-    <dimen name="cp_track_ancho">35.8dp</dimen>
-    <dimen name="cp_track_alto">19.9dp</dimen>
-    <dimen name="cp_track_radio">10dp</dimen>
+    <!-- Interruptores: medidos en el mockup (riel 64x36 px y bola 34,5 px; antes
+         63x35 y 32). El riel va 1 px mas arriba que antes y la bola 1 px por
+         debajo del borde del riel, compartiendo los dos la base. -->
+    <dimen name="cp_track_ancho">36.4dp</dimen>
+    <dimen name="cp_track_alto">20.5dp</dimen>
+    <dimen name="cp_track_radio">10.2dp</dimen>
     <dimen name="cp_track_margin_izq">105.8dp</dimen>
-    <dimen name="cp_track1_margin_top">646dp</dimen>
+    <dimen name="cp_track1_margin_top">645.5dp</dimen>
     <dimen name="cp_track2_margin_top">693.8dp</dimen>
 
-    <dimen name="cp_knob">18.2dp</dimen>
-    <dimen name="cp_knob_radio">9.1dp</dimen>
+    <dimen name="cp_knob">19.6dp</dimen>
+    <dimen name="cp_knob_radio">9.8dp</dimen>
     <dimen name="cp_knob_margin_izq">106.3dp</dimen>
-    <dimen name="cp_knob1_margin_top">646.9dp</dimen>
-    <dimen name="cp_knob2_margin_top">694.7dp</dimen>
+    <dimen name="cp_knob1_margin_top">646dp</dimen>
+    <dimen name="cp_knob2_margin_top">694.4dp</dimen>
 
     <dimen name="cp_int_texto">12sp</dimen>
     <dimen name="cp_int_margin_izq">155.3dp</dimen>

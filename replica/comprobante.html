@@ -50,14 +50,13 @@
      (diff 10,22 frente a 13,97 con #FFFFFF).
      Con Nunito (la fuente de marca) y peso 500 el monto baja a 5,77: es el
      texto que mas gana con la tipografia correcta. */
-  /* Monto: Nunito 600 (antes 500). El mockup es un JPEG y el desenfoque engorda
-     la letra, asi que en el movil se veia "menos marcada" que la referencia.
-     Medido con renders de verdad, el 600 con el mismo blanco suave cuesta solo
-     0,13 de diferencia en la zona (5,77 -> 5,90), mientras que el 650 sube a
-     7,04 y el blanco puro a 6,35. El tamano no se toca: la tinta mide 132x21 px
-     en el mockup y en la replica, exactamente igual. */
+  /* Monto: Nunito 650 (500 -> 600 -> 650). El mockup es un JPEG y el desenfoque
+     engorda la letra, asi que en el movil se veia "menos marcada" que la
+     referencia. Medido con renders de verdad: 500 -> 5,77 · 600 -> 5,90 ·
+     650 -> 7,04 · 700 -> 8,62. El tamano no se toca: la tinta mide 132x21 px en
+     el mockup y en la replica. El 650 es el punto "un pelo mas grueso". */
   #cpMonto{transform:translateZ(0);position:absolute;left:0;top:387.3px;width:633px;text-align:center;
-           font-size:25px;font-weight:600;letter-spacing:-0.35px;color:#F5F5F5;line-height:1;white-space:nowrap;}
+           font-size:25px;font-weight:650;letter-spacing:-0.4px;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la
@@ -71,8 +70,12 @@
   /* ---- Pie: flecha, separador y los dos interruptores ---- */
   #cpFlechaPie{position:absolute;left:296px;top:1021px;width:40px;height:39px;}
   #cpSeparador{position:absolute;left:0;top:1096px;width:633px;height:6px;background:#272727;}
-  .cpTrack{position:absolute;left:186px;width:63px;height:35px;border-radius:17.5px;background:#636363;}
-  .cpKnob{position:absolute;left:187px;width:32px;height:32px;border-radius:16px;background:#BDBDBD;}
+  /* Interruptores: medidos en el mockup. El riel mide 64x36 px (radio 18) y la
+     bola 34,5 px (radio 17,25), con la bola 1 px por debajo del borde del riel y
+     los dos compartiendo la base. Antes eran 63x35 y 32: 2-3 px mas pequeños, y
+     en el movil se notaba. Colores medidos: riel #636363 y bola #BDBDBD. */
+  .cpTrack{position:absolute;left:186px;width:64px;height:36px;border-radius:18px;background:#636363;}
+  .cpKnob{position:absolute;left:187px;width:34.5px;height:34.5px;border-radius:17.25px;background:#BDBDBD;}
   .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;letter-spacing:-0.1px;
                  color:#FFFFFF;line-height:1;white-space:nowrap;}
 </style>
@@ -118,12 +121,12 @@
   <img id="cpFlechaPie" src="cp_flecha_pie.png" alt="">
   <div id="cpSeparador"></div>
 
-  <div class="cpTrack" style="top:1136px"></div>
-  <div class="cpKnob"  style="top:1137.5px"></div>
+  <div class="cpTrack" id="cpTrack1" style="top:1135px"></div>
+  <div class="cpKnob"  id="cpKnob1"  style="top:1136px"></div>
   <div class="cpEtiquetaInt" style="top:1142.7px">Agregar Beneficiario</div>
 
-  <div class="cpTrack" style="top:1220px"></div>
-  <div class="cpKnob"  style="top:1221.5px"></div>
+  <div class="cpTrack" id="cpTrack2" style="top:1220px"></div>
+  <div class="cpKnob"  id="cpKnob2"  style="top:1221px"></div>
   <div class="cpEtiquetaInt" style="top:1227.7px">Crear Acceso directo</div>
 
   <script>
@@ -177,7 +180,7 @@
     /* Interruptores: al tocar, la bola se desliza (igual que en la app) */
     function interruptor(riel, bola){
       var encendido = false;
-      var recorrido = 63 - 32;
+      var recorrido = 64 - 34.5;
       document.getElementById(riel).addEventListener('click', alternar);
       document.getElementById(bola).addEventListener('click', alternar);
       function alternar(){

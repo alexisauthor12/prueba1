@@ -50,14 +50,13 @@
      (diff 10,22 frente a 13,97 con #FFFFFF).
      Con Nunito (la fuente de marca) y peso 500 el monto baja a 5,77: es el
      texto que mas gana con la tipografia correcta. */
-  /* Monto: Nunito 600 (antes 500). El mockup es un JPEG y el desenfoque engorda
-     la letra, asi que en el movil se veia "menos marcada" que la referencia.
-     Medido con renders de verdad, el 600 con el mismo blanco suave cuesta solo
-     0,13 de diferencia en la zona (5,77 -> 5,90), mientras que el 650 sube a
-     7,04 y el blanco puro a 6,35. El tamano no se toca: la tinta mide 132x21 px
-     en el mockup y en la replica, exactamente igual. */
+  /* Monto: Nunito 650 (500 -> 600 -> 650). El mockup es un JPEG y el desenfoque
+     engorda la letra, asi que en el movil se veia "menos marcada" que la
+     referencia. Medido con renders de verdad: 500 -> 5,77 · 600 -> 5,90 ·
+     650 -> 7,04 · 700 -> 8,62. El tamano no se toca: la tinta mide 132x21 px en
+     el mockup y en la replica. El 650 es el punto "un pelo mas grueso". */
   #cpMonto{transform:translateZ(0);position:absolute;left:0;top:387.3px;width:633px;text-align:center;
-           font-size:25px;font-weight:600;letter-spacing:-0.35px;color:#F5F5F5;line-height:1;white-space:nowrap;}
+           font-size:25px;font-weight:650;letter-spacing:-0.4px;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la
@@ -71,8 +70,12 @@
   /* ---- Pie: flecha, separador y los dos interruptores ---- */
   #cpFlechaPie{position:absolute;left:296px;top:1021px;width:40px;height:39px;}
   #cpSeparador{position:absolute;left:0;top:1096px;width:633px;height:6px;background:#272727;}
-  .cpTrack{position:absolute;left:186px;width:63px;height:35px;border-radius:17.5px;background:#636363;}
-  .cpKnob{position:absolute;left:187px;width:32px;height:32px;border-radius:16px;background:#BDBDBD;}
+  /* Interruptores: medidos en el mockup. El riel mide 64x36 px (radio 18) y la
+     bola 34,5 px (radio 17,25), con la bola 1 px por debajo del borde del riel y
+     los dos compartiendo la base. Antes eran 63x35 y 32: 2-3 px mas pequeños, y
+     en el movil se notaba. Colores medidos: riel #636363 y bola #BDBDBD. */
+  .cpTrack{position:absolute;left:186px;width:64px;height:36px;border-radius:18px;background:#636363;}
+  .cpKnob{position:absolute;left:187px;width:34.5px;height:34.5px;border-radius:17.25px;background:#BDBDBD;}
   .cpEtiquetaInt{transform:translateZ(0);position:absolute;left:273px;font-size:21px;letter-spacing:-0.1px;
                  color:#FFFFFF;line-height:1;white-space:nowrap;}
 </style>
@@ -118,12 +121,12 @@
   <img id="cpFlechaPie" src="data:image/png;base64,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" alt="">
   <div id="cpSeparador"></div>
 
-  <div class="cpTrack" style="top:1136px"></div>
-  <div class="cpKnob"  style="top:1137.5px"></div>
+  <div class="cpTrack" id="cpTrack1" style="top:1135px"></div>
+  <div class="cpKnob"  id="cpKnob1"  style="top:1136px"></div>
   <div class="cpEtiquetaInt" style="top:1142.7px">Agregar Beneficiario</div>
 
-  <div class="cpTrack" style="top:1220px"></div>
-  <div class="cpKnob"  style="top:1221.5px"></div>
+  <div class="cpTrack" id="cpTrack2" style="top:1220px"></div>
+  <div class="cpKnob"  id="cpKnob2"  style="top:1221px"></div>
   <div class="cpEtiquetaInt" style="top:1227.7px">Crear Acceso directo</div>
 
   <script>
@@ -177,7 +180,7 @@
     /* Interruptores: al tocar, la bola se desliza (igual que en la app) */
     function interruptor(riel, bola){
       var encendido = false;
-      var recorrido = 63 - 32;
+      var recorrido = 64 - 34.5;
       document.getElementById(riel).addEventListener('click', alternar);
       document.getElementById(bola).addEventListener('click', alternar);
       function alternar(){
