@@ -13,7 +13,7 @@ nube con GitHub Actions).
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | **5,72** (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | 2,73 |
 | 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | **4,78** |
-| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,76** |
+| 8 | Comprobante de operación | `referencia-comprobante.jpeg` | `replica/comprobante.html` | **3,34** |
 
 El flujo completo se puede recorrer sin compilar: abre
 `replica/vista-previa-flujo.html` (autocontenido, sirve para el móvil).
@@ -549,10 +549,10 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Bloque | Medida (px del mockup) | dp | Comprobación |
 |---|---|---|---|
 | Flecha atrás | 32 × 32 en (33, 36) | 18,2 | **diff 0,18** |
-| Título (**Nunito 700**) | mayúscula 40 → 68 · 356 px de ancho | 16sp | **diff 22,7** |
+| Título (**Nunito 800**) | mayúscula 40 → 68 · 356 px de ancho | 16sp | **diff 23,9** |
 | Compartir | 38 × 40 en (572, 31) | 21,6 × 22,7 | **diff 0,05** |
 | Logotipo | 85 × 90 en (272, 150) | 51,2 × 54,6 | **diff 0,30** |
-| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | **diff 18,5** |
+| «PagomóvilBDV Personas» | mayúscula 258 → 282 | 14sp | **diff 8,5** |
 | Círculo con el check | 45 × 44 en (294, 299) | 28,4 × 27,9 | **diff 0,13** |
 | Caja del monto | 543 × 69 en (45, **365**) · radio 17 | 308,8 × 39,2 · 9,7 | **diff 1,74** |
 | Monto «2.400,00 Bs» | mayúscula 389 → 410 · 132 px de ancho · `#F5F5F5` | 14,2sp | **diff 5,9** |
@@ -562,7 +562,7 @@ y el monto en formato venezolano (`2400` → **`2.400,00 Bs`**).
 | Separador | 6 px en y 1096 · `#272727` | 3,4 | diff 2,67 |
 | Interruptores | 63 × 35 · bola 32 `#BDBDBD` | 35,8 × 19,9 · 18,2 | **diff 9,3** |
 
-**Diff global: 3,76 / 255 · 2,92 % de píxeles con desviación > 32** (con Arimo era
+**Diff global: 3,34 / 255 · 2,67 % de píxeles con desviación > 32** (con Arimo era
 4,78; el cambio a Nunito baja un 27 %).
 
 Detalles que solo se ven midiendo:

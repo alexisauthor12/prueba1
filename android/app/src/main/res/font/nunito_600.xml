@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Nunito en peso 600: el monto del comprobante. El mockup es un JPEG y el
-  desenfoque engorda la letra, asi que con el 500 el monto se veia "menos
-  marcado" que la referencia. Medido con renders de verdad, el 600 cuesta solo
-  0,13 de diferencia en la zona (5,77 -> 5,90); el 650 sube a 7,04, por eso se
-  dejo en 600.
+  Nunito en peso 600: el monto del comprobante y el subtitulo "PagomovilBDV
+  Personas". El mockup es un JPEG y el desenfoque engorda la letra, asi que hay
+  que subir el peso para que se vea igual de marcada: el monto se quedo en 600
+  (el 650 costaba el doble de diferencia) y el subtitulo tambien, que a 400 y a
+  500 se veia mas fino que la referencia.
 -->
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
     <font
