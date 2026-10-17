@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_saldo_margin_izq"
         android:layout_marginTop="@dimen/db_saldo_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:text="@string/db_saldo_titulo"
         android:textColor="@color/blanco"
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_monto_margin_izq"
         android:layout_marginTop="@dimen/db_monto_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:text="@string/db_saldo"
         android:textColor="@color/blanco"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_cuenta_margin_izq"
         android:layout_marginTop="@dimen/db_cuenta_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:text="@string/db_cuenta"
         android:textColor="@color/blanco"
@@ -168,7 +168,7 @@
     <TextView android:id="@+id/dbMovimientos"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_mov_margin_izq" android:layout_marginTop="@dimen/db_mov_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/db_movimientos" android:textColor="@color/blanco"
         android:textSize="@dimen/db_mov_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -208,7 +208,7 @@
     <TextView android:id="@+id/dbHistorico"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_hist_margin_izq" android:layout_marginTop="@dimen/db_hist_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/db_historico" android:textColor="@color/blanco"
         android:textSize="@dimen/db_hist_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -216,7 +216,7 @@
     <TextView android:id="@+id/dbActualizar"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_act_margin_izq" android:layout_marginTop="@dimen/db_act_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/db_actualizar" android:textColor="@color/rosa_actualizar"
         android:textSize="@dimen/db_act_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -224,7 +224,7 @@
     <TextView android:id="@+id/dbHoy"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_hoy_margin_izq" android:layout_marginTop="@dimen/db_hoy_margin_top"
-        android:fontFamily="@font/nunito" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:includeFontPadding="false"
         android:text="@string/db_hoy" android:textColor="@color/texto_gris"
         android:textSize="@dimen/db_hoy_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -302,7 +302,7 @@
     <TextView android:id="@+id/navTexto1"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="0dp" android:layout_marginTop="@dimen/db_nav_texto_activo_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_inicio" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto_activo"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -310,7 +310,7 @@
     <TextView android:id="@+id/navTexto2"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/db_nav_columna" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_transferir" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -318,7 +318,7 @@
     <TextView android:id="@+id/navTexto3"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="120dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_pagos" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -326,7 +326,7 @@
     <TextView android:id="@+id/navTexto4"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="180dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_servicios" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -334,7 +334,7 @@
     <TextView android:id="@+id/navTexto5"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="240dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_divisas" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -342,7 +342,7 @@
     <TextView android:id="@+id/navTexto6"
         android:layout_width="@dimen/db_nav_columna" android:layout_height="wrap_content"
         android:layout_marginStart="300dp" android:layout_marginTop="@dimen/db_nav_texto_margin_top"
-        android:fontFamily="@font/nunito" android:gravity="center" android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_500" android:gravity="center" android:includeFontPadding="false"
         android:text="@string/db_nav_tarjeta" android:textColor="@color/blanco"
         android:textSize="@dimen/db_nav_texto"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
@@ -387,7 +387,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginTop="@dimen/pg_titulo_margin_top"
-                android:fontFamily="@font/nunito"
+                android:fontFamily="@font/nunito_500"
                 android:includeFontPadding="false"
                 android:text="@string/pg_titulo"
                 android:textColor="@color/blanco"
@@ -397,7 +397,7 @@
 
         <TextView android:id="@+id/pgItem1"
             android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
-            android:fontFamily="@font/nunito" android:gravity="top|start"
+            android:fontFamily="@font/nunito_500" android:gravity="top|start"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/pg_item_margin_izq"
             android:paddingTop="@dimen/pg_item_texto_margin_top"
@@ -406,7 +406,7 @@
 
         <TextView android:id="@+id/pgItem2"
             android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
-            android:fontFamily="@font/nunito" android:gravity="top|start"
+            android:fontFamily="@font/nunito_500" android:gravity="top|start"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/pg_item_margin_izq"
             android:paddingTop="@dimen/pg_item_texto_margin_top"
@@ -415,7 +415,7 @@
 
         <TextView android:id="@+id/pgItem3"
             android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
-            android:fontFamily="@font/nunito" android:gravity="top|start"
+            android:fontFamily="@font/nunito_500" android:gravity="top|start"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/pg_item_margin_izq"
             android:paddingTop="@dimen/pg_item_texto_margin_top"
@@ -424,7 +424,7 @@
 
         <TextView android:id="@+id/pgItem4"
             android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
-            android:fontFamily="@font/nunito" android:gravity="top|start"
+            android:fontFamily="@font/nunito_500" android:gravity="top|start"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/pg_item_margin_izq"
             android:paddingTop="@dimen/pg_item_texto_margin_top"
@@ -433,7 +433,7 @@
 
         <TextView android:id="@+id/pgItem5"
             android:layout_width="match_parent" android:layout_height="@dimen/pg_item_alto"
-            android:fontFamily="@font/nunito" android:gravity="top|start"
+            android:fontFamily="@font/nunito_500" android:gravity="top|start"
             android:includeFontPadding="false"
             android:paddingStart="@dimen/pg_item_margin_izq"
             android:paddingTop="@dimen/pg_item_texto_margin_top"

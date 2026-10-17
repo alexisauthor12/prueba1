@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Nunito en peso 500: el texto "normal" de la mayoria de las pantallas (inicio,
+  autenticacion, contrasena, dashboard, pagos, pagomovil y bancos). Medido contra
+  los mockups, el 500 es el peso que devuelve el aspecto grueso y marcado de la
+  referencia: en bancos baja la diferencia de 5,46 a 4,78 y cuadra el ancho
+  exacto de las filas. El comprobante no lo usa: ahi cada texto lleva su peso
+  medido uno a uno (400, 600, 650 y 700).
+-->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="500"
+        android:fontVariationSettings="'wght' 500" />
+    <font
+        android:font="@font/nunito_variable"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        android:fontVariationSettings="'wght' 700" />
+</font-family>

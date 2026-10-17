@@ -680,14 +680,14 @@ desfase medido cuando hace falta (en Pagos, 2 px = 0,0656 em a 30,5 px, de ahí 
 
 | Pantalla | Con Arimo | Con Nunito | Cambio |
 |---|---|---|---|
-| Bancos | 9,49 | **5,61** | −41 % |
+| Bancos | 9,49 | **4,78** | −41 % |
 | Comprobante | 4,78 | **3,51** | −27 % |
-| Inicio | 2,49 | **2,25** | −10 % |
-| Clave | 2,24 | **2,08** | −7 % |
-| Login | 3,49 | 3,46 | −1 % |
+| Inicio | 2,49 | **2,17** | −10 % |
+| Clave | 2,24 | **2,06** | −7 % |
+| Login | 3,49 | **3,40** | −1 % |
 | PagomóvilBDV | 2,56 | 2,68 | +5 % |
 | Dashboard | 4,87 | 5,17 | +6 % |
-| Pagos | 5,59 | 6,21 | +11 % |
+| Pagos | 5,59 | 5,72 | +2 % |
 
 En las tres pantallas donde el número sube, la diferencia está en los **textos
 pequeños**: la referencia es un JPEG y en letra pequeña el desenfoque le quita
@@ -712,3 +712,35 @@ La lección (la misma que con el título del comprobante, sección 14.1): lo que
 que bajar es la diferencia, no cuadrar el ancho. Un texto un poco más ancho o más
 estrecho puede dar menos diferencia que el que mide exacto, porque sus trazos caen
 en mejor sitio.
+### 15.4 El peso del texto: 500, no 400
+
+Nunito tiene los trazos mas finos que Arimo (que es como Arial), asi que al
+cambiar de fuente **toda la app se veia mas fina** que antes y que el mockup: es
+la misma sensacion que con el monto, que hubo que subir de 400 a 500 y luego a
+600. Medido con renders de verdad, subir el texto normal de 400 a 500 **mejora**
+casi todas las pantallas:
+
+| Pantalla | 400 | 500 |
+|---|---|---|
+| Bancos | 5,46 | **4,78** |
+| Pagos | 6,21 | **5,72** |
+| Inicio | 2,25 | **2,17** |
+| Login | 3,46 | **3,40** |
+| Clave | 2,08 | **2,06** |
+| Dashboard | 5,35 | 6,23 |
+| PagomovilBDV | 2,68 | 2,73 |
+
+En bancos, ademas, el 500 cuadra el ancho exacto de las filas (581 px frente a
+581 del mockup) y baja la diferencia de esa zona de 29,3 a 19,3. El unico que
+sube de verdad es el dashboard (+0,9): su mockup tiene la letra mas fina que los
+demas. Se dejo en 500 igualmente, por coherencia con el resto de la app; si se
+quiere el minimo ahi, es quitar el `font-weight:500` de su body.
+
+El comprobante es aparte: alli cada texto lleva su peso medido uno a uno (400 en
+valores, subtitulo e interruptores, 600 en el monto, 650 en el titulo y 700 en
+las etiquetas), y subir sus textos a 500 empeora (subtitulo 11,9 -> 18,5,
+interruptores 9,4 -> 16,5), asi que se queda como estaba.
+
+En Android el peso va en la familia: `@font/nunito` (400 y 700) para el
+comprobante y `@font/nunito_500` (500 y 700) para las otras siete pantallas,
+incluido el `themes.xml`, que es de donde lo hereda la pantalla de inicio.

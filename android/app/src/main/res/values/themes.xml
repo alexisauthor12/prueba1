@@ -5,7 +5,7 @@
         <item name="android:statusBarColor">@color/fondo</item>
         <item name="android:navigationBarColor">@color/fondo</item>
         <!-- Fuente calibrada contra el mockup (metrica compatible con Arial) -->
-        <item name="android:fontFamily">@font/nunito</item>
+        <item name="android:fontFamily">@font/nunito_500</item>
     </style>
 </resources>
 

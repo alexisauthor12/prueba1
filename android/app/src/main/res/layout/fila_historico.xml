@@ -25,7 +25,7 @@
         android:layout_gravity="start|top"
         android:layout_marginStart="@dimen/db_fila_desc_margin_izq"
         android:layout_marginTop="@dimen/db_fila_desc_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:textColor="@color/blanco"
         android:textSize="@dimen/db_fila_desc_texto" />
@@ -37,7 +37,7 @@
         android:layout_gravity="end|top"
         android:layout_marginEnd="@dimen/db_fila_monto_margin_der"
         android:layout_marginTop="@dimen/db_fila_monto_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:textColor="@color/blanco"
         android:textSize="@dimen/db_fila_monto_texto" />
@@ -49,7 +49,7 @@
         android:layout_gravity="end|top"
         android:layout_marginEnd="@dimen/db_fila_hora_margin_der"
         android:layout_marginTop="@dimen/db_fila_hora_margin_top"
-        android:fontFamily="@font/nunito"
+        android:fontFamily="@font/nunito_500"
         android:includeFontPadding="false"
         android:textColor="@color/texto_gris"
         android:textSize="@dimen/db_fila_hora_texto" />
