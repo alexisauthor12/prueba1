@@ -50,8 +50,14 @@
      (diff 10,22 frente a 13,97 con #FFFFFF).
      Con Nunito (la fuente de marca) y peso 500 el monto baja a 5,77: es el
      texto que mas gana con la tipografia correcta. */
+  /* Monto: Nunito 600 (antes 500). El mockup es un JPEG y el desenfoque engorda
+     la letra, asi que en el movil se veia "menos marcada" que la referencia.
+     Medido con renders de verdad, el 600 con el mismo blanco suave cuesta solo
+     0,13 de diferencia en la zona (5,77 -> 5,90), mientras que el 650 sube a
+     7,04 y el blanco puro a 6,35. El tamano no se toca: la tinta mide 132x21 px
+     en el mockup y en la replica, exactamente igual. */
   #cpMonto{transform:translateZ(0);position:absolute;left:0;top:387.3px;width:633px;text-align:center;
-           font-size:25px;font-weight:500;letter-spacing:-0.273px;color:#F5F5F5;line-height:1;white-space:nowrap;}
+           font-size:25px;font-weight:600;letter-spacing:-0.35px;color:#F5F5F5;line-height:1;white-space:nowrap;}
 
   /* ---- Filas: etiqueta (izq, negrita) y valor (der) ----
      El icono de copiar va AL LADO del numero, no encima: el numero de la

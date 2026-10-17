@@ -114,7 +114,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cp_monto_margin_top"
-        android:fontFamily="@font/nunito_medium"
+        android:fontFamily="@font/nunito_600"
         android:gravity="center"
         android:includeFontPadding="false"
         android:letterSpacing="-0.01092"

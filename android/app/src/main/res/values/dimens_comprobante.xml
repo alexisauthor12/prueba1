@@ -52,10 +52,11 @@
     <dimen name="cp_caja_margin_top">207.6dp</dimen>
     <dimen name="cp_caja_radio">9.7dp</dimen>
 
-    <!-- Monto: Nunito 500. Medido, el mockup lleva el monto con trazos de
-         3,93 px de media; Nunito 400 da 3,6 y el 500 clava los 3,93 px con el
-         ancho exacto del mockup (132 px). Con Arimo la diferencia de esta zona
-         era 13,4 y con Nunito baja a 5,8: es el texto que mas gana. -->
+    <!-- Monto: Nunito 600. El mockup es un JPEG y el desenfoque engorda la letra,
+         asi que con el 500 se veia "menos marcado" que la referencia. Medido, el
+         600 con el mismo blanco suave cuesta solo 0,13 de diferencia en la zona
+         (5,77 -> 5,90) y el 650 sube a 7,04. El tamano no se toca: la tinta mide
+         132x21 px en el mockup y en la replica. -->
     <dimen name="cp_monto_texto">14.2sp</dimen>
     <dimen name="cp_monto_margin_top">217dp</dimen>
 

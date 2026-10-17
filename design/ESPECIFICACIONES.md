@@ -567,7 +567,7 @@ ajustó cada texto midiendo su tinta contra el mockup.
 |---|---|---|---|---|---|---|
 | «Comprobante de operación» | 28 px | 650 | +0,45 px | x 128..487 · y 41..67 | x 128..487 · y 41..67 | 4,66 / 4,57 |
 | «PagomóvilBDV Personas» | 24,5 px | 400 | +0,1 px | x 182..451 · y 258..305 | x 180..453 · y 258..305 | 3,45 / 3,25 |
-| «2.400,00 Bs» | 25 px | 500 | −0,273 px | x 251..382 · y 389..409 | x 251..382 · y 389..409 | 3,93 / 4,03 |
+| «2.400,00 Bs» | 25 px | 600 | −0,35 px | x 251..382 · y 389..409 | x 251..382 · y 389..409 | 3,93 / 4,52 |
 | Etiquetas («Fecha:»…) | 22 px | 700 | −1 px | 56×15 px | 57×16 px | 2,81 / 4,40 |
 | Valores («13/10/2026»…) | 22 px | 400 | −0,6 px | 107×15 px | 109×17 px | 1,58 / 2,77 |
 | Interruptores del pie | 21 px | 400 | −0,1 px | 190×20 px | 189×19 px | 2,69 / 2,53 |
@@ -576,12 +576,12 @@ Diferencias por zona al pasar de Arimo a Nunito (sobre 255, menos es mejor):
 
 | Zona | Arimo | Nunito |
 |---|---|---|
-| Monto | 13,41 | **5,77** |
+| Monto | 13,41 | **5,90** |
 | Título | 30,99 | **22,33** |
 | Subtítulo | 40,90 | **11,89** |
 | Texto del interruptor 1 | 21,02 | **9,41** |
 | Texto del interruptor 2 | 30,57 | **12,69** |
-| **Media de los 12 textos** | 18,92 | **11,53** |
+| **Media de los 12 textos** | 18,92 | **11,54** |
 | **Diff global de la pantalla** | 4,78 | **3,51** (2,81 % de píxeles) |
 
 ### 14.2 Trampa nueva: el título del mockup NO está centrado
