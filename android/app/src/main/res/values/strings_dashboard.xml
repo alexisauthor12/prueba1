@@ -8,7 +8,7 @@
 
     <!-- Tarjeta de saldo -->
     <string name="db_saldo_titulo">Saldo Cuenta Ahorro</string>
-    <string name="db_saldo">Bs. 28.406,96</string>
+    <string name="db_saldo">Bs. 4.357.210,29</string>
     <string name="db_cuenta">0102****5124</string>
     <string name="db_movimientos">Movimientos en línea</string>
     <string name="db_refrescar_desc">Actualizar saldo</string>

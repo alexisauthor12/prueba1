@@ -42,8 +42,13 @@ function Renderizar([string]$nombre){
   $pngTmp = "$tmp\render-$nombre.png"
   Remove-Item $pngTmp -Force -ErrorAction SilentlyContinue
   $url = 'file:///' + ($html -replace '\\','/') -replace ' ','%20'
+  # --run-all-compositor-stages-before-draw y --disable-new-content-rendering-timeout
+  # son imprescindibles: sin ellos, una capa de composicion (los textos con
+  # transform:translateZ(0), como los del comprobante) que cae cerca del borde
+  # inferior NO se pinta en la captura, y el PNG sale sin ese texto.
   $argumentos = '--headless=new --disable-gpu --no-first-run --no-default-browser-check ' +
     '--hide-scrollbars --force-device-scale-factor=1 --virtual-time-budget=5000 ' +
+    '--run-all-compositor-stages-before-draw --disable-new-content-rendering-timeout ' +
     ('--user-data-dir="{0}" --window-size={1},{2} --screenshot="{3}" "{4}"' -f $perfil, $ancho, $alto, $pngTmp, $url)
   Start-Process -FilePath $chrome -ArgumentList $argumentos -Wait -NoNewWindow `
     -RedirectStandardError "$tmp\render-err.txt" | Out-Null

@@ -54,9 +54,9 @@
 
     <!-- Monto: Nunito 600. El mockup es un JPEG y el desenfoque engorda la letra,
          asi que con el 500 se veia "menos marcado" que la referencia. Medido, el
-         600 con el mismo blanco suave cuesta solo 0,13 de diferencia en la zona
-         (5,77 -> 5,90) y el 650 sube a 7,04. El tamano no se toca: la tinta mide
-         132x21 px en el mockup y en la replica. -->
+         600 cuesta solo 0,13 de diferencia en la zona (5,77 -> 5,90) y el 650
+         sube a 7,04. El tamano no se toca: la tinta mide 132x21 px en el mockup y
+         en la replica. -->
     <dimen name="cp_monto_texto">14.2sp</dimen>
     <dimen name="cp_monto_margin_top">217dp</dimen>
 

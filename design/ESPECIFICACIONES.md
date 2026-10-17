@@ -626,6 +626,18 @@ largo:
    Solución: un `--user-data-dir` nuevo (GUID) por captura y comprobar que el PNG
    se ha escrito de verdad.
 
+3. **Una capa de composicion cerca del borde inferior no se pinta**: los textos
+   del comprobante llevan `transform:translateZ(0)` (seccion 11.2, trampa 8) y
+   Chrome headless **no pinta esa capa si cae pegada al borde inferior de la
+   ventana**: en la captura a 633x1280 el texto del segundo interruptor
+   ("Crear Acceso directo") desaparecia, con la misma diferencia que si no
+   existiera (26,78 en esa zona en vez de 12,69). Con la ventana a 1400 px de
+   alto si salia, asi que no era el HTML. La solucion son dos banderas de Chrome:
+   `--run-all-compositor-stages-before-draw` y
+   `--disable-new-content-rendering-timeout` (ya van en
+   `tools/render-pantalla.ps1`). Comprobado: con la bandera la tinta sale en
+   x 274..463 Â· y 1230..1244, igual que el mockup; sin ella, no sale.
+
 Y una tercera del lado de PowerShell: al leer y reescribir un HTML sin
 `-Encoding UTF8` los acentos se corrompen («operación» → «operación») y las
 medidas del texto que se está ajustando salen mal. `tools/generar-vista-previa.ps1`

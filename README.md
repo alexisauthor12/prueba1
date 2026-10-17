@@ -9,7 +9,7 @@ nube con GitHub Actions).
 | 1 | Inicio | `referencia-inicio.jpeg` | `replica/index.html` | **2,25** |
 | 2 | Autenticación | `referencia-login.jpeg` | `replica/login.html` | 3,46 |
 | 3 | Diálogo «Ingresa con tu contraseña» | `referencia-clave.jpeg` | `replica/clave.html` | **2,08** |
-| 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 5,17 |
+| 4 | Dashboard | `referencia-dashboard.jpeg` | `replica/dashboard.html` | 5,35 |
 | 5 | Panel de Pagos | `referencia-pagos.jpeg` | `replica/pagos.html` | 6,21 (panel) |
 | 6 | PagomóvilBDV | `referencia-pagomovil.jpeg` | `replica/pagomovil.html` | 2,68 |
 | 7 | Selección de banco | `referencia-bancos.jpeg` | `replica/bancos.html` | **5,46** |
